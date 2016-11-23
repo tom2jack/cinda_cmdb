@@ -74,7 +74,7 @@
                     <field name="chld_lnk_mod" string = "子节点连接类型"/>
                     <field name="chld_val" string = "子节点值"/>
                     <field name="comment" string = "备注"/>
-                    <field name="last_upd" string = "最后修改日期"/>
+                    <field name="last_upd" string = "最后修改时间"/>
                 </tree>
             </field>
         </record>
@@ -98,7 +98,7 @@
                         <field name="chld_lnk_mod" string = "子节点连接类型"/>
                         <field name="chld_val" string = "子节点值"/>
                         <field name="comment" string = "备注"/>
-                        <field name="last_upd" string = "最后修改日期"/>
+                        <field name="last_upd" string = "最后修改时间"/>
                     </group>
                 </form>
             </field>
@@ -116,7 +116,7 @@
                     <field name="product_name" string = "产品型号"/>
                     <field name="srve_prvd" string = "服务商"/>
                     <field name="purpose" string = "用途"/>
-                    <field name="last_upd" string="最后截止时间"/>
+                    <field name="last_upd" string="最后修改时间"/>
                     <!-- <field name="lab_id" string = "机房ID"/>
                     <field name="pos_seq" string = "位置序号"/>
                     <field name="u_pos" string = "位置U"/>
@@ -186,7 +186,7 @@
                             <field name="srve_prvd" string = "服务商"/>
                             <field name="admin" string = "管理人"/>
                             <field name="comment" string = "备注"/>
-                            <field name="last_upd" string = "最后修改日期"/>
+                            <field name="last_upd" string = "最后修改时间"/>
                         </group>
                     </group>
                 </form>
@@ -210,7 +210,7 @@
                     <field name="cpu_spec" string = "CPU规格"/>
                     <field name="mem_size" string = "内存容量"/>
                     <field name="buss_ip_addr" string = "业务网IP地址"/>
-                    <field name="last_upd" string = "最后修改日期"/>
+                    <field name="last_upd" string = "最后修改时间"/>
                     <!-- <field name="mem_spec" string = "内存规格"/>
                     <field name="disk_size" string = "硬盘容量(裸容量)"/>
                     <field name="disk_spec" string = "硬盘规格"/>
@@ -267,8 +267,8 @@
                             <field name="vir_mark" string = "虚拟化标志"/>
                             <field name="comment1" string = "备注1"/>
                             <field name="comment2" string = "备注2"/>
-                            <field name="last_upd" string = "最后修改日期"/>
-                            <field name="dev_id" string = "序列号"/>
+                            <field name="last_upd" string = "最后修改时间"/>
+                            <field name="dev_id" string = "所属设备序列号"/>
                             <field name="ha_mode" string = "主备状态"/>
                         </group>
                         <notebook colspan="4">
@@ -326,7 +326,7 @@
                     <field name="ha_mode" string = "主备状态"/>
                     <field name="comment1" string = "备注1"/>
                     <field name="comment2" string = "备注2"/>
-                    <field name="last_upd" string = "最后修改日期"/>
+                    <field name="last_upd" string = "最后修改时间"/>
                     <field name="dev_id" string = "设备资产id"/>
                 </tree>
             </field>
@@ -348,7 +348,7 @@
                         <field name="ha_mode" string = "主备状态"/>
                         <field name="comment1" string = "备注1"/>
                         <field name="comment2" string = "备注2"/>
-                        <field name="last_upd" string = "最后修改日期"/>
+                        <field name="last_upd" string = "最后修改时间"/>
                         <field name="dev_id" string = "设备资产id"/>
                     </group>
                 </form>
@@ -370,7 +370,7 @@
                     <field name="slot" string = "槽位"/>
                     <field name="comment1" string = "备注1"/>
                     <field name="comment2" string = "备注2"/>
-                    <field name="last_upd" string = "最后修改日期"/>
+                    <field name="last_upd" string = "最后修改时间"/>
                 </tree>
             </field>
         </record>
@@ -390,7 +390,7 @@
                         <field name="slot" string = "槽位"/>
                         <field name="comment1" string = "备注1"/>
                         <field name="comment2" string = "备注2"/>
-                        <field name="last_upd" string = "最后修改日期"/>
+                        <field name="last_upd" string = "最后修改时间"/>
                     </group>
                 </form>
             </field>
@@ -411,7 +411,7 @@
                     <field name="used_port_num" string = "监控状态"/>
                     <field name="free_port_num" string = "主备状态"/>
                     <field name="comment" string = "备注"/>
-                    <field name="last_upd" string = "最后修改日期"/>
+                    <field name="last_upd" string = "最后修改时间"/>
                     <field name="dev_id" string = "设备资产id"/>
                 </tree>
             </field>
@@ -432,7 +432,7 @@
                         <field name="used_port_num" string = "监控状态"/>
                         <field name="free_port_num" string = "主备状态"/>
                         <field name="comment" string = "备注"/>
-                        <field name="last_upd" string = "最后修改日期"/>
+                        <field name="last_upd" string = "最后修改时间"/>
                         <field name="dev_id" string = "设备资产id"/>
                     </group>
                 </form>
@@ -450,7 +450,7 @@
                     <field name="elec_power" string = "总功率"/>
                     <field name="ampere" string = "电流"/>
                     <field name="comment" string = "备注"/>
-                    <field name="last_upd" string = "最后修改日期"/>
+                    <field name="last_upd" string = "最后修改时间"/>
                     <field name="dev_id" string = "设备资产id"/>
                 </tree>
             </field>
@@ -467,7 +467,7 @@
                         <field name="elec_power" string = "总功率"/>
                         <field name="ampere" string = "电流"/>
                         <field name="comment" string = "备注"/>
-                        <field name="last_upd" string = "最后修改日期"/>
+                        <field name="last_upd" string = "最后修改时间"/>
                         <field name="dev_id" string = "设备资产id"/>
                     </group>
                 </form>
@@ -496,7 +496,7 @@
                     <field name="alias" string = "别名"/>
                     <field name="captain" string = "说明"/>
                     <field name="comment" string = "备注"/>
-                    <field name="last_upd" string = "最后修改日期"/>
+                    <field name="last_upd" string = "最后修改时间"/>
                 </tree>
             </field>
         </record>
@@ -523,7 +523,7 @@
                         <field name="alias" string = "别名"/>
                         <field name="captain" string = "说明"/>
                         <field name="comment" string = "备注"/>
-                        <field name="last_upd" string = "最后修改日期"/>
+                        <field name="last_upd" string = "最后修改时间"/>
                     </group>
                 </form>
             </field>
@@ -554,7 +554,7 @@
                     <field name="port_info" string = "端口描述"/>
                     <field name="mod_type" string = "模块类型"/>
                     <field name="mod_sn" string = "模块序列号"/>
-                    <field name="last_upd" string = "最后修改日期"/>
+                    <field name="last_upd" string = "最后修改时间"/>
                 </tree>
             </field>
         </record>
@@ -584,7 +584,7 @@
                         <field name="port_info" string = "端口描述"/>
                         <field name="mod_type" string = "模块类型"/>
                         <field name="mod_sn" string = "模块序列号"/>
-                        <field name="last_upd" string = "最后修改日期"/>
+                        <field name="last_upd" string = "最后修改时间"/>
                     </group>
                 </form>
             </field>
@@ -603,7 +603,7 @@
                     <field name="u_num" string = "U位数目"/>
                     <field name="purpose" string = "用途"/>
                     <field name="comment" string = "备注"/>
-                    <field name="last_upd" string = "最后修改日期"/>
+                    <field name="last_upd" string = "最后修改时间"/>
                 </tree>
             </field>
         </record>
@@ -621,7 +621,7 @@
                         <field name="u_num" string = "U位数目"/>
                         <field name="purpose" string = "用途"/>
                         <field name="comment" string = "备注"/>
-                        <field name="last_upd" string = "最后修改日期"/>
+                        <field name="last_upd" string = "最后修改时间"/>
                     </group>
                 </form>
             </field>
@@ -647,7 +647,7 @@
                     <field name="contact_info" string = "支持联系方式"/>
                     <field name="license_pos" string = "许可证位置"/>
                     <field name="comment" string = "备注"/>
-                    <field name="last_upd" string = "最后修改日期"/>
+                    <field name="last_upd" string = "最后修改时间"/>
                 </tree>
             </field>
         </record>
@@ -672,7 +672,7 @@
                         <field name="contact_info" string = "支持联系方式"/>
                         <field name="license_pos" string = "许可证位置"/>
                         <field name="comment" string = "备注"/>
-                        <field name="last_upd" string = "最后修改日期"/>
+                        <field name="last_upd" string = "最后修改时间"/>
                     </group>
                 </form>
             </field>
@@ -698,7 +698,7 @@
                     <field name="license_key" string = "许可密钥"/>
                     <field name="license_path" string = "许可保存路径"/>
                     <field name="comment" string = "备注"/>
-                    <field name="last_upd" string = "最后修改日期"/>
+                    <field name="last_upd" string = "最后修改时间"/>
                 </tree>
             </field>
         </record>
@@ -723,7 +723,7 @@
                         <field name="license_key" string = "许可密钥"/>
                         <field name="license_path" string = "许可保存路径"/>
                         <field name="comment" string = "备注"/>
-                        <field name="last_upd" string = "最后修改日期"/>
+                        <field name="last_upd" string = "最后修改时间"/>
                     </group>
                 </form>
             </field>
@@ -743,7 +743,7 @@
                     <field name="mobile_phone" string = "手机"/>
                     <field name="mail" string = "邮件"/>
                     <field name="comment" string = "备注"/>
-                    <field name="last_upd" string = "最后修改日期"/>
+                    <field name="last_upd" string = "最后修改时间"/>
                 </tree>
             </field>
         </record>
@@ -762,7 +762,7 @@
                         <field name="mobile_phone" string = "手机"/>
                         <field name="mail" string = "邮件"/>
                         <field name="comment" string = "备注"/>
-                        <field name="last_upd" string = "最后修改日期"/>
+                        <field name="last_upd" string = "最后修改时间"/>
                     </group>
                 </form>
             </field>
@@ -781,7 +781,7 @@
                     <field name="mobile_phone" string = "手机"/>
                     <field name="mail" string = "邮件"/>
                     <field name="comment" string = "备注"/>
-                    <field name="last_upd" string = "最后修改日期"/>
+                    <field name="last_upd" string = "最后修改时间"/>
                 </tree>
             </field>
         </record>
@@ -799,7 +799,7 @@
                         <field name="mobile_phone" string = "手机"/>
                         <field name="mail" string = "邮件"/>
                         <field name="comment" string = "备注"/>
-                        <field name="last_upd" string = "最后修改日期"/>
+                        <field name="last_upd" string = "最后修改时间"/>
                     </group>
                 </form>
             </field>
@@ -1202,7 +1202,7 @@
                         <field name="aft_owner" string = "下一个所有人"/>
                         <field name="comment1" string = "备注1"/>
                         <field name="comment2" string = "备注2"/>
-                        <field name="last_upd" string = "最后截止时间"/>
+                        <field name="last_upd" string = "最后修改时间"/>
                     </group>
                 </form>
             </field>
