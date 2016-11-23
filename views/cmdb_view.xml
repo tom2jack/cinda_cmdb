@@ -1,0 +1,1212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+        <record model="ir.ui.view" id="cmdb_base_class_tree_view">
+            <field name="name">base_class.tree</field>
+            <field name="model">cmdb.base_class</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="class_number" string = "总类编号"/>
+                    <field name="class_name" string = "总类名称"/>
+                    <field name="comment" string = "备注"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="cmdb_base_class_form_view">
+            <field name="name">base_class.form</field>
+            <field name="model">cmdb.base_class</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="class_number" string = "总类编号"/>
+                        <field name="class_name" string = "总类名称"/>
+                        <field name="comment" string = "备注"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="cmdb_base_type_tree_view">
+            <field name="name">base_type.tree</field>
+            <field name="model">cmdb.base_type</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="type_number" string = "细类编号"/>
+                    <field name="type_name" string = "细类名称"/>
+                    <field name="class_id" string = "所属父类"/>
+                    <field name="comment" string = "备注"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="cmdb_base_type_form_view">
+            <field name="name">base_type.form</field>
+            <field name="model">cmdb.base_type</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="type_number" string = "细类编号"/>
+                        <field name="type_name" string = "细类名称"/>
+                        <field name="class_id" string = "所属父类"/>
+                        <field name="comment" string = "备注"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="cmdb_base_data_tree_view">
+            <field name="name">base_data.tree</field>
+            <field name="model">cmdb.base_data</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="value" string = "值"/>
+                    <field name="pare_id" string = "父id"/>
+                    <field name="pare_lnk_mod" string = "父节点连接类型"/>
+                    <field name="pare_val" string = "父值"/>
+                    <field name="last_id" string = "前节点id"/>
+                    <field name="last_lnk_mod" string = "前节点连接类型"/>
+                    <field name="last_val" string = "前节点值"/>
+                    <field name="next_id" string = "后节点id"/>
+                    <field name="next_lnk_mod" string = "后节点连接类型"/>
+                    <field name="next_val" string = "后节点值"/>
+                    <field name="chld_id" string = "子节点id"/>
+                    <field name="chld_lnk_mod" string = "子节点连接类型"/>
+                    <field name="chld_val" string = "子节点值"/>
+                    <field name="comment" string = "备注"/>
+                    <field name="last_upd" string = "最后修改日期"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="cmdb_base_data_form_view">
+            <field name="name">base_data.form</field>
+            <field name="model" >cmdb.base_data</field>
+            <field name="arch" type="xml">
+                <form string="base data Form">
+                    <group>
+                        <field name="value" string = "值"/>
+                        <field name="pare_id" string = "父id"/>
+                        <field name="pare_lnk_mod" string = "父节点连接类型"/>
+                        <field name="pare_val" string = "父值"/>
+                        <field name="last_id" string = "前节点id"/>
+                        <field name="last_lnk_mod" string = "前节点连接类型"/>
+                        <field name="last_val" string = "前节点值"/>
+                        <field name="next_id" string = "后节点id"/>
+                        <field name="next_lnk_mod" string = "后节点连接类型"/>
+                        <field name="next_val" string = "后节点值"/>
+                        <field name="chld_id" string = "子节点id"/>
+                        <field name="chld_lnk_mod" string = "子节点连接类型"/>
+                        <field name="chld_val" string = "子节点值"/>
+                        <field name="comment" string = "备注"/>
+                        <field name="last_upd" string = "最后修改日期"/>
+                    </group>
+                </form>
+            </field>
+        </record>        
+
+        <record model="ir.ui.view" id="cmdb_device_tree_view">
+            <field name="name">device.tree</field>
+            <field name="model">cmdb.device</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="device_id" string = "设备ID"/>
+                    <field name="cab" string = "机柜"/>
+                    <field name="use_mode" string = "使用状态"/>
+                    <field name="dev_start" string = "设备状态"/>
+                    <field name="product_name" string = "产品型号"/>
+                    <field name="srve_prvd" string = "服务商"/>
+                    <field name="purpose" string = "用途"/>
+                    <field name="last_upd" string="最后截止时间"/>
+                    <!-- <field name="lab_id" string = "机房ID"/>
+                    <field name="pos_seq" string = "位置序号"/>
+                    <field name="u_pos" string = "位置U"/>
+                    <field name="u_space" string = "占位U"/>
+                    <field name="env_id" string = "环境ID"/>
+                    <field name="type_id" string = "设备类型ID"/>
+                    <field name="brand_id" string = "品牌ID"/>
+                    <field name="host_name" string = "设备命名"/>
+                    <field name="model" string = "Model"/>
+                    <field name="asset_num_old" string = "旧资产编号"/>
+                    <field name="asset_num" string = "资产编号"/>
+                    <field name="sn" string = "序列号"/>
+                    <field name="accept_date" string = "初验日期"/>
+                    <field name="reject_date" string = "过保日期"/>
+                    <field name="owner_id" string = "资产所有人ID"/>
+                    <field name="user" string = "使用人"/>
+                    <field name="admin" string = "管理人"/>
+                    <field name="comment" string = "备注"/> -->
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="cmdb_device_search_view">
+            <field name="name">device.search</field>
+            <field name="model">cmdb.device</field>
+            <field name="arch" type="xml">
+                <search  string="Search_device">
+                    <group expand="0" string="分组">
+                        <filter string="机房" name="lab_id" context="{'group_by':'lab_id'}"/>
+                        <filter string="设备状态" name="dev_start" context="{'group_by':'dev_start'}"/>
+                        <filter string="设备类型" name="type_id" context="{'group_by':'type_id'}"/>
+                        <filter string="资产所有人" name="owner_id" context="{'group_by':'owner_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="cmdb_device_form_view">
+            <field name="name">device.form</field>
+            <field name="model" >cmdb.device</field>
+            <field name="arch" type="xml">
+                <form string="device Form">
+                    <group>
+                        <group>
+                            <field name="device_id" string = "设备ID"/>
+                            <field name="lab_id" string = "机房"/>
+                            <field name="cab" string = "机柜"/>
+                            <field name="pos_seq" string = "位置序号"/>
+                            <field name="u_pos" string = "位置U"/>
+                            <field name="u_space" string = "占位U"/>
+                            <field name="env_id" string = "环境"/>
+                            <field name="use_mode" string = "使用状态"/>
+                            <field name="dev_start" string = "设备状态"/>
+                            <field name="type_id" string = "设备类型"/>
+                            <field name="brand_id" string = "品牌"/>
+                            <field name="product_name" string = "产品型号"/>
+                            <field name="host_name" string = "设备命名"/>
+                        </group>
+                        <group>
+                            <field name="model" string = "Model"/>
+                            <field name="asset_num_old" string = "旧资产编号"/>
+                            <field name="asset_num" string = "资产编号"/>
+                            <field name="sn" string = "序列号"/>
+                            <field name="purpose" string = "用途"/>
+                            <field name="accept_date" string = "初验日期"/>
+                            <field name="reject_date" string = "过保日期"/>
+                            <field name="owner_id" string = "资产所有人"/>
+                            <field name="user" string = "使用人"/>
+                            <field name="srve_prvd" string = "服务商"/>
+                            <field name="admin" string = "管理人"/>
+                            <field name="comment" string = "备注"/>
+                            <field name="last_upd" string = "最后修改日期"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="cmdb_server_tree_view">
+            <field name="name">server.tree</field>
+            <field name="model">cmdb.server</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="app_sys" string = "所属系统"/>
+                    <field name="admin_ip" string = "管理口IP"/>
+                    <!-- <field name="stor_ip_addr" string = "存储网IP地址"/>
+                    <field name="bck_ip_addr" string = "备份网IP地址"/>
+                    <field name="mng_ip_addr" string = "管理网IP地址"/>
+                    <field name="admin_info" string = "管理口信息点"/>
+                    <field name="os_id" string = "底层操作系统id"/> -->
+                    <field name="os" string = "底层操作系统"/>
+                    <field name="cpu_num" string = "CPU数量"/>
+                    <field name="cpu_spec" string = "CPU规格"/>
+                    <field name="mem_size" string = "内存容量"/>
+                    <field name="buss_ip_addr" string = "业务网IP地址"/>
+                    <field name="last_upd" string = "最后修改日期"/>
+                    <!-- <field name="mem_spec" string = "内存规格"/>
+                    <field name="disk_size" string = "硬盘容量(裸容量)"/>
+                    <field name="disk_spec" string = "硬盘规格"/>
+                    <field name="ext_st_size" string = "外接存储容量"/>
+                    <field name="hba_config" string = "HBA卡配置"/>
+                    <field name="hba_used" string = "HBA卡已用情况"/>
+                    <field name="g_netcard_config" string = "千兆网卡配置"/>
+                    <field name="g_netcard_used" string = "千兆网卡已用情况"/>
+                    <field name="t_netcard_config" string = "万兆网卡配置"/>
+                    <field name="t_netcard_used" string = "万兆网卡已用情况"/>
+                    <field name="netcard_band" string = "网卡绑定"/>
+                    <field name="exten_mod" string = "扩展模块"/>
+                    <field name="vir_mark" string = "虚拟化标志"/>
+                    <field name="comment1" string = "备注1"/>
+                    <field name="comment2" string = "备注2"/>
+                    <field name="dev_id" string = "序列号"/>
+                    <field name="san_wwn" string = "san网络wwn号"/>
+                    <field name="ha_mode" string = "主备状态"/> -->
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="cmdb_server_search_view">
+            <field name="name">server.search</field>
+            <field name="model">cmdb.server</field>
+            <field name="arch" type="xml">
+                <search  string="Search_server">
+                    <group expand="0" string="分组">
+                        <filter string="底层操作系统" name="os" context="{'group_by':'os'}"/>
+                        <filter string="所属系统" name="app_sys" context="{'group_by':'app_sys'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="cmdb_server_form_view">
+            <field name="name">server.form</field>
+            <field name="model">cmdb.server</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                    <group>
+                        <group>
+                            <field name="app_sys" string = "所属系统"/>
+                            <field name="buss_ip_addr" string = "业务网IP地址"/>
+                            <field name="stor_ip_addr" string = "存储网IP地址"/>
+                            <field name="bck_ip_addr" string = "备份网IP地址"/>
+                            <field name="mng_ip_addr" string = "管理网IP地址"/>
+                            <field name="admin_ip" string = "管理口IP"/>
+                            <field name="admin_info" string = "管理口信息点"/>
+                            <field name="os_id" string = "底层操作系统"/>
+                        </group>
+                        <group>
+                            <field name="os" string = "底层操作系统"/>
+                            <field name="exten_mod" string = "扩展模块"/>
+                            <field name="vir_mark" string = "虚拟化标志"/>
+                            <field name="comment1" string = "备注1"/>
+                            <field name="comment2" string = "备注2"/>
+                            <field name="last_upd" string = "最后修改日期"/>
+                            <field name="dev_id" string = "序列号"/>
+                            <field name="ha_mode" string = "主备状态"/>
+                        </group>
+                        <notebook colspan="4">
+                            <page string="CPU">
+                                <group>
+                                    <field name="cpu_num" string = "CPU数量"/>
+                                    <field name="cpu_spec" string = "CPU规格"/>
+                                </group>
+                            </page>
+                            <page string="内存">
+                                <group>
+                                    <field name="mem_size" string = "内存容量"/>
+                                    <field name="mem_spec" string = "内存规格"/>
+                                </group>
+                            </page>
+                            <page string="存储">
+                                <group>
+                                    <field name="disk_size" string = "硬盘容量(裸容量)"/>
+                                    <field name="disk_spec" string = "硬盘规格"/>
+                                    <field name="ext_st_size" string = "外接存储容量"/>
+                                    <field name="hba_config" string = "HBA卡配置"/>
+                                    <field name="hba_used" string = "HBA卡已用情况"/>
+                                    <field name="san_wwn" string = "san网络wwn号"/>
+                                </group>
+                            </page>
+                            <page string="网卡">
+                                <group>
+                                    <field name="g_netcard_config" string = "千兆网卡配置"/>
+                                    <field name="g_netcard_used" string = "千兆网卡已用情况"/>
+                                    <field name="t_netcard_config" string = "万兆网卡配置"/>
+                                    <field name="t_netcard_used" string = "万兆网卡已用情况"/>
+                                    <field name="netcard_band" string = "网卡绑定"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="cmdb_net_dev_tree_view">
+            <field name="name">net_dev.tree</field>
+            <field name="model">cmdb.net_dev</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="area_id" string = "区域id"/>
+                    <field name="area" string = "区域"/>
+                    <field name="version" string = "软件版本"/>
+                    <field name="admin_ip" string = "管理IP"/>
+                    <field name="account" string = "账号"/>
+                    <field name="root_acc" string = "根用户"/>
+                    <field name="chg_acc" string = "变更用户"/>
+                    <field name="mon_acc" string = "监控状态"/>
+                    <field name="ha_mode" string = "主备状态"/>
+                    <field name="comment1" string = "备注1"/>
+                    <field name="comment2" string = "备注2"/>
+                    <field name="last_upd" string = "最后修改日期"/>
+                    <field name="dev_id" string = "设备资产id"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="cmdb_net_dev_form_view">
+            <field name="name">net_dev.form</field>
+            <field name="model">cmdb.net_dev</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="area_id" string = "区域id"/>
+                        <field name="area" string = "区域"/>
+                        <field name="version" string = "软件版本"/>
+                        <field name="admin_ip" string = "管理IP"/>
+                        <field name="account" string = "账号"/>
+                        <field name="root_acc" string = "根用户"/>
+                        <field name="chg_acc" string = "变更用户"/>
+                        <field name="mon_acc" string = "监控状态"/>
+                        <field name="ha_mode" string = "主备状态"/>
+                        <field name="comment1" string = "备注1"/>
+                        <field name="comment2" string = "备注2"/>
+                        <field name="last_upd" string = "最后修改日期"/>
+                        <field name="dev_id" string = "设备资产id"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="cmdb_board_tree_view">
+            <field name="name">board.tree</field>
+            <field name="model">cmdb.board</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="area_id" string = "区域id"/>
+                    <field name="area" string = "区域"/>
+                    <field name="dev_id" string = "设备资产id"/>
+                    <field name="net_dev_id" string = "网络设备id"/>
+                    <field name="srv_dev_id" string = "服务器设备id"/>
+                    <field name="card_type" string = "板卡类型"/>
+                    <field name="card_sn" string = "办卡序列号"/>
+                    <field name="slot" string = "槽位"/>
+                    <field name="comment1" string = "备注1"/>
+                    <field name="comment2" string = "备注2"/>
+                    <field name="last_upd" string = "最后修改日期"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="cmdb_board_form_view">
+            <field name="name">board.form</field>
+            <field name="model">cmdb.board</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="area_id" string = "区域id"/>
+                        <field name="area" string = "区域"/>
+                        <field name="dev_id" string = "设备资产id"/>
+                        <field name="net_dev_id" string = "网络设备id"/>
+                        <field name="srv_dev_id" string = "服务器设备id"/>
+                        <field name="card_type" string = "板卡类型"/>
+                        <field name="card_sn" string = "办卡序列号"/>
+                        <field name="slot" string = "槽位"/>
+                        <field name="comment1" string = "备注1"/>
+                        <field name="comment2" string = "备注2"/>
+                        <field name="last_upd" string = "最后修改日期"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="cmdb_st_dev_tree_view">
+            <field name="name">st_dev.tree</field>
+            <field name="model">cmdb.st_dev</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="cage_num" string = "区域id"/>
+                    <field name="disk_num" string = "区域"/>
+                    <field name="disk_size" string = "软件版本"/>
+                    <field name="total_size" string = "管理IP"/>
+                    <field name="used_size" string = "账号"/>
+                    <field name="free_size" string = "根用户"/>
+                    <field name="port_num" string = "变更用户"/>
+                    <field name="used_port_num" string = "监控状态"/>
+                    <field name="free_port_num" string = "主备状态"/>
+                    <field name="comment" string = "备注"/>
+                    <field name="last_upd" string = "最后修改日期"/>
+                    <field name="dev_id" string = "设备资产id"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="cmdb_st_dev_form_view">
+            <field name="name">st_dev.form</field>
+            <field name="model">cmdb.st_dev</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="cage_num" string = "区域id"/>
+                        <field name="disk_num" string = "区域"/>
+                        <field name="disk_size" string = "软件版本"/>
+                        <field name="total_size" string = "管理IP"/>
+                        <field name="used_size" string = "账号"/>
+                        <field name="free_size" string = "根用户"/>
+                        <field name="port_num" string = "变更用户"/>
+                        <field name="used_port_num" string = "监控状态"/>
+                        <field name="free_port_num" string = "主备状态"/>
+                        <field name="comment" string = "备注"/>
+                        <field name="last_upd" string = "最后修改日期"/>
+                        <field name="dev_id" string = "设备资产id"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="cmdb_srv_room_tree_view">
+            <field name="name">srv_room_dev.tree</field>
+            <field name="model">cmdb.srv_room_dev</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="asset_type" string = "资产大类"/>
+                    <field name="num" string = "数量"/>
+                    <field name="start_date" string = "启用日期"/>
+                    <field name="elec_power" string = "总功率"/>
+                    <field name="ampere" string = "电流"/>
+                    <field name="comment" string = "备注"/>
+                    <field name="last_upd" string = "最后修改日期"/>
+                    <field name="dev_id" string = "设备资产id"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="cmdb_srv_room_form_view">
+            <field name="name">srv_room_dev.form</field>
+            <field name="model">cmdb.srv_room_dev</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="asset_type" string = "资产大类"/>
+                        <field name="num" string = "数量"/>
+                        <field name="start_date" string = "启用日期"/>
+                        <field name="elec_power" string = "总功率"/>
+                        <field name="ampere" string = "电流"/>
+                        <field name="comment" string = "备注"/>
+                        <field name="last_upd" string = "最后修改日期"/>
+                        <field name="dev_id" string = "设备资产id"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="cmdb_san_port_tree_view">
+            <field name="name">san_port.tree</field>
+            <field name="model">cmdb.san_port</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="dev_id" string = "设备资产id"/>
+                    <field name="type_id" string = "设备类型"/>
+                    <field name="port" string = "端口号"/>
+                    <field name="module" string = "模块"/>
+                    <field name="wwn" string = "本端口的wwn"/>
+                    <field name="end_on_dev_id" string = "对端设备id"/>
+                    <field name="end_port_id" string = "对端端口ID"/>
+                    <field name="end_on_port" string = "对端的端口号"/>
+                    <field name="end_on_wwn" string = "对端口的wwn"/>
+                    <field name="speed" string = "速率"/>
+                    <field name="protocl" string = "使用协议"/>
+                    <field name="device_code" string = "设备编号"/>
+                    <field name="fc_card_name" string = "光纤卡名"/>
+                    <field name="slot" string = "槽位"/>
+                    <field name="alias" string = "别名"/>
+                    <field name="captain" string = "说明"/>
+                    <field name="comment" string = "备注"/>
+                    <field name="last_upd" string = "最后修改日期"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="cmdb_san_port_form_view">
+            <field name="name">san_port.form</field>
+            <field name="model">cmdb.san_port</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="dev_id" string = "设备资产id"/>
+                        <field name="type_id" string = "设备类型"/>
+                        <field name="port" string = "端口号"/>
+                        <field name="module" string = "模块"/>
+                        <field name="wwn" string = "本端口的wwn"/>
+                        <field name="end_on_dev_id" string = "对端设备id"/>
+                        <field name="end_port_id" string = "对端端口ID"/>
+                        <field name="end_on_port" string = "对端的端口号"/>
+                        <field name="end_on_wwn" string = "对端口的wwn"/>
+                        <field name="speed" string = "速率"/>
+                        <field name="protocl" string = "使用协议"/>
+                        <field name="device_code" string = "设备编号"/>
+                        <field name="fc_card_name" string = "光纤卡名"/>
+                        <field name="slot" string = "槽位"/>
+                        <field name="alias" string = "别名"/>
+                        <field name="captain" string = "说明"/>
+                        <field name="comment" string = "备注"/>
+                        <field name="last_upd" string = "最后修改日期"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="cmdb_ip_port_tree_view">
+            <field name="name">ip_port.tree</field>
+            <field name="model">cmdb.ip_port</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="dev_id" string = "设备id"/>
+                    <field name="net_dev_id" string = "网络设备id"/>
+                    <field name="card_id" string = "板卡id"/>
+                    <field name="port" string = "本端物理端口号"/>
+                    <field name="port_num" string = "本端口名"/>
+                    <field name="port_mac" string = "本端MAC"/>
+                    <field name="port_ip" string = "本端IP地址"/>
+                    <field name="port_type" string = "本端端口类型"/>
+                    <field name="end_on_dev_id" string = "本端设备id"/>
+                    <field name="end_on_card_id" string = "本端板卡id"/>
+                    <field name="end_on_port" string = "本端物理端口号"/>
+                    <field name="end_on_nam" string = "本端端口名"/>
+                    <field name="end_on_port_mac" string = "对端MAC"/>
+                    <field name="end_on_port_ip" string = "对端ip地址"/>
+                    <field name="end_on_port_type" string = "对端端口类型"/>
+                    <field name="port_status" string = "端口状态"/>
+                    <field name="port_speed" string = "端口速率"/>
+                    <field name="port_info" string = "端口描述"/>
+                    <field name="mod_type" string = "模块类型"/>
+                    <field name="mod_sn" string = "模块序列号"/>
+                    <field name="last_upd" string = "最后修改日期"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="cmdb_ip_port_form_view">
+            <field name="name">ip_port.form</field>
+            <field name="model">cmdb.ip_port</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="dev_id" string = "设备id"/>
+                        <field name="net_dev_id" string = "网络设备id"/>
+                        <field name="card_id" string = "板卡id"/>
+                        <field name="port" string = "本端物理端口号"/>
+                        <field name="port_num" string = "本端口名"/>
+                        <field name="port_mac" string = "本端MAC"/>
+                        <field name="port_ip" string = "本端IP地址"/>
+                        <field name="port_type" string = "本端端口类型"/>
+                        <field name="end_on_dev_id" string = "本端设备id"/>
+                        <field name="end_on_card_id" string = "本端板卡id"/>
+                        <field name="end_on_port" string = "本端物理端口号"/>
+                        <field name="end_on_nam" string = "本端端口名"/>
+                        <field name="end_on_port_mac" string = "对端MAC"/>
+                        <field name="end_on_port_ip" string = "对端ip地址"/>
+                        <field name="end_on_port_type" string = "对端端口类型"/>
+                        <field name="port_status" string = "端口状态"/>
+                        <field name="port_speed" string = "端口速率"/>
+                        <field name="port_info" string = "端口描述"/>
+                        <field name="mod_type" string = "模块类型"/>
+                        <field name="mod_sn" string = "模块序列号"/>
+                        <field name="last_upd" string = "最后修改日期"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="cmdb_cabinet_tree_view">
+            <field name="name">cabinet.tree</field>
+            <field name="model">cmdb.cabinet</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="lab_id" string = "机房ID"/>
+                    <field name="cab_num" string = "机柜号"/>
+                    <field name="pdu_num" string = "PDU数目"/>
+                    <field name="elec_power" string = "电源功率"/>
+                    <field name="ampere" string = "电流"/>
+                    <field name="u_num" string = "U位数目"/>
+                    <field name="purpose" string = "用途"/>
+                    <field name="comment" string = "备注"/>
+                    <field name="last_upd" string = "最后修改日期"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="cmdb_cabinet_form_view">
+            <field name="name">cabinet.form</field>
+            <field name="model">cmdb.cabinet</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="lab_id" string = "机房ID"/>
+                        <field name="cab_num" string = "机柜号"/>
+                        <field name="pdu_num" string = "PDU数目"/>
+                        <field name="elec_power" string = "电源功率"/>
+                        <field name="ampere" string = "电流"/>
+                        <field name="u_num" string = "U位数目"/>
+                        <field name="purpose" string = "用途"/>
+                        <field name="comment" string = "备注"/>
+                        <field name="last_upd" string = "最后修改日期"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="cmdb_soft_tree_view">
+            <field name="name">soft.tree</field>
+            <field name="model">cmdb.soft</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="total_class" string = "总类别"/>
+                    <field name="subclass" string = "明细类别"/>
+                    <field name="soft_code" string = "软件编号"/>
+                    <field name="soft_name" string = "全称"/>
+                    <field name="purpose" string = "用途"/>
+                    <field name="license_type" string = "许可类型"/>
+                    <field name="license_company" string = "许可单位"/>
+                    <field name="num" string = "数量"/>
+                    <field name="developer" string = "开发商"/>
+                    <field name="status" string = "状态"/>
+                    <field name="media_type" string = "介质类型"/>
+                    <field name="reject_date" string = "支持到期类型"/>
+                    <field name="contact_info" string = "支持联系方式"/>
+                    <field name="license_pos" string = "许可证位置"/>
+                    <field name="comment" string = "备注"/>
+                    <field name="last_upd" string = "最后修改日期"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="cmdb_soft_form_view">
+            <field name="name">soft.form</field>
+            <field name="model">cmdb.soft</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="total_class" string = "总类别"/>
+                        <field name="subclass" string = "明细类别"/>
+                        <field name="soft_code" string = "软件编号"/>
+                        <field name="soft_name" string = "全称"/>
+                        <field name="purpose" string = "用途"/>
+                        <field name="license_type" string = "许可类型"/>
+                        <field name="license_company" string = "许可单位"/>
+                        <field name="num" string = "数量"/>
+                        <field name="developer" string = "开发商"/>
+                        <field name="status" string = "状态"/>
+                        <field name="media_type" string = "介质类型"/>
+                        <field name="reject_date" string = "支持到期类型"/>
+                        <field name="contact_info" string = "支持联系方式"/>
+                        <field name="license_pos" string = "许可证位置"/>
+                        <field name="comment" string = "备注"/>
+                        <field name="last_upd" string = "最后修改日期"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="cmdb_soft_detail_tree_view">
+            <field name="name">soft_detail.tree</field>
+            <field name="model">cmdb.soft_detail</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="detail_code" string = "明细编号"/>
+                    <field name="detail_name" string = "细项名称"/>
+                    <field name="version" string = "版本号"/>
+                    <field name="num" string = "购买数量"/>
+                    <field name="auth_info" string = "授权信息"/>
+                    <field name="buy_date" string = "购买时间"/>
+                    <field name="over_date" string = "服务截止时间"/>
+                    <field name="vendor" string = "供应商"/>
+                    <field name="buyer" string = "购买单位"/>
+                    <field name="owner" string = "资产所有人"/>
+                    <field name="user" string = "使用人"/>
+                    <field name="media_path" string = "介质路径"/>
+                    <field name="license_key" string = "许可密钥"/>
+                    <field name="license_path" string = "许可保存路径"/>
+                    <field name="comment" string = "备注"/>
+                    <field name="last_upd" string = "最后修改日期"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="cmdb_soft_detail_form_view">
+            <field name="name">soft_detail.form</field>
+            <field name="model">cmdb.soft_detail</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="detail_code" string = "明细编号"/>
+                        <field name="detail_name" string = "细项名称"/>
+                        <field name="version" string = "版本号"/>
+                        <field name="num" string = "购买数量"/>
+                        <field name="auth_info" string = "授权信息"/>
+                        <field name="buy_date" string = "购买时间"/>
+                        <field name="over_date" string = "服务截止时间"/>
+                        <field name="vendor" string = "供应商"/>
+                        <field name="buyer" string = "购买单位"/>
+                        <field name="owner" string = "资产所有人"/>
+                        <field name="user" string = "使用人"/>
+                        <field name="media_path" string = "介质路径"/>
+                        <field name="license_key" string = "许可密钥"/>
+                        <field name="license_path" string = "许可保存路径"/>
+                        <field name="comment" string = "备注"/>
+                        <field name="last_upd" string = "最后修改日期"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="cmdb_vendor_list_tree_view">
+            <field name="name">vendor_list.tree</field>
+            <field name="model">cmdb.vendor_list</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="vendor" string = "名称"/>
+                    <field name="attr" string = "性质"/>
+                    <field name="address" string = "地址"/>
+                    <field name="contact" string = "联系人"/>
+                    <field name="position" string = "职位"/>
+                    <field name="fixed_phone" string = "电话"/>
+                    <field name="mobile_phone" string = "手机"/>
+                    <field name="mail" string = "邮件"/>
+                    <field name="comment" string = "备注"/>
+                    <field name="last_upd" string = "最后修改日期"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="cmdb_vendro_list_form_view">
+            <field name="name">vendor_list.form</field>
+            <field name="model">cmdb.vendor_list</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="vendor" string = "名称"/>
+                        <field name="attr" string = "性质"/>
+                        <field name="address" string = "地址"/>
+                        <field name="contact" string = "联系人"/>
+                        <field name="position" string = "职位"/>
+                        <field name="fixed_phone" string = "电话"/>
+                        <field name="mobile_phone" string = "手机"/>
+                        <field name="mail" string = "邮件"/>
+                        <field name="comment" string = "备注"/>
+                        <field name="last_upd" string = "最后修改日期"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+    
+        <record model="ir.ui.view" id="cmdb_member_list_tree_view">
+            <field name="name">member_list.tree</field>
+            <field name="model">cmdb.member_list</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" string = "名称"/>
+                    <field name="attr" string = "性质"/>
+                    <field name="address" string = "地址"/>
+                    <field name="position" string = "职位"/>
+                    <field name="fixed_phone" string = "电话"/>
+                    <field name="mobile_phone" string = "手机"/>
+                    <field name="mail" string = "邮件"/>
+                    <field name="comment" string = "备注"/>
+                    <field name="last_upd" string = "最后修改日期"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="cmdb_member_list_form_view">
+            <field name="name">member_list.form</field>
+            <field name="model">cmdb.member_list</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name" string = "名称"/>
+                        <field name="attr" string = "性质"/>
+                        <field name="address" string = "地址"/>
+                        <field name="position" string = "职位"/>
+                        <field name="fixed_phone" string = "电话"/>
+                        <field name="mobile_phone" string = "手机"/>
+                        <field name="mail" string = "邮件"/>
+                        <field name="comment" string = "备注"/>
+                        <field name="last_upd" string = "最后修改日期"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="cmdb_chg_log_tree_view">
+            <field name="name">chg_log.tree</field>
+            <field name="model">cmdb.chg_log</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="exe_date" string = "日期"/>
+                    <field name="executor" string = "实施人"/>
+                    <field name="chg_fld" string = ""/>
+                    <field name="action" string = "动作"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="cmdb_chg_log_form_view">
+            <field name="name">chg_log.form</field>
+            <field name="model">cmdb.chg_log</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="exe_date" string = "日期"/>
+                        <field name="executor" string = "实施人"/>
+                        <field name="chg_fld" string = ""/>
+                        <field name="action" string = "动作"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="cmdb_net_config_tree_view">
+            <field name="name">net_config.tree</field>
+            <field name="model">cmdb.net_config</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="logic_area" string = "逻辑区域"/>
+                    <field name="admin_ip" string = "管理IP"/>
+                    <field name="version" string = "软件版本"/>
+                    <field name="license_date" string = "许可证日期"/>
+                    <field name="port_num" string = "端口数量"/>
+                    <field name="port_info" string = "端口信息"/>
+                    <field name="vlan_info" string = "VLAN信息"/>
+                    <field name="fw_policy1" string = "防火墙策略1"/>
+                    <field name="fw_policy2" string = "防火墙策略2"/>
+                    <field name="mail_gw_policy" string = "邮件网关策略"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="cmdb_net_config_form_view">
+            <field name="name">net_config.form</field>
+            <field name="model">cmdb.net_config</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="logic_area" string = "逻辑区域"/>
+                        <field name="admin_ip" string = "管理IP"/>
+                        <field name="version" string = "软件版本"/>
+                        <field name="license_date" string = "许可证日期"/>
+                        <field name="port_num" string = "端口数量"/>
+                        <field name="port_info" string = "端口信息"/>
+                        <field name="vlan_info" string = "VLAN信息"/>
+                        <field name="fw_policy1" string = "防火墙策略1"/>
+                        <field name="fw_policy2" string = "防火墙策略2"/>
+                        <field name="mail_gw_policy" string = "邮件网关策略"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="cmdb_zt_zone_lun_form_view">
+            <field name="name">st_zone_lun.form</field>
+            <field name="model">cmdb.st_zone_lun</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="zone_lun_id" string = "ZONE_LUN_ID"/>
+                        <field name="lun_id" string = "lun号"/>
+                        <field name="ioport" string = "ioport"/>
+                        <field name="total_size" string = "总容量"/>
+                        <field name="used_size" string = "使用容量"/>
+                        <field name="free_size" string = "剩余容量"/>
+                        <field name="host_name" string = "是用的主机"/>
+                        <field name="system" string = "业务系统"/>
+                        <field name="raid_type" string = "RAID类型"/>
+                        <field name="volumes_name" string = "volumes_name"/>
+                        <field name="aggregate" string = "aggregate"/>
+                        <field name="ip_addr" string = "IP地址"/>
+                        <field name="config_info" string = "配置信息"/>
+                        <field name="comment" string = "备注"/>
+                    </group>
+
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="cmdb_st_zone_lun_tree_view">
+            <field name="name">st_zone_lun.tree</field>
+            <field name="model">cmdb.st_zone_lun</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="zone_lun_id" string = "ZONE_LUN_ID"/>
+                    <field name="lun_id" string = "lun号"/>
+                    <field name="ioport" string = "ioport"/>
+                    <field name="total_size" string = "总容量"/>
+                    <field name="used_size" string = "使用容量"/>
+                    <field name="free_size" string = "剩余容量"/>
+                    <field name="host_name" string = "是用的主机"/>
+                    <field name="system" string = "业务系统"/>
+                    <field name="raid_type" string = "RAID类型"/>
+                    <field name="volumes_name" string = "volumes_name"/>
+                    <field name="aggregate" string = "aggregate"/>
+                    <field name="ip_addr" string = "IP地址"/>
+                    <field name="config_info" string = "配置信息"/>
+                    <field name="comment" string = "备注"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="cmdb_vlan_tree_view">
+            <field name="name">vlan.tree</field>
+            <field name="model">cmdb.vlan</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="vlan_id" string = "VLAN号"/>
+                    <field name="vlan_name" string = "VLAN名称"/>
+                    <field name="vlan_segment" string = "VLAN网段"/>
+                    <field name="comment" string = "备注"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="cmdb_vlan_form_view">
+            <field name="name">vlan.form</field>
+            <field name="model">cmdb.vlan</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="vlan_id" string = "VLAN号"/>
+                        <field name="vlan_name" string = "VLAN名称"/>
+                        <field name="vlan_segment" string = "VLAN网段"/>
+                        <field name="comment" string = "备注"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="cmdb_fw_policy1_tree_view">
+            <field name="name">fw_policy1.tree</field>
+            <field name="model">cmdb.fw_policy1</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="fw_name" string = "防火墙名称"/>
+                    <field name="s_addrname" string = "源地址命名"/>
+                    <field name="s_ip" string = "源地址"/>
+                    <field name="d_addrname" string = "目的地址命名"/>
+                    <field name="d_ip" string = "目的地址"/>
+                    <field name="service_name" string = "服务命令"/>
+                    <field name="service_port" string = "服务端口"/>
+                    <field name="policy_date" string = "策略时间"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="cmdb_fw_policy1_form_view">
+            <field name="name">fw_policy1.form</field>
+            <field name="model">cmdb.fw_policy1</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="fw_name" string = "防火墙名称"/>
+                        <field name="s_addrname" string = "源地址命名"/>
+                        <field name="s_ip" string = "源地址"/>
+                        <field name="d_addrname" string = "目的地址命名"/>
+                        <field name="d_ip" string = "目的地址"/>
+                        <field name="service_name" string = "服务命令"/>
+                        <field name="service_port" string = "服务端口"/>
+                        <field name="policy_date" string = "策略时间"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="cmdb_fw_policy2_tree_view">
+            <field name="name">fw_policy2.tree</field>
+            <field name="model">cmdb.fw_policy2</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="fw_name" string = "防火墙名称"/>
+                    <field name="switch_mode" string = "转换模式"/>
+                    <field name="s_addrname" string = "源地址命名"/>
+                    <field name="s_ip" string = "源地址"/>
+                    <field name="d_addrname" string = "目的地址命名"/>
+                    <field name="d_ip" string = "目的地址"/>
+                    <field name="switch_addrname" string = "转换后地址命名"/>
+                    <field name="switch_ip" string = "转换后地址"/>
+                    <field name="service_name" string = "服务命令"/>
+                    <field name="service" string = "服务"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="cmdb_fw_policy2_form_view">
+            <field name="name">fw_policy2.form</field>
+            <field name="model">cmdb.fw_policy2</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="fw_name" string = "防火墙名称"/>
+                        <field name="switch_mode" string = "转换模式"/>
+                        <field name="s_addrname" string = "源地址命名"/>
+                        <field name="s_ip" string = "源地址"/>
+                        <field name="d_addrname" string = "目的地址命名"/>
+                        <field name="d_ip" string = "目的地址"/>
+                        <field name="switch_addrname" string = "转换后地址命名"/>
+                        <field name="switch_ip" string = "转换后地址"/>
+                        <field name="service_name" string = "服务命令"/>
+                        <field name="service" string = "服务"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="cmdb_spam_policy_tree_view">
+            <field name="name">spam_policy.tree</field>
+            <field name="model">cmdb.spam_policy</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="industry" string = "行业"/>
+                    <field name="company_name" string = "公司名称"/>
+                    <field name="domain_name" string = "域名"/>
+                    <field name="mx_name" string = "mx名称"/>
+                    <field name="ip_addr" string = "IP"/>
+                    <field name="desc" string = "描述"/>
+                    <field name="comment" string = "描述"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="cmdb_cmdb_spam_policy_form_view">
+            <field name="name">spam_policy.form</field>
+            <field name="model">cmdb.spam_policy</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="industry" string = "行业"/>
+                        <field name="company_name" string = "公司名称"/>
+                        <field name="domain_name" string = "域名"/>
+                        <field name="mx_name" string = "mx名称"/>
+                        <field name="ip_addr" string = "IP"/>
+                        <field name="desc" string = "描述"/>
+                        <field name="comment" string = "描述"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="cmdb_vm_tree_view">
+            <field name="name">vm.tree</field>
+            <field name="model">cmdb.vm</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="environment" string = "环境"/>
+                    <field name="cluster" string = "集群"/>
+                    <field name="resource_pool" string = "资源地"/>
+                    <field name="exi_ip" string = "主机"/>
+                    <field name="vm_hostname" string = "虚机名称"/>
+                    <field name="status" string = "状况"/>
+                    <field name="cpu" string = "CPU"/>
+                    <field name="mem" string = "内存"/>
+                    <field name="disk" string = "置备的空间"/>
+                    <field name="os" string = "客户机操作系统"/>
+                    <!-- <field name="vm_ip" string = "虚拟机IP地址"/> -->
+                    <field name="purpose" string = "用途"/>
+                    <!-- <field name="system_module" string = "系统模块名称"/> -->
+                    <field name="app_user" string = "应用联系人"/>
+                    <!-- <field name="deliver_date" string = "交付日期"/> -->
+                    <!-- <field name="back_date" string = "计划归还日期"/> -->
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="cmdb_vm_form_view">
+            <field name="name">vm.form</field>
+            <field name="model">cmdb.vm</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="environment" string = "环境"/>
+                        <field name="cluster" string = "集群"/>
+                        <field name="resource_pool" string = "资源地"/>
+                        <field name="exi_ip" string = "主机"/>
+                        <field name="vm_hostname" string = "虚机名称"/>
+                        <field name="status" string = "状况"/>
+                        <field name="cpu" string = "CPU"/>
+                        <field name="mem" string = "内存"/>
+                        <field name="disk" string = "置备的空间"/>
+                        <field name="os" string = "客户机操作系统"/>
+                        <field name="vm_ip" string = "虚拟机IP地址"/>
+                        <field name="purpose" string = "用途"/>
+                        <field name="system_module" string = "系统模块名称"/>
+                        <field name="app_user" string = "应用联系人"/>
+                        <field name="deliver_date" string = "交付日期"/>
+                        <field name="back_date" string = "计划归还日期"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="cmdb_account_tree_view">
+            <field name="name">account.tree</field>
+            <field name="model">cmdb.account</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <!-- <field name="dev_id" string = "设备id"/>
+                    <field name="soft_id" string = "软件id"/> -->
+                    <field name="acc_nam" string = "账户名称"/>
+                    <!-- <field name="encr_pasw" string = "加密密码"/> -->
+                    <field name="use_purp" string = "使用目的"/>
+                    <field name="use_mode" string = "使用类型"/>
+                    <field name="authority" string = "账户权限"/>
+                    <field name="owner_id" string = "账户负责人"/>
+                    <field name="auth_owner" string = "授权负责人"/>
+                    <!-- <field name="crt_date" string = "创建日期"/> -->
+                    <field name="crt_pers" string = "创建人"/>
+                    <field name="crt_appr_pers" string = "创建批准人"/>
+                    <!-- <field name="crt_chg_num" string = "创建的变更号"/> -->
+                    <field name="curr_user" string = "当前使用人"/>
+                    <!-- <field name="use_appr_pers" string = "当前使用授权人"/> -->
+                    <!-- <field name="appr_date" string = "当前授权日期"/> -->
+                    <!-- <field name="last_recovery" string = "上次授权日期"/> -->
+                    <!-- <field name="comment1" string = "备注1"/>
+                    <field name="comment2" string = "备注2"/> -->
+                    <field name="last_upd" string = "最后修改时间"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="cmdb_account_form_view">
+            <field name="name">account.form</field>
+            <field name="model">cmdb.account</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="dev_id" string = "设备id"/>
+                            <field name="soft_id" string = "软件id"/>
+                            <field name="acc_nam" string = "账户名称"/>
+                            <field name="encr_pasw" string = "加密密码"/>
+                            <field name="use_purp" string = "使用目的"/>
+                            <field name="use_mode" string = "使用类型"/>
+                            <field name="authority" string = "账户权限"/>
+                            <field name="owner_id" string = "账户负责人"/>
+                            <field name="auth_owner" string = "授权负责人"/>
+                            <field name="crt_date" string = "创建日期"/>
+                            <field name="crt_pers" string = "创建人"/>
+                            <field name="crt_appr_pers" string = "创建批准人"/>
+                            <field name="crt_chg_num" string = "创建的变更号"/>
+                        </group>
+                        <group>
+                            <field name="curr_user" string = "当前使用人"/>
+                            <field name="use_appr_pers" string = "当前使用授权人"/>
+                            <field name="appr_date" string = "当前授权日期"/>
+                            <field name="last_recovery" string = "上次授权日期"/>
+                            <field name="comment1" string = "备注1"/>
+                            <field name="comment2" string = "备注2"/>
+                            <field name="last_upd" string = "最后修改时间"/>
+                    </group>
+                </group> 
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="cmdb_auth_log_tree_view">
+            <field name="name">auth_log.tree</field>
+            <field name="model">cmdb.auth_log</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="exe_date" string = "执行日期"/>
+                    <field name="executor" string = "执行者"/>
+                    <field name="chg_num" string = "变更编号"/>
+                    <field name="action" string = "动作"/>
+                    <field name="per_user" string = "上一个使用人"/>
+                    <field name="aft_user" string = "下一个使用人"/>
+                    <field name="per_owner" string = "上一个所有人"/>
+                    <field name="aft_owner" string = "下一个所有人"/>
+                    <field name="comment1" string = "备注1"/>
+                    <field name="comment2" string = "备注2"/>
+                    <field name="last_upd" string = "最后修改时间"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="cmdb_auth_log_form_view">
+            <field name="name">auth_log.form</field>
+            <field name="model">cmdb.auth_log</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="exe_date" string = "执行日期"/>
+                        <field name="executor" string = "执行者"/>
+                        <field name="chg_num" string = "变更编号"/>
+                        <field name="action" string = "动作"/>
+                        <field name="per_user" string = "上一个使用人"/>
+                        <field name="aft_user" string = "下一个使用人"/>
+                        <field name="per_owner" string = "上一个所有人"/>
+                        <field name="aft_owner" string = "下一个所有人"/>
+                        <field name="comment1" string = "备注1"/>
+                        <field name="comment2" string = "备注2"/>
+                        <field name="last_upd" string = "最后截止时间"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</openerp>

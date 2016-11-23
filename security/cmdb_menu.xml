@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+    <data>
+        <record id="base_data_cmdb_action" model="ir.actions.act_window" >
+            <field name="name">基础数据</field>
+            <field name="res_model">cmdb.base_data</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <!-- <field name="search_view_id" ref="humen_cost_search_view"></field> -->
+           <!-- <field name="view_id" ref="resource_cost_tree_view"/>-->
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">创建第一条基础数据表
+                </p>
+            </field>
+        </record>
+
+        <!-- <record id="action_server_desk_all_case1_tree" model="ir.actions.act_window.view">
+            <field name="view_mode">tree</field>
+            <field name="sequence" eval="1"/>
+            <field name="view_id" ref="humen_cost_tree_view" />
+            <field name="act_window_id" ref="resource_cost_list_action"/>
+        </record>
+        <record id="action_server_desk_all_case2_form" model="ir.actions.act_window.view">
+            <field name="view_mode">form</field>
+            <field name="sequence" eval="12"/>
+            <field name="view_id" ref="humen_cost_form_view" />
+            <field name="act_window_id" ref="resource_cost_list_action"/>
+        </record> -->
+        
+
+
+        <!-- top level menu: no parent -->
+        <menuitem id="main_cmdb_menu" name="CMDB"/>
+        <!-- A first level in the left side menu is needed before using action= attribute -->
+        <menuitem id="base_data_cmdb_menu" name="base data" parent="main_cmdb_menu" action="base_data_cmdb_action"/>
+        
+        <menuitem id="device_cmdb_menu" name="device" parent="main_cmdb_menu" action="device_cmdb_action"/>
+        
+        <!-- A second level in the left side menu is needed before using action= attribute -->
+       <!--<menuitem id="all_cost_menu" name="All Cost" parent="resource_cost_menu" action="server_desk_case_list_action" --> 
+         </data>
+</openerp>
+ 
