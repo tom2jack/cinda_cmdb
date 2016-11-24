@@ -130,9 +130,6 @@ class server(models.Model):
 	ha_mode = fields.Char(string="主备状态")
 
 
-
-
-
 class net_dev(models.Model):
 	_name = "cmdb.net_dev"
 

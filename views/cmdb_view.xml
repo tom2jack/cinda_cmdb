@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-        
         <record model="ir.ui.view" id="cmdb_base_class_tree_view">
             <field name="name">base_class.tree</field>
             <field name="model">cmdb.base_class</field>
@@ -157,6 +156,7 @@
             <field name="model" >cmdb.device</field>
             <field name="arch" type="xml">
                 <form string="device Form">
+                    <sheet>
                     <group>
                         <group>
                             <field name="device_id" string = "设备ID"/>
@@ -189,7 +189,21 @@
                             <field name="last_upd" string = "最后修改日期"/>
                         </group>
                     </group>
+                </sheet>
                 </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="cmdb_device_graph">
+            <field name="name">cmdb.device_graph</field>
+            <field name="model">cmdb.device</field>
+            <field name="type">graph</field>
+            <field name="arch" type="xml">
+                <graph string="cmdb device graph" type="bar" >
+                    <field name="lab_id" string = "机房" type="row"/>
+                    <field name="dev_start" string = "设备状态" type="row"/>
+                    <!-- <field name="type_id" string = "设备类型" type="measure"/>
+                    <field name="owner_id" string = "资产所有人" operator="+"/> -->
+                </graph>
             </field>
         </record>
 
@@ -238,8 +252,8 @@
             <field name="arch" type="xml">
                 <search  string="Search_server">
                     <group expand="0" string="分组">
-                        <filter string="底层操作系统" name="os" context="{'group_by':'os'}"/>
                         <filter string="所属系统" name="app_sys" context="{'group_by':'app_sys'}"/>
+                        <filter string="底层操作系统" name="os" context="{'group_by':'os'}"/>
                     </group>
                 </search>
             </field>
@@ -307,6 +321,16 @@
                     </group>
                     </sheet>
                 </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="cmdb_server_graph">
+            <field name="name">cmdb.server_graph</field>
+            <field name="model">cmdb.server</field>
+            <field name="type">graph</field>
+            <field name="arch" type="xml">
+                <graph string="cmdb server graph" type="bar" >
+                    <field name="app_sys" string = "所属系统" type="row"/>
+                </graph>
             </field>
         </record>
 
