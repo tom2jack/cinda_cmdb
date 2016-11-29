@@ -24,7 +24,7 @@
         </record>
 
         <record id="cmdb_device_action" model="ir.actions.act_window" >
-            <field name="name">设备总表</field>
+            <field name="name">硬件总表</field>
             <field name="res_model">cmdb.device</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
@@ -66,14 +66,14 @@
         </record>
 
         <record id="cmdb_san_port_action" model="ir.actions.act_window" >
-            <field name="name">存储端口表</field>
+            <field name="name">SAN端口表</field>
             <field name="res_model">cmdb.san_port</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
         </record>
 
         <record id="cmdb_ip_port_action" model="ir.actions.act_window" >
-            <field name="name">ip端口表</field>
+            <field name="name">IP端口表</field>
             <field name="res_model">cmdb.ip_port</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
@@ -108,14 +108,14 @@
         </record>
 
         <record id="cmdb_member_list_action" model="ir.actions.act_window" >
-            <field name="name">人员通讯录</field>
+            <field name="name">人员表</field>
             <field name="res_model">cmdb.member_list</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
         </record>
 
         <record id="cmdb_chg_log_action" model="ir.actions.act_window" >
-            <field name="name">流水表</field>
+            <field name="name">变更记录表</field>
             <field name="res_model">cmdb.chg_log</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
@@ -183,61 +183,58 @@
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
         </record>
+      
 
+        <menuitem id="main_cmdb_menu" name="CMDB"/>
+
+
+        <menuitem id="cmdb_menu" name="基本数据集合" parent="main_cmdb_menu" sequence="1"/>       
+        <menuitem id="device_menu" name="硬件集合" parent="main_cmdb_menu" sequence="2"/>       
+        <menuitem id="soft_menu" name="软件集合" parent="main_cmdb_menu" sequence="3"/>       
+        <menuitem id="vm_menu" name="虚拟资源集合" parent="main_cmdb_menu" sequence="4"/>       
+        <menuitem id="auth_menu" name="授权集合" parent="main_cmdb_menu" sequence="5"/>       
+        <menuitem id="app_menu" name="应用与配置集合" parent="main_cmdb_menu" sequence="6"/> 
+        <menuitem id="manage_menu" name="管理集合" parent="main_cmdb_menu" sequence="7"/> 
+
+
+        <menuitem id="base_data_id" name="基础数据表" parent="cmdb_menu" action="cmdb_base_data_action" />
+
+
+        <menuitem id="device_id" name="硬件总表" parent="device_menu" action="cmdb_device_action" />
+        <menuitem id="cabinet_id" name="机柜表" parent="device_id" action="cmdb_cabinet_action" sequence="1"/>
+        <menuitem id="server_id" name="服务器表" parent="device_id" action="cmdb_server_action" sequence="2"/>
+        <menuitem id="srv_room_dev_id" name="机房设备表" parent="device_id" action="cmdb_srv_room_dev_action" sequence="3"/>
+        <menuitem id="net_dev_id" name="网络设备表" parent="device_id" action="cmdb_net_dev_action" />
+        <menuitem id="board_id" name="板卡表" parent="net_dev_id" action="cmdb_board_action" />
+        <menuitem id="ip_port_id" name="IP端口表" parent="net_dev_id" action="cmdb_ip_port_action" />
+        <menuitem id="st_dev_id" name="存储表" parent="device_id" action="cmdb_st_dev_action" />
+        <menuitem id="san_port_id" name="SAN端口表" parent="st_dev_id" action="cmdb_san_port_action" />
+
+
+        <menuitem id="soft_id" name="软件总表" parent="soft_menu" action="cmdb_soft_action" />
+        <menuitem id="soft_detail_id" name="软件明细表" parent="soft_id" action="cmdb_soft_detail_action" />
+
+
+        <menuitem id="vm_id" name="虚拟机表" parent="vm_menu" action="cmdb_vm_action" />
+
+
+        <menuitem id="vendor_list_id" name="服务商通讯录" parent="auth_menu" action="cmdb_vendor_list_action" />
+        <menuitem id="member_list_id" name="人员表" parent="auth_menu" action="cmdb_member_list_action" />
+        <menuitem id="account_id" name="账户表" parent="auth_menu" action="cmdb_account_action" />
+        <menuitem id="auth_log_id" name="授权记录表" parent="account_id" action="cmdb_auth_log_action" />
         
 
-        <menuitem id="main_cmdb_menu" name="cmdb"/>
+        <menuitem id="net_config_id" name="网络配置管理表" parent="app_menu" action="cmdb_net_config_action" />
+        <menuitem id="vlan_id" name="Vlan表" parent="net_config_id" action="cmdb_vlan_action" />
+        <menuitem id="fw_policy1_id" name="防火墙策略表1" parent="net_config_id" action="cmdb_fw_policy1_action" />
+        <menuitem id="fw_policy2_id" name="防火墙策略表2" parent="net_config_id" action="cmdb_fw_policy2_action" />
+        <menuitem id="spam_policy_id" name="SPAM策略表" parent="net_config_id" action="cmdb_spam_policy_action" />
+        <menuitem id="st_zone_lun_id" name="存储zone_lun划分表" parent="app_menu" action="cmdb_st_zone_lun_action" />
+        <menuitem id="chg_log_id" name="变更记录表" parent="app_menu" action="cmdb_chg_log_action" />
 
-        <menuitem id="cmdb_menu" name="cmdb list" parent="main_cmdb_menu"/>       
-        
-        <menuitem id="base_class_id" name="base_class" parent="cmdb_menu" action="cmdb_base_class_action" />
 
-        <menuitem id="base_type_id" name="base_type" parent="cmdb_menu" action="cmdb_base_type_action" />
+        <menuitem id="base_class_id" name="总类编码表" parent="manage_menu" action="cmdb_base_class_action" />
+        <menuitem id="base_type_id" name="细类编码表" parent="manage_menu" action="cmdb_base_type_action" />
 
-        <menuitem id="account_id" name="account" parent="cmdb_menu" action="cmdb_account_action" />
-
-        <menuitem id="auth_log_id" name="auth_log" parent="cmdb_menu" action="cmdb_auth_log_action" />
-
-        <menuitem id="base_data_id" name="base_data" parent="cmdb_menu" action="cmdb_base_data_action" />
-
-        <menuitem id="cabinet_id" name="cabinet" parent="cmdb_menu" action="cmdb_cabinet_action" />
-
-        <menuitem id="device_id" name="device" parent="cmdb_menu" action="cmdb_device_action" />
-
-        <menuitem id="fw_policy1_id" name="fw_policy1" parent="cmdb_menu" action="cmdb_fw_policy1_action" />
-
-        <menuitem id="fw_policy2_id" name="fw_policy2" parent="cmdb_menu" action="cmdb_fw_policy2_action" />
-
-        <menuitem id="ip_port_id" name="ip_port" parent="cmdb_menu" action="cmdb_ip_port_action" />
-
-        <menuitem id="member_list_id" name="member_list" parent="cmdb_menu" action="cmdb_member_list_action" />
-
-        <menuitem id="net_config_id" name="net_config" parent="cmdb_menu" action="cmdb_net_config_action" />
-
-        <menuitem id="net_dev_id" name="net_dev" parent="cmdb_menu" action="cmdb_net_dev_action" />
-
-        <menuitem id="san_port_id" name="san_port" parent="cmdb_menu" action="cmdb_san_port_action" />
-
-        <menuitem id="server_id" name="server" parent="cmdb_menu" action="cmdb_server_action" />
-
-        <menuitem id="soft_id" name="soft" parent="cmdb_menu" action="cmdb_soft_action" />
-
-        <menuitem id="soft_detail_id" name="soft_detail" parent="cmdb_menu" action="cmdb_soft_detail_action" />
-
-        <menuitem id="spam_policy_id" name="spam_policy" parent="cmdb_menu" action="cmdb_spam_policy_action" />
-
-        <menuitem id="srv_room_dev_id" name="srv_room_dev" parent="cmdb_menu" action="cmdb_srv_room_dev_action" />
-
-        <menuitem id="st_dev_id" name="st_dev" parent="cmdb_menu" action="cmdb_st_dev_action" />
-
-        <menuitem id="st_zone_lun_id" name="st_zone_lun" parent="cmdb_menu" action="cmdb_st_zone_lun_action" />
-
-        <menuitem id="vendor_list_id" name="vendor_list" parent="cmdb_menu" action="cmdb_vendor_list_action" />
-
-        <menuitem id="vlan_id" name="vlan" parent="cmdb_menu" action="cmdb_vlan_action" />
-
-        <menuitem id="vm_id" name="vm" parent="cmdb_menu" action="cmdb_vm_action" />
-
-        
     </data>
 </openerp>

@@ -1,2 +1,2 @@
-# from . import controllers
+# -*- coding: utf-8 -*-
 from . import models

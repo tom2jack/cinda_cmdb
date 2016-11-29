@@ -1,12 +1,13 @@
 ﻿# -*- coding: utf-8 -*-
 from openerp import fields
-from openerp import models,api
+from openerp import models
+
 
 class base_class(models.Model):
 	_name = "cmdb.base_class"
 	_rec_name = 'class_name'
 
-	class_number = fields.Integer(string="总类编号")
+	class_number = fields.Char(string="总类编号")
 	class_name = fields.Char(string="总类名称")
 	comment = fields.Char(string="备注")
 
@@ -15,7 +16,7 @@ class base_type(models.Model):
 	_name = "cmdb.base_type"
 	_rec_name = 'type_name'
 
-	type_number = fields.Integer(string="细类编号")
+	type_number = fields.Char(string="细类编号")
 	type_name = fields.Char(string="细类名称")
 	class_id = fields.Many2one("cmdb.base_class", string="所属父类")
 	comment = fields.Char(string="备注")
@@ -23,9 +24,10 @@ class base_type(models.Model):
 
 class base_data(models.Model):
 	_name = "cmdb.base_data"
-	
+
+	base_data_id = fields.Char(string="基础数据ID")
 	value = fields.Char(string="值")
-	pare_id = fields.Integer(string="父id")
+	pare_id = fields.Char(string="父id")
 	pare_lnk_mod = fields.Integer(string="父节点连接类型")
 	pare_val = fields.Char(string="父值")
 	last_id = fields.Integer(string="前节点id")
@@ -62,20 +64,20 @@ class base_data(models.Model):
 
 
 class device(models.Model):
- 	_name = "cmdb.device"
- 	_rec_name = "sn"
+	_name = "cmdb.device"
+	_rec_name = "sn"
 
- 	device_id = fields.Integer(string="设备ID")
-	lab_id = fields.Many2one('cmdb.base_type', string='机房ID')
-	cab = fields.Char(string="机柜")
+	device_id = fields.Char(string="硬件ID", readonly="True")
+	lab_id = fields.Many2one("cmdb.base_type", string='机房', domain=[('class_id', 'ilike', "机房")])
+	cab = fields.Many2one("cmdb.cabinet", string="机柜")
 	pos_seq = fields.Integer(string="位置序号")
-	u_pos = fields.Integer(string="位置U")
+	u_pos = fields.Many2one("cmdb.base_type", string="位置U", domain=[('class_id', 'ilike', "位置代号")])
 	u_space = fields.Integer(string="占位U")
-	env_id = fields.Many2one('cmdb.base_type', string="环境id")
-	use_mode = fields.Char(string="使用状态")
-	dev_start = fields.Char(string="设备状态")
-	type_id = fields.Many2one('cmdb.base_type', string="设备类型id")
-	brand_id = fields.Many2one('cmdb.base_type', string="品牌id")
+	env_id = fields.Many2one("cmdb.base_type", string="环境", domain=[('class_id', 'ilike', "环境")])
+	use_mode = fields.Selection([('using', '使用中'), ('un_use', '未使用'),], default="", Require="False")
+	dev_start = fields.Selection([('start up', '开机'), ('shut down', '关机'),], default="", Require="False")
+	type_id = fields.Many2one("cmdb.base_type", string="设备类型", domain=[('class_id', 'ilike', "设备类型")])
+	brand_id = fields.Many2one("cmdb.base_type", string="品牌", domain=[('class_id', 'ilike', "设备品牌")])
 	product_name = fields.Char(string="产品型号")
 	host_name = fields.Char(string="设备命名")
 	model = fields.Char(string="Model")
@@ -85,17 +87,22 @@ class device(models.Model):
 	purpose = fields.Char(string="用途")
 	accept_date = fields.Char(string="初验日期")
 	reject_date = fields.Char(string="过保日期")
-	owner_id = fields.Many2one('cmdb.base_type', string="资产所有人id")
-	user = fields.Char(string="使用人")
-	srve_prvd = fields.Char(string="服务商")
+	owner_id = fields.Many2one("cmdb.base_type", string="资产所有人", domain=[('class_id', 'ilike', "资产所有者")])
+	user = fields.Many2one("cmdb.member_list", string="使用人")
+	srve_prvd = fields.Many2one("cmdb.vendor_list", string="服务商")
 	admin = fields.Char(string="管理人")
 	comment = fields.Char(string="备注")
 	last_upd = fields.Datetime(default=fields.datetime.now(), require=True)
+
+	def create(self, cr, uid, vals, context=None):
+		vals['device_id'] = self.pool.get('ir.sequence').get(cr, uid, 'cmdb.device')
+		return super(device, self).create(cr, uid, vals, context=context)
 
 
 class server(models.Model):
 	_name = "cmdb.server"
 
+	server_id = fields.Char(string="服务器id")
 	# app_sys_id = fields.Integer(string="所属系统id")
 	app_sys = fields.Char(string="所属系统")
 	buss_ip_addr = fields.Char(string="业务网IP地址")
@@ -133,6 +140,7 @@ class server(models.Model):
 class net_dev(models.Model):
 	_name = "cmdb.net_dev"
 
+	net_dev_id = fields.Char(string="网络设备id")
 	area_id = fields.Integer(string="区域id")
 	area = fields.Char(string="区域")
 	version = fields.Char(string="软件版本")
@@ -158,13 +166,14 @@ class net_dev(models.Model):
 class board(models.Model):
 	_name = "cmdb.board"
 
+	board_id = fields.Char(string="板卡id")
 	area_id = fields.Integer(string="区域id")
 	area = fields.Char(string="区域")
 	dev_id = fields.Integer(string="设备资产id")
 	net_dev_id = fields.Integer(string="网络设备id")
 	srv_dev_id = fields.Integer(string="服务器设备id")
 	card_type = fields.Char(string="板卡类型")
-	card_sn = fields.Char(string="办卡序列号")
+	card_sn = fields.Char(string="板卡序列号")
 	slot = fields.Char(string="槽位")
 	fld1 = fields.Char(string="栏位1")
 	fld2 = fields.Char(string="栏位2")
@@ -181,6 +190,7 @@ class board(models.Model):
 class st_dev(models.Model):
 	_name = "cmdb.st_dev"
 
+	st_dev_id = fields.Char(string="存储id")
 	cage_num = fields.Integer(string="笼子数")
 	disk_num = fields.Integer(string="磁盘数")
 	disk_size = fields.Char(string="磁盘裸容量")
@@ -210,6 +220,7 @@ class st_dev(models.Model):
 class srv_room_dev(models.Model):
 	_name = "cmdb.srv_room_dev"
 
+	srv_room_dev_id = fields.Char(string="机房设备id")
 	asset_type = fields.Char(string="资产大类")
 	num = fields.Integer(string="数量")
 	start_date = fields.Date(string="启用日期")
@@ -235,6 +246,7 @@ class srv_room_dev(models.Model):
 class san_port(models.Model):
 	_name = "cmdb.san_port"
 
+	san_port_id = fields.Char(string="SAN端口id")
 	dev_id = fields.Integer(string="设备资产id")
 	type_id = fields.Integer(string="设备类型")
 	port = fields.Char(string="端口号")
@@ -266,6 +278,7 @@ class san_port(models.Model):
 class ip_port(models.Model):
 	_name = "cmdb.ip_port"
 
+	ip_port_id = fields.Char(string="IP端口ID")
 	dev_id = fields.Integer(string="设备id")
 	net_dev_id = fields.Integer(string="网络设备id")
 	card_id = fields.Integer(string="板卡id")
@@ -298,9 +311,12 @@ class ip_port(models.Model):
 
 class cabinet(models.Model):
 	_name = "cmdb.cabinet"
+	_rec_name = "cab_num"
 
-	lab_id = fields.Integer(string="机房id", require=True)
+	cabinet_id = fields.Char(string="机柜id")
+	lab_id = fields.Char(string="机房id", require=True)
 	cab_num = fields.Char(string="机柜号", require=True)
+	lab = fields.Many2one("cmdb.base_type", string="机房")
 	pdu_num = fields.Integer(string="PDU数目")
 	elec_power = fields.Integer(string="电源功率")
 	ampere = fields.Integer(string="电流")
@@ -323,6 +339,7 @@ class cabinet(models.Model):
 class soft(models.Model):
 	_name = "cmdb.soft"
 
+	soft_id = fields.Char(string="软件总id")
 	total_class = fields.Char(string="总类别", require=True)
 	subclass = fields.Char(string="明细类别", require=True)
 	soft_code = fields.Char(string="软件编号", require=True)
@@ -354,6 +371,7 @@ class soft(models.Model):
 class soft_detail(models.Model):
 	_name = "cmdb.soft_detail"
 
+	soft_detail_id = fields.Char(string="软件明细id")
 	detail_code = fields.Char(string="明细编号")
 	detail_name = fields.Char(string="细项名称")
 	version = fields.Char(string="版本号")
@@ -384,8 +402,10 @@ class soft_detail(models.Model):
 
 class vendor_list(models.Model):
 	_name = "cmdb.vendor_list"
+	_rec_name = "vendor"
 
-	vendor = fields.Char(string="名称", require=True)
+	vendor_list_id = fields.Char(string="服务商ID")
+	vendor = fields.Char(string="人员名称", require=True)
 	attr = fields.Char(string="性质")
 	address = fields.Char(string="地址")
 	contact = fields.Char(string="联系人")
@@ -399,7 +419,9 @@ class vendor_list(models.Model):
 
 class member_list(models.Model):
 	_name = "cmdb.member_list"
-	
+	_rec_name = "name"
+
+	member_list_id = fields.Char(string="人员表ID")
 	name = fields.Char(string="名称", require=True)
 	attr = fields.Char(string="性质")
 	address = fields.Char(string="地址")
@@ -414,15 +436,17 @@ class member_list(models.Model):
 class chg_log(models.Model):
 	_name = "cmdb.chg_log"
 
+	chg_log_id = fields.Char(string="变更记录id")
 	exe_date = fields.Date(string="日期")
 	executor = fields.Char(string="实施人", require=True)
-	chg_fld = fields.Char(string="")
+	chg_fld = fields.Char(string="变更栏位")
 	action = fields.Char(string="动作", require=True)
 
 
 class net_config(models.Model):
 	_name = "cmdb.net_config"
 
+	net_config_id = fields.Char(string="网络配置管理id")
 	logic_area = fields.Char(string="逻辑区域")
 	admin_ip = fields.Char(string="管理IP")
 	version = fields.Char(string="软件版本")
@@ -438,6 +462,7 @@ class net_config(models.Model):
 class st_zone_lun(models.Model):
 	_name = "cmdb.st_zone_lun"
 
+	st_zone_lun_id = fields.Char(string="存储zone_lun划分id")
 	zone_lun_id = fields.Char(string="ZONE_LUN_ID")
 	lun_id = fields.Char(string="lun号")
 	ioport = fields.Char(string="ioport")
@@ -457,6 +482,7 @@ class st_zone_lun(models.Model):
 class vlan(models.Model):
 	_name = "cmdb.vlan"
 
+	vlan_id_id = fields.Char(string="VLAN表ID")
 	vlan_id = fields.Char(string="VLAN号")
 	vlan_name = fields.Char(string="VLAN名称")
 	vlan_segment = fields.Char(string="VLAN网段")
@@ -466,6 +492,7 @@ class vlan(models.Model):
 class fw_policy1(models.Model):
 	_name = "cmdb.fw_policy1"
 
+	fw_policy1_id = fields.Char(string="防火墙策略1id")
 	fw_name = fields.Char(string="防火墙名称")
 	s_addrname = fields.Char(string="源地址命名")
 	s_ip = fields.Char(string="源地址")
@@ -479,6 +506,7 @@ class fw_policy1(models.Model):
 class fw_policy2(models.Model): 
 	_name = "cmdb.fw_policy2"
 
+	fw_policy2_id = fields.Char(string="防火墙策略2id")
 	fw_name = fields.Char(string="防火墙名称")
 	switch_mode = fields.Char(string="转换模式")
 	s_addrname = fields.Char(string="源地址命名")
@@ -494,6 +522,7 @@ class fw_policy2(models.Model):
 class spam_policy(models.Model):
 	_name = "cmdb.spam_policy"
 
+	spam_policy_id = fields.Char(stirng="SPAM策略id")
 	industry = fields.Char(string="行业")
 	company_name = fields.Char(string="公司名称")
 	domain_name = fields.Char(string="域名")
@@ -506,6 +535,7 @@ class spam_policy(models.Model):
 class vm(models.Model):
 	_name = "cmdb.vm"
 
+	vm_id = fields.Char(string="虚拟机id")
 	environment = fields.Char(string="环境")
 	cluster = fields.Char(string="集群")
 	resource_pool = fields.Char(string="资源地")
@@ -527,6 +557,7 @@ class vm(models.Model):
 class account(models.Model):
 	_name = "cmdb.account"
 
+	account_id = fields.Char(string="账户id")
 	dev_id = fields.Integer(string="设备id",  require=True)
 	soft_id = fields.Integer(string="软件id")
 	acc_nam = fields.Char(string="账户名称",  require=True)
@@ -552,6 +583,7 @@ class account(models.Model):
 class auth_log(models.Model):
 	_name = "cmdb.auth_log"
 
+	auth_log_id = fields.Char(string="授权记录id")
 	exe_date = fields.Char(string="",require=True)
 	executor = fields.Integer(string="",require=True)
 	chg_num = fields.Char(string="")
