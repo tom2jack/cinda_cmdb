@@ -230,7 +230,7 @@
                     <sheet>
                     <group>
                         <group>
-                            <field name="device_id" string="硬件ID" />
+                            <field name="device_id" string="硬件ID" readonly="True"/>
                             <field name="lab_id" string="机房"/>
                             <field name="cab" domain="[('lab', '=', lab_id)]" string="机柜" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
                             <field name="pos_seq" string="位置序号"/>

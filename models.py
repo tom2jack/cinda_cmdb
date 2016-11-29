@@ -67,7 +67,7 @@ class device(models.Model):
 	_name = "cmdb.device"
 	_rec_name = "sn"
 
-	device_id = fields.Char(string="硬件ID", readonly="True")
+	device_id = fields.Char(string="硬件ID")
 	lab_id = fields.Many2one("cmdb.base_type", string='机房', domain=[('class_id', 'ilike', "机房")])
 	cab = fields.Many2one("cmdb.cabinet", string="机柜")
 	pos_seq = fields.Integer(string="位置序号")
