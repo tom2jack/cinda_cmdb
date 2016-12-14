@@ -67,6 +67,7 @@
                 </form>
             </field>
         </record>
+
         <record model="ir.ui.view" id="cmdb_base_type_search_view">
             <field name="name">base_type.search</field>
             <field name="model">cmdb.base_type</field>
@@ -820,6 +821,7 @@
                 </form>
             </field>
         </record>
+
         <record model="ir.ui.view" id="cmdb_cabinet_graph">
             <field name="name">cmdb.cabinet_graph</field>
             <field name="model">cmdb.cabinet</field>
