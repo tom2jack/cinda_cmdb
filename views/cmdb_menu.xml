@@ -22,6 +22,7 @@
             <field name="view_type">form</field>
             <field name="domain">[('class_id.class_name','=',"机房")]</field>
             <field name="view_mode">tree,form,graph</field>
+            <field name="view_id" ref="cmdb.cmdb_base_type_room_form_view"/>
         </record>
 
         <record id="cmdb_base_data_action" model="ir.actions.act_window" >
