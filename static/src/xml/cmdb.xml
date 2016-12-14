@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates>
     <t t-name="cmdb">
-
+        <div class="cmdb_nt">
+            <canvas id="myCanvas" t-att-height="h" t-att-width="w">
+                您的浏览器不支持canvas绘图
+            </canvas>
+        </div>
     </t>
 </templates>
