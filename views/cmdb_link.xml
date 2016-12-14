@@ -4,6 +4,8 @@
         <template id="assets_backend"  name="cmdb assets" inherit_id="web.assets_backend">
             <xpath expr="." position="inside">
                 <link rel="stylesheet" type="text/css" href="/cmdb/static/src/css/cmdb_nt.css"/>
+                <script type="text/javascript" charset="utf-8" src="/cmdb/static/src/js/deviceRoom.js"></script>
+                <script type="text/javascript" charset="utf-8" src="/cmdb/static/src/js/cabinet.js"></script>
                 <script type="text/javascript" charset="utf-8" src="/cmdb/static/src/js/cmdb_nt.js"></script>
             </xpath>
         </template>

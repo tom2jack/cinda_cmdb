@@ -1,8 +1,9 @@
 body .openerp a.self_add_link {
   padding: 3px 6px;
-  width: 42px !important;
-  height: 40px;
   display: inline-block;
+  background-color: #7C7BAD;
+  color: #fff;
+  border-radius: 4px;
 }
 div.cmdb_nt #myCanvas {
   background-color: #e8e8e8;
