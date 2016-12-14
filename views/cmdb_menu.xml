@@ -16,6 +16,14 @@
             <field name="view_mode">tree,form,graph</field>
         </record>
 
+        <record id="cmdb_base_type_room_action" model="ir.actions.act_window" >
+            <field name="name">机房</field>
+            <field name="res_model">cmdb.base_type</field>
+            <field name="view_type">form</field>
+            <field name="domain">[('class_id.class_name','=',"机房")]</field>
+            <field name="view_mode">tree,form,graph</field>
+        </record>
+
         <record id="cmdb_base_data_action" model="ir.actions.act_window" >
             <field name="name">基础数据表</field>
             <field name="res_model">cmdb.base_data</field>
@@ -183,7 +191,13 @@
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
         </record>
-      
+
+        <record id="cmdb_position_u_action" model="ir.actions.act_window" >
+            <field name="name">U位表</field>
+            <field name="res_model">cmdb.position_u</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
 
         <menuitem id="main_cmdb_menu" name="CMDB"/>
 
@@ -201,14 +215,16 @@
 
 
         <menuitem id="device_id" name="硬件总表" parent="device_menu" action="cmdb_device_action" />
-        <menuitem id="cabinet_id" name="机柜表" parent="device_id" action="cmdb_cabinet_action" sequence="1"/>
-        <menuitem id="server_id" name="服务器表" parent="device_id" action="cmdb_server_action" sequence="2"/>
-        <menuitem id="srv_room_dev_id" name="机房设备表" parent="device_id" action="cmdb_srv_room_dev_action" sequence="3"/>
+        <menuitem id="base_type_room_id" name="机房" parent="device_id" sequence="5" action="cmdb_base_type_room_action" />
+        <menuitem id="cabinet_id" name="机柜表" parent="device_id"  action="cmdb_cabinet_action" sequence="6"/>
+        <menuitem id="server_id" name="服务器表" parent="device_id"  action="cmdb_server_action" sequence="8"/>
+        <menuitem id="srv_room_dev_id" name="机房设备表" parent="device_id" action="cmdb_srv_room_dev_action" sequence="9"/>
         <menuitem id="net_dev_id" name="网络设备表" parent="device_id" action="cmdb_net_dev_action" />
         <menuitem id="board_id" name="板卡表" parent="net_dev_id" action="cmdb_board_action" />
         <menuitem id="ip_port_id" name="IP端口表" parent="net_dev_id" action="cmdb_ip_port_action" />
         <menuitem id="st_dev_id" name="存储表" parent="device_id" action="cmdb_st_dev_action" />
         <menuitem id="san_port_id" name="SAN端口表" parent="st_dev_id" action="cmdb_san_port_action" />
+        <menuitem id="position_u_id" name="U位表" parent="device_id" action="cmdb_position_u_action" sequence="7" />
 
 
         <menuitem id="soft_id" name="软件总表" parent="soft_menu" action="cmdb_soft_action" />
