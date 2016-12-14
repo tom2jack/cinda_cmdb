@@ -24,6 +24,18 @@
             <field name="view_mode">tree,form,graph</field>
             <field name="view_id" ref="cmdb.cmdb_base_type_room_form_view"/>
         </record>
+        <record id="cmdb_base_type_room_action_tree" model="ir.actions.act_window.view">
+            <field name="view_mode">tree</field>
+            <field name="sequence" eval="1" />
+            <field name="view_id" ref="cmdb.cmdb_base_type_tree_view" />
+            <field name="act_window_id" ref="cmdb_base_type_room_action" />
+        </record>
+        <record id="cmdb_base_type_room_action_form" model="ir.actions.act_window.view">
+            <field name="view_mode">form</field>
+            <field name="sequence" eval="5" />
+            <field name="view_id" ref="cmdb.cmdb_base_type_room_form_view" />
+            <field name="act_window_id" ref="cmdb_base_type_room_action" />
+        </record>
 
         <record id="cmdb_base_data_action" model="ir.actions.act_window" >
             <field name="name">基础数据表</field>

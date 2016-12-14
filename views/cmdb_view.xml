@@ -75,14 +75,17 @@
                 <form>
                     <sheet>
                     <group>
-                        <field name="id" string="ROOM_ID" invisible="True" />
+                    <group>
                         <field name="type_number" string="细类编号"/>
                         <field name="type_name" string="细类名称"/>
                         <field name="class_id" string="所属父类"/>
                         <field name="comment" string="备注"/>
                     </group>
                     <group>
-                        <button class="oe_inline oe_stat_button"  string="机房" icon="fa-builing-o"/>
+                        <a class="oe_inline oe_stat_button self_add_link">机房
+                            <field name="id" string="ROOM_ID" invisible="True" />
+                        </a>
+                    </group>
                     </group>
                     </sheet>
                 </form>
