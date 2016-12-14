@@ -82,7 +82,7 @@
                         <field name="comment" string="备注"/>
                     </group>
                     <group>
-                        <a class="oe_inline oe_stat_button self_add_link">机房
+                        <a class="self_add_link">机房
                             <field name="id" string="ROOM_ID" invisible="True" />
                         </a>
                     </group>
@@ -829,6 +829,7 @@
                 <form>
                     <sheet>
                     <group>
+                    <group>
                         <field name="cabinet_id" string="机柜ID"/>
                         <field name="cab_num" string="机柜号"/>
                         <field name="lab_id" string="机房ID"/>
@@ -840,6 +841,12 @@
                         <field name="purpose" string="用途"/>
                         <field name="comment" string="备注"/>
                         <field name="last_upd" string="最后修改时间"/>
+                    </group>
+                    <group>
+                        <a class="self_add_link">机柜
+                            <field name="id" string="Cabinet_ID" invisible="True" />
+                        </a>
+                    </group>
                     </group>
                     </sheet>
                 </form>
