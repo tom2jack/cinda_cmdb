@@ -82,7 +82,8 @@
                         <field name="comment" string="备注"/>
                     </group>
                     <group>
-                        <a class="self_add_link">机房
+                        <a class="self_add_link">
+                            <b>可视化机房</b>
                             <field name="id" string="ROOM_ID" invisible="True" />
                         </a>
                     </group>
@@ -843,7 +844,8 @@
                         <field name="last_upd" string="最后修改时间"/>
                     </group>
                     <group>
-                        <a class="self_add_link">机柜
+                        <a class="self_add_link">
+                            <b>可视化机柜</b>
                             <field name="id" string="Cabinet_ID" invisible="True" />
                         </a>
                     </group>

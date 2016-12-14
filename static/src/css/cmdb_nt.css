@@ -1,9 +1,29 @@
 body .openerp a.self_add_link {
-  padding: 3px 6px;
   display: inline-block;
+  width: 132px;
+  height: 40px;
+  border: 1px solid #ddd;
+  padding: 4px;
+}
+body .openerp a.self_add_link b {
+  display: inline-block;
+  transform: translate(3px, -4px);
+  font-weight: normal;
+  color: #666666;
+}
+body .openerp a.self_add_link:before {
+  font-family: FontAwesome !important;
+  font-size: 24px;
+  content: "\f0ae";
+}
+body .openerp a.self_add_link:hover {
   background-color: #7C7BAD;
+}
+body .openerp a.self_add_link:hover > b {
+  color: #ffffff;
+}
+body .openerp a.self_add_link:hover:before {
   color: #fff;
-  border-radius: 4px;
 }
 div.cmdb_nt #myCanvas {
   background-color: #e8e8e8;
