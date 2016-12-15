@@ -141,7 +141,7 @@
             },
             start:function(data){//注意渲染顺序
                 var me=this;
-                var unused=48;
+                var unused=42;
                 var device=[];
                 $.each(data.device,function(i,v){
                     unused-= v.u_space;

@@ -152,7 +152,6 @@
                 //绘制房间
                 this.addRoom("R",data.roomName,-200*option.defaultScale,-200*option.defaultScale,244*maxCol+400,392*maxRol+200);
                 //绘制机柜
-                console.log(img);
                 for(var r=1;r<=maxRol;r++){
                     for(var c=1;c<=maxCol;c++){
                         var imgVal=img[r+"-"+c];
