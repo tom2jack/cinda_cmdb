@@ -4,7 +4,7 @@ from openerp import models
 
 
 class base_class(models.Model):
-    _name = "cmdb.base_class"
+    _name = "cinda_cmdb.base_class"
     _rec_name = 'class_name'
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
@@ -15,19 +15,19 @@ class base_class(models.Model):
 
 
 class base_type(models.Model):
-    _name = "cmdb.base_type"
+    _name = "cinda_cmdb.base_type"
     _rec_name = 'type_name'
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
     type_number = fields.Char(string="细类编号")
     type_name = fields.Char(string="细类名称")
-    class_id = fields.Many2one("cmdb.base_class", string="所属父类")
+    class_id = fields.Many2one("cinda_cmdb.base_class", string="所属父类")
     comment = fields.Char(string="备注")
 
 
 class base_data(models.Model):
-    _name = "cmdb.base_data"
+    _name = "cinda_cmdb.base_data"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
@@ -70,7 +70,7 @@ class base_data(models.Model):
 
 
 class device(models.Model):
-    _name = "cmdb.device"
+    _name = "cinda_cmdb.device"
     _rec_name = "sn"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
@@ -85,16 +85,16 @@ class device(models.Model):
     # }
 
     device_id = fields.Char(string="硬件ID")
-    lab_id = fields.Many2one("cmdb.base_type", string='机房', domain=[('class_id', 'ilike', "机房")])
-    cab = fields.Many2one("cmdb.cabinet", string="机柜")
+    lab_id = fields.Many2one("cinda_cmdb.base_type", string='机房', domain=[('class_id', 'ilike', "机房")])
+    cab = fields.Many2one("cinda_cmdb.cabinet", string="机柜")
     pos_seq = fields.Integer(string="位置序号")
-    u_pos = fields.Many2one("cmdb.base_type", string="位置U", domain=[('class_id', 'ilike', "位置代号")])
+    u_pos = fields.Many2one("cinda_cmdb.base_type", string="位置U", domain=[('class_id', 'ilike', "位置代号")])
     u_space = fields.Integer(string="占位U")
-    env_id = fields.Many2one("cmdb.base_type", string="环境", domain=[('class_id', 'ilike', "环境")])
+    env_id = fields.Many2one("cinda_cmdb.base_type", string="环境", domain=[('class_id', 'ilike', "环境")])
     use_mode = fields.Selection([('using', '使用中'), ('un_use', '未使用'),], default="", Require="False")
     dev_start = fields.Selection([('start up', '开机'), ('shut down', '关机'),], default="", Require="False")
-    type_id = fields.Many2one("cmdb.base_type", string="设备类型", domain=[('class_id', 'ilike', "设备类型")])
-    brand_id = fields.Many2one("cmdb.base_type", string="品牌", domain=[('class_id', 'ilike', "设备品牌")])
+    type_id = fields.Many2one("cinda_cmdb.base_type", string="设备类型", domain=[('class_id', 'ilike', "设备类型")])
+    brand_id = fields.Many2one("cinda_cmdb.base_type", string="品牌", domain=[('class_id', 'ilike', "设备品牌")])
     product_name = fields.Char(string="产品型号")
     host_name = fields.Char(string="设备命名")
     model = fields.Char(string="Model")
@@ -104,20 +104,20 @@ class device(models.Model):
     purpose = fields.Char(string="用途")
     accept_date = fields.Char(string="初验日期")
     reject_date = fields.Char(string="过保日期")
-    owner_id = fields.Many2one("cmdb.base_type", string="资产所有人", domain=[('class_id', 'ilike', "资产所有者")])
-    user = fields.Many2one("cmdb.member_list", string="使用人")
-    srve_prvd = fields.Many2one("cmdb.vendor_list", string="服务商")
+    owner_id = fields.Many2one("cinda_cmdb.base_type", string="资产所有人", domain=[('class_id', 'ilike', "资产所有者")])
+    user = fields.Many2one("cinda_cmdb.member_list", string="使用人")
+    srve_prvd = fields.Many2one("cinda_cmdb.vendor_list", string="服务商")
     admin = fields.Char(string="管理人")
     comment = fields.Char(string="备注")
     last_upd = fields.Datetime(default=fields.datetime.now(), require=True)
 
     def create(self, cr, uid, vals, context=None):
-        vals['device_id'] = self.pool.get('ir.sequence').get(cr, uid, 'cmdb.device')
+        vals['device_id'] = self.pool.get('ir.sequence').get(cr, uid, 'cinda_cmdb.device')
         return super(device, self).create(cr, uid, vals, context=context)
 
 
 class server(models.Model):
-    _name = "cmdb.server"
+    _name = "cinda_cmdb.server"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
@@ -151,13 +151,13 @@ class server(models.Model):
     comment1 = fields.Char(string="备注1")
     comment2 = fields.Char(string="备注2")
     last_upd = fields.Datetime(default=fields.datetime.now(), require=True)
-    dev_id = fields.Many2one("cmdb.device", string="设备资产id")
+    dev_id = fields.Many2one("cinda_cmdb.device", string="设备资产id")
     san_wwn = fields.Char(string="san网络wwn号")
     ha_mode = fields.Char(string="主备状态")
 
 
 class net_dev(models.Model):
-    _name = "cmdb.net_dev"
+    _name = "cinda_cmdb.net_dev"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
@@ -185,7 +185,7 @@ class net_dev(models.Model):
 
 
 class board(models.Model):
-    _name = "cmdb.board"
+    _name = "cinda_cmdb.board"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
@@ -211,7 +211,7 @@ class board(models.Model):
 
 
 class st_dev(models.Model):
-    _name = "cmdb.st_dev"
+    _name = "cinda_cmdb.st_dev"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
@@ -243,7 +243,7 @@ class st_dev(models.Model):
 
 
 class srv_room_dev(models.Model):
-    _name = "cmdb.srv_room_dev"
+    _name = "cinda_cmdb.srv_room_dev"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
@@ -271,7 +271,7 @@ class srv_room_dev(models.Model):
 
 
 class san_port(models.Model):
-    _name = "cmdb.san_port"
+    _name = "cinda_cmdb.san_port"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
@@ -305,7 +305,7 @@ class san_port(models.Model):
 
 
 class ip_port(models.Model):
-    _name = "cmdb.ip_port"
+    _name = "cinda_cmdb.ip_port"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
@@ -341,7 +341,7 @@ class ip_port(models.Model):
 
 
 class cabinet(models.Model):
-    _name = "cmdb.cabinet"
+    _name = "cinda_cmdb.cabinet"
     _rec_name = "cab_num"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
@@ -349,7 +349,7 @@ class cabinet(models.Model):
     cabinet_id = fields.Char(string="机柜id")
     lab_id = fields.Char(string="机房id", require=True)
     cab_num = fields.Char(string="机柜号", require=True)
-    lab = fields.Many2one("cmdb.base_type", string="机房")
+    lab = fields.Many2one("cinda_cmdb.base_type", string="机房")
     pdu_num = fields.Integer(string="PDU数目")
     elec_power = fields.Integer(string="电源功率")
     ampere = fields.Integer(string="电流")
@@ -370,7 +370,7 @@ class cabinet(models.Model):
 
 
 class soft(models.Model):
-    _name = "cmdb.soft"
+    _name = "cinda_cmdb.soft"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
@@ -404,7 +404,7 @@ class soft(models.Model):
 
 
 class soft_detail(models.Model):
-    _name = "cmdb.soft_detail"
+    _name = "cinda_cmdb.soft_detail"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
@@ -438,7 +438,7 @@ class soft_detail(models.Model):
 
 
 class vendor_list(models.Model):
-    _name = "cmdb.vendor_list"
+    _name = "cinda_cmdb.vendor_list"
     _rec_name = "vendor"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
@@ -457,7 +457,7 @@ class vendor_list(models.Model):
 
 
 class member_list(models.Model):
-    _name = "cmdb.member_list"
+    _name = "cinda_cmdb.member_list"
     _rec_name = "name"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
@@ -475,7 +475,7 @@ class member_list(models.Model):
 
 
 class chg_log(models.Model):
-    _name = "cmdb.chg_log"
+    _name = "cinda_cmdb.chg_log"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
@@ -487,7 +487,7 @@ class chg_log(models.Model):
 
 
 class net_config(models.Model):
-    _name = "cmdb.net_config"
+    _name = "cinda_cmdb.net_config"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
@@ -505,7 +505,7 @@ class net_config(models.Model):
 
 
 class st_zone_lun(models.Model):
-    _name = "cmdb.st_zone_lun"
+    _name = "cinda_cmdb.st_zone_lun"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
@@ -527,7 +527,7 @@ class st_zone_lun(models.Model):
 
 
 class vlan(models.Model):
-    _name = "cmdb.vlan"
+    _name = "cinda_cmdb.vlan"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
@@ -539,7 +539,7 @@ class vlan(models.Model):
 
 
 class fw_policy1(models.Model):
-    _name = "cmdb.fw_policy1"
+    _name = "cinda_cmdb.fw_policy1"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
@@ -555,7 +555,7 @@ class fw_policy1(models.Model):
 
 
 class fw_policy2(models.Model): 
-    _name = "cmdb.fw_policy2"
+    _name = "cinda_cmdb.fw_policy2"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
@@ -573,7 +573,7 @@ class fw_policy2(models.Model):
 
 
 class spam_policy(models.Model):
-    _name = "cmdb.spam_policy"
+    _name = "cinda_cmdb.spam_policy"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
@@ -588,7 +588,7 @@ class spam_policy(models.Model):
 
 
 class vm(models.Model):
-    _name = "cmdb.vm"
+    _name = "cinda_cmdb.vm"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
@@ -612,7 +612,7 @@ class vm(models.Model):
 
 
 class account(models.Model):
-    _name = "cmdb.account"
+    _name = "cinda_cmdb.account"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
@@ -640,7 +640,7 @@ class account(models.Model):
 
 
 class auth_log(models.Model):
-    _name = "cmdb.auth_log"
+    _name = "cinda_cmdb.auth_log"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
@@ -660,10 +660,10 @@ class auth_log(models.Model):
 
 # u位表
 class position_u(models.Model):
-    _name = "cmdb.position_u"
+    _name = "cinda_cmdb.position_u"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
     name = fields.Char(string="名称")
     status = fields.Boolean(string="状态", default=False)
-    cabinet_id = fields.Many2one("cmdb.cabinet", string="所在机柜", required="True")
+    cabinet_id = fields.Many2one("cinda_cmdb.cabinet", string="所在机柜", required="True")

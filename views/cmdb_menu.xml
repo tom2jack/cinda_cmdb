@@ -2,163 +2,163 @@
 
 <openerp>
     <data>
-        <record id="cmdb_base_class_action" model="ir.actions.act_window" >
+        <record id="cinda_cmdb_base_class_action" model="ir.actions.act_window" >
             <field name="name">总类编码表</field>
-            <field name="res_model">cmdb.base_class</field>
+            <field name="res_model">cinda_cmdb.base_class</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
         </record>
 
-        <record id="cmdb_base_type_action" model="ir.actions.act_window" >
+        <record id="cinda_cmdb_base_type_action" model="ir.actions.act_window" >
             <field name="name">细类编码表</field>
-            <field name="res_model">cmdb.base_type</field>
+            <field name="res_model">cinda_cmdb.base_type</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
         </record>
 
-        <record id="cmdb_base_type_room_action" model="ir.actions.act_window" >
+        <record id="cinda_cmdb_base_type_room_action" model="ir.actions.act_window" >
             <field name="name">机房</field>
-            <field name="res_model">cmdb.base_type</field>
+            <field name="res_model">cinda_cmdb.base_type</field>
             <field name="view_type">form</field>
             <field name="domain">[('class_id.class_name','=',"机房")]</field>
             <field name="view_mode">tree,form,graph</field>
-            <field name="view_id" ref="cmdb_base_type_room_form_view"/>
+            <field name="view_id" ref="cinda_cmdb_base_type_room_form_view"/>
         </record>
-        <record id="cmdb_base_type_room_action_tree" model="ir.actions.act_window.view">
+        <record id="cinda_cmdb_base_type_room_action_tree" model="ir.actions.act_window.view">
             <field name="view_mode">tree</field>
             <field name="sequence" eval="1" />
-            <field name="view_id" ref="cmdb_base_type_tree_view" />
-            <field name="act_window_id" ref="cmdb_base_type_room_action" />
+            <field name="view_id" ref="cinda_cmdb_base_type_tree_view" />
+            <field name="act_window_id" ref="cinda_cmdb_base_type_room_action" />
         </record>
-        <record id="cmdb_base_type_room_action_form" model="ir.actions.act_window.view">
+        <record id="cinda_cmdb_base_type_room_action_form" model="ir.actions.act_window.view">
             <field name="view_mode">form</field>
             <field name="sequence" eval="5" />
-            <field name="view_id" ref="cmdb_base_type_room_form_view" />
-            <field name="act_window_id" ref="cmdb_base_type_room_action" />
+            <field name="view_id" ref="cinda_cmdb_base_type_room_form_view" />
+            <field name="act_window_id" ref="cinda_cmdb_base_type_room_action" />
         </record>
 
-        <record id="cmdb_base_data_action" model="ir.actions.act_window" >
+        <record id="cinda_cmdb_base_data_action" model="ir.actions.act_window" >
             <field name="name">基础数据表</field>
-            <field name="res_model">cmdb.base_data</field>
+            <field name="res_model">cinda_cmdb.base_data</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
         </record>
 
-        <record id="cmdb_device_action" model="ir.actions.act_window" >
+        <record id="cinda_cmdb_device_action" model="ir.actions.act_window" >
             <field name="name">硬件总表</field>
-            <field name="res_model">cmdb.device</field>
+            <field name="res_model">cinda_cmdb.device</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
         </record>
 
-        <record id="cmdb_server_action" model="ir.actions.act_window" >
+        <record id="cinda_cmdb_server_action" model="ir.actions.act_window" >
             <field name="name">服务器表</field>
-            <field name="res_model">cmdb.server</field>
+            <field name="res_model">cinda_cmdb.server</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
         </record>
 
-        <record id="cmdb_net_dev_action" model="ir.actions.act_window" >
+        <record id="cinda_cmdb_net_dev_action" model="ir.actions.act_window" >
             <field name="name">网络设备表</field>
-            <field name="res_model">cmdb.net_dev</field>
+            <field name="res_model">cinda_cmdb.net_dev</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
         </record>
 
-        <record id="cmdb_board_action" model="ir.actions.act_window" >
+        <record id="cinda_cmdb_board_action" model="ir.actions.act_window" >
             <field name="name">板卡表</field>
-            <field name="res_model">cmdb.board</field>
+            <field name="res_model">cinda_cmdb.board</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
         </record>
 
-        <record id="cmdb_st_dev_action" model="ir.actions.act_window" >
+        <record id="cinda_cmdb_st_dev_action" model="ir.actions.act_window" >
             <field name="name">存储表</field>
-            <field name="res_model">cmdb.st_dev</field>
+            <field name="res_model">cinda_cmdb.st_dev</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
         </record>
 
-        <record id="cmdb_srv_room_dev_action" model="ir.actions.act_window" >
+        <record id="cinda_cmdb_srv_room_dev_action" model="ir.actions.act_window" >
             <field name="name">机房设备表</field>
-            <field name="res_model">cmdb.srv_room_dev</field>
+            <field name="res_model">cinda_cmdb.srv_room_dev</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
         </record>
 
-        <record id="cmdb_san_port_action" model="ir.actions.act_window" >
+        <record id="cinda_cmdb_san_port_action" model="ir.actions.act_window" >
             <field name="name">SAN端口表</field>
-            <field name="res_model">cmdb.san_port</field>
+            <field name="res_model">cinda_cmdb.san_port</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
         </record>
 
-        <record id="cmdb_ip_port_action" model="ir.actions.act_window" >
+        <record id="cinda_cmdb_ip_port_action" model="ir.actions.act_window" >
             <field name="name">IP端口表</field>
-            <field name="res_model">cmdb.ip_port</field>
+            <field name="res_model">cinda_cmdb.ip_port</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
         </record>
 
-        <record id="cmdb_cabinet_action" model="ir.actions.act_window" >
+        <record id="cinda_cmdb_cabinet_action" model="ir.actions.act_window" >
             <field name="name">机柜表</field>
-            <field name="res_model">cmdb.cabinet</field>
+            <field name="res_model">cinda_cmdb.cabinet</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
         </record>
 
-        <record id="cmdb_soft_action" model="ir.actions.act_window" >
+        <record id="cinda_cmdb_soft_action" model="ir.actions.act_window" >
             <field name="name">软件总表</field>
-            <field name="res_model">cmdb.soft</field>
+            <field name="res_model">cinda_cmdb.soft</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
         </record>
 
-        <record id="cmdb_soft_detail_action" model="ir.actions.act_window" >
+        <record id="cinda_cmdb_soft_detail_action" model="ir.actions.act_window" >
             <field name="name">软件明细表</field>
-            <field name="res_model">cmdb.soft_detail</field>
+            <field name="res_model">cinda_cmdb.soft_detail</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
         </record>
 
-        <record id="cmdb_vendor_list_action" model="ir.actions.act_window" >
+        <record id="cinda_cmdb_vendor_list_action" model="ir.actions.act_window" >
             <field name="name">供应商通讯录</field>
-            <field name="res_model">cmdb.vendor_list</field>
+            <field name="res_model">cinda_cmdb.vendor_list</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
         </record>
 
-        <record id="cmdb_member_list_action" model="ir.actions.act_window" >
+        <record id="cinda_cmdb_member_list_action" model="ir.actions.act_window" >
             <field name="name">人员表</field>
-            <field name="res_model">cmdb.member_list</field>
+            <field name="res_model">cinda_cmdb.member_list</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
         </record>
 
-        <record id="cmdb_chg_log_action" model="ir.actions.act_window" >
+        <record id="cinda_cmdb_chg_log_action" model="ir.actions.act_window" >
             <field name="name">变更记录表</field>
-            <field name="res_model">cmdb.chg_log</field>
+            <field name="res_model">cinda_cmdb.chg_log</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
         </record>
 
-        <record id="cmdb_net_config_action" model="ir.actions.act_window" >
+        <record id="cinda_cmdb_net_config_action" model="ir.actions.act_window" >
             <field name="name">网络配置管理表</field>
-            <field name="res_model">cmdb.net_config</field>
+            <field name="res_model">cinda_cmdb.net_config</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
         </record>
 
-        <record id="cmdb_st_zone_lun_action" model="ir.actions.act_window" >
+        <record id="cinda_cmdb_st_zone_lun_action" model="ir.actions.act_window" >
             <field name="name">存储zone_lun划分表</field>
-            <field name="res_model">cmdb.st_zone_lun</field>
+            <field name="res_model">cinda_cmdb.st_zone_lun</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
         </record>
 
-        <record id="cmdb_vlan_action" model="ir.actions.act_window" >
+        <record id="cinda_cmdb_vlan_action" model="ir.actions.act_window" >
             <field name="name">vlan表</field>
-            <field name="res_model">cmdb.vlan</field>
+            <field name="res_model">cinda_cmdb.vlan</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
             <!--<field name="help" type="html">-->
@@ -167,107 +167,107 @@
             <!--</field>-->
         </record>
 
-        <record id="cmdb_fw_policy1_action" model="ir.actions.act_window" >
+        <record id="cinda_cmdb_fw_policy1_action" model="ir.actions.act_window" >
             <field name="name">防火墙策略表1</field>
-            <field name="res_model">cmdb.fw_policy1</field>
+            <field name="res_model">cinda_cmdb.fw_policy1</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
         </record>
 
-        <record id="cmdb_fw_policy2_action" model="ir.actions.act_window" >
+        <record id="cinda_cmdb_fw_policy2_action" model="ir.actions.act_window" >
             <field name="name">防火墙策略表2</field>
-            <field name="res_model">cmdb.fw_policy2</field>
+            <field name="res_model">cinda_cmdb.fw_policy2</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
         </record>
 
-        <record id="cmdb_spam_policy_action" model="ir.actions.act_window" >
+        <record id="cinda_cmdb_spam_policy_action" model="ir.actions.act_window" >
             <field name="name">spam策略表</field>
-            <field name="res_model">cmdb.spam_policy</field>
+            <field name="res_model">cinda_cmdb.spam_policy</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
         </record>
 
-        <record id="cmdb_vm_action" model="ir.actions.act_window" >
+        <record id="cinda_cmdb_vm_action" model="ir.actions.act_window" >
             <field name="name">虚拟机表</field>
-            <field name="res_model">cmdb.vm</field>
+            <field name="res_model">cinda_cmdb.vm</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
         </record>
 
-        <record id="cmdb_account_action" model="ir.actions.act_window" >
+        <record id="cinda_cmdb_account_action" model="ir.actions.act_window" >
             <field name="name">账户表</field>
-            <field name="res_model">cmdb.account</field>
+            <field name="res_model">cinda_cmdb.account</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
         </record>
 
-        <record id="cmdb_auth_log_action" model="ir.actions.act_window" >
+        <record id="cinda_cmdb_auth_log_action" model="ir.actions.act_window" >
             <field name="name">授权记录表</field>
-            <field name="res_model">cmdb.auth_log</field>
+            <field name="res_model">cinda_cmdb.auth_log</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
         </record>
 
-        <record id="cmdb_position_u_action" model="ir.actions.act_window" >
+        <record id="cinda_cmdb_position_u_action" model="ir.actions.act_window" >
             <field name="name">U位表</field>
-            <field name="res_model">cmdb.position_u</field>
+            <field name="res_model">cinda_cmdb.position_u</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
         </record>
 
-        <menuitem id="main_cmdb_menu" name="CMDB"/>
+        <menuitem id="main_cinda_cmdb_menu" name="cinda_cmdb"/>
 
 
-        <menuitem id="cmdb_menu" name="基本数据集合" parent="main_cmdb_menu" sequence="1"/>       
-        <menuitem id="device_menu" name="硬件集合" parent="main_cmdb_menu" sequence="2"/>       
-        <menuitem id="soft_menu" name="软件集合" parent="main_cmdb_menu" sequence="3"/>       
-        <menuitem id="vm_menu" name="虚拟资源集合" parent="main_cmdb_menu" sequence="4"/>       
-        <menuitem id="auth_menu" name="授权集合" parent="main_cmdb_menu" sequence="5"/>       
-        <menuitem id="app_menu" name="应用与配置集合" parent="main_cmdb_menu" sequence="6"/> 
-        <menuitem id="manage_menu" name="管理集合" parent="main_cmdb_menu" sequence="7"/> 
+        <menuitem id="cinda_cmdb_menu" name="基本数据集合" parent="main_cinda_cmdb_menu" sequence="1"/>       
+        <menuitem id="device_menu" name="硬件集合" parent="main_cinda_cmdb_menu" sequence="2"/>       
+        <menuitem id="soft_menu" name="软件集合" parent="main_cinda_cmdb_menu" sequence="3"/>       
+        <menuitem id="vm_menu" name="虚拟资源集合" parent="main_cinda_cmdb_menu" sequence="4"/>       
+        <menuitem id="auth_menu" name="授权集合" parent="main_cinda_cmdb_menu" sequence="5"/>       
+        <menuitem id="app_menu" name="应用与配置集合" parent="main_cinda_cmdb_menu" sequence="6"/> 
+        <menuitem id="manage_menu" name="管理集合" parent="main_cinda_cmdb_menu" sequence="7"/> 
 
 
-        <menuitem id="base_data_id" name="基础数据表" parent="cmdb_menu" action="cmdb_base_data_action" />
+        <menuitem id="base_data_id" name="基础数据表" parent="cinda_cmdb_menu" action="cinda_cmdb_base_data_action" />
 
 
-        <menuitem id="device_id" name="硬件总表" parent="device_menu" action="cmdb_device_action" />
-        <menuitem id="base_type_room_id" name="机房" parent="device_id" sequence="5" action="cmdb_base_type_room_action" />
-        <menuitem id="cabinet_id" name="机柜表" parent="device_id"  action="cmdb_cabinet_action" sequence="6"/>
-        <menuitem id="server_id" name="服务器表" parent="device_id"  action="cmdb_server_action" sequence="8"/>
-        <menuitem id="srv_room_dev_id" name="机房设备表" parent="device_id" action="cmdb_srv_room_dev_action" sequence="9"/>
-        <menuitem id="net_dev_id" name="网络设备表" parent="device_id" action="cmdb_net_dev_action" />
-        <menuitem id="board_id" name="板卡表" parent="net_dev_id" action="cmdb_board_action" />
-        <menuitem id="ip_port_id" name="IP端口表" parent="net_dev_id" action="cmdb_ip_port_action" />
-        <menuitem id="st_dev_id" name="存储表" parent="device_id" action="cmdb_st_dev_action" />
-        <menuitem id="san_port_id" name="SAN端口表" parent="st_dev_id" action="cmdb_san_port_action" />
-        <menuitem id="position_u_id" name="U位表" parent="device_id" action="cmdb_position_u_action" sequence="7" />
+        <menuitem id="device_id" name="硬件总表" parent="device_menu" action="cinda_cmdb_device_action" />
+        <menuitem id="base_type_room_id" name="机房" parent="device_id" sequence="5" action="cinda_cmdb_base_type_room_action" />
+        <menuitem id="cabinet_id" name="机柜表" parent="device_id"  action="cinda_cmdb_cabinet_action" sequence="6"/>
+        <menuitem id="server_id" name="服务器表" parent="device_id"  action="cinda_cmdb_server_action" sequence="8"/>
+        <menuitem id="srv_room_dev_id" name="机房设备表" parent="device_id" action="cinda_cmdb_srv_room_dev_action" sequence="9"/>
+        <menuitem id="net_dev_id" name="网络设备表" parent="device_id" action="cinda_cmdb_net_dev_action" />
+        <menuitem id="board_id" name="板卡表" parent="net_dev_id" action="cinda_cmdb_board_action" />
+        <menuitem id="ip_port_id" name="IP端口表" parent="net_dev_id" action="cinda_cmdb_ip_port_action" />
+        <menuitem id="st_dev_id" name="存储表" parent="device_id" action="cinda_cmdb_st_dev_action" />
+        <menuitem id="san_port_id" name="SAN端口表" parent="st_dev_id" action="cinda_cmdb_san_port_action" />
+        <menuitem id="position_u_id" name="U位表" parent="device_id" action="cinda_cmdb_position_u_action" sequence="7" />
 
 
-        <menuitem id="soft_id" name="软件总表" parent="soft_menu" action="cmdb_soft_action" />
-        <menuitem id="soft_detail_id" name="软件明细表" parent="soft_id" action="cmdb_soft_detail_action" />
+        <menuitem id="soft_id" name="软件总表" parent="soft_menu" action="cinda_cmdb_soft_action" />
+        <menuitem id="soft_detail_id" name="软件明细表" parent="soft_id" action="cinda_cmdb_soft_detail_action" />
 
 
-        <menuitem id="vm_id" name="虚拟机表" parent="vm_menu" action="cmdb_vm_action" />
+        <menuitem id="vm_id" name="虚拟机表" parent="vm_menu" action="cinda_cmdb_vm_action" />
 
 
-        <menuitem id="vendor_list_id" name="服务商通讯录" parent="auth_menu" action="cmdb_vendor_list_action" />
-        <menuitem id="member_list_id" name="人员表" parent="auth_menu" action="cmdb_member_list_action" />
-        <menuitem id="account_id" name="账户表" parent="auth_menu" action="cmdb_account_action" />
-        <menuitem id="auth_log_id" name="授权记录表" parent="account_id" action="cmdb_auth_log_action" />
+        <menuitem id="vendor_list_id" name="服务商通讯录" parent="auth_menu" action="cinda_cmdb_vendor_list_action" />
+        <menuitem id="member_list_id" name="人员表" parent="auth_menu" action="cinda_cmdb_member_list_action" />
+        <menuitem id="account_id" name="账户表" parent="auth_menu" action="cinda_cmdb_account_action" />
+        <menuitem id="auth_log_id" name="授权记录表" parent="account_id" action="cinda_cmdb_auth_log_action" />
         
 
-        <menuitem id="net_config_id" name="网络配置管理表" parent="app_menu" action="cmdb_net_config_action" />
-        <menuitem id="vlan_id" name="Vlan表" parent="net_config_id" action="cmdb_vlan_action" />
-        <menuitem id="fw_policy1_id" name="防火墙策略表1" parent="net_config_id" action="cmdb_fw_policy1_action" />
-        <menuitem id="fw_policy2_id" name="防火墙策略表2" parent="net_config_id" action="cmdb_fw_policy2_action" />
-        <menuitem id="spam_policy_id" name="SPAM策略表" parent="net_config_id" action="cmdb_spam_policy_action" />
-        <menuitem id="st_zone_lun_id" name="存储zone_lun划分表" parent="app_menu" action="cmdb_st_zone_lun_action" />
-        <menuitem id="chg_log_id" name="变更记录表" parent="app_menu" action="cmdb_chg_log_action" />
+        <menuitem id="net_config_id" name="网络配置管理表" parent="app_menu" action="cinda_cmdb_net_config_action" />
+        <menuitem id="vlan_id" name="Vlan表" parent="net_config_id" action="cinda_cmdb_vlan_action" />
+        <menuitem id="fw_policy1_id" name="防火墙策略表1" parent="net_config_id" action="cinda_cmdb_fw_policy1_action" />
+        <menuitem id="fw_policy2_id" name="防火墙策略表2" parent="net_config_id" action="cinda_cmdb_fw_policy2_action" />
+        <menuitem id="spam_policy_id" name="SPAM策略表" parent="net_config_id" action="cinda_cmdb_spam_policy_action" />
+        <menuitem id="st_zone_lun_id" name="存储zone_lun划分表" parent="app_menu" action="cinda_cmdb_st_zone_lun_action" />
+        <menuitem id="chg_log_id" name="变更记录表" parent="app_menu" action="cinda_cmdb_chg_log_action" />
 
 
-        <menuitem id="base_class_id" name="总类编码表" parent="manage_menu" action="cmdb_base_class_action" />
-        <menuitem id="base_type_id" name="细类编码表" parent="manage_menu" action="cmdb_base_type_action" />
+        <menuitem id="base_class_id" name="总类编码表" parent="manage_menu" action="cinda_cmdb_base_class_action" />
+        <menuitem id="base_type_id" name="细类编码表" parent="manage_menu" action="cinda_cmdb_base_type_action" />
 
     </data>
 </openerp>

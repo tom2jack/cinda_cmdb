@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-        <record model="ir.ui.view" id="cmdb_base_class_tree_view">
+        <record model="ir.ui.view" id="cinda_cmdb_base_class_tree_view">
             <field name="name">base_class.tree</field>
-            <field name="model">cmdb.base_class</field>
+            <field name="model">cinda_cmdb.base_class</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="class_number" string="总类编号"/>
@@ -12,9 +12,9 @@
                 </tree>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_base_class_form_view">
+        <record model="ir.ui.view" id="cinda_cmdb_base_class_form_view">
             <field name="name">base_class.form</field>
-            <field name="model">cmdb.base_class</field>
+            <field name="model">cinda_cmdb.base_class</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
@@ -31,21 +31,21 @@
                 </form>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_base_class_graph">
-            <field name="name">cmdb.base_class_graph</field>
-            <field name="model">cmdb.base_class</field>
+        <record model="ir.ui.view" id="cinda_cmdb_base_class_graph">
+            <field name="name">cinda_cmdb.base_class_graph</field>
+            <field name="model">cinda_cmdb.base_class</field>
             <field name="type">graph</field>
             <field name="arch" type="xml">
-                <graph string="cmdb base_class graph" type="bar" >
+                <graph string="cinda_cmdb base_class graph" type="bar" >
                     <field name="class_name" string="总类名称" type="row"/>
                 </graph>
             </field>
         </record>
 
 
-        <record model="ir.ui.view" id="cmdb_base_type_tree_view">
+        <record model="ir.ui.view" id="cinda_cmdb_base_type_tree_view">
             <field name="name">base_type.tree</field>
-            <field name="model">cmdb.base_type</field>
+            <field name="model">cinda_cmdb.base_type</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="type_number" string="细类编号"/>
@@ -55,9 +55,9 @@
                 </tree>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_base_type_form_view">
+        <record model="ir.ui.view" id="cinda_cmdb_base_type_form_view">
             <field name="name">base_type.form</field>
-            <field name="model">cmdb.base_type</field>
+            <field name="model">cinda_cmdb.base_type</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
@@ -76,9 +76,9 @@
             </field>
         </record>
 
-        <record model="ir.ui.view" id="cmdb_base_type_room_form_view">
+        <record model="ir.ui.view" id="cinda_cmdb_base_type_room_form_view">
             <field name="name">base_type.room_form</field>
-            <field name="model">cmdb.base_type</field>
+            <field name="model">cinda_cmdb.base_type</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
@@ -105,9 +105,9 @@
             </field>
         </record>
 
-        <record model="ir.ui.view" id="cmdb_base_type_search_view">
+        <record model="ir.ui.view" id="cinda_cmdb_base_type_search_view">
             <field name="name">base_type.search</field>
-            <field name="model">cmdb.base_type</field>
+            <field name="model">cinda_cmdb.base_type</field>
             <field name="arch" type="xml">
                 <search  string="Search_base_type">
                     <group expand="0" string="分组">
@@ -116,21 +116,21 @@
                 </search>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_base_type_graph">
-            <field name="name">cmdb.base_type_graph</field>
-            <field name="model">cmdb.base_type</field>
+        <record model="ir.ui.view" id="cinda_cmdb_base_type_graph">
+            <field name="name">cinda_cmdb.base_type_graph</field>
+            <field name="model">cinda_cmdb.base_type</field>
             <field name="type">graph</field>
             <field name="arch" type="xml">
-                <graph string="cmdb base_type graph" type="bar" >
+                <graph string="cinda_cmdb base_type graph" type="bar" >
                     <field name="type_name" string="细类名称" type="row"/>
                 </graph>
             </field>
         </record>
 
 
-        <record model="ir.ui.view" id="cmdb_base_data_tree_view">
+        <record model="ir.ui.view" id="cinda_cmdb_base_data_tree_view">
             <field name="name">base_data.tree</field>
-            <field name="model">cmdb.base_data</field>
+            <field name="model">cinda_cmdb.base_data</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="base_data_id" string="基础数据ID"/>
@@ -152,9 +152,9 @@
                 </tree>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_base_data_search_view">
+        <record model="ir.ui.view" id="cinda_cmdb_base_data_search_view">
             <field name="name">base_data.search</field>
-            <field name="model">cmdb.base_data</field>
+            <field name="model">cinda_cmdb.base_data</field>
             <field name="arch" type="xml">
                 <search  string="Search_base_data">
                     <group expand="0" string="分组">
@@ -163,9 +163,9 @@
                 </search>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_base_data_form_view">
+        <record model="ir.ui.view" id="cinda_cmdb_base_data_form_view">
             <field name="name">base_data.form</field>
-            <field name="model" >cmdb.base_data</field>
+            <field name="model" >cinda_cmdb.base_data</field>
             <field name="arch" type="xml">
                 <form string="base data Form">
                     <sheet>
@@ -203,21 +203,21 @@
                 </form>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_base_data_graph">
-            <field name="name">cmdb.base_data_graph</field>
-            <field name="model">cmdb.base_data</field>
+        <record model="ir.ui.view" id="cinda_cmdb_base_data_graph">
+            <field name="name">cinda_cmdb.base_data_graph</field>
+            <field name="model">cinda_cmdb.base_data</field>
             <field name="type">graph</field>
             <field name="arch" type="xml">
-                <graph string="cmdb base_data graph" type="bar" >
+                <graph string="cinda_cmdb base_data graph" type="bar" >
                     <field name="value" string="值" type="row"/>
                 </graph>
             </field>
         </record>
 
 
-        <record model="ir.ui.view" id="cmdb_device_tree_view">
+        <record model="ir.ui.view" id="cinda_cmdb_device_tree_view">
             <field name="name">device.tree</field>
-            <field name="model">cmdb.device</field>
+            <field name="model">cinda_cmdb.device</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="device_id" string="硬件ID"/>
@@ -249,9 +249,9 @@
                 </tree>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_device_search_view">
+        <record model="ir.ui.view" id="cinda_cmdb_device_search_view">
             <field name="name">device.search</field>
-            <field name="model">cmdb.device</field>
+            <field name="model">cinda_cmdb.device</field>
             <field name="arch" type="xml">
                 <search  string="Search_device">
                     <group expand="0" string="分组">
@@ -264,9 +264,9 @@
                 </search>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_device_form_view">
+        <record model="ir.ui.view" id="cinda_cmdb_device_form_view">
             <field name="name">device.form</field>
-            <field name="model" >cmdb.device</field>
+            <field name="model" >cinda_cmdb.device</field>
             <field name="arch" type="xml">
                 <form string="device Form">
                     <sheet>
@@ -310,12 +310,12 @@
                 </form>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_device_graph">
-            <field name="name">cmdb.device_graph</field>
-            <field name="model">cmdb.device</field>
+        <record model="ir.ui.view" id="cinda_cmdb_device_graph">
+            <field name="name">cinda_cmdb.device_graph</field>
+            <field name="model">cinda_cmdb.device</field>
             <field name="type">graph</field>
             <field name="arch" type="xml">
-                <graph string="cmdb device graph" type="bar" >
+                <graph string="cinda_cmdb device graph" type="bar" >
                     <field name="lab_id" string="机房" type="row"/>
                     <field name="dev_start" string="设备状态" type="row"/>
                     <!-- <field name="type_id" string="设备类型" type="measure"/>
@@ -325,9 +325,9 @@
         </record>
 
 
-        <record model="ir.ui.view" id="cmdb_server_tree_view">
+        <record model="ir.ui.view" id="cinda_cmdb_server_tree_view">
             <field name="name">server.tree</field>
-            <field name="model">cmdb.server</field>
+            <field name="model">cinda_cmdb.server</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="server_id" string="服务器ID"/>
@@ -365,9 +365,9 @@
                 </tree>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_server_search_view">
+        <record model="ir.ui.view" id="cinda_cmdb_server_search_view">
             <field name="name">server.search</field>
-            <field name="model">cmdb.server</field>
+            <field name="model">cinda_cmdb.server</field>
             <field name="arch" type="xml">
                 <search  string="Search_server">
                     <group expand="0" string="分组">
@@ -377,9 +377,9 @@
                 </search>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_server_form_view">
+        <record model="ir.ui.view" id="cinda_cmdb_server_form_view">
             <field name="name">server.form</field>
-            <field name="model">cmdb.server</field>
+            <field name="model">cinda_cmdb.server</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
@@ -447,21 +447,21 @@
                 </form>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_server_graph">
-            <field name="name">cmdb.server_graph</field>
-            <field name="model">cmdb.server</field>
+        <record model="ir.ui.view" id="cinda_cmdb_server_graph">
+            <field name="name">cinda_cmdb.server_graph</field>
+            <field name="model">cinda_cmdb.server</field>
             <field name="type">graph</field>
             <field name="arch" type="xml">
-                <graph string="cmdb server graph" type="bar" >
+                <graph string="cinda_cmdb server graph" type="bar" >
                     <field name="app_sys" string="所属系统" type="row"/>
                 </graph>
             </field>
         </record>
 
 
-        <record model="ir.ui.view" id="cmdb_net_dev_tree_view">
+        <record model="ir.ui.view" id="cinda_cmdb_net_dev_tree_view">
             <field name="name">net_dev.tree</field>
-            <field name="model">cmdb.net_dev</field>
+            <field name="model">cinda_cmdb.net_dev</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="net_dev_id" string="网络设备ID"/>
@@ -481,9 +481,9 @@
                 </tree>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_net_dev_form_view">
+        <record model="ir.ui.view" id="cinda_cmdb_net_dev_form_view">
             <field name="name">net_dev.form</field>
-            <field name="model">cmdb.net_dev</field>
+            <field name="model">cinda_cmdb.net_dev</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
@@ -511,21 +511,21 @@
                 </form>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_net_dev_graph">
-            <field name="name">cmdb.net_dev_graph</field>
-            <field name="model">cmdb.net_dev</field>
+        <record model="ir.ui.view" id="cinda_cmdb_net_dev_graph">
+            <field name="name">cinda_cmdb.net_dev_graph</field>
+            <field name="model">cinda_cmdb.net_dev</field>
             <field name="type">graph</field>
             <field name="arch" type="xml">
-                <graph string="cmdb net_dev graph" type="bar" >
+                <graph string="cinda_cmdb net_dev graph" type="bar" >
                     <field name="mon_acc" string="监控状态" type="row"/>
                 </graph>
             </field>
         </record>
 
 
-        <record model="ir.ui.view" id="cmdb_board_tree_view">
+        <record model="ir.ui.view" id="cinda_cmdb_board_tree_view">
             <field name="name">board.tree</field>
-            <field name="model">cmdb.board</field>
+            <field name="model">cinda_cmdb.board</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="board_id" string="板卡ID"/>
@@ -543,9 +543,9 @@
                 </tree>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_board_form_view">
+        <record model="ir.ui.view" id="cinda_cmdb_board_form_view">
             <field name="name">board.form</field>
-            <field name="model">cmdb.board</field>
+            <field name="model">cinda_cmdb.board</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
@@ -571,21 +571,21 @@
                 </form>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_board_graph">
-            <field name="name">cmdb.board_graph</field>
-            <field name="model">cmdb.board</field>
+        <record model="ir.ui.view" id="cinda_cmdb_board_graph">
+            <field name="name">cinda_cmdb.board_graph</field>
+            <field name="model">cinda_cmdb.board</field>
             <field name="type">graph</field>
             <field name="arch" type="xml">
-                <graph string="cmdb board graph" type="bar" >
+                <graph string="cinda_cmdb board graph" type="bar" >
                     <field name="card_type" string="板卡类型" type="row"/>
                 </graph>
             </field>
         </record>
 
 
-        <record model="ir.ui.view" id="cmdb_st_dev_tree_view">
+        <record model="ir.ui.view" id="cinda_cmdb_st_dev_tree_view">
             <field name="name">st_dev.tree</field>
-            <field name="model">cmdb.st_dev</field>
+            <field name="model">cinda_cmdb.st_dev</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="st_dev_id" string="存储ID"/>
@@ -604,9 +604,9 @@
                 </tree>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_st_dev_form_view">
+        <record model="ir.ui.view" id="cinda_cmdb_st_dev_form_view">
             <field name="name">st_dev.form</field>
-            <field name="model">cmdb.st_dev</field>
+            <field name="model">cinda_cmdb.st_dev</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
@@ -633,21 +633,21 @@
                 </form>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_server_graph">
-            <field name="name">cmdb.st_dev_graph</field>
-            <field name="model">cmdb.st_dev</field>
+        <record model="ir.ui.view" id="cinda_cmdb_server_graph">
+            <field name="name">cinda_cmdb.st_dev_graph</field>
+            <field name="model">cinda_cmdb.st_dev</field>
             <field name="type">graph</field>
             <field name="arch" type="xml">
-                <graph string="cmdb st_dev graph" type="bar" >
+                <graph string="cinda_cmdb st_dev graph" type="bar" >
                     <field name="disk_size" string="软件版本" type="row"/>
                 </graph>
             </field>
         </record>
 
 
-        <record model="ir.ui.view" id="cmdb_srv_room_tree_view">
+        <record model="ir.ui.view" id="cinda_cmdb_srv_room_tree_view">
             <field name="name">srv_room_dev.tree</field>
-            <field name="model">cmdb.srv_room_dev</field>
+            <field name="model">cinda_cmdb.srv_room_dev</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="srv_room_dev_id" string="机房设备ID"/>
@@ -662,9 +662,9 @@
                 </tree>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_srv_room_form_view">
+        <record model="ir.ui.view" id="cinda_cmdb_srv_room_form_view">
             <field name="name">srv_room_dev.form</field>
-            <field name="model">cmdb.srv_room_dev</field>
+            <field name="model">cinda_cmdb.srv_room_dev</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
@@ -687,21 +687,21 @@
                 </form>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_srv_room_dev_graph">
-            <field name="name">cmdb.srv_room_dev_graph</field>
-            <field name="model">cmdb.srv_room_dev</field>
+        <record model="ir.ui.view" id="cinda_cmdb_srv_room_dev_graph">
+            <field name="name">cinda_cmdb.srv_room_dev_graph</field>
+            <field name="model">cinda_cmdb.srv_room_dev</field>
             <field name="type">graph</field>
             <field name="arch" type="xml">
-                <graph string="cmdb srv_room_dev graph" type="bar" >
+                <graph string="cinda_cmdb srv_room_dev graph" type="bar" >
                     <field name="elec_power" string="总功率" type="row"/>
                 </graph>
             </field>
         </record>
 
 
-        <record model="ir.ui.view" id="cmdb_san_port_tree_view">
+        <record model="ir.ui.view" id="cinda_cmdb_san_port_tree_view">
             <field name="name">san_port.tree</field>
-            <field name="model">cmdb.san_port</field>
+            <field name="model">cinda_cmdb.san_port</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="san_port_id" string="SAN端口ID"/>
@@ -726,9 +726,9 @@
                 </tree>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_san_port_form_view">
+        <record model="ir.ui.view" id="cinda_cmdb_san_port_form_view">
             <field name="name">san_port.form</field>
-            <field name="model">cmdb.san_port</field>
+            <field name="model">cinda_cmdb.san_port</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
@@ -760,21 +760,21 @@
                 </form>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_san_port_graph">
-            <field name="name">cmdb.san_port_graph</field>
-            <field name="model">cmdb.san_port</field>
+        <record model="ir.ui.view" id="cinda_cmdb_san_port_graph">
+            <field name="name">cinda_cmdb.san_port_graph</field>
+            <field name="model">cinda_cmdb.san_port</field>
             <field name="type">graph</field>
             <field name="arch" type="xml">
-                <graph string="cmdb san_port graph" type="bar" >
+                <graph string="cinda_cmdb san_port graph" type="bar" >
                     <field name="type_id" string="设备类型" type="row"/>
                 </graph>
             </field>
         </record>
 
 
-        <record model="ir.ui.view" id="cmdb_ip_port_tree_view">
+        <record model="ir.ui.view" id="cinda_cmdb_ip_port_tree_view">
             <field name="name">ip_port.tree</field>
-            <field name="model">cmdb.ip_port</field>
+            <field name="model">cinda_cmdb.ip_port</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="ip_port_id" string="IP端口ID"/>
@@ -802,9 +802,9 @@
                 </tree>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_ip_port_form_view">
+        <record model="ir.ui.view" id="cinda_cmdb_ip_port_form_view">
             <field name="name">ip_port.form</field>
-            <field name="model">cmdb.ip_port</field>
+            <field name="model">cinda_cmdb.ip_port</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
@@ -840,21 +840,21 @@
                 </form>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_ip_port_graph">
-            <field name="name">cmdb.ip_port_graph</field>
-            <field name="model">cmdb.ip_port</field>
+        <record model="ir.ui.view" id="cinda_cmdb_ip_port_graph">
+            <field name="name">cinda_cmdb.ip_port_graph</field>
+            <field name="model">cinda_cmdb.ip_port</field>
             <field name="type">graph</field>
             <field name="arch" type="xml">
-                <graph string="cmdb ip_port graph" type="bar" >
+                <graph string="cinda_cmdb ip_port graph" type="bar" >
                     <field name="port" string="本端物理端口号" type="row"/>
                 </graph>
             </field>
         </record>
 
 
-        <record model="ir.ui.view" id="cmdb_cabinet_tree_view">
+        <record model="ir.ui.view" id="cinda_cmdb_cabinet_tree_view">
             <field name="name">cabinet.tree</field>
-            <field name="model">cmdb.cabinet</field>
+            <field name="model">cinda_cmdb.cabinet</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="cabinet_id" string="机柜ID"/>
@@ -871,9 +871,9 @@
                 </tree>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_cabinet_form_view">
+        <record model="ir.ui.view" id="cinda_cmdb_cabinet_form_view">
             <field name="name">cabinet.form</field>
-            <field name="model">cmdb.cabinet</field>
+            <field name="model">cinda_cmdb.cabinet</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
@@ -907,21 +907,21 @@
             </field>
         </record>
 
-        <record model="ir.ui.view" id="cmdb_cabinet_graph">
-            <field name="name">cmdb.cabinet_graph</field>
-            <field name="model">cmdb.cabinet</field>
+        <record model="ir.ui.view" id="cinda_cmdb_cabinet_graph">
+            <field name="name">cinda_cmdb.cabinet_graph</field>
+            <field name="model">cinda_cmdb.cabinet</field>
             <field name="type">graph</field>
             <field name="arch" type="xml">
-                <graph string="cmdb cabinet graph" type="bar" >
+                <graph string="cinda_cmdb cabinet graph" type="bar" >
                     <field name="lab" string="机房" type="row"/>
                 </graph>
             </field>
         </record>
 
 
-        <record model="ir.ui.view" id="cmdb_soft_tree_view">
+        <record model="ir.ui.view" id="cinda_cmdb_soft_tree_view">
             <field name="name">soft.tree</field>
-            <field name="model">cmdb.soft</field>
+            <field name="model">cinda_cmdb.soft</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="soft_id" string="软件总ID"/>
@@ -944,9 +944,9 @@
                 </tree>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_soft_form_view">
+        <record model="ir.ui.view" id="cinda_cmdb_soft_form_view">
             <field name="name">soft.form</field>
-            <field name="model">cmdb.soft</field>
+            <field name="model">cinda_cmdb.soft</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
@@ -977,21 +977,21 @@
                 </form>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_soft_graph">
-            <field name="name">cmdb.soft_graph</field>
-            <field name="model">cmdb.soft</field>
+        <record model="ir.ui.view" id="cinda_cmdb_soft_graph">
+            <field name="name">cinda_cmdb.soft_graph</field>
+            <field name="model">cinda_cmdb.soft</field>
             <field name="type">graph</field>
             <field name="arch" type="xml">
-                <graph string="cmdb soft graph" type="bar" >
+                <graph string="cinda_cmdb soft graph" type="bar" >
                     <field name="developer" string="开发商" type="row"/>
                 </graph>
             </field>
         </record>
 
 
-        <record model="ir.ui.view" id="cmdb_soft_detail_tree_view">
+        <record model="ir.ui.view" id="cinda_cmdb_soft_detail_tree_view">
             <field name="name">soft_detail.tree</field>
-            <field name="model">cmdb.soft_detail</field>
+            <field name="model">cinda_cmdb.soft_detail</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="soft_detail_id" string="软件明细ID"/>
@@ -1014,9 +1014,9 @@
                 </tree>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_soft_detail_form_view">
+        <record model="ir.ui.view" id="cinda_cmdb_soft_detail_form_view">
             <field name="name">soft_detail.form</field>
-            <field name="model">cmdb.soft_detail</field>
+            <field name="model">cinda_cmdb.soft_detail</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
@@ -1047,21 +1047,21 @@
                 </form>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_soft_detail_graph">
-            <field name="name">cmdb.soft_detail_graph</field>
-            <field name="model">cmdb.soft_detail</field>
+        <record model="ir.ui.view" id="cinda_cmdb_soft_detail_graph">
+            <field name="name">cinda_cmdb.soft_detail_graph</field>
+            <field name="model">cinda_cmdb.soft_detail</field>
             <field name="type">graph</field>
             <field name="arch" type="xml">
-                <graph string="cmdb soft_detail graph" type="bar" >
+                <graph string="cinda_cmdb soft_detail graph" type="bar" >
                     <field name="vendor" string="供应商" type="row"/>
                 </graph>
             </field>
         </record>
 
 
-        <record model="ir.ui.view" id="cmdb_vendor_list_tree_view">
+        <record model="ir.ui.view" id="cinda_cmdb_vendor_list_tree_view">
             <field name="name">vendor_list.tree</field>
-            <field name="model">cmdb.vendor_list</field>
+            <field name="model">cinda_cmdb.vendor_list</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="vendor_list_id" string="服务商ID"/>
@@ -1078,9 +1078,9 @@
                 </tree>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_vendro_list_form_view">
+        <record model="ir.ui.view" id="cinda_cmdb_vendro_list_form_view">
             <field name="name">vendor_list.form</field>
-            <field name="model">cmdb.vendor_list</field>
+            <field name="model">cinda_cmdb.vendor_list</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
@@ -1105,21 +1105,21 @@
                 </form>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_vendor_list_graph">
-            <field name="name">cmdb.vendor_list_graph</field>
-            <field name="model">cmdb.vendor_list</field>
+        <record model="ir.ui.view" id="cinda_cmdb_vendor_list_graph">
+            <field name="name">cinda_cmdb.vendor_list_graph</field>
+            <field name="model">cinda_cmdb.vendor_list</field>
             <field name="type">graph</field>
             <field name="arch" type="xml">
-                <graph string="cmdb vendor_list graph" type="bar" >
+                <graph string="cinda_cmdb vendor_list graph" type="bar" >
                     <field name="attr" string="性质" type="row"/>
                 </graph>
             </field>
         </record>
 
     
-        <record model="ir.ui.view" id="cmdb_member_list_tree_view">
+        <record model="ir.ui.view" id="cinda_cmdb_member_list_tree_view">
             <field name="name">member_list.tree</field>
-            <field name="model">cmdb.member_list</field>
+            <field name="model">cinda_cmdb.member_list</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="member_list_id" string="人员表ID"/>
@@ -1135,9 +1135,9 @@
                 </tree>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_member_list_form_view">
+        <record model="ir.ui.view" id="cinda_cmdb_member_list_form_view">
             <field name="name">member_list.form</field>
-            <field name="model">cmdb.member_list</field>
+            <field name="model">cinda_cmdb.member_list</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
@@ -1161,21 +1161,21 @@
                 </form>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_member_list_graph">
-            <field name="name">cmdb.member_list_graph</field>
-            <field name="model">cmdb.member_list</field>
+        <record model="ir.ui.view" id="cinda_cmdb_member_list_graph">
+            <field name="name">cinda_cmdb.member_list_graph</field>
+            <field name="model">cinda_cmdb.member_list</field>
             <field name="type">graph</field>
             <field name="arch" type="xml">
-                <graph string="cmdb member_list graph" type="bar" >
+                <graph string="cinda_cmdb member_list graph" type="bar" >
                     <field name="attr" string="性质" type="row"/>
                 </graph>
             </field>
         </record>
 
 
-        <record model="ir.ui.view" id="cmdb_chg_log_tree_view">
+        <record model="ir.ui.view" id="cinda_cmdb_chg_log_tree_view">
             <field name="name">chg_log.tree</field>
-            <field name="model">cmdb.chg_log</field>
+            <field name="model">cinda_cmdb.chg_log</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="chg_log_id" string="变更记录ID"/>
@@ -1186,9 +1186,9 @@
                 </tree>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_chg_log_form_view">
+        <record model="ir.ui.view" id="cinda_cmdb_chg_log_form_view">
             <field name="name">chg_log.form</field>
-            <field name="model">cmdb.chg_log</field>
+            <field name="model">cinda_cmdb.chg_log</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
@@ -1207,21 +1207,21 @@
                 </form>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_chg_log_graph">
-            <field name="name">cmdb.chg_log_graph</field>
-            <field name="model">cmdb.chg_log</field>
+        <record model="ir.ui.view" id="cinda_cmdb_chg_log_graph">
+            <field name="name">cinda_cmdb.chg_log_graph</field>
+            <field name="model">cinda_cmdb.chg_log</field>
             <field name="type">graph</field>
             <field name="arch" type="xml">
-                <graph string="cmdb chg_log graph" type="bar" >
+                <graph string="cinda_cmdb chg_log graph" type="bar" >
                     <field name="executor" string="实施人" type="row"/>
                 </graph>
             </field>
         </record>
 
 
-        <record model="ir.ui.view" id="cmdb_net_config_tree_view">
+        <record model="ir.ui.view" id="cinda_cmdb_net_config_tree_view">
             <field name="name">net_config.tree</field>
-            <field name="model">cmdb.net_config</field>
+            <field name="model">cinda_cmdb.net_config</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="net_config_id" string="网络配置ID"/>
@@ -1238,9 +1238,9 @@
                 </tree>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_net_config_form_view">
+        <record model="ir.ui.view" id="cinda_cmdb_net_config_form_view">
             <field name="name">net_config.form</field>
-            <field name="model">cmdb.net_config</field>
+            <field name="model">cinda_cmdb.net_config</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
@@ -1265,21 +1265,21 @@
                 </form>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_net_config_graph">
-            <field name="name">cmdb.net_config_graph</field>
-            <field name="model">cmdb.net_config</field>
+        <record model="ir.ui.view" id="cinda_cmdb_net_config_graph">
+            <field name="name">cinda_cmdb.net_config_graph</field>
+            <field name="model">cinda_cmdb.net_config</field>
             <field name="type">graph</field>
             <field name="arch" type="xml">
-                <graph string="cmdb net_config graph" type="bar" >
+                <graph string="cinda_cmdb net_config graph" type="bar" >
                     <field name="vlan_info" string="Vlan信息" type="row"/>
                 </graph>
             </field>
         </record>
 
         
-        <record model="ir.ui.view" id="cmdb_st_zone_lun_tree_view">
+        <record model="ir.ui.view" id="cinda_cmdb_st_zone_lun_tree_view">
             <field name="name">st_zone_lun.tree</field>
-            <field name="model">cmdb.st_zone_lun</field>
+            <field name="model">cinda_cmdb.st_zone_lun</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="st_zone_lun_id" string="存储zone_lun划分ID"/>
@@ -1300,9 +1300,9 @@
                 </tree>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_zt_zone_lun_form_view">
+        <record model="ir.ui.view" id="cinda_cmdb_zt_zone_lun_form_view">
             <field name="name">st_zone_lun.form</field>
-            <field name="model">cmdb.st_zone_lun</field>
+            <field name="model">cinda_cmdb.st_zone_lun</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
@@ -1331,21 +1331,21 @@
                 </form>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_st_zone_lun_graph">
-            <field name="name">cmdb.st_zone_lun_graph</field>
-            <field name="model">cmdb.st_zone_lun</field>
+        <record model="ir.ui.view" id="cinda_cmdb_st_zone_lun_graph">
+            <field name="name">cinda_cmdb.st_zone_lun_graph</field>
+            <field name="model">cinda_cmdb.st_zone_lun</field>
             <field name="type">graph</field>
             <field name="arch" type="xml">
-                <graph string="cmdb st_zone_lun graph" type="bar" >
+                <graph string="cinda_cmdb st_zone_lun graph" type="bar" >
                     <field name="total_size" string="总容量" type="row"/>
                 </graph>
             </field>
         </record>
 
 
-        <record model="ir.ui.view" id="cmdb_vlan_tree_view">
+        <record model="ir.ui.view" id="cinda_cmdb_vlan_tree_view">
             <field name="name">vlan.tree</field>
-            <field name="model">cmdb.vlan</field>
+            <field name="model">cinda_cmdb.vlan</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="vlan_id_id" string="VLAN表ID"/>
@@ -1356,9 +1356,9 @@
                 </tree>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_vlan_form_view">
+        <record model="ir.ui.view" id="cinda_cmdb_vlan_form_view">
             <field name="name">vlan.form</field>
-            <field name="model">cmdb.vlan</field>
+            <field name="model">cinda_cmdb.vlan</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
@@ -1377,21 +1377,21 @@
                 </form>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_vlan_graph">
-            <field name="name">cmdb.vlan_graph</field>
-            <field name="model">cmdb.vlan</field>
+        <record model="ir.ui.view" id="cinda_cmdb_vlan_graph">
+            <field name="name">cinda_cmdb.vlan_graph</field>
+            <field name="model">cinda_cmdb.vlan</field>
             <field name="type">graph</field>
             <field name="arch" type="xml">
-                <graph string="cmdb vlan graph" type="bar" >
+                <graph string="cinda_cmdb vlan graph" type="bar" >
                     <field name="vlan_name" string="VLAN名称" type="row"/>
                 </graph>
             </field>
         </record>
 
         
-        <record model="ir.ui.view" id="cmdb_fw_policy1_tree_view">
+        <record model="ir.ui.view" id="cinda_cmdb_fw_policy1_tree_view">
             <field name="name">fw_policy1.tree</field>
-            <field name="model">cmdb.fw_policy1</field>
+            <field name="model">cinda_cmdb.fw_policy1</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="fw_policy1_id" string="防火墙策略1ID"/>
@@ -1406,9 +1406,9 @@
                 </tree>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_fw_policy1_form_view">
+        <record model="ir.ui.view" id="cinda_cmdb_fw_policy1_form_view">
             <field name="name">fw_policy1.form</field>
-            <field name="model">cmdb.fw_policy1</field>
+            <field name="model">cinda_cmdb.fw_policy1</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
@@ -1431,21 +1431,21 @@
                 </form>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_fw_policy1_graph">
-            <field name="name">cmdb.fw_policy1_graph</field>
-            <field name="model">cmdb.fw_policy1</field>
+        <record model="ir.ui.view" id="cinda_cmdb_fw_policy1_graph">
+            <field name="name">cinda_cmdb.fw_policy1_graph</field>
+            <field name="model">cinda_cmdb.fw_policy1</field>
             <field name="type">graph</field>
             <field name="arch" type="xml">
-                <graph string="cmdb fw_policy1 graph" type="bar" >
+                <graph string="cinda_cmdb fw_policy1 graph" type="bar" >
                     <field name="fw_name" string="防火墙名称" type="row"/>
                 </graph>
             </field>
         </record>
 
 
-        <record model="ir.ui.view" id="cmdb_fw_policy2_tree_view">
+        <record model="ir.ui.view" id="cinda_cmdb_fw_policy2_tree_view">
             <field name="name">fw_policy2.tree</field>
-            <field name="model">cmdb.fw_policy2</field>
+            <field name="model">cinda_cmdb.fw_policy2</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="fw_policy2_id" string="防火墙策略2ID"/>
@@ -1462,9 +1462,9 @@
                 </tree>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_fw_policy2_form_view">
+        <record model="ir.ui.view" id="cinda_cmdb_fw_policy2_form_view">
             <field name="name">fw_policy2.form</field>
-            <field name="model">cmdb.fw_policy2</field>
+            <field name="model">cinda_cmdb.fw_policy2</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
@@ -1489,21 +1489,21 @@
                 </form>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_fw_policy2_graph">
-            <field name="name">cmdb.fw_policy2_graph</field>
-            <field name="model">cmdb.fw_policy2</field>
+        <record model="ir.ui.view" id="cinda_cmdb_fw_policy2_graph">
+            <field name="name">cinda_cmdb.fw_policy2_graph</field>
+            <field name="model">cinda_cmdb.fw_policy2</field>
             <field name="type">graph</field>
             <field name="arch" type="xml">
-                <graph string="cmdb fw_policy2 graph" type="bar" >
+                <graph string="cinda_cmdb fw_policy2 graph" type="bar" >
                     <field name="fw_name" string="防火墙名称" type="row"/>
                 </graph>
             </field>
         </record>
 
 
-        <record model="ir.ui.view" id="cmdb_spam_policy_tree_view">
+        <record model="ir.ui.view" id="cinda_cmdb_spam_policy_tree_view">
             <field name="name">spam_policy.tree</field>
-            <field name="model">cmdb.spam_policy</field>
+            <field name="model">cinda_cmdb.spam_policy</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="spam_policy_id" string="SPAM策略id"/>
@@ -1517,9 +1517,9 @@
                 </tree>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_cmdb_spam_policy_form_view">
+        <record model="ir.ui.view" id="cinda_cmdb_cinda_cmdb_spam_policy_form_view">
             <field name="name">spam_policy.form</field>
-            <field name="model">cmdb.spam_policy</field>
+            <field name="model">cinda_cmdb.spam_policy</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
@@ -1541,21 +1541,21 @@
                 </form>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_spam_policy_graph">
-            <field name="name">cmdb.spam_policy_graph</field>
-            <field name="model">cmdb.spam_policy</field>
+        <record model="ir.ui.view" id="cinda_cmdb_spam_policy_graph">
+            <field name="name">cinda_cmdb.spam_policy_graph</field>
+            <field name="model">cinda_cmdb.spam_policy</field>
             <field name="type">graph</field>
             <field name="arch" type="xml">
-                <graph string="cmdb spam_policy graph" type="bar" >
+                <graph string="cinda_cmdb spam_policy graph" type="bar" >
                     <field name="company_name" string="公司名称" type="row"/>
                 </graph>
             </field>
         </record>
 
 
-        <record model="ir.ui.view" id="cmdb_vm_tree_view">
+        <record model="ir.ui.view" id="cinda_cmdb_vm_tree_view">
             <field name="name">vm.tree</field>
-            <field name="model">cmdb.vm</field>
+            <field name="model">cinda_cmdb.vm</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="vm_id" string="虚拟机ID"/>
@@ -1578,9 +1578,9 @@
                 </tree>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_vm_form_view">
+        <record model="ir.ui.view" id="cinda_cmdb_vm_form_view">
             <field name="name">vm.form</field>
-            <field name="model">cmdb.vm</field>
+            <field name="model">cinda_cmdb.vm</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
@@ -1611,21 +1611,21 @@
                 </form>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_vm_graph">
-            <field name="name">cmdb.vm_graph</field>
-            <field name="model">cmdb.vm</field>
+        <record model="ir.ui.view" id="cinda_cmdb_vm_graph">
+            <field name="name">cinda_cmdb.vm_graph</field>
+            <field name="model">cinda_cmdb.vm</field>
             <field name="type">graph</field>
             <field name="arch" type="xml">
-                <graph string="cmdb vm graph" type="bar" >
+                <graph string="cinda_cmdb vm graph" type="bar" >
                     <field name="vm_hostname" string="虚机名称" type="row"/>
                 </graph>
             </field>
         </record>
 
 
-        <record model="ir.ui.view" id="cmdb_account_tree_view">
+        <record model="ir.ui.view" id="cinda_cmdb_account_tree_view">
             <field name="name">account.tree</field>
-            <field name="model">cmdb.account</field>
+            <field name="model">cinda_cmdb.account</field>
             <field name="arch" type="xml">
                 <tree>
                     <!-- <field name="dev_id" string="设备ID"/>
@@ -1652,9 +1652,9 @@
                 </tree>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_account_form_view">
+        <record model="ir.ui.view" id="cinda_cmdb_account_form_view">
             <field name="name">account.form</field>
-            <field name="model">cmdb.account</field>
+            <field name="model">cinda_cmdb.account</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
@@ -1693,21 +1693,21 @@
                 </form>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_account_graph">
-            <field name="name">cmdb.account_graph</field>
-            <field name="model">cmdb.account</field>
+        <record model="ir.ui.view" id="cinda_cmdb_account_graph">
+            <field name="name">cinda_cmdb.account_graph</field>
+            <field name="model">cinda_cmdb.account</field>
             <field name="type">graph</field>
             <field name="arch" type="xml">
-                <graph string="cmdb account graph" type="bar" >
+                <graph string="cinda_cmdb account graph" type="bar" >
                     <field name="acc_nam" string="账户名称" type="row"/>
                 </graph>
             </field>
         </record>
 
 
-        <record model="ir.ui.view" id="cmdb_auth_log_tree_view">
+        <record model="ir.ui.view" id="cinda_cmdb_auth_log_tree_view">
             <field name="name">auth_log.tree</field>
-            <field name="model">cmdb.auth_log</field>
+            <field name="model">cinda_cmdb.auth_log</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="auth_log_id" string="授权记录ID"/>
@@ -1725,9 +1725,9 @@
                 </tree>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_auth_log_form_view">
+        <record model="ir.ui.view" id="cinda_cmdb_auth_log_form_view">
             <field name="name">auth_log.form</field>
-            <field name="model">cmdb.auth_log</field>
+            <field name="model">cinda_cmdb.auth_log</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
@@ -1753,12 +1753,12 @@
                 </form>
             </field>
         </record>
-        <record model="ir.ui.view" id="cmdb_auth_log_graph">
-            <field name="name">cmdb.auth_log_graph</field>
-            <field name="model">cmdb.auth_log</field>
+        <record model="ir.ui.view" id="cinda_cmdb_auth_log_graph">
+            <field name="name">cinda_cmdb.auth_log_graph</field>
+            <field name="model">cinda_cmdb.auth_log</field>
             <field name="type">graph</field>
             <field name="arch" type="xml">
-                <graph string="cmdb auth_log graph" type="bar" >
+                <graph string="cinda_cmdb auth_log graph" type="bar" >
                     <field name="executor" string="执行者" type="row"/>
                 </graph>
             </field>
@@ -1766,9 +1766,9 @@
 
 
 
-        <record model="ir.ui.view" id="cmdb_auth_log_form_view">
+        <record model="ir.ui.view" id="cinda_cmdb_auth_log_form_view">
             <field name="name">auth_log.form</field>
-            <field name="model">cmdb.auth_log</field>
+            <field name="model">cinda_cmdb.auth_log</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>

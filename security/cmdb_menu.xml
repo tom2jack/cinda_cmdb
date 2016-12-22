@@ -4,7 +4,7 @@
     <data>
         <record id="base_data_cmdb_action" model="ir.actions.act_window" >
             <field name="name">基础数据</field>
-            <field name="res_model">cmdb.base_data</field>
+            <field name="res_model">cinda_cmdb.base_data</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <!-- <field name="search_view_id" ref="humen_cost_search_view"></field> -->
@@ -31,7 +31,7 @@
 
 
         <!-- top level menu: no parent -->
-        <menuitem id="main_cmdb_menu" name="CMDB"/>
+        <menuitem id="main_cmdb_menu" name="cinda_cmdb"/>
         <!-- A first level in the left side menu is needed before using action= attribute -->
         <menuitem id="base_data_cmdb_menu" name="base data" parent="main_cmdb_menu" action="base_data_cmdb_action"/>
         

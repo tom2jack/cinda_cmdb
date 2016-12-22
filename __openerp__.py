@@ -1,6 +1,6 @@
 {
 # The human-readable name of your module, displayed in the interface
-        'name' : "cmdb" ,
+        'name' : "cinda_cmdb" ,
 # A more extensive description
         'description' : """
         """ ,
@@ -10,7 +10,7 @@
 # Which modules must be installed for this one to work
         'depends' : ['base',
                      'mail',],
-        'category': 'cmdb',
+        'category': 'cinda_cmdb',
 # data files which are always installed
         'data': [
                 'views/cmdb_view.xml',
