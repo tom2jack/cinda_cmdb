@@ -8,7 +8,8 @@
         'website': "http://nantian.com.cn",
         
 # Which modules must be installed for this one to work
-        'depends' : ['base'],
+        'depends' : ['base',
+                     'mail',],
         'category': 'cmdb',
 # data files which are always installed
         'data': [

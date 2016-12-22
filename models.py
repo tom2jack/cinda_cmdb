@@ -6,6 +6,8 @@ from openerp import models
 class base_class(models.Model):
     _name = "cmdb.base_class"
     _rec_name = 'class_name'
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _mail_post_access = 'read'
 
     class_number = fields.Char(string="总类编号")
     class_name = fields.Char(string="总类名称")
@@ -15,6 +17,8 @@ class base_class(models.Model):
 class base_type(models.Model):
     _name = "cmdb.base_type"
     _rec_name = 'type_name'
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _mail_post_access = 'read'
 
     type_number = fields.Char(string="细类编号")
     type_name = fields.Char(string="细类名称")
@@ -24,6 +28,8 @@ class base_type(models.Model):
 
 class base_data(models.Model):
     _name = "cmdb.base_data"
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _mail_post_access = 'read'
 
     base_data_id = fields.Char(string="基础数据ID")
     value = fields.Char(string="值")
@@ -66,6 +72,17 @@ class base_data(models.Model):
 class device(models.Model):
     _name = "cmdb.device"
     _rec_name = "sn"
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _mail_post_access = 'read'
+    # _track = {
+    #     'stage_id': {
+    #         'project.mt_task_new': lambda self, cr, uid, obj, ctx=None: obj.stage_id and obj.stage_id.sequence <= 1,
+    #         'project.mt_task_stage': lambda self, cr, uid, obj, ctx=None: obj.stage_id.sequence > 1,
+    #     },
+    #     'user_id': {
+    #         'project.mt_task_assigned': lambda self, cr, uid, obj, ctx=None: obj.user_id and obj.user_id.id,
+    #     },
+    # }
 
     device_id = fields.Char(string="硬件ID")
     lab_id = fields.Many2one("cmdb.base_type", string='机房', domain=[('class_id', 'ilike', "机房")])
@@ -101,6 +118,8 @@ class device(models.Model):
 
 class server(models.Model):
     _name = "cmdb.server"
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _mail_post_access = 'read'
 
     server_id = fields.Char(string="服务器id")
     # app_sys_id = fields.Integer(string="所属系统id")
@@ -139,6 +158,8 @@ class server(models.Model):
 
 class net_dev(models.Model):
     _name = "cmdb.net_dev"
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _mail_post_access = 'read'
 
     net_dev_id = fields.Char(string="网络设备id")
     area_id = fields.Integer(string="区域id")
@@ -165,6 +186,8 @@ class net_dev(models.Model):
 
 class board(models.Model):
     _name = "cmdb.board"
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _mail_post_access = 'read'
 
     board_id = fields.Char(string="板卡id")
     area_id = fields.Integer(string="区域id")
@@ -189,6 +212,8 @@ class board(models.Model):
 
 class st_dev(models.Model):
     _name = "cmdb.st_dev"
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _mail_post_access = 'read'
 
     st_dev_id = fields.Char(string="存储id")
     cage_num = fields.Integer(string="笼子数")
@@ -219,6 +244,8 @@ class st_dev(models.Model):
 
 class srv_room_dev(models.Model):
     _name = "cmdb.srv_room_dev"
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _mail_post_access = 'read'
 
     srv_room_dev_id = fields.Char(string="机房设备id")
     asset_type = fields.Char(string="资产大类")
@@ -245,6 +272,8 @@ class srv_room_dev(models.Model):
 
 class san_port(models.Model):
     _name = "cmdb.san_port"
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _mail_post_access = 'read'
 
     san_port_id = fields.Char(string="SAN端口id")
     dev_id = fields.Integer(string="设备资产id")
@@ -277,6 +306,8 @@ class san_port(models.Model):
 
 class ip_port(models.Model):
     _name = "cmdb.ip_port"
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _mail_post_access = 'read'
 
     ip_port_id = fields.Char(string="IP端口ID")
     dev_id = fields.Integer(string="设备id")
@@ -312,6 +343,8 @@ class ip_port(models.Model):
 class cabinet(models.Model):
     _name = "cmdb.cabinet"
     _rec_name = "cab_num"
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _mail_post_access = 'read'
 
     cabinet_id = fields.Char(string="机柜id")
     lab_id = fields.Char(string="机房id", require=True)
@@ -338,6 +371,8 @@ class cabinet(models.Model):
 
 class soft(models.Model):
     _name = "cmdb.soft"
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _mail_post_access = 'read'
 
     soft_id = fields.Char(string="软件总id")
     total_class = fields.Char(string="总类别", require=True)
@@ -370,6 +405,8 @@ class soft(models.Model):
 
 class soft_detail(models.Model):
     _name = "cmdb.soft_detail"
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _mail_post_access = 'read'
 
     soft_detail_id = fields.Char(string="软件明细id")
     detail_code = fields.Char(string="明细编号")
@@ -403,6 +440,8 @@ class soft_detail(models.Model):
 class vendor_list(models.Model):
     _name = "cmdb.vendor_list"
     _rec_name = "vendor"
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _mail_post_access = 'read'
 
     vendor_list_id = fields.Char(string="服务商ID")
     vendor = fields.Char(string="人员名称", require=True)
@@ -420,6 +459,8 @@ class vendor_list(models.Model):
 class member_list(models.Model):
     _name = "cmdb.member_list"
     _rec_name = "name"
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _mail_post_access = 'read'
 
     member_list_id = fields.Char(string="人员表ID")
     name = fields.Char(string="名称", require=True)
@@ -435,6 +476,8 @@ class member_list(models.Model):
 
 class chg_log(models.Model):
     _name = "cmdb.chg_log"
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _mail_post_access = 'read'
 
     chg_log_id = fields.Char(string="变更记录id")
     exe_date = fields.Date(string="日期")
@@ -445,6 +488,8 @@ class chg_log(models.Model):
 
 class net_config(models.Model):
     _name = "cmdb.net_config"
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _mail_post_access = 'read'
 
     net_config_id = fields.Char(string="网络配置管理id")
     logic_area = fields.Char(string="逻辑区域")
@@ -461,6 +506,8 @@ class net_config(models.Model):
 
 class st_zone_lun(models.Model):
     _name = "cmdb.st_zone_lun"
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _mail_post_access = 'read'
 
     st_zone_lun_id = fields.Char(string="存储zone_lun划分id")
     zone_lun_id = fields.Char(string="ZONE_LUN_ID")
@@ -481,6 +528,8 @@ class st_zone_lun(models.Model):
 
 class vlan(models.Model):
     _name = "cmdb.vlan"
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _mail_post_access = 'read'
 
     vlan_id_id = fields.Char(string="VLAN表ID")
     vlan_id = fields.Char(string="VLAN号")
@@ -491,6 +540,8 @@ class vlan(models.Model):
 
 class fw_policy1(models.Model):
     _name = "cmdb.fw_policy1"
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _mail_post_access = 'read'
 
     fw_policy1_id = fields.Char(string="防火墙策略1id")
     fw_name = fields.Char(string="防火墙名称")
@@ -505,6 +556,8 @@ class fw_policy1(models.Model):
 
 class fw_policy2(models.Model): 
     _name = "cmdb.fw_policy2"
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _mail_post_access = 'read'
 
     fw_policy2_id = fields.Char(string="防火墙策略2id")
     fw_name = fields.Char(string="防火墙名称")
@@ -521,6 +574,8 @@ class fw_policy2(models.Model):
 
 class spam_policy(models.Model):
     _name = "cmdb.spam_policy"
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _mail_post_access = 'read'
 
     spam_policy_id = fields.Char(stirng="SPAM策略id")
     industry = fields.Char(string="行业")
@@ -534,6 +589,8 @@ class spam_policy(models.Model):
 
 class vm(models.Model):
     _name = "cmdb.vm"
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _mail_post_access = 'read'
 
     vm_id = fields.Char(string="虚拟机id")
     environment = fields.Char(string="环境")
@@ -556,6 +613,8 @@ class vm(models.Model):
 
 class account(models.Model):
     _name = "cmdb.account"
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _mail_post_access = 'read'
 
     account_id = fields.Char(string="账户id")
     dev_id = fields.Integer(string="设备id",  require=True)
@@ -582,6 +641,8 @@ class account(models.Model):
 
 class auth_log(models.Model):
     _name = "cmdb.auth_log"
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _mail_post_access = 'read'
 
     auth_log_id = fields.Char(string="授权记录id")
     exe_date = fields.Char(string="",require=True)
@@ -600,6 +661,8 @@ class auth_log(models.Model):
 # u位表
 class position_u(models.Model):
     _name = "cmdb.position_u"
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _mail_post_access = 'read'
 
     name = fields.Char(string="名称")
     status = fields.Boolean(string="状态", default=False)

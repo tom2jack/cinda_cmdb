@@ -22,18 +22,18 @@
             <field name="view_type">form</field>
             <field name="domain">[('class_id.class_name','=',"机房")]</field>
             <field name="view_mode">tree,form,graph</field>
-            <field name="view_id" ref="cmdb.cmdb_base_type_room_form_view"/>
+            <field name="view_id" ref="cmdb_base_type_room_form_view"/>
         </record>
         <record id="cmdb_base_type_room_action_tree" model="ir.actions.act_window.view">
             <field name="view_mode">tree</field>
             <field name="sequence" eval="1" />
-            <field name="view_id" ref="cmdb.cmdb_base_type_tree_view" />
+            <field name="view_id" ref="cmdb_base_type_tree_view" />
             <field name="act_window_id" ref="cmdb_base_type_room_action" />
         </record>
         <record id="cmdb_base_type_room_action_form" model="ir.actions.act_window.view">
             <field name="view_mode">form</field>
             <field name="sequence" eval="5" />
-            <field name="view_id" ref="cmdb.cmdb_base_type_room_form_view" />
+            <field name="view_id" ref="cmdb_base_type_room_form_view" />
             <field name="act_window_id" ref="cmdb_base_type_room_action" />
         </record>
 
@@ -161,6 +161,10 @@
             <field name="res_model">cmdb.vlan</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
+            <!--<field name="help" type="html">-->
+                <!--<p class="oe_view_nocontent_create">-->
+                <!--</p>-->
+            <!--</field>-->
         </record>
 
         <record id="cmdb_fw_policy1_action" model="ir.actions.act_window" >
