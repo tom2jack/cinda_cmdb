@@ -101,6 +101,7 @@ class device(models.Model):
     asset_num_old = fields.Char(string="旧资产编号")
     asset_num = fields.Char(string="资产编号")
     sn = fields.Char(string="序列号")
+    server_ids = fields.One2many("cinda_cmdb.server", "app_sys", string="服务器信息")
     purpose = fields.Char(string="用途")
     accept_date = fields.Char(string="初验日期")
     reject_date = fields.Char(string="过保日期")
@@ -110,6 +111,7 @@ class device(models.Model):
     admin = fields.Char(string="管理人")
     comment = fields.Char(string="备注")
     last_upd = fields.Datetime(default=fields.datetime.now(), require=True)
+    contract_purchase_id = fields.Many2one("cinda_cmdb.contract_purchase", string="采购合同编号")
 
     def create(self, cr, uid, vals, context=None):
         vals['device_id'] = self.pool.get('ir.sequence').get(cr, uid, 'cinda_cmdb.device')
@@ -120,9 +122,11 @@ class server(models.Model):
     _name = "cinda_cmdb.server"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
+    _rec_name = "buss_ip_addr"
 
+    vm_ids = fields.One2many("cinda_cmdb.vm", "name", string="虚拟机信息")
+    dev_id = fields.Many2one("cinda_cmdb.device", string="设备资产id")
     server_id = fields.Char(string="服务器id")
-    # app_sys_id = fields.Integer(string="所属系统id")
     app_sys = fields.Char(string="所属系统")
     buss_ip_addr = fields.Char(string="业务网IP地址")
     stor_ip_addr = fields.Char(string="存储网IP地址")
@@ -151,7 +155,6 @@ class server(models.Model):
     comment1 = fields.Char(string="备注1")
     comment2 = fields.Char(string="备注2")
     last_upd = fields.Datetime(default=fields.datetime.now(), require=True)
-    dev_id = fields.Many2one("cinda_cmdb.device", string="设备资产id")
     san_wwn = fields.Char(string="san网络wwn号")
     ha_mode = fields.Char(string="主备状态")
 
@@ -587,30 +590,6 @@ class spam_policy(models.Model):
     comment = fields.Char(string="备注")
 
 
-class vm(models.Model):
-    _name = "cinda_cmdb.vm"
-    _inherit = ['mail.thread', 'ir.needaction_mixin']
-    _mail_post_access = 'read'
-
-    vm_id = fields.Char(string="虚拟机id")
-    environment = fields.Char(string="环境")
-    cluster = fields.Char(string="集群")
-    resource_pool = fields.Char(string="资源地")
-    exi_ip = fields.Char(string="主机")
-    vm_hostname = fields.Char(string="虚机名称")
-    status = fields.Char(string="状况")
-    cpu = fields.Char(string="CPU")
-    mem = fields.Char(string="内存")
-    disk = fields.Char(string="置备的空间")
-    os = fields.Char(string="客户机操作系统")
-    vm_ip = fields.Char(string="虚拟机IP地址")
-    purpose = fields.Char(string="用途")
-    system_module = fields.Char(string="系统模块名称")
-    app_user = fields.Char(string="应用联系人")
-    deliver_date = fields.Date(string="交付日期")
-    back_date = fields.Date(string="计划归还日期")
-
-
 class account(models.Model):
     _name = "cinda_cmdb.account"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
@@ -667,3 +646,77 @@ class position_u(models.Model):
     name = fields.Char(string="名称")
     status = fields.Boolean(string="状态", default=False)
     cabinet_id = fields.Many2one("cinda_cmdb.cabinet", string="所在机柜", required="True")
+
+
+class cluster(models.Model):
+    _name = "cinda_cmdb.cluster"
+    _rec_name = "name"
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _mail_post_access = 'read'
+
+    environment = fields.Many2one("cinda_cmdb.base_type", string="环境", domain=[('class_id', 'ilike', "环境")])
+    name = fields.Char(string="集群")
+    vm_num = fields.Integer(string="虚机数量")
+    action_vm_num = fields.Integer(string="活动虚机数量")
+
+
+class vm(models.Model):
+    _name = "cinda_cmdb.vm"
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _mail_post_access = 'read'
+
+    host_computer = fields.Many2one("cinda_cmdb.server", string= "主机")
+    cluster = fields.Many2one("cinda_cmdb.cluster", string="集群")
+    app_user = fields.Many2one("cinda_cmdb.member_list", string="应用联系人")
+    sequence = fields.Integer(string='序号')
+    name = fields.Char(string='名称')
+    vm_num = fields.Integer(string='虚机数量（台）')
+    state = fields.Boolean(string='状况')
+    reserve_space = fields.Float(string="备至的空间")
+    used_space = fields.Float(string="已用空间")
+    client_operate_sys = fields.Char(string="客户机操作系统")
+    memory_size = fields.Integer(string="内存大小(MB)")
+    cpu = fields.Integer(string="CPU")
+    vm_ip = fields.Char(string="虚机IP地址")
+    vm_run_state = fields.Char(string="Vmware Tools 运行状况")
+    comment = fields.Char(string="备注")
+    sys_module = fields.Char(string="系统模块名称")
+    deliver_date = fields.Date(string="交付日期")
+    business_type = fields.Char(string="业务类型")
+    back_date = fields.Date(string="计划归还日期")
+
+
+class contract_purchase(models.Model):
+    _name = "cinda_cmdb.contract_purchase"
+    _rec_name = "number"
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _mail_post_access = 'read'
+
+    name = fields.Char(string="名称")
+    number = fields.Char(string="合同编号")
+    vendor = fields.Char(stirng="服务商")
+    accept_date = fields.Char(string="初验日期")
+    reject_date = fields.Char(string="过保日期")
+
+
+class parts(models.Model):
+    _name = "cinda_cmdb.parts"
+    _rec_name = "parts_name"
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _mail_post_access = 'read'
+
+    parts_type = fields.Many2one("cinda_cmdb.base_type", string="配件类型", domain=[('class_id', 'ilike', "配件类型")])
+    parts_name = fields.Char(string="配件名称")
+    sn = fields.Char(string="序列号")
+    brand_id = fields.Many2one("cinda_cmdb.base_type", string="品牌", domain=[('class_id', 'ilike', "设备品牌")])
+    status_config = fields.Char(string="标准配置")
+    parts_source = fields.Char(string="配件来源")
+    use_state = fields.Char(string="使用状态")
+    parts_in_device = fields.Char(string="配件所在设备")
+    buy_date = fields.Char(string="购买时间")
+    reject_date = fields.Char(string="过保时间")
+    vendor = fields.Char(string="供应商")
+    location = fields.Char(string="位置")
+    number = fields.Integer(string="数量")
+    area = fields.Char(string="区域")
+    fld = fields.Char(string="预留栏位")

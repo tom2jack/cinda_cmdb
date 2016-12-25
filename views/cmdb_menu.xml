@@ -216,6 +216,34 @@
             <field name="view_mode">tree,form</field>
         </record>
 
+        <record id="cinda_cmdb_cluster_action" model="ir.actions.act_window" >
+            <field name="name">集群表</field>
+            <field name="res_model">cinda_cmdb.cluster</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="cinda_cmdb_vm_action" model="ir.actions.act_window" >
+            <field name="name">虚拟机表</field>
+            <field name="res_model">cinda_cmdb.vm</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="cinda_cmdb_contract_purchase_action" model="ir.actions.act_window" >
+            <field name="name">采购合同表</field>
+            <field name="res_model">cinda_cmdb.contract_purchase</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="cinda_cmdb_parts_action" model="ir.actions.act_window" >
+            <field name="name">配件表</field>
+            <field name="res_model">cinda_cmdb.parts</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
         <menuitem id="main_cinda_cmdb_menu" name="cinda_cmdb"/>
 
 
@@ -242,6 +270,7 @@
         <menuitem id="st_dev_id" name="存储表" parent="device_id" action="cinda_cmdb_st_dev_action" />
         <menuitem id="san_port_id" name="SAN端口表" parent="st_dev_id" action="cinda_cmdb_san_port_action" />
         <menuitem id="position_u_id" name="U位表" parent="device_id" action="cinda_cmdb_position_u_action" sequence="7" />
+        <menuitem id="cinda_cmdb_parts_id" name="配件表" parent="device_id" action="cinda_cmdb_parts_action" sequence="8" />
 
 
         <menuitem id="soft_id" name="软件总表" parent="soft_menu" action="cinda_cmdb_soft_action" />
@@ -249,13 +278,15 @@
 
 
         <menuitem id="vm_id" name="虚拟机表" parent="vm_menu" action="cinda_cmdb_vm_action" />
+        <menuitem id="cluster" name="集群表" parent="vm_menu" action="cinda_cmdb_cluster_action" />
 
 
         <menuitem id="vendor_list_id" name="服务商通讯录" parent="auth_menu" action="cinda_cmdb_vendor_list_action" />
         <menuitem id="member_list_id" name="人员表" parent="auth_menu" action="cinda_cmdb_member_list_action" />
         <menuitem id="account_id" name="账户表" parent="auth_menu" action="cinda_cmdb_account_action" />
         <menuitem id="auth_log_id" name="授权记录表" parent="account_id" action="cinda_cmdb_auth_log_action" />
-        
+        <menuitem id="contract_purchase_id" name="采购合同表" parent="account_id" action="cinda_cmdb_contract_purchase_action" />
+
 
         <menuitem id="net_config_id" name="网络配置管理表" parent="app_menu" action="cinda_cmdb_net_config_action" />
         <menuitem id="vlan_id" name="Vlan表" parent="net_config_id" action="cinda_cmdb_vlan_action" />
