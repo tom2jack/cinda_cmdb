@@ -128,91 +128,91 @@
         </record>
 
 
-        <record model="ir.ui.view" id="cinda_cmdb_base_data_tree_view">
-            <field name="name">base_data.tree</field>
-            <field name="model">cinda_cmdb.base_data</field>
-            <field name="arch" type="xml">
-                <tree>
-                    <field name="base_data_id" string="基础数据ID"/>
-                    <field name="value" string="值"/>
-                    <field name="pare_id" string="父id"/>
-                    <!-- <field name="pare_lnk_mod" string="父节点连接类型"/> -->
-                    <field name="pare_val" string="父值"/>
-                    <!-- <field name="last_id" string="前节点id"/>
-                    <field name="last_lnk_mod" string="前节点连接类型"/>
-                    <field name="last_val" string="前节点值"/>
-                    <field name="next_id" string="后节点id"/>
-                    <field name="next_lnk_mod" string="后节点连接类型"/>
-                    <field name="next_val" string="后节点值"/>
-                    <field name="chld_id" string="子节点id"/>
-                    <field name="chld_lnk_mod" string="子节点连接类型"/>
-                    <field name="chld_val" string="子节点值"/>
-                    <field name="comment" string="备注"/> -->
-                    <field name="last_upd" string="最后修改时间"/>
-                </tree>
-            </field>
-        </record>
-        <record model="ir.ui.view" id="cinda_cmdb_base_data_search_view">
-            <field name="name">base_data.search</field>
-            <field name="model">cinda_cmdb.base_data</field>
-            <field name="arch" type="xml">
-                <search  string="Search_base_data">
-                    <group expand="0" string="分组">
-                        <filter string="父值" name="pare_val" context="{'group_by':'pare_val'}"/>
-                    </group>
-                </search>
-            </field>
-        </record>
-        <record model="ir.ui.view" id="cinda_cmdb_base_data_form_view">
-            <field name="name">base_data.form</field>
-            <field name="model" >cinda_cmdb.base_data</field>
-            <field name="arch" type="xml">
-                <form string="base data Form">
-                    <sheet>
-                    <group>
-                        <group>
-                            <field name="base_data_id" string="基础数据ID"/>
-                            <field name="value" string="值"/>
-                            <field name="pare_id" string="父id"/>
-                            <field name="pare_lnk_mod" string="父节点连接类型"/>
-                            <field name="pare_val" string="父值"/>
-                            <field name="last_id" string="前节点id"/>
-                            <field name="last_lnk_mod" string="前节点连接类型"/>
-                            <field name="last_val" string="前节点值"/>
-                            <field name="next_id" string="后节点id"/>
-                            <field name="next_lnk_mod" string="后节点连接类型"/>
-                        </group>
-                        <group>
-                            <field name="next_val" string="后节点值"/>
-                            <field name="chld_id" string="子节点id"/>
-                            <field name="chld_lnk_mod" string="子节点连接类型"/>
-                            <field name="chld_val" string="子节点值"/>
-                            <field name="comment" string="备注"/>
-                            <field name="fld1" string="栏位1"/>
-                            <field name="fld2" string="栏位2"/>
-                            <field name="fld3" string="栏位3"/>
-                            <field name="fld4" string="栏位4"/>
-                            <field name="last_upd" string="最后修改时间"/>
-                        </group>
-                    </group>
-                    </sheet>
-                    <div class="oe_chatter">
-                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
-                        <field name="message_ids" widget="mail_thread"/>
-                    </div>
-                </form>
-            </field>
-        </record>
-        <record model="ir.ui.view" id="cinda_cmdb_base_data_graph">
-            <field name="name">cinda_cmdb.base_data_graph</field>
-            <field name="model">cinda_cmdb.base_data</field>
-            <field name="type">graph</field>
-            <field name="arch" type="xml">
-                <graph string="cinda_cmdb base_data graph" type="bar" >
-                    <field name="value" string="值" type="row"/>
-                </graph>
-            </field>
-        </record>
+        <!--<record model="ir.ui.view" id="cinda_cmdb_base_data_tree_view">-->
+            <!--<field name="name">base_data.tree</field>-->
+            <!--<field name="model">cinda_cmdb.base_data</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<tree>-->
+                    <!--<field name="base_data_id" string="基础数据ID"/>-->
+                    <!--<field name="value" string="值"/>-->
+                    <!--<field name="pare_id" string="父id"/>-->
+                    <!--&lt;!&ndash; <field name="pare_lnk_mod" string="父节点连接类型"/> &ndash;&gt;-->
+                    <!--<field name="pare_val" string="父值"/>-->
+                    <!--&lt;!&ndash; <field name="last_id" string="前节点id"/>-->
+                    <!--<field name="last_lnk_mod" string="前节点连接类型"/>-->
+                    <!--<field name="last_val" string="前节点值"/>-->
+                    <!--<field name="next_id" string="后节点id"/>-->
+                    <!--<field name="next_lnk_mod" string="后节点连接类型"/>-->
+                    <!--<field name="next_val" string="后节点值"/>-->
+                    <!--<field name="chld_id" string="子节点id"/>-->
+                    <!--<field name="chld_lnk_mod" string="子节点连接类型"/>-->
+                    <!--<field name="chld_val" string="子节点值"/>-->
+                    <!--<field name="comment" string="备注"/> &ndash;&gt;-->
+                    <!--<field name="last_upd" string="最后修改时间"/>-->
+                <!--</tree>-->
+            <!--</field>-->
+        <!--</record>-->
+        <!--<record model="ir.ui.view" id="cinda_cmdb_base_data_search_view">-->
+            <!--<field name="name">base_data.search</field>-->
+            <!--<field name="model">cinda_cmdb.base_data</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<search  string="Search_base_data">-->
+                    <!--<group expand="0" string="分组">-->
+                        <!--<filter string="父值" name="pare_val" context="{'group_by':'pare_val'}"/>-->
+                    <!--</group>-->
+                <!--</search>-->
+            <!--</field>-->
+        <!--</record>-->
+        <!--<record model="ir.ui.view" id="cinda_cmdb_base_data_form_view">-->
+            <!--<field name="name">base_data.form</field>-->
+            <!--<field name="model" >cinda_cmdb.base_data</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<form string="base data Form">-->
+                    <!--<sheet>-->
+                    <!--<group>-->
+                        <!--<group>-->
+                            <!--<field name="base_data_id" string="基础数据ID"/>-->
+                            <!--<field name="value" string="值"/>-->
+                            <!--<field name="pare_id" string="父id"/>-->
+                            <!--<field name="pare_lnk_mod" string="父节点连接类型"/>-->
+                            <!--<field name="pare_val" string="父值"/>-->
+                            <!--<field name="last_id" string="前节点id"/>-->
+                            <!--<field name="last_lnk_mod" string="前节点连接类型"/>-->
+                            <!--<field name="last_val" string="前节点值"/>-->
+                            <!--<field name="next_id" string="后节点id"/>-->
+                            <!--<field name="next_lnk_mod" string="后节点连接类型"/>-->
+                        <!--</group>-->
+                        <!--<group>-->
+                            <!--<field name="next_val" string="后节点值"/>-->
+                            <!--<field name="chld_id" string="子节点id"/>-->
+                            <!--<field name="chld_lnk_mod" string="子节点连接类型"/>-->
+                            <!--<field name="chld_val" string="子节点值"/>-->
+                            <!--<field name="comment" string="备注"/>-->
+                            <!--<field name="fld1" string="栏位1"/>-->
+                            <!--<field name="fld2" string="栏位2"/>-->
+                            <!--<field name="fld3" string="栏位3"/>-->
+                            <!--<field name="fld4" string="栏位4"/>-->
+                            <!--<field name="last_upd" string="最后修改时间"/>-->
+                        <!--</group>-->
+                    <!--</group>-->
+                    <!--</sheet>-->
+                    <!--<div class="oe_chatter">-->
+                        <!--<field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>-->
+                        <!--<field name="message_ids" widget="mail_thread"/>-->
+                    <!--</div>-->
+                <!--</form>-->
+            <!--</field>-->
+        <!--</record>-->
+        <!--<record model="ir.ui.view" id="cinda_cmdb_base_data_graph">-->
+            <!--<field name="name">cinda_cmdb.base_data_graph</field>-->
+            <!--<field name="model">cinda_cmdb.base_data</field>-->
+            <!--<field name="type">graph</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<graph string="cinda_cmdb base_data graph" type="bar" >-->
+                    <!--<field name="value" string="值" type="row"/>-->
+                <!--</graph>-->
+            <!--</field>-->
+        <!--</record>-->
 
 
         <record model="ir.ui.view" id="cinda_cmdb_device_tree_view">

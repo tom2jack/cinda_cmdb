@@ -5,6 +5,7 @@ from openerp import models
 
 class base_class(models.Model):
     _name = "cinda_cmdb.base_class"
+    _description = "基础总类表"
     _rec_name = 'class_name'
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
@@ -16,6 +17,7 @@ class base_class(models.Model):
 
 class base_type(models.Model):
     _name = "cinda_cmdb.base_type"
+    _description = "基础细类表"
     _rec_name = 'type_name'
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
@@ -45,32 +47,13 @@ class base_data(models.Model):
     chld_id = fields.Integer(string="子节点id")
     chld_lnk_mod = fields.Integer(string="子节点连接类型")
     chld_val = fields.Char(string="子节点值")
-    fld1 = fields.Char(string="栏位1")
-    fld2 = fields.Char(string="栏位2")
-    fld3 = fields.Char(string="栏位3")
-    fld4 = fields.Char(string="栏位4")
-    fld5 = fields.Char(string="栏位5")
-    fld6 = fields.Char(string="栏位6")
-    fld7 = fields.Char(string="栏位7")
-    fld8 = fields.Char(string="栏位8")
-    fld9 = fields.Char(string="栏位9")
-    fld10 = fields.Char(string="栏位10")
-    fld11 = fields.Char(string="栏位11")
-    fld12 = fields.Char(string="栏位12")
-    fld13 = fields.Char(string="栏位13")
-    fld14 = fields.Char(string="栏位14")
-    fld15 = fields.Char(string="栏位15")
-    fld16 = fields.Char(string="栏位16")
-    fld17 = fields.Char(string="栏位17")
-    fld18 = fields.Char(string="栏位18")
-    fld19 = fields.Char(string="栏位19")
-    fld20 = fields.Char(string="栏位20")
     comment = fields.Char(string="备注")
     last_upd = fields.Datetime(default=fields.datetime.now(), require=True)
 
 
 class device(models.Model):
     _name = "cinda_cmdb.device"
+    _description = "硬件设备表"
     _rec_name = "sn"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
@@ -120,6 +103,7 @@ class device(models.Model):
 
 class server(models.Model):
     _name = "cinda_cmdb.server"
+    _description = "服务器表"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
     _rec_name = "buss_ip_addr"
@@ -215,6 +199,7 @@ class board(models.Model):
 
 class st_dev(models.Model):
     _name = "cinda_cmdb.st_dev"
+    _description = "存储信息表"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
@@ -247,6 +232,7 @@ class st_dev(models.Model):
 
 class srv_room_dev(models.Model):
     _name = "cinda_cmdb.srv_room_dev"
+    _description = "机房设备表"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
@@ -257,24 +243,13 @@ class srv_room_dev(models.Model):
     elec_power = fields.Integer(string="总功率")
     ampere = fields.Integer(string="电流")
     comment = fields.Char(string="备注")
-    fld1 = fields.Char(string="栏位1")
-    fld2 = fields.Char(string="栏位2")
-    fld3 = fields.Char(string="栏位3")
-    fld4 = fields.Char(string="栏位4")
-    fld5 = fields.Char(string="栏位5")
-    fld6 = fields.Char(string="栏位6")
-    fld7 = fields.Char(string="栏位7")
-    fld8 = fields.Char(string="栏位8")
-    fld9 = fields.Char(string="栏位9")
-    fld10 = fields.Char(string="栏位10")
-    fld11 = fields.Char(string="栏位11")
-    fld12 = fields.Char(string="栏位12")
     last_upd = fields.Datetime(default=fields.datetime.now(), require=True)
     dev_id = fields.Integer(string="设备资产id")
 
 
 class san_port(models.Model):
     _name = "cinda_cmdb.san_port"
+    _description = "SAN端口表"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
@@ -297,18 +272,12 @@ class san_port(models.Model):
     alias = fields.Char(string="别名")
     captain = fields.Char(string="说明")
     comment = fields.Char(string="备注")
-    fld1 = fields.Char(string="栏位1")
-    fld2 = fields.Char(string="栏位2")
-    fld3 = fields.Char(string="栏位3")
-    fld4 = fields.Char(string="栏位4")
-    fld5 = fields.Char(string="栏位5")
-    fld6 = fields.Char(string="栏位6")
-    fld7 = fields.Char(string="栏位7")
     last_upd = fields.Datetime(default=fields.datetime.now(), require=True)
 
 
 class ip_port(models.Model):
     _name = "cinda_cmdb.ip_port"
+    _description = "IP接口表"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
@@ -333,18 +302,12 @@ class ip_port(models.Model):
     port_info = fields.Char(string="端口描述")
     mod_type = fields.Char(string="模块类型")
     mod_sn = fields.Char(string="模块序列号")
-    fld1 = fields.Char(string="栏位1")
-    fld2 = fields.Char(string="栏位2")
-    fld3 = fields.Char(string="栏位3")
-    fld4 = fields.Char(string="栏位4")
-    fld5 = fields.Char(string="栏位5")
-    fld6 = fields.Char(string="栏位6")
-    fld7 = fields.Char(string="栏位7")
     last_upd = fields.Datetime(default=fields.datetime.now(), require=True)
 
 
 class cabinet(models.Model):
     _name = "cinda_cmdb.cabinet"
+    _description = "机柜表"
     _rec_name = "cab_num"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
@@ -358,22 +321,13 @@ class cabinet(models.Model):
     ampere = fields.Integer(string="电流")
     u_num = fields.Integer(string="U位数目")
     purpose = fields.Char(string="用途")
-    fld1 = fields.Char(string="栏位1")
-    fld2 = fields.Char(string="栏位2")
-    fld3 = fields.Char(string="栏位3")
-    fld4 = fields.Char(string="栏位4")
-    fld5 = fields.Char(string="栏位5")
-    fld6 = fields.Char(string="栏位6")
-    fld7 = fields.Char(string="栏位7")
-    fld8 = fields.Char(string="栏位8")
-    fld9 = fields.Char(string="栏位9")
-    fld10 = fields.Char(string="栏位10")
     comment = fields.Char(string="备注")
     last_upd = fields.Datetime(default=fields.datetime.now(), require=True)
 
 
 class soft(models.Model):
     _name = "cinda_cmdb.soft"
+    _description = "软件信息表"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
@@ -392,22 +346,13 @@ class soft(models.Model):
     reject_date = fields.Char(string="支持到期类型")
     contact_info = fields.Char(string="支持联系方式")
     license_pos = fields.Char(string="许可证位置")
-    fld1 = fields.Char(string="栏位1")
-    fld2 = fields.Char(string="栏位2")
-    fld3 = fields.Char(string="栏位3")
-    fld4 = fields.Char(string="栏位4")
-    fld5 = fields.Char(string="栏位5")
-    fld6 = fields.Char(string="栏位6")
-    fld7 = fields.Char(string="栏位7")
-    fld8 = fields.Char(string="栏位8")
-    fld9 = fields.Char(string="栏位9")
-    fld10 = fields.Char(string="栏位10")
     comment = fields.Char(string="备注")
     last_upd = fields.Datetime(default=fields.datetime.now(), require=True)
 
 
 class soft_detail(models.Model):
     _name = "cinda_cmdb.soft_detail"
+    _description = "软件明细表"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
@@ -426,22 +371,13 @@ class soft_detail(models.Model):
     media_path = fields.Char(string="介质路径")
     license_key = fields.Char(string="许可密钥")
     license_path = fields.Char(string="许可保存路径")
-    fld1 = fields.Char(string="栏位1")
-    fld2 = fields.Char(string="栏位2")
-    fld3 = fields.Char(string="栏位3")
-    fld4 = fields.Char(string="栏位4")
-    fld5 = fields.Char(string="栏位5")
-    fld6 = fields.Char(string="栏位6")
-    fld7 = fields.Char(string="栏位7")
-    fld8 = fields.Char(string="栏位8")
-    fld9 = fields.Char(string="栏位9")
-    fld10 = fields.Char(string="栏位10")
     comment = fields.Char(string="备注")
     last_upd = fields.Datetime(default=fields.datetime.now(), require=True)
 
 
 class vendor_list(models.Model):
     _name = "cinda_cmdb.vendor_list"
+    _description = "厂商信息表"
     _rec_name = "vendor"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
@@ -461,6 +397,7 @@ class vendor_list(models.Model):
 
 class member_list(models.Model):
     _name = "cinda_cmdb.member_list"
+    _description = "人员信息表"
     _rec_name = "name"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
@@ -479,6 +416,7 @@ class member_list(models.Model):
 
 class chg_log(models.Model):
     _name = "cinda_cmdb.chg_log"
+    _description = "变更记录表"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
@@ -491,6 +429,7 @@ class chg_log(models.Model):
 
 class net_config(models.Model):
     _name = "cinda_cmdb.net_config"
+    _description = "网络配置表"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
@@ -531,6 +470,7 @@ class st_zone_lun(models.Model):
 
 class vlan(models.Model):
     _name = "cinda_cmdb.vlan"
+    _description = "VLAN信息表"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
@@ -543,6 +483,7 @@ class vlan(models.Model):
 
 class fw_policy1(models.Model):
     _name = "cinda_cmdb.fw_policy1"
+    _description = "防火墙策略表1"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
@@ -559,6 +500,7 @@ class fw_policy1(models.Model):
 
 class fw_policy2(models.Model): 
     _name = "cinda_cmdb.fw_policy2"
+    _description = "防火墙策略表2"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
@@ -592,6 +534,7 @@ class spam_policy(models.Model):
 
 class account(models.Model):
     _name = "cinda_cmdb.account"
+    _description = "账户表"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
@@ -620,6 +563,7 @@ class account(models.Model):
 
 class auth_log(models.Model):
     _name = "cinda_cmdb.auth_log"
+    _description = "授权记录表"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
@@ -640,6 +584,7 @@ class auth_log(models.Model):
 # u位表
 class position_u(models.Model):
     _name = "cinda_cmdb.position_u"
+    _description = "u位表"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
@@ -650,6 +595,7 @@ class position_u(models.Model):
 
 class cluster(models.Model):
     _name = "cinda_cmdb.cluster"
+    _description = "集群表"
     _rec_name = "name"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
@@ -662,6 +608,7 @@ class cluster(models.Model):
 
 class vm(models.Model):
     _name = "cinda_cmdb.vm"
+    _description = "虚拟机信息表"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
@@ -688,6 +635,7 @@ class vm(models.Model):
 
 class contract_purchase(models.Model):
     _name = "cinda_cmdb.contract_purchase"
+    _description = "采购合同表"
     _rec_name = "number"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
@@ -701,6 +649,7 @@ class contract_purchase(models.Model):
 
 class parts(models.Model):
     _name = "cinda_cmdb.parts"
+    _description = "网络配件表"
     _rec_name = "parts_name"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
