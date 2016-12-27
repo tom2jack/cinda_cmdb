@@ -128,91 +128,91 @@
         </record>
 
 
-        <!--<record model="ir.ui.view" id="cinda_cmdb_base_data_tree_view">-->
-            <!--<field name="name">base_data.tree</field>-->
-            <!--<field name="model">cinda_cmdb.base_data</field>-->
-            <!--<field name="arch" type="xml">-->
-                <!--<tree>-->
-                    <!--<field name="base_data_id" string="基础数据ID"/>-->
-                    <!--<field name="value" string="值"/>-->
-                    <!--<field name="pare_id" string="父id"/>-->
-                    <!--&lt;!&ndash; <field name="pare_lnk_mod" string="父节点连接类型"/> &ndash;&gt;-->
-                    <!--<field name="pare_val" string="父值"/>-->
-                    <!--&lt;!&ndash; <field name="last_id" string="前节点id"/>-->
-                    <!--<field name="last_lnk_mod" string="前节点连接类型"/>-->
-                    <!--<field name="last_val" string="前节点值"/>-->
-                    <!--<field name="next_id" string="后节点id"/>-->
-                    <!--<field name="next_lnk_mod" string="后节点连接类型"/>-->
-                    <!--<field name="next_val" string="后节点值"/>-->
-                    <!--<field name="chld_id" string="子节点id"/>-->
-                    <!--<field name="chld_lnk_mod" string="子节点连接类型"/>-->
-                    <!--<field name="chld_val" string="子节点值"/>-->
-                    <!--<field name="comment" string="备注"/> &ndash;&gt;-->
-                    <!--<field name="last_upd" string="最后修改时间"/>-->
-                <!--</tree>-->
-            <!--</field>-->
-        <!--</record>-->
-        <!--<record model="ir.ui.view" id="cinda_cmdb_base_data_search_view">-->
-            <!--<field name="name">base_data.search</field>-->
-            <!--<field name="model">cinda_cmdb.base_data</field>-->
-            <!--<field name="arch" type="xml">-->
-                <!--<search  string="Search_base_data">-->
-                    <!--<group expand="0" string="分组">-->
-                        <!--<filter string="父值" name="pare_val" context="{'group_by':'pare_val'}"/>-->
-                    <!--</group>-->
-                <!--</search>-->
-            <!--</field>-->
-        <!--</record>-->
-        <!--<record model="ir.ui.view" id="cinda_cmdb_base_data_form_view">-->
-            <!--<field name="name">base_data.form</field>-->
-            <!--<field name="model" >cinda_cmdb.base_data</field>-->
-            <!--<field name="arch" type="xml">-->
-                <!--<form string="base data Form">-->
-                    <!--<sheet>-->
-                    <!--<group>-->
-                        <!--<group>-->
-                            <!--<field name="base_data_id" string="基础数据ID"/>-->
-                            <!--<field name="value" string="值"/>-->
-                            <!--<field name="pare_id" string="父id"/>-->
-                            <!--<field name="pare_lnk_mod" string="父节点连接类型"/>-->
-                            <!--<field name="pare_val" string="父值"/>-->
-                            <!--<field name="last_id" string="前节点id"/>-->
-                            <!--<field name="last_lnk_mod" string="前节点连接类型"/>-->
-                            <!--<field name="last_val" string="前节点值"/>-->
-                            <!--<field name="next_id" string="后节点id"/>-->
-                            <!--<field name="next_lnk_mod" string="后节点连接类型"/>-->
-                        <!--</group>-->
-                        <!--<group>-->
-                            <!--<field name="next_val" string="后节点值"/>-->
-                            <!--<field name="chld_id" string="子节点id"/>-->
-                            <!--<field name="chld_lnk_mod" string="子节点连接类型"/>-->
-                            <!--<field name="chld_val" string="子节点值"/>-->
-                            <!--<field name="comment" string="备注"/>-->
-                            <!--<field name="fld1" string="栏位1"/>-->
-                            <!--<field name="fld2" string="栏位2"/>-->
-                            <!--<field name="fld3" string="栏位3"/>-->
-                            <!--<field name="fld4" string="栏位4"/>-->
-                            <!--<field name="last_upd" string="最后修改时间"/>-->
-                        <!--</group>-->
-                    <!--</group>-->
-                    <!--</sheet>-->
-                    <!--<div class="oe_chatter">-->
-                        <!--<field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>-->
-                        <!--<field name="message_ids" widget="mail_thread"/>-->
-                    <!--</div>-->
-                <!--</form>-->
-            <!--</field>-->
-        <!--</record>-->
-        <!--<record model="ir.ui.view" id="cinda_cmdb_base_data_graph">-->
-            <!--<field name="name">cinda_cmdb.base_data_graph</field>-->
-            <!--<field name="model">cinda_cmdb.base_data</field>-->
-            <!--<field name="type">graph</field>-->
-            <!--<field name="arch" type="xml">-->
-                <!--<graph string="cinda_cmdb base_data graph" type="bar" >-->
-                    <!--<field name="value" string="值" type="row"/>-->
-                <!--</graph>-->
-            <!--</field>-->
-        <!--</record>-->
+        <record model="ir.ui.view" id="cinda_cmdb_base_data_tree_view">
+            <field name="name">base_data.tree</field>
+            <field name="model">cinda_cmdb.base_data</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="base_data_id" string="基础数据ID"/>
+                    <field name="value" string="值"/>
+                    <field name="pare_id" string="父id"/>
+                    <!-- <field name="pare_lnk_mod" string="父节点连接类型"/> -->
+                    <field name="pare_val" string="父值"/>
+                    <!-- <field name="last_id" string="前节点id"/>
+                    <field name="last_lnk_mod" string="前节点连接类型"/>
+                    <field name="last_val" string="前节点值"/>
+                    <field name="next_id" string="后节点id"/>
+                    <field name="next_lnk_mod" string="后节点连接类型"/>
+                    <field name="next_val" string="后节点值"/>
+                    <field name="chld_id" string="子节点id"/>
+                    <field name="chld_lnk_mod" string="子节点连接类型"/>
+                    <field name="chld_val" string="子节点值"/>
+                    <field name="comment" string="备注"/> -->
+                    <field name="last_upd" string="最后修改时间"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="cinda_cmdb_base_data_search_view">
+            <field name="name">base_data.search</field>
+            <field name="model">cinda_cmdb.base_data</field>
+            <field name="arch" type="xml">
+                <search  string="Search_base_data">
+                    <group expand="0" string="分组">
+                        <filter string="父值" name="pare_val" context="{'group_by':'pare_val'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="cinda_cmdb_base_data_form_view">
+            <field name="name">base_data.form</field>
+            <field name="model" >cinda_cmdb.base_data</field>
+            <field name="arch" type="xml">
+                <form string="base data Form">
+                    <sheet>
+                    <group>
+                        <group>
+                            <field name="base_data_id" string="基础数据ID"/>
+                            <field name="value" string="值"/>
+                            <field name="pare_id" string="父id"/>
+                            <field name="pare_lnk_mod" string="父节点连接类型"/>
+                            <field name="pare_val" string="父值"/>
+                            <field name="last_id" string="前节点id"/>
+                            <field name="last_lnk_mod" string="前节点连接类型"/>
+                            <field name="last_val" string="前节点值"/>
+                            <field name="next_id" string="后节点id"/>
+                            <field name="next_lnk_mod" string="后节点连接类型"/>
+                        </group>
+                        <group>
+                            <field name="next_val" string="后节点值"/>
+                            <field name="chld_id" string="子节点id"/>
+                            <field name="chld_lnk_mod" string="子节点连接类型"/>
+                            <field name="chld_val" string="子节点值"/>
+                            <field name="comment" string="备注"/>
+                            <field name="fld1" string="栏位1"/>
+                            <field name="fld2" string="栏位2"/>
+                            <field name="fld3" string="栏位3"/>
+                            <field name="fld4" string="栏位4"/>
+                            <field name="last_upd" string="最后修改时间"/>
+                        </group>
+                    </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="cinda_cmdb_base_data_graph">
+            <field name="name">cinda_cmdb.base_data_graph</field>
+            <field name="model">cinda_cmdb.base_data</field>
+            <field name="type">graph</field>
+            <field name="arch" type="xml">
+                <graph string="cinda_cmdb base_data graph" type="bar" >
+                    <field name="value" string="值" type="row"/>
+                </graph>
+            </field>
+        </record>
 
 
         <record model="ir.ui.view" id="cinda_cmdb_device_tree_view">
@@ -296,25 +296,34 @@
                         <notebook colspan="3">
                             <page string="位置">
                                 <group>
+                                <group>
                                     <field name="lab_id" string="机房"/>
                                     <field name="cab" domain="[('lab', '=', lab_id)]" string="机柜" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
                                     <field name="pos_seq" string="位置序号"/>
+                                </group>
+                                <group>
                                     <field name="u_pos" string="位置U"/>
                                     <field name="u_space" string="占位U"/>
                                     <field name="env_id" string="环境"/>
                                 </group>
+                                </group>
                             </page>
                             <page string="合同">
                                 <group>
-                                    <field name="accept_date" string="初验日期"/>
-                                    <field name="reject_date" string="过保日期"/>
+                                <group>
                                     <field name="srve_prvd" string="服务商"/>
                                     <field name="contract_purchase_id" string="采购合同编号"/>
+                                </group>
+                                <group>
+                                    <field name="accept_date" string="初验日期"/>
+                                    <field name="reject_date" string="过保日期"/>
+                                </group>
                                 </group>
                             </page>
                             <page string="服务器信息">
                                 <group>
                                     <field name="server_ids" string="服务器信息"/>
+
                                 </group>
                             </page>
                         </notebook>
@@ -437,26 +446,46 @@
                             </page>
                             <page string="存储">
                                 <group>
+                                <group>
                                     <field name="disk_size" string="硬盘容量(裸容量)"/>
                                     <field name="disk_spec" string="硬盘规格"/>
                                     <field name="ext_st_size" string="外接存储容量"/>
+                                </group>
+                                <group>
                                     <field name="hba_config" string="HBA卡配置"/>
                                     <field name="hba_used" string="HBA卡已用情况"/>
                                     <field name="san_wwn" string="san网络wwn号"/>
                                 </group>
+                                </group>
                             </page>
                             <page string="网卡">
+                                <group>
                                 <group>
                                     <field name="g_netcard_config" string="千兆网卡配置"/>
                                     <field name="g_netcard_used" string="千兆网卡已用情况"/>
                                     <field name="t_netcard_config" string="万兆网卡配置"/>
+                                </group>
+                                <group>
                                     <field name="t_netcard_used" string="万兆网卡已用情况"/>
                                     <field name="netcard_band" string="网卡绑定"/>
+                                </group>
                                 </group>
                             </page>
                             <page string="虚拟机信息">
                                 <group>
-                                    <field name="vm_ids" string="虚拟机信息"/>
+                                    <field name="vm_ids" string="虚拟机信息">
+                                        <tree string="Registered feedback" editable="bottom" create="false">
+                                            <field name="name" string="名称"/>
+                                            <field name="vm_num" string="虚拟数量(台)"/>
+                                            <field name="reserve_space" string="置备的空间(GB)"/>
+                                            <field name="used_space" string="已用空间(GB)"/>
+                                            <field name="host_computer" string="主机"/>
+                                            <field name="cluster" string="集群"/>
+                                            <field name="memory_size" string="内存大小(MB)"/>
+                                            <field name="cpu" string="CPU"/>
+                                            <field name="vm_run_state" string="Vmware Tools 运行状况"/>
+                                        </tree>
+                                    </field>
                                 </group>
                             </page>
                         </notebook>
@@ -489,20 +518,34 @@
             <field name="model">cinda_cmdb.net_dev</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="net_dev_id" string="网络设备ID"/>
-                    <field name="area_id" string="区域ID"/>
-                    <field name="area" string="区域"/>
-                    <field name="version" string="软件版本"/>
-                    <field name="admin_ip" string="管理IP"/>
-                    <field name="account" string="账号"/>
-                    <field name="root_acc" string="根用户"/>
-                    <field name="chg_acc" string="变更用户"/>
-                    <field name="mon_acc" string="监控状态"/>
-                    <field name="ha_mode" string="主备状态"/>
-                    <field name="comment1" string="备注1"/>
-                    <field name="comment2" string="备注2"/>
+                    <field name="cab" string="机柜"/>
+                    <field name="use_mode" string="使用状态"/>
+                    <field name="dev_start" string="设备状态"/>
+                    <field name="purpose" string="用途"/>
+                    <field name="lab_id" string="机房"/>
+                    <!--<field name="pos_seq" string="位置序号"/>-->
+                    <!--<field name="u_pos" string="位置U"/>-->
+                    <!--<field name="u_space" string="占位U"/>-->
+                    <field name="env_id" string="环境"/>
+                    <field name="type_id" string="设备类型"/>
+                    <field name="brand_id" string="品牌"/>
+                    <field name="name" string="设备命名"/>
+                    <field name="model" string="Model"/>
+                    <!--<field name="sn" string="序列号"/>-->
+                    <!--<field name="asset_num_old" string="旧资产编号"/>-->
+                    <!--<field name="asset_num" string="资产编号"/>-->
+                    <!--<field name="accept_date" string="初验日期"/>-->
+                    <!--<field name="reject_date" string="过保日期"/>-->
+                    <!--<field name="user" string="使用人"/>-->
+                    <!--<field name="srve_prvd" string="服务商"/>-->
+                    <field name="owner_id" string="资产所有人"/>
+                    <field name="admin" string="管理人"/>
                     <field name="last_upd" string="最后修改时间"/>
-                    <field name="dev_id" string="设备资产ID"/>
+                    <!--<field name="version" string="软件版本"/>-->
+                    <!--<field name="comment" string="备注"/>-->
+                    <!--<field name="area" string="区域"/>-->
+                    <!--<field name="admin_ip" string="管理IP"/>-->
+                    <!--<field name="account" string="账号"/>-->
                 </tree>
             </field>
         </record>
@@ -513,22 +556,55 @@
                 <form>
                     <sheet>
                     <group>
-                        <field name="net_dev_id" string="网络设备ID"/>
-                        <field name="area_id" string="区域ID"/>
-                        <field name="area" string="区域"/>
-                        <field name="version" string="软件版本"/>
-                        <field name="admin_ip" string="管理IP"/>
-                        <field name="account" string="账号"/>
-                        <field name="root_acc" string="根用户"/>
-                        <field name="chg_acc" string="变更用户"/>
-                        <field name="mon_acc" string="监控状态"/>
-                        <field name="ha_mode" string="主备状态"/>
-                        <field name="comment1" string="备注1"/>
-                        <field name="comment2" string="备注2"/>
-                        <field name="last_upd" string="最后修改时间"/>
-                        <field name="dev_id" string="设备资产ID"/>
+                        <group>
+                            <field name="use_mode" string="使用状态"/>
+                            <field name="dev_start" string="设备状态"/>
+                            <field name="type_id" string="设备类型"/>
+                            <field name="brand_id" string="品牌"/>
+                            <field name="name" string="设备命名"/>
+                            <field name="model" string="Model"/>
+                            <field name="sn" string="序列号"/>
+                            <field name="version" string="软件版本"/>
+                            <field name="admin_ip" string="管理IP"/>
+                        </group>
+                        <group>
+                            <field name="account" string="账号"/>
+                            <field name="asset_num_old" string="旧资产编号"/>
+                            <field name="asset_num" string="资产编号"/>
+                            <field name="purpose" string="用途"/>
+                            <field name="owner_id" string="资产所有人"/>
+                            <field name="user" string="使用人"/>
+                            <field name="srve_prvd" string="服务商"/>
+                            <field name="admin" string="管理人"/>
+                            <field name="comment" string="备注"/>
+                            <field name="last_upd" string="最后修改时间"/>
+                        </group>
+                        <notebook colspan="2">
+                            <page string="位置">
+                                <group>
+                                <group>
+                                    <field name="lab_id" string="机房"/>
+                                    <field name="cab" domain="[('lab', '=', lab_id)]" string="机柜" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
+                                    <field name="pos_seq" string="位置序号"/>
+                                    <field name="u_pos" string="位置U"/>
+                                </group>
+                                <group>
+                                    <field name="u_space" string="占位U"/>
+                                    <field name="env_id" string="环境"/>
+                                    <field name="area" string="区域"/>
+                                </group>
+                                </group>
+                            </page>
+                            <page string="合同">
+                                <group>
+                                    <field name="accept_date" string="初验日期"/>
+                                    <field name="reject_date" string="过保日期"/>
+                                    <field name="srve_prvd" string="服务商"/>
+                                </group>
+                            </page>
+                        </notebook>
                     </group>
-                    </sheet>
+                </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
                         <field name="message_ids" widget="mail_thread"/>
@@ -542,7 +618,7 @@
             <field name="type">graph</field>
             <field name="arch" type="xml">
                 <graph string="cinda_cmdb net_dev graph" type="bar" >
-                    <field name="mon_acc" string="监控状态" type="row"/>
+                    <field name="type_id" string="设备类型" type="row"/>
                 </graph>
             </field>
         </record>
@@ -882,9 +958,7 @@
             <field name="model">cinda_cmdb.cabinet</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="cabinet_id" string="机柜ID"/>
                     <field name="cab_num" string="机柜号"/>
-                    <field name="lab_id" string="机房ID"/>
                     <field name="lab" string="机房"/>
                     <!-- <field name="pdu_num" string="PDU数目"/>
                     <field name="elec_power" string="电源功率"/>
@@ -896,6 +970,18 @@
                 </tree>
             </field>
         </record>
+        <record model="ir.ui.view" id="cinda_cmdb_cabinet_search_view">
+            <field name="name">cabinet.search</field>
+            <field name="model">cinda_cmdb.cabinet</field>
+            <field name="arch" type="xml">
+                <search  string="Search_cabinet">
+                    <group expand="0" string="分组">
+                        <filter string="机柜号" name="cab_num" context="{'group_by':'cab_num'}"/>
+                        <filter string="机房" name="lab" context="{'group_by':'lab'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
         <record model="ir.ui.view" id="cinda_cmdb_cabinet_form_view">
             <field name="name">cabinet.form</field>
             <field name="model">cinda_cmdb.cabinet</field>
@@ -904,9 +990,7 @@
                     <sheet>
                     <group>
                     <group>
-                        <field name="cabinet_id" string="机柜ID"/>
                         <field name="cab_num" string="机柜号"/>
-                        <field name="lab_id" string="机房ID"/>
                         <field name="lab" string="机房"/>
                         <field name="pdu_num" string="PDU数目"/>
                         <field name="elec_power" string="电源功率"/>
@@ -1149,13 +1233,13 @@
                 <tree>
                     <field name="member_list_id" string="人员表ID"/>
                     <field name="name" string="名称"/>
-                    <field name="attr" string="性质"/>
-                    <field name="address" string="地址"/>
-                    <field name="position" string="职位"/>
-                    <field name="fixed_phone" string="电话"/>
-                    <field name="mobile_phone" string="手机"/>
-                    <field name="mail" string="邮件"/>
-                    <field name="comment" string="备注"/>
+                    <!--<field name="attr" string="性质"/>-->
+                    <!--<field name="address" string="地址"/>-->
+                    <!--<field name="position" string="职位"/>-->
+                    <!--<field name="fixed_phone" string="电话"/>-->
+                    <!--<field name="mobile_phone" string="手机"/>-->
+                    <!--<field name="mail" string="邮件"/>-->
+                    <!--<field name="comment" string="备注"/>-->
                     <field name="last_upd" string="最后修改时间"/>
                 </tree>
             </field>
@@ -1953,7 +2037,7 @@
                     <!--<field name="location" string="位置"/>-->
                     <field name="number" string="数量"/>
                     <field name="area" string="区域"/>
-                    <field name="fld" string="预留栏位"/>
+                    <!--<field name="fld" string="预留栏位"/>-->
                 </tree>
             </field>
         </record>

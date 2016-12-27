@@ -16,7 +16,6 @@
                 'views/cmdb_view.xml',
                 'views/cmdb_menu.xml',
                 'views/cmdb_link.xml',
-                'views/manage.xml',
                 #"security/cmdb_security.xml",
                 #"security/ir.model.access.csv",
                 ],
