@@ -104,7 +104,6 @@
                 </form>
             </field>
         </record>
-
         <record model="ir.ui.view" id="cinda_cmdb_base_type_search_view">
             <field name="name">base_type.search</field>
             <field name="model">cinda_cmdb.base_type</field>
@@ -491,9 +490,6 @@
                         </notebook>
                     </group>
                     </sheet>
-
-
-
                     <div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
                         <field name="message_ids" widget="mail_thread"/>
@@ -547,6 +543,21 @@
                     <!--<field name="admin_ip" string="管理IP"/>-->
                     <!--<field name="account" string="账号"/>-->
                 </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="cinda_cmdb_net_dev_search_view">
+            <field name="name">net_dev.search</field>
+            <field name="model">cinda_cmdb.net_dev</field>
+            <field name="arch" type="xml">
+                <search  string="Search_net_dev">
+                    <group expand="0" string="分组">
+                        <filter string="设备命名" name="name" context="{'group_by':'name'}"/>
+                        <filter string="设备类型" name="type_id" context="{'group_by':'type_id'}"/>
+                        <filter string="品牌" name="brand_id" context="{'group_by':'brand_id'}"/>
+                        <filter string="用途" name="purpose" context="{'group_by':'purpose'}"/>
+                        <filter string="环境" name="env_id" context="{'group_by':'env_id'}"/>
+                    </group>
+                </search>
             </field>
         </record>
         <record model="ir.ui.view" id="cinda_cmdb_net_dev_form_view">
@@ -2035,10 +2046,25 @@
                     <!--<field name="reject_date" string="过保时间"/>-->
                     <!--<field name="vendor" string="供应商"/>-->
                     <!--<field name="location" string="位置"/>-->
-                    <field name="number" string="数量"/>
+                    <!--<field name="number" string="数量"/>-->
                     <field name="area" string="区域"/>
                     <!--<field name="fld" string="预留栏位"/>-->
                 </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="cinda_cmdb_parts_search_view">
+            <field name="name">parts.search</field>
+            <field name="model">cinda_cmdb.parts</field>
+            <field name="arch" type="xml">
+                <search  string="Search_parts">
+                    <group expand="0" string="分组">
+                        <filter  name="brand_id" string="设备品牌" context="{'group_by':'brand_id'}"/>
+                        <filter name="parts_type" string="配件类型" context="{'group_by':'parts_type'}"/>
+                        <filter  name="parts_name" string="配件名称" context="{'group_by':'parts_name'}"/>
+                        <filter  name="use_state" string="使用状态" context="{'group_by':'use_state'}"/>
+                        <filter  name="parts_in_device" string="配件所在设备" context="{'group_by':'parts_in_device'}"/>
+                    </group>
+                </search>
             </field>
         </record>
         <record model="ir.ui.view" id="cinda_cmdb_parts_form_view">
