@@ -187,10 +187,6 @@
                             <field name="chld_lnk_mod" string="子节点连接类型"/>
                             <field name="chld_val" string="子节点值"/>
                             <field name="comment" string="备注"/>
-                            <field name="fld1" string="栏位1"/>
-                            <field name="fld2" string="栏位2"/>
-                            <field name="fld3" string="栏位3"/>
-                            <field name="fld4" string="栏位4"/>
                             <field name="last_upd" string="最后修改时间"/>
                         </group>
                     </group>

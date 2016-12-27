@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- 数据表管理 -->
+        <record id="view_model_form" model="ir.ui.view">
+            <field name="model">ir.model</field>
+            <field name="arch" type="xml">
+                <form string="Model Description">
+                  <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="model"/>
+                            <field name="osv_memory"/>
+                        </group>
+                        <group>
+                            <field name="state"/>
+                            <field name="modules" default="cinda_cmdb"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Fields">
+                            <field name="field_id">
+                                <tree string="Fields Description">
+                                    <field name="name"/>
+                                    <field name="field_description"/>
+                                    <field name="ttype"/>
+                                    <field name="required"/>
+                                    <field name="readonly"/>
+                                    <field name="select_level"/>
+                                    <field name="state"/>
+                                </tree>
+                                <form string="Fields Description">
+                                    <group col="4">
+                                        <field name="name"/>
+                                        <field name="state"/>
+                                        <field name="field_description"/>
+                                    </group>
+                                    <group string="Properties">
+                                        <group>
+                                            <field name="ttype"/>
+                                            <field name="relation" attrs="{'required': [('ttype','in',['many2one','one2many','many2many'])],'readonly': [('ttype','!=','one2many'), ('ttype','!=','many2one'), ('ttype','!=','many2many')]}"/>
+                                            <field name="relation_field" attrs="{'required': [('ttype','=','one2many')], 'readonly': [('ttype','!=','one2many')]}"/>
+                                            <field name="selection" attrs="{'required': [('ttype','in',['selection','reference'])], 'readonly': [('ttype','not in',['selection','reference'])]}"/>
+                                            <field name="size" attrs="{'required': [('ttype','in',['char','reference'])], 'readonly': [('ttype','not in',['char','reference'])]}"/>
+                                            <field name="domain" attrs="{'readonly': [('relation','=','')]}"/>
+                                            <field name="serialization_field_id" attrs="{'readonly': [('state','=','base')]}" domain="[('ttype','=','serialized'), ('model_id', '=', parent.model)]"/>
+                                        </group>
+                                        <group>
+                                            <field name="required"/>
+                                            <field name="readonly"/>
+                                            <field name="select_level"/>
+                                            <field name="translate"/>
+                                            <field name="on_delete" attrs="{'readonly': [('ttype','!=','many2one')]}"/>
+                                            <field name="modules"/>
+                                        </group>
+                                    </group>
+                                    <separator string="Groups"/>
+                                    <field name="groups"/>
+                                </form>
+                            </field>
+                            <!--
+                            <button
+                                icon="gtk-justify-fill"
+                                name="%(base.act_menu_create)d"
+                                string="Create a Menu" type="action"
+                                target="new" />
+                             -->
+                        </page>
+                        <page string="Access Rights">
+                            <field name="access_ids">
+                                <tree string="Access Rules" editable="bottom">
+                                    <field name="group_id" domain="[('category_id.name','=','cinda_cmdb')]"/>
+                                    <field name="perm_read"/>
+                                    <field name="perm_write"/>
+                                    <field name="perm_create"/>
+                                    <field name="perm_unlink"/>
+                                    <field name="name"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Notes">
+                            <field name="info"/>
+                        </page>
+                        <page string="Views">
+                            <field name="view_ids"/>
+                        </page>
+                    </notebook>
+                  </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_model_tree" model="ir.ui.view">
+            <field name="model">ir.model</field>
+            <field name="arch" type="xml">
+                <tree string="Model Description">
+                    <field name="model"/>
+                    <field name="name"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_model_search" model="ir.ui.view">
+            <field name="model">ir.model</field>
+            <field name="arch" type="xml">
+                <search string="Model Description">
+                    <field name="name" filter_domain="['|', ('name','ilike',self), ('model','ilike',self)]" string="Model"/>
+                    <filter icon="terp-camera_test"
+                        string="In Memory"
+                        domain="[('osv_memory', '=', True)]"/>
+                    <separator/>
+                    <filter icon="terp-stock_align_left_24"
+                        string="Custom"
+                        domain="[('state', '=', 'manual')]"/>
+                    <filter icon="terp-translate"
+                        string="Base"
+                        domain="[('state', '=', 'base')]"/>
+                </search>
+            </field>
+        </record>
+
+        <!-- 用户管理 -->
+        <record id="view_users_form" model="ir.ui.view">
+            <field name="name">cinda_cmdb.users.form</field>
+            <field name="model">res.users</field>
+            <field name="arch" type="xml">
+                <form string="Users">
+                    <sheet>
+                        <field name="id" invisible="1"/>
+                        <div class="oe_right oe_button_box">
+                            <button string="Change Password" type="action" name="%(base.change_password_wizard_action)d"
+                                class="oe_link" help="Change the user password."/>
+                        </div>
+                        <field name="image" widget='image' class="oe_avatar oe_left" options='{"preview_image": "image_medium"}'/>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1><field name="name"/></h1>
+                            <field name="email" invisible="1"/>
+                            <label for="login" class="oe_edit_only" string="Email Address"/>
+                            <h2><field name="login" on_change="on_change_login(login)"/></h2>
+                            <label for="company_id" class="oe_edit_only" groups="base.group_multi_company"/>
+                            <field name="company_id" context="{'user_preference': 0}" groups="base.group_multi_company"/>
+                            <group>
+                                <field name="partner_id" readonly="1" required="0" groups="base.group_no_one"
+                                        attrs="{'invisible': [('id', '=', False)]}"/>
+                                <field name="active"/>
+                            </group>
+                        </div>
+                        <notebook colspan="4">
+                            <page string="Access Rights">
+                                <group string="Allowed Companies" groups="base.group_multi_company">
+                                    <field name="company_ids" nolabel="1" widget="many2many_tags"/>
+                                </group>
+                                <group col="4">
+                                    <field name="groups_id" domain="[('category_id.name', '=', 'cinda_cmdb')]"/>
+                                </group>
+                            </page>
+                            <page string="Preferences">
+                                <group>
+                                    <group string="Localization" name="preferences">
+                                        <field name="lang"/>
+                                        <field name="tz"/>
+                                    </group>
+                                    <group string="Menus Customization" groups="base.group_no_one">
+                                        <field name="action_id"/>
+                                    </group>
+                                </group>
+                                <group string="Messaging and Social" name="messaging">
+                                    <field name="signature"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_users_tree" model="ir.ui.view">
+            <field name="name">cinda_cmdb.users.tree</field>
+            <field name="model">res.users</field>
+            <field name="arch" type="xml">
+                <tree string="Users">
+                    <field name="name"/>
+                    <field name="login"/>
+                    <field name="lang"/>
+                    <field name="login_date"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_users_search" model="ir.ui.view">
+            <field name="name">cinda_cmdb.users.search</field>
+            <field name="model">res.users</field>
+            <field name="arch" type="xml">
+                <search string="Users">
+                    <field name="name" filter_domain="['|', '|', ('name','ilike',self), ('login','ilike',self), ('email','ilike',self)]" string="User"/>
+                    <field name="company_ids" string="Company" groups="base.group_multi_company"/>
+                </search>
+            </field>
+        </record>
+
+        <!-- 组管理 -->
+        <record id="view_groups_search" model="ir.ui.view">
+            <field name="name">cinda_cmdb.groups.search</field>
+            <field name="model">res.groups</field>
+            <field name="arch" type="xml">
+                <search string="组">
+                    <field name="name" filter_domain="['|', ('name','ilike',self), ('category_id','ilike',self)]" string="Group"/>
+                </search>
+            </field>
+        </record>
+        <record id="view_groups_form" model="ir.ui.view">
+            <field name="name">cinda_cmdb.groups.form</field>
+            <field name="model">res.groups</field>
+            <field name="arch" type="xml">
+                <form string="组">
+                  <sheet>
+                    <group col="4">
+                        <field name="category_id" default="cinda_cmdb" readonly="True"/>
+                        <field name="name"/>
+                    </group>
+                    <notebook>
+                        <page string="Users">
+                            <field name="users"/>
+                        </page>
+                        <!--
+                        <page string="Inherited">
+                            <label string="Users added to this group are automatically added in the following groups."/>
+                            <field name="implied_ids"/>
+                        </page>
+                        <page string="Menus">
+                            <field name="menu_access"/>
+                        </page>
+                        <page string="Views">
+                            <field name="view_access"/>
+                        </page>
+                        -->
+                        <page string="Access Rights">
+                            <field name="model_access" >
+                                <tree string="Access Rules" editable="top">
+                                    <field name="model_id" domain="[('model','ilike','cinda_cmdb')]"/>
+                                    <field name="perm_read"/>
+                                    <field name="perm_write"/>
+                                    <field name="perm_create"/>
+                                    <field name="perm_unlink"/>
+                                    <field name="name"/>
+                                </tree>
+                                <form string="Access Controls">
+                                    <group col="4">
+                                        <field name="name"/>
+                                        <field name="active"/>
+                                        <field name="model_id"/>
+                                        <newline/>
+                                        <field name="perm_read"/>
+                                        <field name="perm_write"/>
+                                        <field name="perm_create"/>
+                                        <field name="perm_unlink"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                        <!--
+                        <page string="Rules">
+                            <field name="rule_groups">
+                                <tree string="Rules">
+                                    <field name="name"/>
+                                    <field name="model_id"/>
+                                    <field name="global"/>
+                                </tree>
+                            </field>
+                        </page>
+                        -->
+                        <page string="Notes">
+                            <field name="comment"/>
+                        </page>
+                    </notebook>
+                  </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="menu_admin_groups_action" model="ir.actions.act_window">
+            <field name="name">组管理</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.groups</field>
+            <field name="view_type">form</field>
+            <field name="form_view_id" ref="view_groups_form"/>
+            <field name="domain">[('category_id.name','=','cinda_cmdb')]</field>
+            <field name="help">创建第一个组</field>
+        </record>
+        <menuitem id="menu_admin_group" name="组管理" parent="manage_menu" action="menu_admin_groups_action" groups=""/>
+
+
+        <!-- 视图动作 -->
+        <record id="menu_admin_database_action" model="ir.actions.act_window" >
+            <field name="name">数据表管理</field>
+            <field name="res_model">ir.model</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('model','ilike','cinda_cmdb')]</field>
+        </record>
+        <record id="menu_admin_users_action" model="ir.actions.act_window">
+            <field name="name">用户管理</field>
+            <field name="res_model">res.users</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_users_tree"/>
+            <field name="search_view_id" ref="view_users_search"/>
+            <field name="help">创建可登陆系统的用户账户</field>
+            <field name="domain">[('name','!=','Administrator')]</field>
+        </record>
+
+        <!-- 菜单 -->
+        <menuitem id="menu_admin_database" name="表管理" parent="manage_menu" sequence="13" action="menu_admin_database_action" />
+        <menuitem id="menu_admin_user" name="用户管理" parent="manage_menu" sequence="11" action="menu_admin_users_action" />
+
+    </data>
+</openerp>
