@@ -603,7 +603,7 @@ class vm(models.Model):
     reserve_space = fields.Float(string="备至的空间")
     used_space = fields.Float(string="已用空间")
     client_operate_sys = fields.Char(string="客户机操作系统")
-    memory_size = fields.Integer(string="内存大小(MB)")
+    memory_size = fields.Integer(string="内存大小(MB)", track_visibility='onchange')
     cpu = fields.Integer(string="CPU")
     vm_ip = fields.Char(string="虚机IP地址")
     vm_run_state = fields.Char(string="Vmware Tools 运行状况")
