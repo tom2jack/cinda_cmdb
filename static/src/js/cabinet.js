@@ -145,15 +145,15 @@
                 var device=[];
                 $.each(data.device,function(i,v){
                     unused-= v.u_space;
+                    var u_pos=v.u_pos.slice(4);
                     device.push({
-                        "id":"CD"+ v.u_pos,
+                        "id":"CD"+ u_pos,
                         "name": v.host_name,
                         "x":70*option.defaultScale,
-                        "y":((43- v.u_pos)*40+60-v.u_space*40)*option.defaultScale,
+                        "y":((43- u_pos)*40+60-v.u_space*40)*option.defaultScale,
                         "w":460,
                         "h": v.u_space*40
-                    })
-
+                    });
                 });
                 this.addCabinet("C",data.name+"(空闲U位:"+unused+")",0,0,600,1800);
                 $.each(device,function(i,v){

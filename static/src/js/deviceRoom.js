@@ -138,16 +138,18 @@
                 var maxCol= 0,maxRol=0;
                 $.each(data.cabinet,function(i,v){
                     var cRArr=/^([A-Z])([0-9]+)/.exec(v.cab_num);
-                    index[cRArr[1]]-0>maxRol&&(maxRol=index[cRArr[1]]-0);
-                    cRArr[2]-0>maxCol&&(maxCol=cRArr[2]-0);
-                    img[index[cRArr[1]]+"-"+(cRArr[2]-0)]={
-                        pos: index[cRArr[1]]+"-"+(cRArr[2]-0),
-                        name: v.cab_num,
-                        x: 244*(cRArr[2]-1)*option.defaultScale,
-                        y: 392*(index[cRArr[1]]-1)*option.defaultScale,
-                        width: 240,
-                        height: 130
-                    };
+                    if(cRArr!==null){
+                        index[cRArr[1]]-0>maxRol&&(maxRol=index[cRArr[1]]-0);
+                        cRArr[2]-0>maxCol&&(maxCol=cRArr[2]-0);
+                        img[index[cRArr[1]]+"-"+(cRArr[2]-0)]={
+                            pos: index[cRArr[1]]+"-"+(cRArr[2]-0),
+                            name: v.cab_num,
+                            x: 244*(cRArr[2]-1)*option.defaultScale,
+                            y: 392*(index[cRArr[1]]-1)*option.defaultScale,
+                            width: 240,
+                            height: 130
+                        };
+                    }
                 });
                 //绘制房间
                 this.addRoom("R",data.roomName,-200*option.defaultScale,-200*option.defaultScale,244*maxCol+400,392*maxRol+200);
