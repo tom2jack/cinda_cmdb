@@ -1702,6 +1702,7 @@
             <field name="arch" type="xml">
                 <search  string="Search_base_data">
                     <group expand="0" string="分组">
+                        <filter string="集群" name="cluster" context="{'group_by':'cluster'}"/>
                         <filter string="主机" name="host_computer" context="{'group_by':'host_computer'}"/>
                     </group>
                 </search>
