@@ -12,7 +12,6 @@ openerp.cinda_cmdb=function(instance){
             //暂时不需要
         },
         start:function(o){
-            console.log(1);
             var displayName=o.client.action_manager.inner_action.display_name;
             switch(displayName){
                 case "机房":this.addJumpEvent("deviceRoom");break;
