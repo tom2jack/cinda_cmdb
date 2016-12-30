@@ -1,17 +1,18 @@
 /**
  * Created by nantian on 2016/12/14.
  */
-openerp.cmdb=function(instance){
+openerp.cinda_cmdb=function(instance){
     var _t=instance.web._t,
         _lt=instance.web._lt,
         QWeb=instance.web.qweb;
-    instance.cmdb={};
+    instance.cinda_cmdb={};
 
-    instance.cmdb.Widget=instance.web.Widget.extend({
+    instance.cinda_cmdb.Widget=instance.web.Widget.extend({
         init:function(){
             //暂时不需要
         },
         start:function(o){
+            console.log(1);
             var displayName=o.client.action_manager.inner_action.display_name;
             switch(displayName){
                 case "机房":this.addJumpEvent("deviceRoom");break;
@@ -55,5 +56,5 @@ openerp.cmdb=function(instance){
     });
 
     //当视图加载时调用自己指定代码
-    instance.web.actionList.push(new instance.cmdb.Widget());
+    instance.web.actionList.push(new instance.cinda_cmdb.Widget());
 }
