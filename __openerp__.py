@@ -18,7 +18,8 @@
                 'views/cmdb_link.xml',
                 'views/manage.xml',
                 'security/ir.model.access.csv',
-                #"security/cmdb_security.xml",
+                'security/security.xml',
+                # "security/cmdb_security.xml",
                 #"security/ir.model.access.csv",
                 ],
 # data files which are only installed in "demonstration mode"
