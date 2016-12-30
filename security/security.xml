@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="1">
+        <record id="base.group_cinda_cmdb_admin" model="res.groups">
+            <field name="name">admin</field>
+            <field name="category_id" ref="base.module_category_cinda_cmdb"/>
+            <field name="implied_ids" eval="[(4,ref('base.group_user'))]"/>
+        </record>
+    </data>
+</openerp>
