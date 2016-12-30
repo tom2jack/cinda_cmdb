@@ -34,9 +34,10 @@
             this.y=y;
         }
         //构建机柜类
-        function Cabinet(name,x,y,width,height){
+        function Cabinet(name,x,y,width,height,u){
             this.x=x;
             this.y=y;
+            this.u=u;
             this.name=name;
             Img.call(this);
             this.width=width*this.s;//机柜的初始宽高
@@ -59,10 +60,10 @@
             ctx.lineWidth=1;
             ctx.strokeRect(this.x+70*this.s,this.y+60*this.s,this.width-140*this.s,this.height-120*this.s);
             ctx.strokeStyle="#aaa";
-            for(var i=0;i<=42;i++){
+            for(var i=0;i<=this.u;i++){
                 ctx.strokeRect(this.x+this.width-70*this.s,this.y+(60+40*i)*this.s,40*this.s,1);
                 if(i>0){
-                    ctx.fillText(43-i+"",this.x+this.width-55*this.s,this.y+(50+40*i)*this.s);
+                    ctx.fillText(this.u+1-i+"",this.x+this.width-55*this.s,this.y+(50+40*i)*this.s);
                 }
             }
         }
@@ -141,7 +142,8 @@
             },
             start:function(data){//注意渲染顺序
                 var me=this;
-                var unused=42;
+                var u_total=50;//定义机柜的总U位数
+                var unused=u_total;
                 var device=[];
                 $.each(data.device,function(i,v){
                     unused-= v.u_space;
@@ -150,19 +152,19 @@
                         "id":"CD"+ u_pos,
                         "name": v.host_name,
                         "x":70*option.defaultScale,
-                        "y":((43- u_pos)*40+60-v.u_space*40)*option.defaultScale,
+                        "y":((u_total+1- u_pos)*40+60-v.u_space*40)*option.defaultScale,
                         "w":460,
                         "h": v.u_space*40
                     });
                 });
-                this.addCabinet("C",data.name+"(空闲U位:"+unused+")",0,0,600,1800);
+                this.addCabinet("C",data.name+"(空闲U位:"+unused+")",0,0,600,u_total*40+120,u_total);
                 $.each(device,function(i,v){
                     me.addDevice(v.id, v.name, v.x, v.y, v.w, v.h);
                 });
                 //视图剧中
                 var offsetX= (canvas.width-600*option.defaultScale)/2,
-                    offsetY= (canvas.height-1800*option.defaultScale)/2;
-                var s= canvas.height*0.94/1800/option.defaultScale;
+                    offsetY= (canvas.height-(unused*40+120)*option.defaultScale)/2;
+                var s= canvas.height*0.94/(unused*40+120)/option.defaultScale;
                 $.each(this.img,function(i,v){
                     var desX= v.x+offsetX,desY= v.y+offsetY;
                     v.move(desX, desY);
@@ -170,8 +172,8 @@
                 });
                 return this;
             },
-            addCabinet:function(id,name,x,y,width,height){//后进入数组的元素先渲染
-                this.img[id]=new Cabinet(name,x,y,width,height);
+            addCabinet:function(id,name,x,y,width,height,u){//后进入数组的元素先渲染
+                this.img[id]=new Cabinet(name,x,y,width,height,u);
             },
             addDevice:function(pos,name,x,y,width,height){
                 this.img[pos]=new Device(name,x,y,width,height);
