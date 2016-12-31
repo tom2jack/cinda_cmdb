@@ -22,18 +22,18 @@
             <field name="view_type">form</field>
             <field name="domain">[('class_id.class_name','=',"机房")]</field>
             <field name="view_mode">tree,form,graph</field>
-            <field name="view_id" ref="cinda_cmdb_base_type_room_form_view"/>
+            <field name="view_id" ref="base_type_room_form_view"/>
         </record>
         <record id="cinda_cmdb_base_type_room_action_tree" model="ir.actions.act_window.view">
             <field name="view_mode">tree</field>
             <field name="sequence" eval="1" />
-            <field name="view_id" ref="cinda_cmdb_base_type_tree_view" />
+            <field name="view_id" ref="base_type_tree_view" />
             <field name="act_window_id" ref="cinda_cmdb_base_type_room_action" />
         </record>
         <record id="cinda_cmdb_base_type_room_action_form" model="ir.actions.act_window.view">
             <field name="view_mode">form</field>
             <field name="sequence" eval="5" />
-            <field name="view_id" ref="cinda_cmdb_base_type_room_form_view" />
+            <field name="view_id" ref="base_type_room_form_view" />
             <field name="act_window_id" ref="cinda_cmdb_base_type_room_action" />
         </record>
 
@@ -269,7 +269,7 @@
         <menuitem id="ip_port_id" name="IP端口表" parent="net_dev_id" action="cinda_cmdb_ip_port_action" />
         <menuitem id="st_dev_id" name="存储表" parent="device_id" action="cinda_cmdb_st_dev_action" />
         <menuitem id="san_port_id" name="SAN端口表" parent="st_dev_id" action="cinda_cmdb_san_port_action" />
-        <menuitem id="position_u_id" name="U位表" parent="device_id" action="cinda_cmdb_position_u_action" sequence="7" />
+        <!--<menuitem id="position_u_id" name="U位表" parent="device_id" action="cinda_cmdb_position_u_action" sequence="7" />-->
         <menuitem id="cinda_cmdb_parts_id" name="配件表" parent="device_id" action="cinda_cmdb_parts_action" sequence="8" />
 
 
