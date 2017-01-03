@@ -163,8 +163,8 @@
                 });
                 //视图剧中
                 var offsetX= (canvas.width-600*option.defaultScale)/2,
-                    offsetY= (canvas.height-(unused*40+120)*option.defaultScale)/2;
-                var s= canvas.height*0.94/(unused*40+120)/option.defaultScale;
+                    offsetY= (canvas.height-(u_total*40+120)*option.defaultScale)/2;
+                var s= canvas.height*0.94/(u_total*40+120)/option.defaultScale;
                 $.each(this.img,function(i,v){
                     var desX= v.x+offsetX,desY= v.y+offsetY;
                     v.move(desX, desY);

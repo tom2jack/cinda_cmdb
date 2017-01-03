@@ -39,7 +39,7 @@ openerp.cinda_cmdb=function(instance){
             var $dialog=new instance.web.Dialog(null,{
                 size: 'large',
                 dialogClass: 'oe_act_window',
-                title: _t("机房")
+                title: _t("机房 - "+data.roomName)
             },canvas).open();
             $("#myCanvas").engineRoom().start(data).init();
         },
@@ -48,7 +48,7 @@ openerp.cinda_cmdb=function(instance){
             var $dialog=new instance.web.Dialog(null,{
                 size: 'medium',
                 dialogClass: 'oe_act_window',
-                title: _t("机柜")
+                title: _t("机柜 - "+data.name)
             },canvas).open();
             $("#myCanvas").cabinet_v().start(data).init();
         }
