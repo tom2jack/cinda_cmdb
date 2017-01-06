@@ -37,6 +37,7 @@
             <field name="model">cinda_cmdb.base_class</field>
             <field name="arch" type="xml">
                 <search  string="Search_base_type">
+                    <field name="class_name" string="总类名称"/>
                     <group expand="0" string="分组">
                     </group>
                 </search>
@@ -119,6 +120,7 @@
             <field name="model">cinda_cmdb.base_type</field>
             <field name="arch" type="xml">
                 <search  string="Search_base_type">
+                    <field name="type_name" string="细类名称"/>
                     <group expand="0" string="分组">
                         <filter name="class_id" string="所属父类" context="{'group_by':'class_id'}"/>
                     </group>
@@ -259,6 +261,9 @@
             <field name="model">cinda_cmdb.device</field>
             <field name="arch" type="xml">
                 <search  string="Search_device">
+                    <field name="host_name" string="设备名称"/>
+                    <field name="sn" string="序列号"/>
+                    <field name="asset_num" string="资产编号"/>
                     <group expand="0" string="分组">
                         <filter string="机房" name="lab_id" context="{'group_by':'lab_id'}"/>
                         <filter string="机柜" name="cab" context="{'group_by':'cab'}"/>
@@ -401,6 +406,8 @@
             <field name="model">cinda_cmdb.server</field>
             <field name="arch" type="xml">
                 <search  string="Search_server">
+                    <field name="buss_ip_addr" string="业务IP"/>
+                    <field name="mng_ip_addr" string="管理IP"/>
                     <group expand="0" string="分组">
                         <filter string="所属系统" name="app_sys" context="{'group_by':'app_sys'}"/>
                         <filter string="底层操作系统" name="os" context="{'group_by':'os'}"/>
@@ -556,6 +563,9 @@
             <field name="model">cinda_cmdb.net_dev</field>
             <field name="arch" type="xml">
                 <search  string="Search_net_dev">
+                    <field name="sn" string="序列号"/>
+                    <field name="name" string="设备命名"/>
+                    <field name="asset_num" string="资产编号"/>
                     <group expand="0" string="分组">
                         <filter string="设备命名" name="name" context="{'group_by':'name'}"/>
                         <filter string="设备类型" name="type_id" context="{'group_by':'type_id'}"/>
@@ -693,6 +703,7 @@
             <field name="name">board.search</field>
             <field name="model">cinda_cmdb.board</field>
             <field name="arch" type="xml">
+                <field name="card_sn" string="序列号"/>
                 <search  string="Search_base_type">
                     <group expand="0" string="分组">
                     </group>
@@ -765,6 +776,7 @@
             <field name="name">st_dev.search</field>
             <field name="model">cinda_cmdb.st_dev</field>
             <field name="arch" type="xml">
+                <field name="comment" string="备注"/>
                 <search  string="Search_base_type">
                     <group expand="0" string="分组">
                     </group>
@@ -830,6 +842,7 @@
             <field name="model">cinda_cmdb.srv_room_dev</field>
             <field name="arch" type="xml">
                 <search  string="Search_base_type">
+                    <field name="asset_type" string="资产大类"/>
                     <group expand="0" string="分组">
                     </group>
                 </search>
@@ -913,6 +926,7 @@
             <field name="model">cinda_cmdb.san_port</field>
             <field name="arch" type="xml">
                 <search  string="Search_base_type">
+                    <field name="port" string="端口号"/>
                     <group expand="0" string="分组">
                     </group>
                 </search>
@@ -1003,6 +1017,8 @@
             <field name="model">cinda_cmdb.ip_port</field>
             <field name="arch" type="xml">
                 <search  string="Search_base_type">
+                    <field name="port" string="端口号"/>
+                    <field name="port_ip" string="IP地址"/>
                     <group expand="0" string="分组">
                     </group>
                 </search>
@@ -1042,6 +1058,7 @@
             <field name="model">cinda_cmdb.cabinet</field>
             <field name="arch" type="xml">
                 <search  string="Search_cabinet">
+                    <field name="cab_num" string="机柜号"/>
                     <group expand="0" string="分组">
                         <filter string="机柜号" name="cab_num" context="{'group_by':'cab_num'}"/>
                         <filter string="机房" name="lab" context="{'group_by':'lab'}"/>
@@ -1157,6 +1174,7 @@
             <field name="model">cinda_cmdb.soft</field>
             <field name="arch" type="xml">
                 <search  string="Search_base_type">
+                    <field name="soft_name" string="名称"/>
                     <group expand="0" string="分组">
                     </group>
                 </search>
@@ -1237,6 +1255,7 @@
             <field name="model">cinda_cmdb.soft_detail</field>
             <field name="arch" type="xml">
                 <search  string="Search_base_type">
+                    <field name="detail_name" string="名称"/>
                     <group expand="0" string="分组">
                     </group>
                 </search>
@@ -1305,6 +1324,7 @@
             <field name="model">cinda_cmdb.vendor_list</field>
             <field name="arch" type="xml">
                 <search  string="Search_base_type">
+                    <field name="vendor" string="名称"/>
                     <group expand="0" string="分组">
                     </group>
                 </search>
@@ -1371,6 +1391,7 @@
             <field name="model">cinda_cmdb.member_list</field>
             <field name="arch" type="xml">
                 <search  string="Search_base_type">
+                    <field name="name" string="名称"/>
                     <group expand="0" string="分组">
                     </group>
                 </search>
@@ -1427,6 +1448,7 @@
             <field name="model">cinda_cmdb.chg_log</field>
             <field name="arch" type="xml">
                 <search  string="Search_base_type">
+                    <field name="executor" string="实施人"/>
                     <group expand="0" string="分组">
                     </group>
                 </search>
@@ -1495,6 +1517,7 @@
             <field name="model">cinda_cmdb.net_config</field>
             <field name="arch" type="xml">
                 <search  string="Search_base_type">
+                    <field name="admin_ip" string="管理IP"/>
                     <group expand="0" string="分组">
                     </group>
                 </search>
@@ -1571,6 +1594,7 @@
             <field name="model">cinda_cmdb.st_zone_lun</field>
             <field name="arch" type="xml">
                 <search  string="Search_base_type">
+                    <field name="lun_id" string="LUN号"/>
                     <group expand="0" string="分组">
                     </group>
                 </search>
@@ -1627,6 +1651,7 @@
             <field name="model">cinda_cmdb.vlan</field>
             <field name="arch" type="xml">
                 <search  string="Search_base_type">
+                    <field name="vlan_id" string="VLAN号"/>
                     <group expand="0" string="分组">
                     </group>
                 </search>
@@ -1691,6 +1716,7 @@
             <field name="model">cinda_cmdb.fw_policy1</field>
             <field name="arch" type="xml">
                 <search  string="Search_base_type">
+                    <field name="fw_name" string="防火墙名称"/>
                     <group expand="0" string="分组">
                     </group>
                 </search>
@@ -1759,6 +1785,7 @@
             <field name="model">cinda_cmdb.fw_policy2</field>
             <field name="arch" type="xml">
                 <search  string="Search_base_type">
+                    <field name="fw_name" string="防火墙名称"/>
                     <group expand="0" string="分组">
                     </group>
                 </search>
@@ -1821,6 +1848,7 @@
             <field name="model">cinda_cmdb.spam_policy</field>
             <field name="arch" type="xml">
                 <search  string="Search_base_type">
+                    <field name="domain_name" string="域名"/>
                     <group expand="0" string="分组">
                     </group>
                 </search>
@@ -1870,6 +1898,8 @@
             <field name="model">cinda_cmdb.vm</field>
             <field name="arch" type="xml">
                 <search  string="Search_base_data">
+                    <field name="name" string="名称"/>
+                    <field name="vm_ip" string="虚拟机IP"/>
                     <group expand="0" string="分组">
                         <filter string="集群" name="cluster" context="{'group_by':'cluster'}"/>
                         <filter string="主机" name="host_computer" context="{'group_by':'host_computer'}"/>
@@ -2009,6 +2039,7 @@
             <field name="model">cinda_cmdb.account</field>
             <field name="arch" type="xml">
                 <search  string="Search_base_type">
+                    <field name="acc_nam" string="名称"/>
                     <group expand="0" string="分组">
                     </group>
                 </search>
@@ -2079,6 +2110,7 @@
             <field name="model">cinda_cmdb.auth_log</field>
             <field name="arch" type="xml">
                 <search  string="Search_base_type">
+                    <field name="executor" string="执行人"/>
                     <group expand="0" string="分组">
                     </group>
                 </search>
@@ -2133,6 +2165,7 @@
             <field name="model">cinda_cmdb.cluster</field>
             <field name="arch" type="xml">
                 <search  string="Search_base_type">
+                    <field name="name" string="名称"/>
                     <group expand="0" string="分组">
                     </group>
                 </search>
@@ -2189,6 +2222,8 @@
             <field name="model">cinda_cmdb.contract_purchase</field>
             <field name="arch" type="xml">
                 <search  string="Search_base_type">
+                    <field name="name" string="名称"/>
+                    <field name="number" string="合同编号"/>
                     <group expand="0" string="分组">
                     </group>
                 </search>
@@ -2235,6 +2270,8 @@
             <field name="model">cinda_cmdb.parts</field>
             <field name="arch" type="xml">
                 <search  string="Search_parts">
+                    <field name="parts_name" string="名称"/>
+                    <field name="sn" string="序列号"/>
                     <group expand="0" string="分组">
                         <filter  name="brand_id" string="设备品牌" context="{'group_by':'brand_id'}"/>
                         <filter name="parts_type" string="配件类型" context="{'group_by':'parts_type'}"/>

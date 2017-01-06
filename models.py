@@ -266,7 +266,7 @@ class san_port(models.Model):
     type_id = fields.Integer(string="设备类型")
     port = fields.Char(string="端口号")
     module = fields.Char(string="模块")
-    port = fields.Char(string="本端端口号")
+    # port = fields.Char(string="本端端口号")
     wwn = fields.Char(string="本端口的WWN")
     end_on_dev_id = fields.Integer(string="对端设备id")
     end_port_id = fields.Integer(string="对端端口ID")
