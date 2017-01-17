@@ -118,7 +118,7 @@ class server(models.Model):
     mng_ip_addr = fields.Char(string="管理网IP地址")
     admin_ip = fields.Char(string="管理口IP")
     admin_info = fields.Char(string="管理口信息点")
-    os_id = fields.Char(string="底层操作系统id")
+    # os_id = fields.Char(string="底层操作系统id")
     os = fields.Char(string="底层操作系统")
     cpu_num = fields.Char(string="CPU数量")
     cpu_spec = fields.Char(string="CPU规格")
@@ -180,20 +180,25 @@ class net_dev(models.Model):
     account = fields.Char(string="账号")
     last_upd = fields.Datetime(default=fields.datetime.now(), require=True, string="最后截止日期")
     comment = fields.Char(string="备注")
+    online_time = fields.Date(string="上线日期")
+    offline_time = fields.Date(string="下线日期")
+    scrap_time = fields.Date(string="报废日期")
+    fixed_assets_project = fields.Char(string="固定资产项目名称")
+    config_backup_method = fields.Selection([('auto','自动备份'),('manual','手动')], default='manual')
+    config_backup_frequency = fields.Selection([('per_day','每天'),('per_week','每周'),('per_month','每月'),('per_year','每年')])
+
     # net_dev_id = fields.Char(string="网络设备id")
     # area_id = fields.Integer(string="区域id")
     # root_acc = fields.Char(string="根用户")
     # chg_acc = fields.Char(string="变更用户")
     # mon_acc = fields.Char(string="监控用户")
     # ha_mode = fields.Char(string="主备状态")
-    # comment1 = fields.Char(string="备注1")
-    # comment2 = fields.Char(string="备注2")
     # dev_id = fields.Integer(string="设备资产id")
 
 
 class board(models.Model):
     _name = "cinda_cmdb.board"
-    _description = '板卡表'
+    _description = 'net_board'
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
@@ -213,11 +218,18 @@ class board(models.Model):
 
 class st_dev(models.Model):
     _name = "cinda_cmdb.st_dev"
-    _description = '存储设备表'
+    _description = 'storage'
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
     st_dev_id = fields.Char(string="存储id")
+    dev_id = fields.Many2one("cinda_cmdb.device", string="设备资产id",
+                             domain=[('type_id.class_id', 'ilike', "磁带机"),
+                                     ('type_id.class_id', 'ilike', "磁带库"),
+                                     ('type_id.class_id', 'ilike', "磁盘阵列"),
+                                     ('type_id.class_id', 'ilike', "存储扩展柜"),
+                                     ('type_id.class_id', 'ilike', "光纤交换机"),
+                                     ('type_id.class_id', 'ilike', "光纤连接器")])
     cage_num = fields.Integer(string="笼子数")
     disk_num = fields.Integer(string="磁盘数")
     disk_size = fields.Char(string="磁盘裸容量")
@@ -235,7 +247,6 @@ class st_dev(models.Model):
     free_4g_mod_num = fields.Integer(string="空余的4G模块数量")
     comment = fields.Integer(string="备注")
     last_upd = fields.Datetime(default=fields.datetime.now(), require=True)
-    dev_id = fields.Integer(string="设备资产id")
 
 
 class srv_room_dev(models.Model):
@@ -336,6 +347,7 @@ class soft(models.Model):
     _description = '软件总表'
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
+    _rec_name = 'soft_code'
 
     soft_id = fields.Char(string="软件总id")
     total_class = fields.Char(string="总类别", require=True)
@@ -349,11 +361,12 @@ class soft(models.Model):
     developer = fields.Char(string="开发商")
     status = fields.Char(string="状态")
     media_type = fields.Char(string="介质类型")
-    reject_date = fields.Char(string="支持到期类型")
+    reject_date = fields.Datetime(string="支持到期时间")
     contact_info = fields.Char(string="支持联系方式")
     license_pos = fields.Char(string="许可证位置")
     comment = fields.Char(string="备注")
     last_upd = fields.Datetime(default=fields.datetime.now(), require=True)
+
 
 
 class soft_detail(models.Model):
@@ -363,6 +376,7 @@ class soft_detail(models.Model):
     _mail_post_access = 'read'
 
     soft_detail_id = fields.Char(string="软件明细id")
+    soft_code_id = fields.Many2one("cinda_cmdb.soft", string="软件编号", required="True")
     detail_code = fields.Char(string="明细编号")
     detail_name = fields.Char(string="细项名称")
     version = fields.Char(string="版本号")
@@ -374,7 +388,7 @@ class soft_detail(models.Model):
     buyer = fields.Char(string="购买单位")
     owner = fields.Char(string="资产所有人")
     user = fields.Char(string="使用人")
-    media_path = fields.Char(string="介质路径")
+    media_type = fields.Char(string="介质类型")
     license_key = fields.Char(string="许可密钥")
     license_path = fields.Char(string="许可保存路径")
     comment = fields.Char(string="备注")
@@ -428,8 +442,9 @@ class chg_log(models.Model):
 
     chg_log_id = fields.Char(string="变更记录id")
     exe_date = fields.Date(string="日期")
-    executor = fields.Char(string="实施人", require=True)
-    chg_fld = fields.Char(string="变更栏位")
+    executor = fields.Many2one("cinda_cmdb.member_list", string="实施人", require=True)
+    chg_dev_id = fields.Many2one('cinda_cmdb.device', string="设备")
+    chg_type = fields.Char(string="类型")
     action = fields.Char(string="动作", require=True)
 
 

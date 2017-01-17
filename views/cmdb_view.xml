@@ -60,7 +60,7 @@
             <field name="model">cinda_cmdb.base_type</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="type_number" string="细类编号"/>
+                    <!--<field name="type_number" string="细类编号"/>-->
                     <field name="type_name" string="细类名称"/>
                     <field name="class_id" string="所属父类"/>
                     <field name="comment" string="备注"/>
@@ -74,7 +74,7 @@
                 <form>
                     <sheet>
                     <group>
-                        <field name="type_number" string="细类编号"/>
+                        <!--<field name="type_number" string="细类编号"/>-->
                         <field name="type_name" string="细类名称"/>
                         <field name="class_id" string="所属父类"/>
                         <field name="comment" string="备注"/>
@@ -227,32 +227,30 @@
             <field name="model">cinda_cmdb.device</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="device_id" string="硬件ID"/>
+                    <field name="host_name" string="设备命名"/>
+                    <field name="sn" string="序列号"/>
+                    <field name="lab_id" string="机房"/>
                     <field name="cab" string="机柜"/>
+                    <field name="u_pos" string="位置U"/>
                     <field name="use_mode" string="使用状态"/>
                     <field name="dev_start" string="设备状态"/>
                     <field name="product_name" string="产品型号"/>
                     <field name="srve_prvd" string="服务商"/>
-                    <!--<field name="purpose" string="用途"/>-->
-                    <field name="last_upd" string="最后修改时间"/>
-                    <!-- <field name="lab_id" string="机房ID"/>
-                    <field name="pos_seq" string="位置序号"/>
-                    <field name="u_pos" string="位置U"/>
-                    <field name="u_space" string="占位U"/>
-                    <field name="env_id" string="环境ID"/>
-                    <field name="type_id" string="设备类型ID"/>
-                    <field name="brand_id" string="品牌ID"/>
-                    <field name="host_name" string="设备命名"/>
-                    <field name="model" string="Model"/>
-                    <field name="asset_num_old" string="旧资产编号"/>
-                    <field name="asset_num" string="资产编号"/>
-                    <field name="sn" string="序列号"/>
-                    <field name="accept_date" string="初验日期"/>
+                    <field name="purpose" string="用途"/>
+                    <field name="owner_id" string="资产所有人"/>
                     <field name="reject_date" string="过保日期"/>
-                    <field name="owner_id" string="资产所有人ID"/>
-                    <field name="user" string="使用人"/>
-                    <field name="admin" string="管理人"/>
-                    <field name="comment" string="备注"/> -->
+                    <!--<field name="pos_seq" string="位置序号"/>-->
+                    <!--<field name="u_space" string="占位U"/>-->
+                    <!--<field name="env_id" string="环境ID"/>-->
+                    <!--<field name="type_id" string="设备类型ID"/>-->
+                    <!--<field name="brand_id" string="品牌ID"/>-->
+                    <!--<field name="model" string="Model"/>-->
+                    <!--<field name="asset_num_old" string="旧资产编号"/>-->
+                    <!--<field name="asset_num" string="资产编号"/>-->
+                    <!--<field name="accept_date" string="初验日期"/>-->
+                    <!--<field name="user" string="使用人"/>-->
+                    <!--<field name="admin" string="管理人"/>-->
+                    <!--<field name="comment" string="备注"/>-->
                 </tree>
             </field>
         </record>
@@ -282,15 +280,15 @@
                     <sheet>
                     <group>
                         <group>
-                            <field name="device_id" string="硬件ID" readonly="True"/>
+                            <!--<field name="device_id" string="硬件ID" readonly="True"/>-->
+                            <field name="host_name" string="设备命名"/>
+                            <field name="brand_id" string="品牌"/>
+                            <field name="type_id" string="设备类型"/>
+                            <field name="product_name" string="产品型号"/>
+                            <field name="sn" string="序列号"/>
+                            <field name="model" string="Model"/>
                             <field name="use_mode" string="使用状态"/>
                             <field name="dev_start" string="设备状态"/>
-                            <field name="type_id" string="设备类型"/>
-                            <field name="brand_id" string="品牌"/>
-                            <field name="product_name" string="产品型号"/>
-                            <field name="host_name" string="设备命名"/>
-                            <field name="model" string="Model"/>
-                            <field name="sn" string="序列号"/>
                         </group>
                         <group>
                             <field name="asset_num_old" string="旧资产编号"/>
@@ -298,10 +296,9 @@
                             <field name="purpose" string="用途"/>
                             <field name="owner_id" string="资产所有人"/>
                             <field name="user" string="使用人"/>
-                            <field name="srve_prvd" string="服务商"/>
                             <field name="admin" string="管理人"/>
                             <field name="comment" string="备注"/>
-                            <field name="last_upd" string="最后修改时间"/>
+                            <!--<field name="last_upd" string="最后修改时间"/>-->
                         </group>
                         <notebook colspan="3">
                             <page string="位置">
@@ -366,9 +363,10 @@
             <field name="model">cinda_cmdb.server</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="server_id" string="服务器ID"/>
-                    <field name="app_sys" string="所属系统"/>
                     <field name="admin_ip" string="管理口IP"/>
+                    <field name="buss_ip_addr" string="业务网IP地址"/>
+                    <field name="dev_id" string="所属设备序列号"/>
+                    <field name="app_sys" string="所属系统"/>
                     <!-- <field name="stor_ip_addr" string="存储网IP地址"/>
                     <field name="bck_ip_addr" string="备份网IP地址"/>
                     <field name="mng_ip_addr" string="管理网IP地址"/>
@@ -378,8 +376,7 @@
                     <field name="cpu_num" string="CPU数量"/>
                     <field name="cpu_spec" string="CPU规格"/>
                     <field name="mem_size" string="内存容量"/>
-                    <field name="buss_ip_addr" string="业务网IP地址"/>
-                    <field name="last_upd" string="最后修改时间"/>
+                    <!--<field name="last_upd" string="最后修改时间"/>-->
                     <!-- <field name="mem_spec" string="内存规格"/>
                     <field name="disk_size" string="硬盘容量(裸容量)"/>
                     <field name="disk_spec" string="硬盘规格"/>
@@ -395,7 +392,6 @@
                     <field name="vir_mark" string="虚拟化标志"/>
                     <field name="comment1" string="备注1"/>
                     <field name="comment2" string="备注2"/>
-                    <field name="dev_id" string="序列号"/>
                     <field name="san_wwn" string="san网络wwn号"/>
                     <field name="ha_mode" string="主备状态"/> -->
                 </tree>
@@ -423,15 +419,15 @@
                     <sheet>
                     <group>
                         <group>
-                            <field name="server_id" string="服务器ID"/>
+                            <!--<field name="server_id" string="服务器ID"/>-->
+                            <field name="dev_id" string="所属设备序列号"/>
                             <field name="app_sys" string="所属系统"/>
+                            <field name="admin_ip" string="管理口IP"/>
                             <field name="buss_ip_addr" string="业务网IP地址"/>
                             <field name="stor_ip_addr" string="存储网IP地址"/>
                             <field name="bck_ip_addr" string="备份网IP地址"/>
                             <field name="mng_ip_addr" string="管理网IP地址"/>
-                            <field name="admin_ip" string="管理口IP"/>
                             <field name="admin_info" string="管理口信息点"/>
-                            <field name="os_id" string="底层操作系统"/>
                         </group>
                         <group>
                             <field name="os" string="底层操作系统"/>
@@ -440,7 +436,6 @@
                             <field name="comment1" string="备注1"/>
                             <field name="comment2" string="备注2"/>
                             <field name="last_upd" string="最后修改时间"/>
-                            <field name="dev_id" string="所属设备序列号"/>
                             <field name="ha_mode" string="主备状态"/>
                         </group>
                         <notebook colspan="5">
@@ -527,18 +522,18 @@
             <field name="model">cinda_cmdb.net_dev</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="cab" string="机柜"/>
-                    <field name="use_mode" string="使用状态"/>
-                    <field name="dev_start" string="设备状态"/>
+                    <field name="name" string="设备命名"/>
+                    <field name="type_id" string="设备类型"/>
+                    <field name="env_id" string="环境"/>
                     <field name="purpose" string="用途"/>
                     <field name="lab_id" string="机房"/>
+                    <field name="cab" string="机柜"/>
+                    <field name="u_pos" string="位置U"/>
+                    <field name="use_mode" string="使用状态"/>
+                    <field name="dev_start" string="设备状态"/>
                     <!--<field name="pos_seq" string="位置序号"/>-->
-                    <!--<field name="u_pos" string="位置U"/>-->
                     <!--<field name="u_space" string="占位U"/>-->
-                    <field name="env_id" string="环境"/>
-                    <field name="type_id" string="设备类型"/>
                     <field name="brand_id" string="品牌"/>
-                    <field name="name" string="设备命名"/>
                     <field name="model" string="Model"/>
                     <!--<field name="sn" string="序列号"/>-->
                     <!--<field name="asset_num_old" string="旧资产编号"/>-->
@@ -549,7 +544,7 @@
                     <!--<field name="srve_prvd" string="服务商"/>-->
                     <field name="owner_id" string="资产所有人"/>
                     <field name="admin" string="管理人"/>
-                    <field name="last_upd" string="最后修改时间"/>
+                    <!--<field name="last_upd" string="最后修改时间"/>-->
                     <!--<field name="version" string="软件版本"/>-->
                     <!--<field name="comment" string="备注"/>-->
                     <!--<field name="area" string="区域"/>-->
@@ -584,15 +579,18 @@
                     <sheet>
                     <group>
                         <group>
+                            <field name="name" string="设备命名"/>
                             <field name="use_mode" string="使用状态"/>
                             <field name="dev_start" string="设备状态"/>
                             <field name="type_id" string="设备类型"/>
                             <field name="brand_id" string="品牌"/>
-                            <field name="name" string="设备命名"/>
                             <field name="model" string="Model"/>
                             <field name="sn" string="序列号"/>
                             <field name="version" string="软件版本"/>
                             <field name="admin_ip" string="管理IP"/>
+                            <field name="online_time" string="上线日期"/>
+                            <field name="offline_time" string="下线日期"/>
+                            <field name="scrap_time" string="报废日期"/>
                         </group>
                         <group>
                             <field name="account" string="账号"/>
@@ -603,8 +601,10 @@
                             <field name="user" string="使用人"/>
                             <field name="srve_prvd" string="服务商"/>
                             <field name="admin" string="管理人"/>
+                            <field name="fixed_assets_project" string="固定资产项目名称"/>
+                            <field name="config_backup_method" string="配置备份方式"/>
+                            <field name="config_backup_frequency" string="配置备份频率"/>
                             <field name="comment" string="备注"/>
-                            <field name="last_upd" string="最后修改时间"/>
                         </group>
                         <notebook colspan="2">
                             <page string="位置">
@@ -612,7 +612,6 @@
                                 <group>
                                     <field name="lab_id" string="机房"/>
                                     <field name="cab" domain="[('lab', '=', lab_id)]" string="机柜" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
-                                    <field name="pos_seq" string="位置序号"/>
                                     <field name="u_pos" string="位置U"/>
                                 </group>
                                 <group>
@@ -699,17 +698,19 @@
                 </form>
             </field>
         </record>
+        <!--
         <record model="ir.ui.view" id="board_search_view">
             <field name="name">board.search</field>
             <field name="model">cinda_cmdb.board</field>
             <field name="arch" type="xml">
                 <field name="card_sn" string="序列号"/>
-                <search  string="Search_base_type">
+                <search  string="Search_board">
                     <group expand="0" string="分组">
                     </group>
                 </search>
             </field>
         </record>
+        -->
         <record model="ir.ui.view" id="board_graph_view">
             <field name="name">cinda_cmdb.board_graph</field>
             <field name="model">cinda_cmdb.board</field>
@@ -727,19 +728,18 @@
             <field name="model">cinda_cmdb.st_dev</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="st_dev_id" string="存储ID"/>
-                    <field name="cage_num" string="区域ID"/>
-                    <field name="disk_num" string="区域"/>
-                    <field name="disk_size" string="软件版本"/>
-                    <field name="total_size" string="管理IP"/>
-                    <field name="used_size" string="账号"/>
-                    <field name="free_size" string="根用户"/>
-                    <field name="port_num" string="变更用户"/>
-                    <field name="used_port_num" string="监控状态"/>
-                    <field name="free_port_num" string="主备状态"/>
+                    <!--<field name="st_dev_id" string="存储ID"/>-->
+                    <field name="dev_id" string="设备资产"/>
+                    <field name="cage_num" string="笼子数"/>
+                    <field name="disk_num" string="磁盘数"/>
+                    <field name="disk_size" string="磁盘裸容量"/>
+                    <field name="total_size" string="总容量"/>
+                    <field name="used_size" string="使用容量"/>
+                    <field name="free_size" string="剩余容量"/>
+                    <field name="port_num" string="有效口总数"/>
+                    <field name="used_port_num" string="使用数(连线的)"/>
+                    <field name="free_port_num" string="剩余端口数"/>
                     <field name="comment" string="备注"/>
-                    <field name="last_upd" string="最后修改时间"/>
-                    <field name="dev_id" string="设备资产ID"/>
                 </tree>
             </field>
         </record>
@@ -749,21 +749,30 @@
             <field name="arch" type="xml">
                 <form>
                     <sheet>
-                    <group>
-                        <field name="st_dev_id" string="存储ID"/>
-                        <field name="cage_num" string="区域ID"/>
-                        <field name="disk_num" string="区域"/>
-                        <field name="disk_size" string="软件版本"/>
-                        <field name="total_size" string="管理IP"/>
-                        <field name="used_size" string="账号"/>
-                        <field name="free_size" string="根用户"/>
-                        <field name="port_num" string="变更用户"/>
-                        <field name="used_port_num" string="监控状态"/>
-                        <field name="free_port_num" string="主备状态"/>
-                        <field name="comment" string="备注"/>
-                        <field name="last_upd" string="最后修改时间"/>
-                        <field name="dev_id" string="设备资产ID"/>
-                    </group>
+                        <group>
+                            <group>
+                                <!--<field name="st_dev_id" string="存储ID"/>-->
+                                <field name="dev_id" string="设备资产"/>
+                                <field name="cage_num" string="笼子数"/>
+                                <field name="disk_num" string="磁盘数"/>
+                                <field name="disk_size" string="磁盘裸容量"/>
+                                <field name="total_size" string="总容量"/>
+                                <field name="used_size" string="使用容量"/>
+                                <field name="free_size" string="剩余容量"/>
+                                <field name="comment" string="备注"/>
+                            </group>
+                            <group>
+                                <field name="port_num" string="有效口总数"/>
+                                <field name="used_port_num" string="使用数(连线的)"/>
+                                <field name="free_port_num" string="剩余端口数"/>
+                                <field name="eight_g_mod_num" string="8G模块数"/>
+                                <field name="used_8g_mod_num" string="已经使用的8G模块数"/>
+                                <field name="free_8g_mod_num" string="空余的8G模块数"/>
+                                <field name="four_g_mod_num" string="4G模块数"/>
+                                <field name="used_4g_mod_num" string="已经使用的4G模块数"/>
+                                <field name="free_4g_mod_num" string="空余的4G模块数量"/>
+                            </group>
+                        </group>
                     </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
@@ -772,24 +781,24 @@
                 </form>
             </field>
         </record>
-        <record model="ir.ui.view" id="st_dev_search_view">
-            <field name="name">st_dev.search</field>
-            <field name="model">cinda_cmdb.st_dev</field>
-            <field name="arch" type="xml">
-                <field name="comment" string="备注"/>
-                <search  string="Search_base_type">
-                    <group expand="0" string="分组">
-                    </group>
-                </search>
-            </field>
-        </record>
+        <!--<record model="ir.ui.view" id="st_dev_search_view">-->
+            <!--<field name="name">st_dev.search</field>-->
+            <!--<field name="model">cinda_cmdb.st_dev</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<field name="name" string="设备命名"/>-->
+                <!--&lt;!&ndash;<search  string="Search_st_dev">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<group expand="0" string="分组">&ndash;&gt;-->
+                    <!--&lt;!&ndash;</group>&ndash;&gt;-->
+                <!--&lt;!&ndash;</search>&ndash;&gt;-->
+            <!--</field>-->
+        <!--</record>-->
         <record model="ir.ui.view" id="st_dev_graph_view">
             <field name="name">cinda_cmdb.st_dev_graph</field>
             <field name="model">cinda_cmdb.st_dev</field>
             <field name="type">graph</field>
             <field name="arch" type="xml">
                 <graph string="cinda_cmdb st_dev graph" type="bar" >
-                    <field name="disk_size" string="软件版本" type="row"/>
+                    <field name="dev_id" string="设备资产" type="row"/>
                 </graph>
             </field>
         </record>
@@ -800,15 +809,14 @@
             <field name="model">cinda_cmdb.srv_room_dev</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="srv_room_dev_id" string="机房设备ID"/>
+                    <!--<field name="srv_room_dev_id" string="机房设备ID"/>-->
                     <field name="asset_type" string="资产大类"/>
                     <field name="num" string="数量"/>
                     <field name="start_date" string="启用日期"/>
                     <field name="elec_power" string="总功率"/>
                     <field name="ampere" string="电流"/>
                     <field name="comment" string="备注"/>
-                    <field name="last_upd" string="最后修改时间"/>
-                    <field name="dev_id" string="设备资产id"/>
+                    <field name="dev_id" string="设备资产"/>
                 </tree>
             </field>
         </record>
@@ -819,15 +827,14 @@
                 <form>
                     <sheet>
                     <group>
-                        <field name="srv_room_dev_id" string="机房设备ID"/>
+                        <!--<field name="srv_room_dev_id" string="机房设备ID"/>-->
                         <field name="asset_type" string="资产大类"/>
                         <field name="num" string="数量"/>
                         <field name="start_date" string="启用日期"/>
                         <field name="elec_power" string="总功率"/>
                         <field name="ampere" string="电流"/>
                         <field name="comment" string="备注"/>
-                        <field name="last_upd" string="最后修改时间"/>
-                        <field name="dev_id" string="设备资产id"/>
+                        <field name="dev_id" string="设备资产"/>
                     </group>
                     </sheet>
                     <div class="oe_chatter">
@@ -865,14 +872,14 @@
             <field name="model">cinda_cmdb.san_port</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="san_port_id" string="SAN端口ID"/>
-                    <field name="dev_id" string="设备资产ID"/>
+                    <!--<field name="san_port_id" string="SAN端口ID"/>-->
+                    <field name="dev_id" string="设备资产"/>
                     <field name="type_id" string="设备类型"/>
                     <field name="port" string="端口号"/>
                     <field name="module" string="模块"/>
                     <field name="wwn" string="本端口的wwn"/>
-                    <field name="end_on_dev_id" string="对端设备ID"/>
-                    <field name="end_port_id" string="对端端口ID"/>
+                    <field name="end_on_dev_id" string="对端设备"/>
+                    <field name="end_port_id" string="对端端口"/>
                     <field name="end_on_port" string="对端的端口号"/>
                     <field name="end_on_wwn" string="对端口的wwn"/>
                     <field name="speed" string="速率"/>
@@ -883,7 +890,6 @@
                     <field name="alias" string="别名"/>
                     <field name="captain" string="说明"/>
                     <field name="comment" string="备注"/>
-                    <field name="last_upd" string="最后修改时间"/>
                 </tree>
             </field>
         </record>
@@ -894,7 +900,7 @@
                 <form>
                     <sheet>
                     <group>
-                        <field name="dev_id" string="设备资产ID"/>
+                        <field name="dev_id" string="设备资产"/>
                         <field name="type_id" string="设备类型"/>
                         <field name="port" string="端口号"/>
                         <field name="module" string="模块"/>
@@ -911,7 +917,6 @@
                         <field name="alias" string="别名"/>
                         <field name="captain" string="说明"/>
                         <field name="comment" string="备注"/>
-                        <field name="last_upd" string="最后修改时间"/>
                     </group>
                     </sheet>
                     <div class="oe_chatter">
@@ -949,9 +954,9 @@
             <field name="model">cinda_cmdb.ip_port</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="ip_port_id" string="IP端口ID"/>
-                    <field name="dev_id" string="设备ID"/>
-                    <field name="net_dev_id" string="网络设备ID"/>
+                    <!--<field name="ip_port_id" string="IP端口ID"/>-->
+                    <field name="dev_id" string="设备"/>
+                    <field name="net_dev_id" string="网络设备"/>
                     <field name="card_id" string="板卡ID"/>
                     <field name="port" string="本端物理端口号"/>
                     <field name="port_num" string="本端口名"/>
@@ -970,7 +975,6 @@
                     <field name="port_info" string="端口描述"/>
                     <field name="mod_type" string="模块类型"/>
                     <field name="mod_sn" string="模块序列号"/>
-                    <field name="last_upd" string="最后修改时间"/>
                 </tree>
             </field>
         </record>
@@ -981,9 +985,9 @@
                 <form>
                     <sheet>
                     <group>
-                        <field name="ip_port_id" string="IP端口ID"/>
-                        <field name="dev_id" string="设备ID"/>
-                        <field name="net_dev_id" string="网络设备ID"/>
+                        <!--<field name="ip_port_id" string="IP端口ID"/>-->
+                        <field name="dev_id" string="设备"/>
+                        <field name="net_dev_id" string="网络设备"/>
                         <field name="card_id" string="板卡ID"/>
                         <field name="port" string="本端物理端口号"/>
                         <field name="port_num" string="本端口名"/>
@@ -1002,7 +1006,6 @@
                         <field name="port_info" string="端口描述"/>
                         <field name="mod_type" string="模块类型"/>
                         <field name="mod_sn" string="模块序列号"/>
-                        <field name="last_upd" string="最后修改时间"/>
                     </group>
                     </sheet>
                     <div class="oe_chatter">
@@ -1082,7 +1085,6 @@
                         <field name="u_num" string="U位数目"/>
                         <field name="purpose" string="用途"/>
                         <field name="comment" string="备注"/>
-                        <field name="last_upd" string="最后修改时间"/>
                     </group>
                     <group>
                         <a class="self_add_link">
@@ -1116,7 +1118,6 @@
             <field name="model">cinda_cmdb.soft</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="soft_id" string="软件总ID"/>
                     <field name="total_class" string="总类别"/>
                     <field name="subclass" string="明细类别"/>
                     <field name="soft_code" string="软件编号"/>
@@ -1128,11 +1129,10 @@
                     <field name="developer" string="开发商"/>
                     <field name="status" string="状态"/>
                     <field name="media_type" string="介质类型"/>
-                    <field name="reject_date" string="支持到期类型"/>
+                    <field name="reject_date" string="支持到期时间"/>
                     <field name="contact_info" string="支持联系方式"/>
                     <field name="license_pos" string="许可证位置"/>
                     <field name="comment" string="备注"/>
-                    <field name="last_upd" string="最后修改时间"/>
                 </tree>
             </field>
         </record>
@@ -1143,11 +1143,10 @@
                 <form>
                     <sheet>
                     <group>
-                        <field name="soft_id" string="软件总ID"/>
+                        <field name="soft_name" string="全称"/>
                         <field name="total_class" string="总类别"/>
                         <field name="subclass" string="明细类别"/>
                         <field name="soft_code" string="软件编号"/>
-                        <field name="soft_name" string="全称"/>
                         <field name="purpose" string="用途"/>
                         <field name="license_type" string="许可类型"/>
                         <field name="license_company" string="许可单位"/>
@@ -1155,11 +1154,10 @@
                         <field name="developer" string="开发商"/>
                         <field name="status" string="状态"/>
                         <field name="media_type" string="介质类型"/>
-                        <field name="reject_date" string="支持到期类型"/>
+                        <field name="reject_date" string="支持到期时间"/>
                         <field name="contact_info" string="支持联系方式"/>
                         <field name="license_pos" string="许可证位置"/>
                         <field name="comment" string="备注"/>
-                        <field name="last_upd" string="最后修改时间"/>
                     </group>
                     </sheet>
                     <div class="oe_chatter">
@@ -1197,8 +1195,8 @@
             <field name="model">cinda_cmdb.soft_detail</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="soft_detail_id" string="软件明细ID"/>
                     <field name="detail_code" string="明细编号"/>
+                    <field name="soft_code_id" string="软件编号"/>
                     <field name="detail_name" string="细项名称"/>
                     <field name="version" string="版本号"/>
                     <field name="num" string="购买数量"/>
@@ -1209,11 +1207,10 @@
                     <field name="buyer" string="购买单位"/>
                     <field name="owner" string="资产所有人"/>
                     <field name="user" string="使用人"/>
-                    <field name="media_path" string="介质路径"/>
+                    <field name="media_type" string="介质类型"/>
                     <field name="license_key" string="许可密钥"/>
                     <field name="license_path" string="许可保存路径"/>
                     <field name="comment" string="备注"/>
-                    <field name="last_upd" string="最后修改时间"/>
                 </tree>
             </field>
         </record>
@@ -1224,8 +1221,9 @@
                 <form>
                     <sheet>
                     <group>
-                        <field name="soft_detail_id" string="软件明细ID"/>
+                        <!--<field name="soft_detail_id" string="软件明细ID"/>-->
                         <field name="detail_code" string="明细编号"/>
+                        <field name="soft_code_id" string="软件编号"/>
                         <field name="detail_name" string="细项名称"/>
                         <field name="version" string="版本号"/>
                         <field name="num" string="购买数量"/>
@@ -1236,11 +1234,10 @@
                         <field name="buyer" string="购买单位"/>
                         <field name="owner" string="资产所有人"/>
                         <field name="user" string="使用人"/>
-                        <field name="media_path" string="介质路径"/>
+                        <field name="media_type" string="介质类型"/>
                         <field name="license_key" string="许可密钥"/>
                         <field name="license_path" string="许可保存路径"/>
                         <field name="comment" string="备注"/>
-                        <field name="last_upd" string="最后修改时间"/>
                     </group>
                     </sheet>
                     <div class="oe_chatter">
@@ -1278,7 +1275,6 @@
             <field name="model">cinda_cmdb.vendor_list</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="vendor_list_id" string="服务商ID"/>
                     <field name="vendor" string="名称"/>
                     <field name="attr" string="性质"/>
                     <field name="address" string="地址"/>
@@ -1288,7 +1284,6 @@
                     <field name="mobile_phone" string="手机"/>
                     <field name="mail" string="邮件"/>
                     <field name="comment" string="备注"/>
-                    <field name="last_upd" string="最后修改时间"/>
                 </tree>
             </field>
         </record>
@@ -1299,7 +1294,7 @@
                 <form>
                     <sheet>
                     <group>
-                        <field name="vendor_list_id" string="服务商ID"/>
+                        <!--<field name="vendor_list_id" string="服务商ID"/>-->
                         <field name="vendor" string="名称"/>
                         <field name="attr" string="性质"/>
                         <field name="address" string="地址"/>
@@ -1309,7 +1304,6 @@
                         <field name="mobile_phone" string="手机"/>
                         <field name="mail" string="邮件"/>
                         <field name="comment" string="备注"/>
-                        <field name="last_upd" string="最后修改时间"/>
                     </group>
                     </sheet>
                     <div class="oe_chatter">
@@ -1347,16 +1341,14 @@
             <field name="model">cinda_cmdb.member_list</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="member_list_id" string="人员表ID"/>
                     <field name="name" string="名称"/>
-                    <!--<field name="attr" string="性质"/>-->
-                    <!--<field name="address" string="地址"/>-->
-                    <!--<field name="position" string="职位"/>-->
-                    <!--<field name="fixed_phone" string="电话"/>-->
-                    <!--<field name="mobile_phone" string="手机"/>-->
-                    <!--<field name="mail" string="邮件"/>-->
+                    <field name="attr" string="性质"/>
+                    <field name="address" string="地址"/>
+                    <field name="position" string="职位"/>
+                    <field name="fixed_phone" string="电话"/>
+                    <field name="mobile_phone" string="手机"/>
+                    <field name="mail" string="邮件"/>
                     <!--<field name="comment" string="备注"/>-->
-                    <field name="last_upd" string="最后修改时间"/>
                 </tree>
             </field>
         </record>
@@ -1367,7 +1359,7 @@
                 <form>
                     <sheet>
                     <group>
-                        <field name="member_list_id" string="人员表ID"/>
+                        <!--<field name="member_list_id" string="人员表ID"/>-->
                         <field name="name" string="名称"/>
                         <field name="attr" string="性质"/>
                         <field name="address" string="地址"/>
@@ -1376,7 +1368,6 @@
                         <field name="mobile_phone" string="手机"/>
                         <field name="mail" string="邮件"/>
                         <field name="comment" string="备注"/>
-                        <field name="last_upd" string="最后修改时间"/>
                     </group>
                     </sheet>
                     <div class="oe_chatter">
@@ -1414,10 +1405,10 @@
             <field name="model">cinda_cmdb.chg_log</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="chg_log_id" string="变更记录ID"/>
                     <field name="exe_date" string="日期"/>
                     <field name="executor" string="实施人"/>
-                    <field name="chg_fld" string="变更栏位"/>
+                    <field name="chg_dev_id" string="设备"/>
+                    <field name="chg_type" string="变更类型"/>
                     <field name="action" string="动作"/>
                 </tree>
             </field>
@@ -1429,10 +1420,11 @@
                 <form>
                     <sheet>
                     <group>
-                        <field name="chg_log_id" string="变更记录ID"/>
+                        <!--<field name="chg_log_id" string="变更记录ID"/>-->
                         <field name="exe_date" string="日期"/>
                         <field name="executor" string="实施人"/>
-                        <field name="chg_fld" string="变更栏位"/>
+                        <field name="chg_dev_id" string="设备"/>
+                        <field name="chg_type" string="变更类型"/>
                         <field name="action" string="动作"/>
                     </group>
                     </sheet>
@@ -1471,7 +1463,6 @@
             <field name="model">cinda_cmdb.net_config</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="net_config_id" string="网络配置ID"/>
                     <field name="logic_area" string="逻辑区域"/>
                     <field name="admin_ip" string="管理IP"/>
                     <field name="version" string="软件版本"/>
@@ -1492,7 +1483,7 @@
                 <form>
                     <sheet>
                     <group>
-                        <field name="net_config_id" string="网络配置ID"/>
+                        <!--<field name="net_config_id" string="网络配置ID"/>-->
                         <field name="logic_area" string="逻辑区域"/>
                         <field name="admin_ip" string="管理IP"/>
                         <field name="version" string="软件版本"/>
@@ -1540,7 +1531,6 @@
             <field name="model">cinda_cmdb.st_zone_lun</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="st_zone_lun_id" string="存储zone_lun划分ID"/>
                     <field name="zone_lun_id" string="ZONE_LUN_ID"/>
                     <field name="lun_id" string="lun号"/>
                     <field name="ioport" string="ioport"/>
@@ -1565,7 +1555,7 @@
                 <form>
                     <sheet>
                     <group>
-                        <field name="st_zone_lun_id" string="存储zone_lun划分ID"/>
+                        <!--<field name="st_zone_lun_id" string="存储zone_lun划分ID"/>-->
                         <field name="zone_lun_id" string="ZONE_LUN_ID"/>
                         <field name="lun_id" string="lun号"/>
                         <field name="ioport" string="ioport"/>
@@ -1617,7 +1607,6 @@
             <field name="model">cinda_cmdb.vlan</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="vlan_id_id" string="VLAN表ID"/>
                     <field name="vlan_id" string="VLAN号"/>
                     <field name="vlan_name" string="VLAN名称"/>
                     <field name="vlan_segment" string="VLAN网段"/>
@@ -1632,7 +1621,7 @@
                 <form>
                     <sheet>
                     <group>
-                        <field name="vlan_id_id" string="VLAN表ID"/>
+                        <!--<field name="vlan_id_id" string="VLAN表ID"/>-->
                         <field name="vlan_id" string="VLAN号"/>
                         <field name="vlan_name" string="VLAN名称"/>
                         <field name="vlan_segment" string="VLAN网段"/>
@@ -1674,7 +1663,6 @@
             <field name="model">cinda_cmdb.fw_policy1</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="fw_policy1_id" string="防火墙策略1ID"/>
                     <field name="fw_name" string="防火墙名称"/>
                     <field name="s_addrname" string="源地址命名"/>
                     <field name="s_ip" string="源地址"/>
@@ -1693,7 +1681,7 @@
                 <form>
                     <sheet>
                     <group>
-                        <field name="fw_policy1_id" string="防火墙策略1ID"/>
+                        <!--<field name="fw_policy1_id" string="防火墙策略1ID"/>-->
                         <field name="fw_name" string="防火墙名称"/>
                         <field name="s_addrname" string="源地址命名"/>
                         <field name="s_ip" string="源地址"/>
@@ -1739,7 +1727,6 @@
             <field name="model">cinda_cmdb.fw_policy2</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="fw_policy2_id" string="防火墙策略2ID"/>
                     <field name="fw_name" string="防火墙名称"/>
                     <field name="switch_mode" string="转换模式"/>
                     <field name="s_addrname" string="源地址命名"/>
@@ -1760,7 +1747,7 @@
                 <form>
                     <sheet>
                     <group>
-                        <field name="fw_policy2_id" string="防火墙策略2ID"/>
+                        <!--<field name="fw_policy2_id" string="防火墙策略2ID"/>-->
                         <field name="fw_name" string="防火墙名称"/>
                         <field name="switch_mode" string="转换模式"/>
                         <field name="s_addrname" string="源地址命名"/>
@@ -1808,7 +1795,6 @@
             <field name="model">cinda_cmdb.spam_policy</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="spam_policy_id" string="SPAM策略id"/>
                     <field name="industry" string="行业"/>
                     <field name="company_name" string="公司名称"/>
                     <field name="domain_name" string="域名"/>
@@ -1826,7 +1812,7 @@
                 <form>
                     <sheet>
                     <group>
-                        <field name="spam_policy_id" string="SPAM策略id"/>
+                        <!--<field name="spam_policy_id" string="SPAM策略id"/>-->
                         <field name="industry" string="行业"/>
                         <field name="company_name" string="公司名称"/>
                         <field name="domain_name" string="域名"/>
@@ -1971,7 +1957,6 @@
                 <tree>
                     <!-- <field name="dev_id" string="设备ID"/>
                     <field name="soft_id" string="软件ID"/> -->
-                    <field name="account_id" string="账户ID"/>
                     <field name="acc_nam" string="账户名称"/>
                     <!-- <field name="encr_pasw" string="加密密码"/> -->
                     <field name="use_purp" string="使用目的"/>
@@ -2001,10 +1986,10 @@
                     <sheet>
                     <group>
                         <group>
-                            <field name="account_id" string="账户ID"/>
-                            <field name="dev_id" string="设备ID"/>
-                            <field name="soft_id" string="软件ID"/>
+                            <!--<field name="account_id" string="账户ID"/>-->
                             <field name="acc_nam" string="账户名称"/>
+                            <field name="dev_id" string="设备"/>
+                            <field name="soft_id" string="软件"/>
                             <field name="encr_pasw" string="加密密码"/>
                             <field name="use_purp" string="使用目的"/>
                             <field name="use_mode" string="使用类型"/>
@@ -2062,9 +2047,8 @@
             <field name="model">cinda_cmdb.auth_log</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="auth_log_id" string="授权记录ID"/>
-                    <field name="exe_date" string="执行日期"/>
                     <field name="executor" string="执行者"/>
+                    <field name="exe_date" string="执行日期"/>
                     <field name="chg_num" string="变更编号"/>
                     <field name="action" string="动作"/>
                     <field name="per_user" string="上一个使用人"/>
@@ -2073,7 +2057,6 @@
                     <field name="aft_owner" string="下一个所有人"/>
                     <field name="comment1" string="备注1"/>
                     <field name="comment2" string="备注2"/>
-                    <field name="last_upd" string="最后修改时间"/>
                 </tree>
             </field>
         </record>
@@ -2084,9 +2067,9 @@
                 <form>
                     <sheet>
                     <group>
-                        <field name="auth_log_id" string="授权记录ID"/>
-                        <field name="exe_date" string="执行日期"/>
+                        <!--<field name="auth_log_id" string="授权记录ID"/>-->
                         <field name="executor" string="执行者"/>
+                        <field name="exe_date" string="执行日期"/>
                         <field name="chg_num" string="变更编号"/>
                         <field name="action" string="动作"/>
                         <field name="per_user" string="上一个使用人"/>
@@ -2095,7 +2078,6 @@
                         <field name="aft_owner" string="下一个所有人"/>
                         <field name="comment1" string="备注1"/>
                         <field name="comment2" string="备注2"/>
-                        <field name="last_upd" string="最后修改时间"/>
                     </group>
                     </sheet>
                     <div class="oe_chatter">
@@ -2246,9 +2228,9 @@
             <field name="model">cinda_cmdb.parts</field>
             <field name="arch" type="xml">
                 <tree>
+                    <field name="parts_name" string="配件名称"/>
                     <field name="brand_id" string="设备品牌"/>
                     <field name="parts_type" string="配件类型"/>
-                    <field name="parts_name" string="配件名称"/>
                     <field name="sn" string="序列号"/>
                     <field name="use_state" string="使用状态"/>
                     <field name="parts_in_device" string="配件所在设备"/>
