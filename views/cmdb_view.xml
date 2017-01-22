@@ -239,10 +239,10 @@
                     <field name="purpose" string="用途"/>
                     <field name="owner_id" string="资产所有人"/>
                     <field name="reject_date" string="过保日期"/>
+                    <field name="type_id" string="设备类型"/>
                     <!--<field name="pos_seq" string="位置序号"/>-->
                     <!--<field name="u_space" string="占位U"/>-->
                     <!--<field name="env_id" string="环境ID"/>-->
-                    <!--<field name="type_id" string="设备类型ID"/>-->
                     <!--<field name="brand_id" string="品牌ID"/>-->
                     <!--<field name="model" string="Model"/>-->
                     <!--<field name="asset_num_old" string="旧资产编号"/>-->
@@ -2335,7 +2335,7 @@
                     <field name="wwn" string="WWN"/>
                     <field name="device_id" string="所在设备"/>
                     <field name="peer_device_id" string="对端设备" on_change="onchange_peer_interface(peer_device_id)"/>
-                    <field name="peer_interface" string="对端接口"/>
+                    <field name="peer_interface" domain="[('sn', '=', peer_device_id)]" string="对端接口" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
                 </tree>
             </field>
         </record>
