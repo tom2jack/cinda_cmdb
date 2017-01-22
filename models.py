@@ -1,6 +1,6 @@
 ﻿# -*- coding: utf-8 -*-
 from openerp import fields
-from openerp import models
+from openerp import models,api,exceptions
 
 
 class base_class(models.Model):
@@ -95,6 +95,7 @@ class device(models.Model):
     comment = fields.Char(string="备注")
     last_upd = fields.Datetime(default=fields.datetime.now(), require=True, string="最后截止日期")
     contract_purchase_id = fields.Many2one("cinda_cmdb.contract_purchase", string="采购合同编号")
+    interface_ids = fields.One2many('cinda_cmdb.interface', 'device_id', string="接口")
 
     def create(self, cr, uid, vals, context=None):
         vals['device_id'] = self.pool.get('ir.sequence').get(cr, uid, 'cinda_cmdb.device')
@@ -110,6 +111,7 @@ class server(models.Model):
 
     vm_ids = fields.One2many("cinda_cmdb.vm", "host_computer", string="虚拟机信息")
     dev_id = fields.Many2one("cinda_cmdb.device", string="设备资产id")
+    interface_ids = fields.One2many(related='dev_id.interface_ids', string="接口")
     server_id = fields.Char(string="服务器id")
     app_sys = fields.Char(string="所属系统")
     buss_ip_addr = fields.Char(string="业务网IP地址")
@@ -691,4 +693,38 @@ class parts(models.Model):
     location = fields.Char(string="位置")
     number = fields.Integer(string="数量")
     area = fields.Char(string="区域")
-    fld = fields.Char(string="预留栏位")
+
+
+class interface(models.Model):
+    _name = "cinda_cmdb.interface"
+    _description = "接口表"
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _mail_post_access = 'read'
+
+    name = fields.Char(sting="接口号")
+    type = fields.Selection(
+        [
+            ('ethernet_electricity', "以太网电口"),
+            ('ethernet_fiber', "以太网光口"),
+            ('hba', "HBA"),
+            ('virtual', "虚拟接口"),
+        ],
+        string="类型",)
+    mac = fields.Char(string="MAC地址")
+    ip = fields.Char(string="IP地址")
+    wwn = fields.Char(string="wwn")
+    device_id = fields.Many2one('cinda_cmdb.device', string="所在设备")
+    peer_device_id = fields.Many2one('cinda_cmdb.device', string="对端设备")
+    peer_interface = fields.Many2one('cinda_cmdb.interface', string="对端接口")
+
+    # form页面根据peer_device_id字段动态更新peer_interface字段
+    # @api.onchange('peer_device_id')
+    # def onchange_peer_interface(self, peer_device_id):
+    #     res = {'value':{}}
+    #     interface_obj = self.pool.get('cinda_cmdb.interface')
+    #     if peer_device_id:
+    #         interfaces = interface_obj.search(peer_device_id, context=context)
+    #         res['value'] = {
+    #                         'peer_interface': interfaces.name,
+    #         }
+    #     return res

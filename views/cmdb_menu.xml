@@ -244,6 +244,13 @@
             <field name="view_mode">tree,form</field>
         </record>
 
+        <record id="cinda_cmdb_interface_action" model="ir.actions.act_window" >
+            <field name="name">接口表</field>
+            <field name="res_model">cinda_cmdb.interface</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,graph</field>
+        </record>
+
         <menuitem id="main_cinda_cmdb_menu" name="cinda_cmdb"/>
 
 
@@ -257,20 +264,21 @@
 
 
         <!--<menuitem id="base_data_id" name="基础数据表" parent="cinda_cmdb_menu" action="cinda_cmdb_base_data_action" />-->
-
-        <menuitem id="menu_dc" name="机房信息" parent="device_menu" sequence="1"/>
+        <menuitem id="device_all" name="硬件总表" parent="device_menu" sequence="1" action="cinda_cmdb_device_action"/>
+        <menuitem id="interface_all" name="接口总表" parent="device_menu" sequence="2" action="cinda_cmdb_interface_action"/>
+        <menuitem id="menu_dc" name="机房信息" parent="device_menu" sequence="3"/>
         <menuitem id="base_type_room_id" name="机房" parent="menu_dc" action="cinda_cmdb_base_type_room_action" />
         <menuitem id="cabinet_id" name="机柜表" parent="menu_dc"  action="cinda_cmdb_cabinet_action"/>
         <menuitem id="srv_room_dev_id" name="机房设备" parent="menu_dc" action="cinda_cmdb_srv_room_dev_action"/>
-        <menuitem id="menu_computer" name="计算资源设备" parent="device_menu" sequence="2"/>
+        <menuitem id="menu_computer" name="计算资源设备" parent="device_menu" sequence="4"/>
         <menuitem id="device_id" name="服务器硬件" parent="menu_computer" action="cinda_cmdb_device_action" />
-        <menuitem id="server_id" name="服务器" parent="menu_computer"  action="cinda_cmdb_server_action"/>
-        <menuitem id="menu_network" name="网络安全设备" parent="device_menu" sequence="3"/>
+        <menuitem id="server_id" name="服务器信息" parent="menu_computer"  action="cinda_cmdb_server_action"/>
+        <menuitem id="menu_network" name="网络安全设备" parent="device_menu" sequence="5"/>
         <menuitem id="net_dev_id" name="网络设备" parent="menu_network" action="cinda_cmdb_net_dev_action" />
         <menuitem id="board_id" name="板卡" parent="menu_network" action="cinda_cmdb_board_action" />
         <menuitem id="cinda_cmdb_parts_id" name="配件" parent="menu_network" action="cinda_cmdb_parts_action"/>
         <menuitem id="ip_port_id" name="IP端口" parent="menu_network" action="cinda_cmdb_ip_port_action" />
-        <menuitem id="menu_storage" name="存储设备" parent="device_menu" sequence="4"/>
+        <menuitem id="menu_storage" name="存储设备" parent="device_menu" sequence="6"/>
         <menuitem id="st_dev_id" name="存储" parent="menu_storage" action="cinda_cmdb_st_dev_action" />
         <menuitem id="san_port_id" name="SAN端口" parent="menu_storage" action="cinda_cmdb_san_port_action" />
         <!--<menuitem id="position_u_id" name="U位表" parent="device_id" action="cinda_cmdb_position_u_action" sequence="7" />-->
