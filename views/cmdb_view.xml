@@ -472,7 +472,7 @@
                                             <field name="name" string="接口号"/>
                                             <field name="ip" string="ip"/>
                                             <field name="mac" string="mac"/>
-                                            <field name="wwn" string="wwn"/>
+                                            <!--<field name="wwn" string="wwn"/>-->
                                             <field name="peer_device_id" string="对端设备"/>
                                             <field name="peer_interface" string="对端接口"/>
                                         </tree>
@@ -535,18 +535,24 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="name" string="设备命名"/>
-                    <field name="type_id" string="设备类型"/>
-                    <field name="env_id" string="环境"/>
-                    <field name="purpose" string="用途"/>
-                    <field name="lab_id" string="机房"/>
-                    <field name="cab" string="机柜"/>
-                    <field name="u_pos" string="位置U"/>
-                    <field name="use_mode" string="使用状态"/>
-                    <field name="dev_start" string="设备状态"/>
+                    <field name="dev_id" string="设备资产"/>
+                    <field name="area" string="区域"/>
+                    <field name="admin_ip" string="管理IP"/>
+                    <field name="area" string="区域"/>
+                    <field name="online_time" string="上线日期"/>
+                    <field name="fixed_assets_project" string="固定资产项目名称"/>
+                    <!--<field name="type_id" string="设备类型"/>-->
+                    <!--<field name="env_id" string="环境"/>-->
+                    <!--<field name="purpose" string="用途"/>-->
+                    <!--<field name="lab_id" string="机房"/>-->
+                    <!--<field name="cab" string="机柜"/>-->
+                    <!--<field name="u_pos" string="位置U"/>-->
+                    <!--<field name="use_mode" string="使用状态"/>-->
+                    <!--<field name="dev_start" string="设备状态"/>-->
                     <!--<field name="pos_seq" string="位置序号"/>-->
                     <!--<field name="u_space" string="占位U"/>-->
-                    <field name="brand_id" string="品牌"/>
-                    <field name="model" string="Model"/>
+                    <!--<field name="brand_id" string="品牌"/>-->
+                    <!--<field name="model" string="Model"/>-->
                     <!--<field name="sn" string="序列号"/>-->
                     <!--<field name="asset_num_old" string="旧资产编号"/>-->
                     <!--<field name="asset_num" string="资产编号"/>-->
@@ -554,8 +560,8 @@
                     <!--<field name="reject_date" string="过保日期"/>-->
                     <!--<field name="user" string="使用人"/>-->
                     <!--<field name="srve_prvd" string="服务商"/>-->
-                    <field name="owner_id" string="资产所有人"/>
-                    <field name="admin" string="管理人"/>
+                    <!--<field name="owner_id" string="资产所有人"/>-->
+                    <!--<field name="admin" string="管理人"/>-->
                     <!--<field name="last_upd" string="最后修改时间"/>-->
                     <!--<field name="version" string="软件版本"/>-->
                     <!--<field name="comment" string="备注"/>-->
@@ -570,15 +576,10 @@
             <field name="model">cinda_cmdb.net_dev</field>
             <field name="arch" type="xml">
                 <search  string="Search_net_dev">
-                    <field name="sn" string="序列号"/>
                     <field name="name" string="设备命名"/>
-                    <field name="asset_num" string="资产编号"/>
+                    <field name="admin_ip" string="管理IP"/>
                     <group expand="0" string="分组">
-                        <filter string="设备命名" name="name" context="{'group_by':'name'}"/>
-                        <filter string="设备类型" name="type_id" context="{'group_by':'type_id'}"/>
-                        <filter string="品牌" name="brand_id" context="{'group_by':'brand_id'}"/>
-                        <filter string="用途" name="purpose" context="{'group_by':'purpose'}"/>
-                        <filter string="环境" name="env_id" context="{'group_by':'env_id'}"/>
+                        <filter string="区域" name="area" context="{'group_by':'area'}"/>
                     </group>
                 </search>
             </field>
@@ -592,12 +593,13 @@
                     <group>
                         <group>
                             <field name="name" string="设备命名"/>
-                            <field name="use_mode" string="使用状态"/>
-                            <field name="dev_start" string="设备状态"/>
-                            <field name="type_id" string="设备类型"/>
-                            <field name="brand_id" string="品牌"/>
-                            <field name="model" string="Model"/>
-                            <field name="sn" string="序列号"/>
+                            <field name="dev_id" string="设备资产"/>
+                            <!--<field name="use_mode" string="使用状态"/>-->
+                            <!--<field name="dev_start" string="设备状态"/>-->
+                            <!--<field name="type_id" string="设备类型"/>-->
+                            <!--<field name="brand_id" string="品牌"/>-->
+                            <!--<field name="model" string="Model"/>-->
+                            <!--<field name="sn" string="序列号"/>-->
                             <field name="version" string="软件版本"/>
                             <field name="admin_ip" string="管理IP"/>
                             <field name="online_time" string="上线日期"/>
@@ -605,41 +607,54 @@
                             <field name="scrap_time" string="报废日期"/>
                         </group>
                         <group>
+                            <field name="area" string="区域"/>
                             <field name="account" string="账号"/>
-                            <field name="asset_num_old" string="旧资产编号"/>
-                            <field name="asset_num" string="资产编号"/>
-                            <field name="purpose" string="用途"/>
-                            <field name="owner_id" string="资产所有人"/>
-                            <field name="user" string="使用人"/>
-                            <field name="srve_prvd" string="服务商"/>
-                            <field name="admin" string="管理人"/>
+                            <!--<field name="asset_num_old" string="旧资产编号"/>-->
+                            <!--<field name="asset_num" string="资产编号"/>-->
+                            <!--<field name="purpose" string="用途"/>-->
+                            <!--<field name="owner_id" string="资产所有人"/>-->
+                            <!--<field name="user" string="使用人"/>-->
+                            <!--<field name="srve_prvd" string="服务商"/>-->
+                            <!--<field name="admin" string="管理人"/>-->
                             <field name="fixed_assets_project" string="固定资产项目名称"/>
                             <field name="config_backup_method" string="配置备份方式"/>
                             <field name="config_backup_frequency" string="配置备份频率"/>
                             <field name="comment" string="备注"/>
                         </group>
                         <notebook colspan="2">
-                            <page string="位置">
-                                <group>
-                                <group>
-                                    <field name="lab_id" string="机房"/>
-                                    <field name="cab" domain="[('lab', '=', lab_id)]" string="机柜" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
-                                    <field name="u_pos" string="位置U"/>
-                                </group>
-                                <group>
-                                    <field name="u_space" string="占位U"/>
-                                    <field name="env_id" string="环境"/>
-                                    <field name="area" string="区域"/>
-                                </group>
-                                </group>
+                            <page string="接口">
+                                <field name="interface_ids">
+                                    <tree editable="bottom" create="true" nolabel="true">
+                                            <field name="name" string="接口号"/>
+                                            <field name="ip" string="ip"/>
+                                            <field name="mac" string="mac"/>
+                                            <!--<field name="wwn" string="wwn"/>-->
+                                            <field name="peer_device_id" string="对端设备"/>
+                                            <field name="peer_interface" string="对端接口"/>
+                                        </tree>
+                                </field>
                             </page>
-                            <page string="合同">
-                                <group>
-                                    <field name="accept_date" string="初验日期"/>
-                                    <field name="reject_date" string="过保日期"/>
-                                    <field name="srve_prvd" string="服务商"/>
-                                </group>
-                            </page>
+                            <!--<page string="位置">-->
+                                <!--<group>-->
+                                <!--<group>-->
+                                    <!--<field name="lab_id" string="机房"/>-->
+                                    <!--<field name="cab" domain="[('lab', '=', lab_id)]" string="机柜" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>-->
+                                    <!--<field name="u_pos" string="位置U"/>-->
+                                <!--</group>-->
+                                <!--<group>-->
+                                    <!--<field name="u_space" string="占位U"/>-->
+                                    <!--<field name="env_id" string="环境"/>-->
+                                    <!--<field name="area" string="区域"/>-->
+                                <!--</group>-->
+                                <!--</group>-->
+                            <!--</page>-->
+                            <!--<page string="合同">-->
+                                <!--<group>-->
+                                    <!--<field name="accept_date" string="初验日期"/>-->
+                                    <!--<field name="reject_date" string="过保日期"/>-->
+                                    <!--<field name="srve_prvd" string="服务商"/>-->
+                                <!--</group>-->
+                            <!--</page>-->
                         </notebook>
                     </group>
                 </sheet>

@@ -147,47 +147,54 @@ class server(models.Model):
 
 class net_dev(models.Model):
     _name = "cinda_cmdb.net_dev"
-    _description = '网络设备表'
+    _description = '网络信息表'
     _rec_name = "name"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
-
-    lab_id = fields.Many2one("cinda_cmdb.base_type", string='机房', domain=[('class_id', 'ilike', "机房")])
-    cab = fields.Many2one("cinda_cmdb.cabinet", string="机柜")
-    pos_seq = fields.Integer(string="位置序号")
-    u_pos = fields.Many2one("cinda_cmdb.base_type", string="位置U", domain=[('class_id', 'ilike', "位置代号")])
-    u_space = fields.Integer(string="占位U")
-    env_id = fields.Many2one("cinda_cmdb.base_type", string="环境", domain=[('class_id', 'ilike', "环境")])
-    use_mode = fields.Many2one("cinda_cmdb.base_type", string="使用状态", domain=[('class_id', 'ilike', "使用状态")])
-    dev_start = fields.Selection([('start up', '开机'), ('shut down', '关机'),], default="", Require="False", string="设备状态")
-    type_id = fields.Many2one("cinda_cmdb.base_type", string="设备类型", domain=[('class_id', 'ilike', "设备类型")])
-    brand_id = fields.Many2one("cinda_cmdb.base_type", string="品牌", domain=[('class_id', 'ilike', "设备品牌")])
     name = fields.Char(string="设备命名")
-    model = fields.Char(string="Model")
-    asset_num_old = fields.Char(string="旧资产编号")
-    asset_num = fields.Char(string="资产编号")
-    sn = fields.Char(string="序列号")
-    server_ids = fields.One2many("cinda_cmdb.server", "app_sys", string="服务器信息")
-    purpose = fields.Char(string="用途")
-    accept_date = fields.Char(string="初验日期")
-    reject_date = fields.Char(string="过保日期")
-    owner_id = fields.Many2one("cinda_cmdb.base_type", string="资产所有人", domain=[('class_id', 'ilike', "资产所有者")])
-    user = fields.Many2one("cinda_cmdb.member_list", string="使用人")
-    srve_prvd = fields.Many2one("cinda_cmdb.vendor_list", string="服务商")
-    admin = fields.Many2one("cinda_cmdb.member_list", string="管理人")
     area = fields.Char(string="区域")
     version = fields.Char(string="软件版本")
     admin_ip = fields.Char(string="管理IP")
     account = fields.Char(string="账号")
-    last_upd = fields.Datetime(default=fields.datetime.now(), require=True, string="最后截止日期")
     comment = fields.Char(string="备注")
     online_time = fields.Date(string="上线日期")
     offline_time = fields.Date(string="下线日期")
     scrap_time = fields.Date(string="报废日期")
     fixed_assets_project = fields.Char(string="固定资产项目名称")
-    config_backup_method = fields.Selection([('auto','自动备份'),('manual','手动')], default='manual')
-    config_backup_frequency = fields.Selection([('per_day','每天'),('per_week','每周'),('per_month','每月'),('per_year','每年')])
+    config_backup_method = fields.Selection([('auto', '自动备份'), ('manual', '手动')], default='manual')
+    config_backup_frequency = fields.Selection(
+        [('per_day', '每天'),
+         ('per_week', '每周'),
+         ('per_month', '每月'),
+         ('per_year', '每年')]
+    )
+    dev_id = fields.Many2one("cinda_cmdb.device", string="设备资产")
+    interface_ids = fields.One2many(related='dev_id.interface_ids', string="接口")
+    last_upd = fields.Datetime(default=fields.datetime.now(), require=True, string="最后修改日期")
+
+    # lab_id = fields.Many2one("cinda_cmdb.base_type", string='机房', domain=[('class_id', 'ilike', "机房")])
+    # cab = fields.Many2one("cinda_cmdb.cabinet", string="机柜")
+    # pos_seq = fields.Integer(string="位置序号")
+    # u_pos = fields.Many2one("cinda_cmdb.base_type", string="位置U", domain=[('class_id', 'ilike', "位置代号")])
+    # u_space = fields.Integer(string="占位U")
+    # env_id = fields.Many2one("cinda_cmdb.base_type", string="环境", domain=[('class_id', 'ilike', "环境")])
+    # use_mode = fields.Many2one("cinda_cmdb.base_type", string="使用状态", domain=[('class_id', 'ilike', "使用状态")])
+    # dev_start = fields.Selection([('start up', '开机'), ('shut down', '关机'),], default="", Require="False", string="设备状态")
+    # type_id = fields.Many2one("cinda_cmdb.base_type", string="设备类型", domain=[('class_id', 'ilike', "设备类型")])
+    # brand_id = fields.Many2one("cinda_cmdb.base_type", string="品牌", domain=[('class_id', 'ilike', "设备品牌")])
+    # model = fields.Char(string="Model")
+    # asset_num_old = fields.Char(string="旧资产编号")
+    # asset_num = fields.Char(string="资产编号")
+    # sn = fields.Char(string="序列号")
+    # server_ids = fields.One2many("cinda_cmdb.server", "app_sys", string="服务器信息")
+    # purpose = fields.Char(string="用途")
+    # accept_date = fields.Char(string="初验日期")
+    # reject_date = fields.Char(string="过保日期")
+    # owner_id = fields.Many2one("cinda_cmdb.base_type", string="资产所有人", domain=[('class_id', 'ilike', "资产所有者")])
+    # user = fields.Many2one("cinda_cmdb.member_list", string="使用人")
+    # srve_prvd = fields.Many2one("cinda_cmdb.vendor_list", string="服务商")
+    # admin = fields.Many2one("cinda_cmdb.member_list", string="管理人")
 
     # net_dev_id = fields.Char(string="网络设备id")
     # area_id = fields.Integer(string="区域id")
