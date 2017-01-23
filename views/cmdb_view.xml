@@ -2390,7 +2390,7 @@
                     <field name="wwn" string="WWN"/>
                     <group expand="0" string="分组">
                         <filter name="type" string="类型" context="{'group_by':'type'}"/>
-                        <filter name="device_id" string="本段设备" context="{'group_by':'device_id'}"/>
+                        <filter name="device_id" string="本端设备" context="{'group_by':'device_id'}"/>
                     </group>
                 </search>
             </field>
