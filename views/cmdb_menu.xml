@@ -84,9 +84,20 @@
             <field name="name">网络设备表</field>
             <field name="res_model">cinda_cmdb.device</field>
             <field name="view_type">form</field>
-            <field name="domain">['|',('type_id','=',"网络设备"),'|','|','|','|','|','|','|','|','|',('type_id','=',"交换机"),('type_id','=',"路由器"),
-                ('type_id','=',"网络设备"),('type_id','=',"视频控制"),('type_id','=',"邮件网关"),('type_id','=',"PIX"),('type_id','=',"IDS探针"),
-                ('type_id','=',"SG"),('type_id','=',"SSL_VPN"),('type_id','=',"备邮数据中心"),]</field>
+            <field name="domain">['|','|','|','|','|','|','|','|','|','|',
+                ('type_id','=',"网络设备"),
+                ('type_id','=',"交换机"),
+                ('type_id','=',"路由器"),
+                ('type_id','=',"网络设备"),
+                ('type_id','=',"视频控制"),
+                ('type_id','=',"邮件网关"),
+                ('type_id','=',"PIX"),
+                ('type_id','=',"IDS探针"),
+                ('type_id','=',"SG"),
+                ('type_id','=',"SSL_VPN"),
+                ('type_id','=',"备邮数据中心"),
+                ]
+            </field>
             <field name="view_mode">tree,form,graph</field>
         </record>
         <record id="cinda_cmdb_net_dev_action_tree" model="ir.actions.act_window.view" >
@@ -101,6 +112,15 @@
             <field name="view_id" ref="device_form_view" />
             <field name="act_window_id" ref="cinda_cmdb_net_dev_action" />
         </record>
+
+
+        <record id="cinda_cmdb_net_dev_information" model="ir.actions.act_window">
+            <field name="name">网络信息表</field>
+            <field name="res_model">cinda_cmdb.net_dev</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,graph</field>
+        </record>
+
 
         <record id="cinda_cmdb_board_action" model="ir.actions.act_window" >
             <field name="name">板卡表</field>
@@ -333,13 +353,14 @@
         <menuitem id="cabinet_id" name="机柜表" parent="menu_dc"  action="cinda_cmdb_cabinet_action"/>
         <menuitem id="srv_room_dev_id" name="机房设备" parent="menu_dc" action="cinda_cmdb_srv_room_dev_action"/>
         <menuitem id="menu_computer" name="计算资源设备" parent="device_menu" sequence="4"/>
-        <menuitem id="device_id" name="服务器硬件" parent="menu_computer" action="cinda_cmdb_server_device_action" />
-        <menuitem id="server_id" name="服务器信息" parent="menu_computer"  action="cinda_cmdb_server_action"/>
+        <menuitem id="device_id" name="服务器设备" parent="menu_computer" action="cinda_cmdb_server_device_action" sequence="1"/>
+        <menuitem id="server_id" name="服务器信息" parent="menu_computer"  action="cinda_cmdb_server_action" sequence="2"/>
         <menuitem id="menu_network" name="网络安全设备" parent="device_menu" sequence="5"/>
-        <menuitem id="net_dev_id" name="网络设备" parent="menu_network" action="cinda_cmdb_net_dev_action" />
-        <menuitem id="board_id" name="板卡" parent="menu_network" action="cinda_cmdb_board_action" />
-        <menuitem id="cinda_cmdb_parts_id" name="配件" parent="menu_network" action="cinda_cmdb_parts_action"/>
-        <menuitem id="ip_port_id" name="IP端口" parent="menu_network" action="cinda_cmdb_ip_port_action" />
+        <menuitem id="net_dev_id" name="网络设备" parent="menu_network" action="cinda_cmdb_net_dev_action" sequence="1"/>
+        <menuitem id="net_dev_information" name="网络信息" parent="menu_network" action="cinda_cmdb_net_dev_information" sequence="2"/>
+        <menuitem id="board_id" name="板卡" parent="menu_network" action="cinda_cmdb_board_action" sequence="3"/>
+        <menuitem id="cinda_cmdb_parts_id" name="配件" parent="menu_network" action="cinda_cmdb_parts_action" sequence="4"/>
+        <menuitem id="ip_port_id" name="IP端口" parent="menu_network" action="cinda_cmdb_ip_port_action" sequence="5"/>
         <menuitem id="menu_storage" name="存储设备" parent="device_menu" sequence="6"/>
         <menuitem id="st_info_id" name="存储信息" parent="menu_storage" action="cinda_cmdb_st_info_action" />
         <menuitem id="st_dev_id" name="存储硬件" parent="menu_storage" action="cinda_cmdb_st_dev_action" />

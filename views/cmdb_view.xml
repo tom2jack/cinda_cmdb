@@ -228,6 +228,7 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="host_name" string="设备命名"/>
+                    <field name="type_id" string="设备类型"/>
                     <field name="sn" string="序列号"/>
                     <field name="lab_id" string="机房"/>
                     <field name="cab" string="机柜"/>
@@ -239,7 +240,6 @@
                     <field name="purpose" string="用途"/>
                     <field name="owner_id" string="资产所有人"/>
                     <field name="reject_date" string="过保日期"/>
-                    <field name="type_id" string="设备类型"/>
                     <!--<field name="pos_seq" string="位置序号"/>-->
                     <!--<field name="u_space" string="占位U"/>-->
                     <!--<field name="env_id" string="环境ID"/>-->
@@ -282,8 +282,8 @@
                         <group>
                             <!--<field name="device_id" string="硬件ID" readonly="True"/>-->
                             <field name="host_name" string="设备命名"/>
-                            <field name="brand_id" string="品牌"/>
                             <field name="type_id" string="设备类型"/>
+                            <field name="brand_id" string="品牌"/>
                             <field name="product_name" string="产品型号"/>
                             <field name="sn" string="序列号"/>
                             <field name="model" string="Model"/>
@@ -327,12 +327,11 @@
                                 </group>
                                 </group>
                             </page>
-                            <page string="服务器信息">
-                                <group>
-                                    <field name="server_ids" string="服务器信息"/>
-
-                                </group>
-                            </page>
+                            <!--<page string="服务器信息">-->
+                                <!--<group>-->
+                                    <!--<field name="server_ids" string="服务器信息"/>-->
+                                <!--</group>-->
+                            <!--</page>-->
                         </notebook>
                     </group>
                 </sheet>
@@ -466,18 +465,16 @@
                                 </group>
                             </page>
                             <page string="接口">
-                                <group>
-                                    <field name="interface_ids">
-                                        <tree editable="bottom" create="true" nolabel="true">
-                                            <field name="name" string="接口号"/>
-                                            <field name="ip" string="ip"/>
-                                            <field name="mac" string="mac"/>
-                                            <!--<field name="wwn" string="wwn"/>-->
-                                            <field name="peer_device_id" string="对端设备"/>
-                                            <field name="peer_interface" string="对端接口"/>
-                                        </tree>
-                                    </field>
-                                </group>
+                                <field name="interface_ids">
+                                    <tree editable="bottom" create="true" nolabel="true">
+                                        <field name="name" string="接口号"/>
+                                        <field name="ip" string="ip"/>
+                                        <field name="mac" string="mac"/>
+                                        <!--<field name="wwn" string="wwn"/>-->
+                                        <field name="peer_device_id" string="对端设备"/>
+                                        <field name="peer_interface" string="对端接口"/>
+                                    </tree>
+                                </field>
                             </page>
                             <page string="接口统计">
                                 <group>
@@ -671,7 +668,7 @@
             <field name="type">graph</field>
             <field name="arch" type="xml">
                 <graph string="cinda_cmdb net_dev graph" type="bar" >
-                    <field name="type_id" string="设备类型" type="row"/>
+                    <field name="area" string="区域" type="row"/>
                 </graph>
             </field>
         </record>
@@ -2349,8 +2346,8 @@
                     <field name="ip" string="IP地址"/>
                     <field name="wwn" string="WWN"/>
                     <field name="device_id" string="所在设备"/>
-                    <field name="peer_device_id" string="对端设备" on_change="onchange_peer_interface(peer_device_id)"/>
-                    <field name="peer_interface" domain="[('sn', '=', peer_device_id)]" string="对端接口" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
+                    <field name="peer_device_id" string="对端设备"/>
+                    <field name="peer_interface" string="对端接口"/>
                 </tree>
             </field>
         </record>
@@ -2371,7 +2368,7 @@
                             <field name="ip" string="IP地址"/>
                             <field name="wwn" string="WWN"/>
                             <field name="peer_device_id" string="对端设备" />
-                            <field name="peer_interface" string="对端接口" />
+                            <field name="peer_interface" string="对端接口" domain="[('device_id', '=', peer_device_id)]" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
                         </group>
                     </group>
                     </sheet>
