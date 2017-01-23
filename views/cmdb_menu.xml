@@ -346,8 +346,8 @@
 
 
         <!--<menuitem id="base_data_id" name="基础数据表" parent="cinda_cmdb_menu" action="cinda_cmdb_base_data_action" />-->
-        <menuitem id="device_all" name="硬件总表" parent="device_menu" sequence="1" action="cinda_cmdb_device_action"/>
-        <menuitem id="interface_all" name="接口总表" parent="device_menu" sequence="2" action="cinda_cmdb_interface_action"/>
+        <menuitem id="device_all" name="硬件统计" parent="device_menu" sequence="11" action="cinda_cmdb_device_action"/>
+        <menuitem id="interface_all" name="接口统计" parent="device_menu" sequence="12" action="cinda_cmdb_interface_action"/>
         <menuitem id="menu_dc" name="机房信息" parent="device_menu" sequence="3"/>
         <menuitem id="base_type_room_id" name="机房" parent="menu_dc" action="cinda_cmdb_base_type_room_action" />
         <menuitem id="cabinet_id" name="机柜表" parent="menu_dc"  action="cinda_cmdb_cabinet_action"/>
