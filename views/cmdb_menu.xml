@@ -352,18 +352,18 @@
         <menuitem id="base_type_room_id" name="机房" parent="menu_dc" action="cinda_cmdb_base_type_room_action" />
         <menuitem id="cabinet_id" name="机柜表" parent="menu_dc"  action="cinda_cmdb_cabinet_action"/>
         <menuitem id="srv_room_dev_id" name="机房设备" parent="menu_dc" action="cinda_cmdb_srv_room_dev_action"/>
-        <menuitem id="menu_computer" name="计算资源设备" parent="device_menu" sequence="4"/>
-        <menuitem id="device_id" name="服务器设备" parent="menu_computer" action="cinda_cmdb_server_device_action" sequence="1"/>
-        <menuitem id="server_id" name="服务器信息" parent="menu_computer"  action="cinda_cmdb_server_action" sequence="2"/>
+        <menuitem id="menu_computer" name="服务器设备" parent="device_menu" sequence="4"/>
+        <menuitem id="device_id" name="资产信息" parent="menu_computer" action="cinda_cmdb_server_device_action" sequence="1"/>
+        <menuitem id="server_id" name="服务器配置" parent="menu_computer"  action="cinda_cmdb_server_action" sequence="2"/>
         <menuitem id="menu_network" name="网络安全设备" parent="device_menu" sequence="5"/>
-        <menuitem id="net_dev_id" name="网络设备" parent="menu_network" action="cinda_cmdb_net_dev_action" sequence="1"/>
-        <menuitem id="net_dev_information" name="网络信息" parent="menu_network" action="cinda_cmdb_net_dev_information" sequence="2"/>
+        <menuitem id="net_dev_id" name="资产信息" parent="menu_network" action="cinda_cmdb_net_dev_action" sequence="1"/>
+        <menuitem id="net_dev_information" name="网络配置" parent="menu_network" action="cinda_cmdb_net_dev_information" sequence="2"/>
         <menuitem id="board_id" name="板卡" parent="menu_network" action="cinda_cmdb_board_action" sequence="3"/>
         <menuitem id="cinda_cmdb_parts_id" name="配件" parent="menu_network" action="cinda_cmdb_parts_action" sequence="4"/>
         <menuitem id="ip_port_id" name="IP端口" parent="menu_network" action="cinda_cmdb_ip_port_action" sequence="5"/>
         <menuitem id="menu_storage" name="存储设备" parent="device_menu" sequence="6"/>
-        <menuitem id="st_info_id" name="存储信息" parent="menu_storage" action="cinda_cmdb_st_info_action" />
-        <menuitem id="st_dev_id" name="存储硬件" parent="menu_storage" action="cinda_cmdb_st_dev_action" />
+        <menuitem id="st_dev_id" name="资产信息" parent="menu_storage" action="cinda_cmdb_st_dev_action" sequence="1"/>
+        <menuitem id="st_info_id" name="存储配置" parent="menu_storage" action="cinda_cmdb_st_info_action" sequence="2"/>
         <menuitem id="san_port_id" name="SAN端口" parent="menu_storage" action="cinda_cmdb_san_port_action" />
         <!--<menuitem id="position_u_id" name="U位表" parent="device_id" action="cinda_cmdb_position_u_action" sequence="7" />-->
 
