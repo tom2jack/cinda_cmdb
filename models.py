@@ -761,7 +761,7 @@ class interface(models.Model):
                               WHERE %s = %s''' % \
                   (value_peer_device_id, value_peer_interface, value_status, col, value_target)
             self.env.cr.execute(sql)
-            self.invalidate_cache(self.env.cr, self.env.uid)
+            # self.invalidate_cache(self.env.cr, self.env.uid)
         else:
             pass
             # if not self.peer_interface:
