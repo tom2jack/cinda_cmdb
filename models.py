@@ -722,16 +722,49 @@ class interface(models.Model):
     wwn = fields.Char(string="wwn")
     device_id = fields.Many2one('cinda_cmdb.device', string="所在设备")
     peer_device_id = fields.Many2one('cinda_cmdb.device', string="对端设备")
-    peer_interface = fields.Many2one('cinda_cmdb.interface', string="对端接口")
+    peer_interface = fields.Many2one('cinda_cmdb.interface', string="对端接口", track_visibility='onchange')
+    status = fields.Boolean(string="是否使用", compute='auto_change_peer', store=True, default=False)
 
-    # form页面根据peer_device_id字段动态更新peer_interface字段
-    # @api.onchange('peer_device_id')
-    # def onchange_peer_interface(self, peer_device_id):
-    #     res = {'value':{}}
-    #     interface_obj = self.pool.get('cinda_cmdb.interface')
-    #     if peer_device_id:
-    #         interfaces = interface_obj.search(peer_device_id, context=context)
-    #         res['value'] = {
-    #                         'peer_interface': interfaces.name,
-    #         }
-    #     return res
+
+    # 实现在增加、删除对端接口时，自动关联互联设备的对端接口，但修改对端接口时不能取消关联之前的设备
+    @api.one
+    @api.depends('peer_interface','status')
+    def auto_change_peer(self):
+        value_peer_interface = 'null'
+        value_status = False
+        if type(self.id) == int:
+            if self.peer_interface.id:
+                if not self.status:
+                    value_peer_device_id = self.device_id.id
+                    value_peer_interface = self.id
+                    value_status = True
+                    value_target = self.peer_interface.id
+                    col = 'id'
+                    self.status = True
+                else:
+                    value_peer_device_id = self.device_id.id
+                    value_target = self.id
+                    col = 'peer_interface'
+                    self.status = False
+                    sql = '''UPDATE cinda_cmdb_interface
+                          SET peer_device_id = %s, peer_interface = %s , status = %s
+                          WHERE %s = %s''' % \
+                          (value_peer_device_id, value_peer_interface, value_status, col, value_target)
+                    self.env.cr.execute(sql)
+            else:
+                value_peer_device_id = self.device_id.id
+                value_target = self.id
+                col = 'peer_interface'
+                self.status = False
+            sql = '''UPDATE cinda_cmdb_interface
+                              SET peer_device_id = %s, peer_interface = %s , status = %s
+                              WHERE %s = %s''' % \
+                  (value_peer_device_id, value_peer_interface, value_status, col, value_target)
+            self.env.cr.execute(sql)
+            self.invalidate_cache(self.env.cr, self.env.uid)
+        else:
+            pass
+            # if not self.peer_interface:
+            #     self.status = False
+
+        # self.env.invalidate_all()
