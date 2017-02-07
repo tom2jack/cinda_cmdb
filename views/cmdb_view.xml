@@ -754,16 +754,14 @@
                 <tree>
                     <!--<field name="st_dev_id" string="存储ID"/>-->
                     <field name="dev_id" string="设备资产"/>
-                    <field name="cage_num" string="笼子数"/>
-                    <field name="disk_num" string="磁盘数"/>
-                    <field name="disk_size" string="磁盘裸容量"/>
-                    <field name="total_size" string="总容量"/>
-                    <field name="used_size" string="使用容量"/>
-                    <field name="free_size" string="剩余容量"/>
-                    <field name="port_num" string="有效口总数"/>
-                    <field name="used_port_num" string="使用数(连线的)"/>
-                    <field name="free_port_num" string="剩余端口数"/>
-                    <field name="comment" string="备注"/>
+                    <field name="st_type" string="存储类型"/>
+                    <field name="pc_control_num" string="整机控制器数"/>
+                    <field name="pc_cage_num" string="整机笼子数"/>
+                    <field name="each_cage_disk_num" string="每个笼子可容纳磁盘数"/>
+                    <field name="pc_all_size" string="整机裸容量(T)"/>
+                    <field name="pc_enable_size" string="整机总可使用容量(T)"/>
+                    <field name="pc_used_size" string="整机已经分配容量(T)"/>
+                    <field name="pc_remain_size" string="整机剩余可使用容量(T)"/>
                 </tree>
             </field>
         </record>
@@ -775,26 +773,17 @@
                     <sheet>
                         <group>
                             <group>
-                                <!--<field name="st_dev_id" string="存储ID"/>-->
                                 <field name="dev_id" string="设备资产"/>
-                                <field name="cage_num" string="笼子数"/>
-                                <field name="disk_num" string="磁盘数"/>
-                                <field name="disk_size" string="磁盘裸容量"/>
-                                <field name="total_size" string="总容量"/>
-                                <field name="used_size" string="使用容量"/>
-                                <field name="free_size" string="剩余容量"/>
-                                <field name="comment" string="备注"/>
+                                <field name="st_type" string="存储类型"/>
+                                <field name="pc_control_num" string="整机控制器数"/>
+                                <field name="pc_cage_num" string="整机笼子数"/>
+                                <field name="each_cage_disk_num" string="每个笼子可容纳磁盘数"/>
                             </group>
                             <group>
-                                <field name="port_num" string="有效口总数"/>
-                                <field name="used_port_num" string="使用数(连线的)"/>
-                                <field name="free_port_num" string="剩余端口数"/>
-                                <field name="eight_g_mod_num" string="8G模块数"/>
-                                <field name="used_8g_mod_num" string="已经使用的8G模块数"/>
-                                <field name="free_8g_mod_num" string="空余的8G模块数"/>
-                                <field name="four_g_mod_num" string="4G模块数"/>
-                                <field name="used_4g_mod_num" string="已经使用的4G模块数"/>
-                                <field name="free_4g_mod_num" string="空余的4G模块数量"/>
+                                <field name="pc_all_size" string="整机裸容量(T)"/>
+                                <field name="pc_enable_size" string="整机总可使用容量(T)"/>
+                                <field name="pc_used_size" string="整机已经分配容量(T)"/>
+                                <field name="pc_remain_size" string="整机剩余可使用容量(T)"/>
                             </group>
                         </group>
                     </sheet>
@@ -989,16 +978,16 @@
                     <field name="port_type" string="本端端口类型"/>
                     <field name="end_on_dev_id" string="本端设备ID"/>
                     <field name="end_on_card_id" string="本端板卡ID"/>
-                    <field name="end_on_port" string="本端物理端口号"/>
-                    <field name="end_on_nam" string="本端端口名"/>
-                    <field name="end_on_port_mac" string="对端MAC"/>
-                    <field name="end_on_port_ip" string="对端IP地址"/>
-                    <field name="end_on_port_type" string="对端端口类型"/>
-                    <field name="port_status" string="端口状态"/>
-                    <field name="port_speed" string="端口速率"/>
-                    <field name="port_info" string="端口描述"/>
-                    <field name="mod_type" string="模块类型"/>
-                    <field name="mod_sn" string="模块序列号"/>
+                    <!--<field name="end_on_port" string="本端物理端口号"/>-->
+                    <!--<field name="end_on_nam" string="本端端口名"/>-->
+                    <!--<field name="end_on_port_mac" string="对端MAC"/>-->
+                    <!--<field name="end_on_port_ip" string="对端IP地址"/>-->
+                    <!--<field name="end_on_port_type" string="对端端口类型"/>-->
+                    <!--<field name="port_status" string="端口状态"/>-->
+                    <!--<field name="port_speed" string="端口速率"/>-->
+                    <!--<field name="port_info" string="端口描述"/>-->
+                    <!--<field name="mod_type" string="模块类型"/>-->
+                    <!--<field name="mod_sn" string="模块序列号"/>-->
                 </tree>
             </field>
         </record>
@@ -1009,27 +998,31 @@
                 <form>
                     <sheet>
                     <group>
-                        <!--<field name="ip_port_id" string="IP端口ID"/>-->
-                        <field name="dev_id" string="设备"/>
-                        <field name="net_dev_id" string="网络设备"/>
-                        <field name="card_id" string="板卡ID"/>
-                        <field name="port" string="本端物理端口号"/>
-                        <field name="port_num" string="本端口名"/>
-                        <field name="port_mac" string="本端MAC"/>
-                        <field name="port_ip" string="本端IP地址"/>
-                        <field name="port_type" string="本端端口类型"/>
-                        <field name="end_on_dev_id" string="本端设备ID"/>
-                        <field name="end_on_card_id" string="本端板卡ID"/>
-                        <field name="end_on_port" string="本端物理端口号"/>
-                        <field name="end_on_nam" string="本端端口名"/>
-                        <field name="end_on_port_mac" string="对端MAC"/>
-                        <field name="end_on_port_ip" string="对端IP地址"/>
-                        <field name="end_on_port_type" string="对端端口类型"/>
-                        <field name="port_status" string="端口状态"/>
-                        <field name="port_speed" string="端口速率"/>
-                        <field name="port_info" string="端口描述"/>
-                        <field name="mod_type" string="模块类型"/>
-                        <field name="mod_sn" string="模块序列号"/>
+                        <group>
+                            <!--<field name="ip_port_id" string="IP端口ID"/>-->
+                            <field name="dev_id" string="设备"/>
+                            <field name="net_dev_id" string="网络设备"/>
+                            <field name="card_id" string="板卡ID"/>
+                            <field name="port" string="本端物理端口号"/>
+                            <field name="port_num" string="本端口名"/>
+                            <field name="port_mac" string="本端MAC"/>
+                            <field name="port_ip" string="本端IP地址"/>
+                            <field name="port_type" string="本端端口类型"/>
+                            <field name="end_on_dev_id" string="本端设备ID"/>
+                            <field name="end_on_card_id" string="本端板卡ID"/>
+                        </group>
+                        <group>
+                            <field name="end_on_port" string="本端物理端口号"/>
+                            <field name="end_on_nam" string="本端端口名"/>
+                            <field name="end_on_port_mac" string="对端MAC"/>
+                            <field name="end_on_port_ip" string="对端IP地址"/>
+                            <field name="end_on_port_type" string="对端端口类型"/>
+                            <field name="port_status" string="端口状态"/>
+                            <field name="port_speed" string="端口速率"/>
+                            <field name="port_info" string="端口描述"/>
+                            <field name="mod_type" string="模块类型"/>
+                            <field name="mod_sn" string="模块序列号"/>
+                        </group>
                     </group>
                     </sheet>
                     <div class="oe_chatter">
@@ -2414,7 +2407,6 @@
                 <tree>
                     <field name="name" string="存储组件名称"/>
                     <field name="st_id" string="存储ID"/>
-                    <field name="st_part_id" string="存储组件ID"/>
                     <field name="st_part_type" string="存储部件类型"/>
                     <!--<field name="lab_id" string="机房"/>-->
                     <!--<field name="cab" string="机柜"/>-->
@@ -2453,7 +2445,6 @@
                             <group>
                                 <field name="name" string="存储组件名称"/>
                                 <field name="st_id" string="存储ID"/>
-                                <field name="st_part_id" string="存储组件ID"/>
                                 <field name="st_part_type" string="存储部件类型"/>
                                 <field name="lab_id" string="机房"/>
                                 <field name="cab" string="机柜"/>
@@ -2664,7 +2655,7 @@
                     <field name="single_cpu_num" string="单CPU核数"/>
                     <field name="cpu_spec" string="CPU规格"/>
                     <field name="mem_num" string="内存条数"/>
-                    <field name="single_mem_size" string="设备ID"/>
+                    <field name="single_mem_size" string="单条内存容量"/>
                     <field name="mem_spec" string="内存规格"/>
                     <field name="disk_num" string="硬盘数量"/>
                     <field name="single_disk_size" string="单硬盘容量"/>
@@ -2700,37 +2691,79 @@
                         <group>
                             <field name="dev_id" string="设备ID"/>
                             <field name="dev_name" string="设备名称"/>
-                            <field name="cpu_num" string="CPU数量"/>
-                            <field name="single_cpu_num" string="单CPU核数"/>
-                            <field name="cpu_spec" string="CPU规格"/>
-                            <field name="mem_num" string="内存条数"/>
-                            <field name="single_mem_size" string="设备ID"/>
-                            <field name="mem_spec" string="内存规格"/>
-                            <field name="disk_num" string="硬盘数量"/>
-                            <field name="single_disk_size" string="单硬盘容量"/>
-                            <field name="disk_spec" string="硬盘规格"/>
-                            <field name="four_g_hba_num" string="4G HBA卡数量"/>
-                            <field name="four_g_hba_used_num" string="4G HBA卡已用数量"/>
-                            <field name="eight_g_hba_num" string="8G HBA卡数量"/>
-                            <field name="eight_g_hba_used_num" string="8G HBA卡已用数量"/>
-                            <field name="sixteen_g_hba_num" string="16G HBA卡数量"/>
-                        </group>
-                        <group>
-                            <field name="sixteen_g_hba_used_num" string="16G HBA卡已用数量"/>
-                            <field name="thirty_two_g_hba_num" string="32G HBA卡数量"/>
-                            <field name="thirty_two_g_hba_used_num" string="32G HBA卡已用数量"/>
-                            <field name="g_netcard_num" string="千兆网口数量"/>
-                            <field name="g_netcard_used_num" string="千兆网口已用数量"/>
-                            <field name="t_netcard_num" string="万兆网口数量"/>
-                            <field name="t_netcard_used_num" string="万兆网口已用数量"/>
                             <field name="extend_cab_num" string="扩展柜数量"/>
                             <field name="tape_station_num" string="磁带机数量"/>
+                        </group>
+                        <group>
                             <field name="lpar_num" string="LPAR数量"/>
                             <field name="admin_ip" string="管理网IP"/>
                             <field name="admin_info" string="管理口信息点"/>
                             <field name="os" string="底层操作系统"/>
                         </group>
                     </group>
+                    <notebook colspan="5">
+                        <page string="CPU">
+                            <group>
+                                <group>
+                                    <field name="cpu_num" string="CPU数量"/>
+                                    <field name="single_cpu_num" string="单CPU核数"/>
+                                </group>
+                                <group>
+                                    <field name="cpu_spec" string="CPU规格"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="内存">
+                            <group>
+                                <group>
+                                    <field name="mem_num" string="内存条数"/>
+                                    <field name="single_mem_size" string="单条内存容量"/>
+                                </group>
+                                <group>
+                                    <field name="mem_spec" string="内存规格"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="硬盘">
+                            <group>
+                                <group>
+                                    <field name="disk_num" string="硬盘数量"/>
+                                    <field name="single_disk_size" string="单硬盘容量"/>
+                                </group>
+                                <group>
+                                    <field name="disk_spec" string="硬盘规格"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="HBA卡">
+                            <group>
+                                <group>
+                                    <field name="four_g_hba_num" string="4G HBA卡数量"/>
+                                    <field name="four_g_hba_used_num" string="4G HBA卡已用数量"/>
+                                    <field name="eight_g_hba_num" string="8G HBA卡数量"/>
+                                    <field name="eight_g_hba_used_num" string="8G HBA卡已用数量"/>
+                                </group>
+                                <group>
+                                    <field name="sixteen_g_hba_num" string="16G HBA卡数量"/>
+                                    <field name="sixteen_g_hba_used_num" string="16G HBA卡已用数量"/>
+                                    <field name="thirty_two_g_hba_num" string="32G HBA卡数量"/>
+                                    <field name="thirty_two_g_hba_used_num" string="32G HBA卡已用数量"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="网口">
+                            <group>
+                                <group>
+                                    <field name="g_netcard_num" string="千兆网口数量"/>
+                                    <field name="g_netcard_used_num" string="千兆网口已用数量"/>
+                                </group>
+                                <group>
+                                    <field name="t_netcard_num" string="万兆网口数量"/>
+                                    <field name="t_netcard_used_num" string="万兆网口已用数量"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
                     </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
