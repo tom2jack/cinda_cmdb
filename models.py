@@ -725,7 +725,6 @@ class interface(models.Model):
     peer_interface = fields.Many2one('cinda_cmdb.interface', string="对端接口", track_visibility='onchange')
     status = fields.Boolean(string="是否使用", compute='auto_change_peer', store=True, default=False)
 
-
     # 实现在增加、删除对端接口时，自动关联互联设备的对端接口，但修改对端接口时不能取消关联之前的设备
     @api.one
     @api.depends('peer_interface','status')
@@ -768,3 +767,109 @@ class interface(models.Model):
             #     self.status = False
 
         # self.env.invalidate_all()
+
+
+class st_part(models.Model):
+    _name = "cinda_cmdb.st_part"
+    _description = "存储组件表"
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _mail_post_access = 'read'
+
+    name = fields.Char(string="存储组件名称")
+    st_id = fields.Many2one("cinda_cmdb.st_dev", string="存储ID")
+    st_part_id = fields.Integer(string="存储组件ID")
+    st_part_type = fields.Char(string="存储部件类型")
+    lab_id = fields.Many2one("cinda_cmdb.base_type", string='机房', domain=[('class_id', 'ilike', "机房")])
+    cab = fields.Many2one("cinda_cmdb.cabinet", string="机柜")
+    pos_seq = fields.Integer(string="位置序号")
+    u_pos = fields.Many2one("cinda_cmdb.base_type", string="位置U", domain=[('class_id', 'ilike', "位置代号")])
+    u_space = fields.Integer(string="占位U")
+    sn = fields.Char(string="序列号")
+    cage_disk_num = fields.Char(string="笼内已装磁盘数")
+    single_disk_size = fields.Char(string="单个磁盘容量")
+    disk_spec = fields.Char(string="磁盘规格")
+    head_data_disk = fields.Char(string="机头数据盘")
+    head_backup_disk = fields.Char(string="机头热备盘")
+    enable_size = fields.Char(string="可使用容量(T)")
+    allocated_size = fields.Char(string="已分配容量(T)")
+    remain_enable_size = fields.Char(string="剩余可用容量(T)")
+    admin_ip = fields.Char(string="管理IP")
+    t_netcard_num = fields.Char(string="万兆网口数")
+    g_netcard_num = fields.Char(string="千兆网口数")
+    four_g_fc_port = fields.Char(string="4g光纤端口")
+    eight_g_fc_port = fields.Char(string="8g光纤端口")
+    sixteen_g_fc_port = fields.Char(string="16g光纤端口")
+    thirty_two_g_fc_port = fields.Char(string="32g光纤端口")
+    cache_config = fields.Char(string="缓存配置(G)")
+    NVRAM = fields.Char(string="NVRAM(G)")
+    memory = fields.Char(string="内存(G)")
+
+
+class fc_switch(models.Model):
+    _name = "cinda_cmdb.fc_switch"
+    _description = "光纤交换机表"
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _mail_post_access = 'read'
+
+    dev_id = fields.Many2one("cinda_cmdb.device", string="设备id")
+    valid_port_number = fields.Integer(string="有效口总数")
+    four_g_module_number = fields.Integer(string="4G模块总数")
+    eight_g_module_number = fields.Integer(string="8G模块总数")
+    sixteen_g_module_number = fields.Integer(string="16G模块总数")
+    used_port_number = fields.Integer(string="已使用口数")
+    four_g_module_used_number = fields.Integer(string="4G模块已使用的总数")
+    eight_g_module_used_number = fields.Integer(string="8G模块已使用的总数")
+    sixteen_g_module_used_number = fields.Integer(string="16G模块已使用的总数")
+
+
+class tape_station(models.Model):
+    _name = "cinda_cmdb.tape_station"
+    _description = "磁带机磁带库"
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _mail_post_access = 'read'
+
+    dev_id = fields.Many2one("cinda_cmdb.device", string="设备id")
+    driver = fields.Char(string="驱动器")
+    tape = fields.Char(string="磁带")
+    cleaning_tape = fields.Char(string="清洗带")
+    disk_controller = fields.Char(string="磁盘控制柜")
+    extend_cab = fields.Char(string="扩展柜(磁盘数)")
+    da_port_number = fields.Char(string="DA端口数")
+    ha_port_number = fields.Char(string="HA端口数")
+
+
+class mini_pc(models.Model):
+    _name = "cinda_cmdb.mini_pc"
+    _description = '小型计算机表'
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _mail_post_access = 'read'
+
+    dev_id = fields.Many2one("cinda_cmdb.device", string="设备id")
+    dev_name = fields.Char(string="设备名称")
+    cpu_num = fields.Char(string="CPU数量")
+    single_cpu_num = fields.Char(string="单CPU核数")
+    cpu_spec = fields.Char(string="CPU规格")
+    mem_num = fields.Char(string="内存条数")
+    single_mem_size = fields.Char(string="设备ID")
+    mem_spec = fields.Char(string="内存规格")
+    disk_num = fields.Char(string="硬盘数量")
+    single_disk_size = fields.Char(string="单硬盘容量")
+    disk_spec = fields.Char(string="硬盘规格")
+    four_g_hba_num = fields.Char(string="4G HBA卡数量")
+    four_g_hba_used_num = fields.Char(string="4G HBA卡已用数量")
+    eight_g_hba_num = fields.Char(string="8G HBA卡数量")
+    eight_g_hba_used_num = fields.Char(string="8G HBA卡已用数量")
+    sixteen_g_hba_num = fields.Char(string="16G HBA卡数量")
+    sixteen_g_hba_used_num = fields.Char(string="16G HBA卡已用数量")
+    thirty_two_g_hba_num = fields.Char(string="32G HBA卡数量")
+    thirty_two_g_hba_used_num = fields.Char(string="32G HBA卡已用数量")
+    g_netcard_num = fields.Char(string="千兆网口数量")
+    g_netcard_used_num = fields.Char(string="千兆网口已用数量")
+    t_netcard_num = fields.Char(string="万兆网口数量")
+    t_netcard_used_num = fields.Char(string="万兆网口已用数量")
+    extend_cab_num = fields.Char(string="扩展柜数量")
+    tape_station_num = fields.Char(string="磁带机数量")
+    lpar_num = fields.Char(string="LPAR数量")
+    admin_ip =fields.Char(string="管理网IP")
+    admin_info = fields.Char(string="管理口信息点")
+    os = fields.Char(string="底层操作系统")

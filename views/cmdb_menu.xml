@@ -333,6 +333,34 @@
             <field name="view_mode">tree,form,graph</field>
         </record>
 
+        <record id="cinda_cmdb_st_part_action" model="ir.actions.act_window">
+            <field name="name">存储组件表</field>
+            <field name="res_model">cinda_cmdb.st_part</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,graph</field>
+        </record>
+
+        <record id="cinda_cmdb_fc_switch_action" model="ir.actions.act_window">
+            <field name="name">光纤交换机表</field>
+            <field name="res_model">cinda_cmdb.fc_switch</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,graph</field>
+        </record>
+
+        <record id="cinda_cmdb_tape_station_action" model="ir.actions.act_window">
+            <field name="name">磁带机磁带库表</field>
+            <field name="res_model">cinda_cmdb.tape_station</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,graph</field>
+        </record>
+
+        <record id="cinda_cmdb_mini_pc_action" model="ir.actions.act_window">
+            <field name="name">小型计算机表</field>
+            <field name="res_model">cinda_cmdb.mini_pc</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,graph</field>
+        </record>
+
         <menuitem id="main_cinda_cmdb_menu" name="cinda_cmdb"/>
 
 
@@ -342,7 +370,7 @@
         <menuitem id="vm_menu" name="虚拟资源集合" parent="main_cinda_cmdb_menu" sequence="4"/>       
         <menuitem id="auth_menu" name="授权集合" parent="main_cinda_cmdb_menu" sequence="5"/>       
         <menuitem id="app_menu" name="应用与配置集合" parent="main_cinda_cmdb_menu" sequence="6"/> 
-        <menuitem id="manage_menu" name="管理集合" parent="main_cinda_cmdb_menu" sequence="7"/> 
+        <menuitem id="manage_menu" name="管理集合" parent="main_cinda_cmdb_menu" sequence="7"/>
 
 
         <!--<menuitem id="base_data_id" name="基础数据表" parent="cinda_cmdb_menu" action="cinda_cmdb_base_data_action" />-->
@@ -355,6 +383,7 @@
         <menuitem id="menu_computer" name="计算资源设备" parent="device_menu" sequence="4"/>
         <menuitem id="device_id" name="服务器设备" parent="menu_computer" action="cinda_cmdb_server_device_action" sequence="1"/>
         <menuitem id="server_id" name="PC信息" parent="menu_computer"  action="cinda_cmdb_server_action" sequence="2"/>
+        <menuitem id="mini_pc" name="小型计算机" parent="menu_computer"  action="cinda_cmdb_mini_pc_action" sequence="3"/>
         <menuitem id="menu_network" name="网络安全设备" parent="device_menu" sequence="5"/>
         <menuitem id="net_dev_id" name="网络设备" parent="menu_network" action="cinda_cmdb_net_dev_action" sequence="1"/>
         <menuitem id="net_dev_information" name="网络信息" parent="menu_network" action="cinda_cmdb_net_dev_information" sequence="2"/>
@@ -365,6 +394,9 @@
         <menuitem id="st_info_id" name="存储信息" parent="menu_storage" action="cinda_cmdb_st_info_action" />
         <menuitem id="st_dev_id" name="存储硬件" parent="menu_storage" action="cinda_cmdb_st_dev_action" />
         <menuitem id="san_port_id" name="SAN端口" parent="menu_storage" action="cinda_cmdb_san_port_action" />
+        <menuitem id="st_part_id" name="存储组件" parent="menu_storage" action="cinda_cmdb_st_part_action" />
+        <menuitem id="menu_fc_switch" name="光纤交换机表" parent="device_menu" action="cinda_cmdb_fc_switch_action" sequence="8"/>
+        <menuitem id="menu_tape_station" name="磁带机磁带库表" parent="device_menu" action="cinda_cmdb_tape_station_action" sequence="8"/>
         <!--<menuitem id="position_u_id" name="U位表" parent="device_id" action="cinda_cmdb_position_u_action" sequence="7" />-->
 
 

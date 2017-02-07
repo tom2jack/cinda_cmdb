@@ -2405,5 +2405,361 @@
                 </graph>
             </field>
         </record>
+
+        <!-- 存储组件相关视图 -->
+        <record model="ir.ui.view" id="st_part_tree_view">
+            <field name="name">st_part.tree</field>
+            <field name="model">cinda_cmdb.st_part</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" string="存储组件名称"/>
+                    <field name="st_id" string="存储ID"/>
+                    <field name="st_part_id" string="存储组件ID"/>
+                    <field name="st_part_type" string="存储部件类型"/>
+                    <!--<field name="lab_id" string="机房"/>-->
+                    <!--<field name="cab" string="机柜"/>-->
+                    <!--<field name="pos_seq" string="位置序号"/>-->
+                    <!--<field name="u_pos" string="位置U"/>-->
+                    <!--<field name="u_space" string="占位U"/>-->
+                    <field name="sn" string="序列号"/>
+                    <field name="cage_disk_num" string="笼内已装磁盘数"/>
+                    <field name="single_disk_size" string="单个磁盘容量"/>
+                    <field name="head_data_disk" string="机头数据盘"/>
+                    <field name="head_backup_disk" string="机头热备盘"/>
+                    <!--<field name="disk_spec" string="磁盘规格"/>-->
+                    <!--<field name="enable_size" string="可使用容量(T)"/>-->
+                    <!--<field name="allocated_size" string="已分配容量(T)"/>-->
+                    <!--<field name="remain_enable_size" string="剩余可用容量(T)"/>-->
+                    <!--<field name="admin_ip" string="管理IP"/>-->
+                    <!--<field name="t_netcard_num" string="万兆网口数"/>-->
+                    <!--<field name="g_netcard_num" string="千兆网口数"/>-->
+                    <!--<field name="four_g_fc_port" string="4g光纤端口"/>-->
+                    <!--<field name="eight_g_fc_port" string="8g光纤端口"/>-->
+                    <!--<field name="sixteen_g_fc_port" string="16g光纤端口"/>-->
+                    <!--<field name="thirty_two_g_fc_port" string="32g光纤端口"/>-->
+                    <!--<field name="cache_config" string="缓存配置(G)"/>-->
+                    <!--<field name="NVRAM" string="NVRAM(G)"/>-->
+                    <!--<field name="memory" string="内存(G)"/>-->
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="st_part_form_view">
+            <field name="name">st_part.form</field>
+            <field name="model">cinda_cmdb.st_part</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" string="存储组件名称"/>
+                                <field name="st_id" string="存储ID"/>
+                                <field name="st_part_id" string="存储组件ID"/>
+                                <field name="st_part_type" string="存储部件类型"/>
+                                <field name="lab_id" string="机房"/>
+                                <field name="cab" string="机柜"/>
+                                <field name="pos_seq" string="位置序号"/>
+                                <field name="u_pos" string="位置U"/>
+                                <field name="u_space" string="占位U"/>
+                                <field name="sn" string="序列号"/>
+                                <field name="cage_disk_num" string="笼内已装磁盘数"/>
+                                <field name="single_disk_size" string="单个磁盘容量"/>
+                                <field name="disk_spec" string="磁盘规格"/>
+                                <field name="head_data_disk" string="机头数据盘"/>
+                                <!--<field name="head_backup_disk" string="机头热备盘"/>-->
+                            </group>
+                            <group>
+                                <field name="enable_size" string="可使用容量(T)"/>
+                                <field name="allocated_size" string="已分配容量(T)"/>
+                                <field name="remain_enable_size" string="剩余可用容量(T)"/>
+                                <field name="admin_ip" string="管理IP"/>
+                                <field name="t_netcard_num" string="万兆网口数"/>
+                                <field name="g_netcard_num" string="千兆网口数"/>
+                                <field name="four_g_fc_port" string="4g光纤端口"/>
+                                <field name="eight_g_fc_port" string="8g光纤端口"/>
+                                <field name="sixteen_g_fc_port" string="16g光纤端口"/>
+                                <field name="thirty_two_g_fc_port" string="32g光纤端口"/>
+                                <field name="cache_config" string="缓存配置(G)"/>
+                                <field name="NVRAM" string="NVRAM(G)"/>
+                                <field name="memory" string="内存(G)"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="st_part_search_view">
+            <field name="name">st_part.search</field>
+            <field name="model">cinda_cmdb.st_part</field>
+            <field name="arch" type="xml">
+                <search  string="Search_st_part">
+                    <field name="st_part_type" string="存储部件类型"/>
+                    <field name="name" string="存储组件名称"/>
+                    <group expand="0" string="分组">
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="st_part_graph">
+            <field name="name">cinda_cmdb.st_part_graph</field>
+            <field name="model">cinda_cmdb.st_part</field>
+            <field name="type">graph</field>
+            <field name="arch" type="xml">
+                <graph string="cinda_cmdb st_part graph" type="bar" >
+                    <field name="name" string="存储组件名称" type="row"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- 光纤交换机相关视图 -->
+        <record model="ir.ui.view" id="fc_switch_tree_view">
+            <field name="name">fc_switch.tree</field>
+            <field name="model">cinda_cmdb.fc_switch</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="dev_id" string="设备ID"/>
+                    <field name="valid_port_number" string="有效口总数"/>
+                    <field name="four_g_module_number" string="4G模块总数"/>
+                    <field name="eight_g_module_number" string="8G模块总数"/>
+                    <field name="sixteen_g_module_number" string="16G模块总数"/>
+                    <field name="used_port_number" string="已使用口数"/>
+                    <field name="four_g_module_used_number" string="4G模块已使用的总数"/>
+                    <field name="eight_g_module_used_number" string="8G模块已使用的总数"/>
+                    <field name="sixteen_g_module_used_number" string="16G模块已使用的总数"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="fc_switch_form_view">
+            <field name="name">fc_switch.form</field>
+            <field name="model">cinda_cmdb.fc_switch</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                    <group>
+                        <group>
+                            <field name="dev_id" string="设备ID"/>
+                            <field name="valid_port_number" string="有效口总数"/>
+                            <field name="four_g_module_number" string="4G模块总数"/>
+                            <field name="eight_g_module_number" string="8G模块总数"/>
+                            <field name="sixteen_g_module_number" string="16G模块总数"/>
+                        </group>
+                        <group>
+                            <field name="used_port_number" string="已使用口数"/>
+                            <field name="four_g_module_used_number" string="4G模块已使用的总数"/>
+                            <field name="eight_g_module_used_number" string="8G模块已使用的总数"/>
+                            <field name="sixteen_g_module_used_number" string="16G模块已使用的总数"/>
+                        </group>
+                    </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="fc_switch_search_view">
+            <field name="name">fc_switch.search</field>
+            <field name="model">cinda_cmdb.fc_switch</field>
+            <field name="arch" type="xml">
+                <search  string="Search_base_type">
+                    <field name="valid_port_number" string="有效口总数"/>
+                    <field name="used_port_number" string="已使用口数"/>
+                    <group expand="0" string="分组">
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="fc_switch_graph">
+            <field name="name">cinda_cmdb.fc_switch_graph</field>
+            <field name="model">cinda_cmdb.fc_switch</field>
+            <field name="type">graph</field>
+            <field name="arch" type="xml">
+                <graph string="cinda_cmdb fc_switch graph" type="bar" >
+                    <field name="valid_port_number" string="有效口总数" type="row"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- 磁带机磁带库相关视图 -->
+        <record model="ir.ui.view" id="tape_station_tree_view">
+            <field name="name">tape_station.tree</field>
+            <field name="model">cinda_cmdb.tape_station</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="dev_id" string="设备ID"/>
+                    <field name="driver" string="驱动器"/>
+                    <field name="tape" string="磁带"/>
+                    <field name="cleaning_tape" string="清洗带"/>
+                    <field name="disk_controller" string="磁盘控制柜"/>
+                    <field name="extend_cab" string="扩展柜(磁盘数)"/>
+                    <field name="da_port_number" string="DA端口数"/>
+                    <field name="ha_port_number" string="HA端口数"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="tape_station_form_view">
+            <field name="name">tape_station.form</field>
+            <field name="model">cinda_cmdb.tape_station</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                    <group>
+                        <group>
+                            <field name="dev_id" string="设备ID"/>
+                            <field name="driver" string="驱动器"/>
+                            <field name="tape" string="磁带"/>
+                            <field name="cleaning_tape" string="清洗带"/>
+                        </group>
+                        <group>
+                            <field name="disk_controller" string="磁盘控制柜"/>
+                            <field name="extend_cab" string="扩展柜(磁盘数)"/>
+                            <field name="da_port_number" string="DA端口数"/>
+                            <field name="ha_port_number" string="HA端口数"/>
+                        </group>
+                    </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="tape_station_search_view">
+            <field name="name">tape_staion.search</field>
+            <field name="model">cinda_cmdb.tape_station</field>
+            <field name="arch" type="xml">
+                <search  string="Search_base_type">
+                    <field name="driver" string="驱动器"/>
+                    <field name="disk_controller" string="磁盘控制柜"/>
+                    <group expand="0" string="分组">
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="tape_station_graph">
+            <field name="name">cinda_cmdb.tape_station_graph</field>
+            <field name="model">cinda_cmdb.tape_station</field>
+            <field name="type">graph</field>
+            <field name="arch" type="xml">
+                <graph string="cinda_cmdb tape_station graph" type="bar" >
+                    <field name="driver" string="驱动器" type="row"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- 小型计算机相关视图 -->
+        <record model="ir.ui.view" id="mini_pc_tree_view">
+            <field name="name">mini_pc.tree</field>
+            <field name="model">cinda_cmdb.mini_pc</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="dev_id" string="设备ID"/>
+                    <field name="dev_name" string="接口"/>
+                    <field name="cpu_num" string="CPU数量"/>
+                    <field name="single_cpu_num" string="单CPU核数"/>
+                    <field name="cpu_spec" string="CPU规格"/>
+                    <field name="mem_num" string="内存条数"/>
+                    <field name="single_mem_size" string="设备ID"/>
+                    <field name="mem_spec" string="内存规格"/>
+                    <field name="disk_num" string="硬盘数量"/>
+                    <field name="single_disk_size" string="单硬盘容量"/>
+                    <field name="disk_spec" string="硬盘规格"/>
+                    <!--<field name="four_g_hba_num" string="4G HBA卡数量"/>-->
+                    <!--<field name="four_g_hba_used_num" string="4G HBA卡已用数量"/>-->
+                    <!--<field name="eight_g_hba_num" string="8G HBA卡数量"/>-->
+                    <!--<field name="eight_g_hba_used_num" string="8G HBA卡已用数量"/>-->
+                    <!--<field name="sixteen_g_hba_num" string="16G HBA卡数量"/>-->
+                    <!--<field name="sixteen_g_hba_used_num" string="16G HBA卡已用数量"/>-->
+                    <!--<field name="thirty_two_g_hba_num" string="32G HBA卡数量"/>-->
+                    <!--<field name="thirty_two_g_hba_used_num" string="32G HBA卡已用数量"/>-->
+                    <!--<field name="g_netcard_num" string="千兆网口数量"/>-->
+                    <!--<field name="g_netcard_used_num" string="千兆网口已用数量"/>-->
+                    <!--<field name="t_netcard_num" string="万兆网口数量"/>-->
+                    <!--<field name="t_netcard_used_num" string="万兆网口已用数量"/>-->
+                    <!--<field name="extend_cab_num" string="扩展柜数量"/>-->
+                    <!--<field name="tape_station_num" string="磁带机数量"/>-->
+                    <!--<field name="lpar_num" string="LPAR数量"/>-->
+                    <!--<field name="admin_ip" string="管理网IP"/>-->
+                    <!--<field name="admin_info" string="管理口信息点"/>-->
+                    <field name="os" string="底层操作系统"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="mini_pc_form_view">
+            <field name="name">mini_pc.form</field>
+            <field name="model">cinda_cmdb.mini_pc</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                    <group>
+                        <group>
+                            <field name="dev_id" string="设备ID"/>
+                            <field name="dev_name" string="设备名称"/>
+                            <field name="cpu_num" string="CPU数量"/>
+                            <field name="single_cpu_num" string="单CPU核数"/>
+                            <field name="cpu_spec" string="CPU规格"/>
+                            <field name="mem_num" string="内存条数"/>
+                            <field name="single_mem_size" string="设备ID"/>
+                            <field name="mem_spec" string="内存规格"/>
+                            <field name="disk_num" string="硬盘数量"/>
+                            <field name="single_disk_size" string="单硬盘容量"/>
+                            <field name="disk_spec" string="硬盘规格"/>
+                            <field name="four_g_hba_num" string="4G HBA卡数量"/>
+                            <field name="four_g_hba_used_num" string="4G HBA卡已用数量"/>
+                            <field name="eight_g_hba_num" string="8G HBA卡数量"/>
+                            <field name="eight_g_hba_used_num" string="8G HBA卡已用数量"/>
+                            <field name="sixteen_g_hba_num" string="16G HBA卡数量"/>
+                        </group>
+                        <group>
+                            <field name="sixteen_g_hba_used_num" string="16G HBA卡已用数量"/>
+                            <field name="thirty_two_g_hba_num" string="32G HBA卡数量"/>
+                            <field name="thirty_two_g_hba_used_num" string="32G HBA卡已用数量"/>
+                            <field name="g_netcard_num" string="千兆网口数量"/>
+                            <field name="g_netcard_used_num" string="千兆网口已用数量"/>
+                            <field name="t_netcard_num" string="万兆网口数量"/>
+                            <field name="t_netcard_used_num" string="万兆网口已用数量"/>
+                            <field name="extend_cab_num" string="扩展柜数量"/>
+                            <field name="tape_station_num" string="磁带机数量"/>
+                            <field name="lpar_num" string="LPAR数量"/>
+                            <field name="admin_ip" string="管理网IP"/>
+                            <field name="admin_info" string="管理口信息点"/>
+                            <field name="os" string="底层操作系统"/>
+                        </group>
+                    </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="mini_pc_search_view">
+            <field name="name">mini_pc.search</field>
+            <field name="model">cinda_cmdb.mini_pc</field>
+            <field name="arch" type="xml">
+                <search  string="Search_base_type">
+                    <field name="dev_name" string="设备名称"/>
+                    <field name="os" string="底层操作系统"/>
+                    <group expand="0" string="分组">
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="mini_pc_graph">
+            <field name="name">cinda_cmdb.mini_pc_graph</field>
+            <field name="model">cinda_cmdb.mini_pc</field>
+            <field name="type">graph</field>
+            <field name="arch" type="xml">
+                <graph string="cinda_cmdb mini_pc graph" type="bar" >
+                    <field name="dev_name" string="设备名称" type="row"/>
+                </graph>
+            </field>
+        </record>
     </data>
 </openerp>
