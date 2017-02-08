@@ -429,6 +429,7 @@
                             <field name="admin_info" string="管理口信息点"/>
                         </group>
                         <group>
+                            <field name="san_wwn" string="san网络wwn号"/>
                             <field name="os" string="底层操作系统"/>
                             <field name="exten_mod" string="扩展模块"/>
                             <field name="vir_mark" string="虚拟化标志"/>
@@ -437,17 +438,27 @@
                             <field name="last_upd" string="最后修改时间"/>
                             <field name="ha_mode" string="主备状态"/>
                         </group>
-                        <notebook colspan="5">
+                        <notebook colspan="6">
                             <page string="CPU">
                                 <group>
+                                <group>
                                     <field name="cpu_num" string="CPU数量"/>
+                                    <field name="single_cpu_num" string="单CPU核数"/>
+                                </group>
+                                <group>
                                     <field name="cpu_spec" string="CPU规格"/>
+                                </group>
                                 </group>
                             </page>
                             <page string="内存">
                                 <group>
+                                <group>
                                     <field name="mem_size" string="内存容量"/>
+                                    <field name="single_mem_size" string="单条内存容量"/>
+                                </group>
+                                <group>
                                     <field name="mem_spec" string="内存规格"/>
+                                </group>
                                 </group>
                             </page>
                             <page string="存储">
@@ -455,12 +466,13 @@
                                 <group>
                                     <field name="disk_size" string="硬盘容量(裸容量)"/>
                                     <field name="disk_spec" string="硬盘规格"/>
-                                    <field name="ext_st_size" string="外接存储容量"/>
+                                    <field name="single_disk_size" string="单硬盘容量"/>
                                 </group>
                                 <group>
+                                    <field name="ext_st_size" string="外接存储容量"/>
                                     <field name="hba_config" string="HBA卡配置"/>
                                     <field name="hba_used" string="HBA卡已用情况"/>
-                                    <field name="san_wwn" string="san网络wwn号"/>
+
                                 </group>
                                 </group>
                             </page>
@@ -490,9 +502,8 @@
                                 </group>
                             </page>
                             <page string="虚拟机信息">
-                                <group>
                                     <field name="vm_ids" string="虚拟机信息">
-                                        <tree editable="bottom" create="true">
+                                        <tree editable="bottom" create="true" nolabel="true">
                                             <field name="name" string="名称"/>
                                             <field name="cpu" string="CPU"/>
                                             <field name="memory_size" string="内存(M)"/>
@@ -502,7 +513,6 @@
                                             <field name="vm_run_state" string="运行状态"/>
                                         </tree>
                                     </field>
-                                </group>
                             </page>
                         </notebook>
                     </group>
@@ -2356,6 +2366,7 @@
                     <field name="device_id" string="所在设备"/>
                     <field name="peer_device_id" string="对端设备"/>
                     <field name="peer_interface" string="对端接口"/>
+                    <field name="interface_rate" string="接口速率"/>
                 </tree>
             </field>
         </record>
@@ -2371,6 +2382,7 @@
                             <field name="type" string="类型"/>
                             <field name="mac" string="MAC地址"/>
                             <field name="device_id" string="所在设备"/>
+                            <field name="interface_rate" string="接口速率"/>
                         </group>
                         <group>
                             <field name="ip" string="IP地址"/>
@@ -2532,7 +2544,6 @@
                                     </group>
                                 </group>
                             </page>
-
                         </notebook>
                     </sheet>
                     <div class="oe_chatter">

@@ -344,6 +344,7 @@
             <field name="name">光纤交换机表</field>
             <field name="res_model">cinda_cmdb.fc_switch</field>
             <field name="view_type">form</field>
+            <field name="domain">[('dev_id.type_id','=',"光纤交换机")]</field>
             <field name="view_mode">tree,form,graph</field>
         </record>
 
@@ -351,6 +352,7 @@
             <field name="name">磁带机磁带库表</field>
             <field name="res_model">cinda_cmdb.tape_station</field>
             <field name="view_type">form</field>
+            <field name="domain">['|',('dev_id.type_id','=',"磁带机"),('dev_id.type_id','=',"磁带库")]</field>
             <field name="view_mode">tree,form,graph</field>
         </record>
 
@@ -391,8 +393,8 @@
         <menuitem id="cinda_cmdb_parts_id" name="配件" parent="menu_network" action="cinda_cmdb_parts_action" sequence="4"/>
         <menuitem id="ip_port_id" name="IP端口" parent="menu_network" action="cinda_cmdb_ip_port_action" sequence="5"/>
         <menuitem id="menu_storage" name="存储设备" parent="device_menu" sequence="6"/>
-        <menuitem id="st_info_id" name="存储" parent="menu_storage" action="cinda_cmdb_st_info_action" sequence="1"/>
-        <menuitem id="st_dev_id" name="存储硬件" parent="menu_storage" action="cinda_cmdb_st_dev_action" sequence="2"/>
+        <menuitem id="st_dev_id" name="存储硬件" parent="menu_storage" action="cinda_cmdb_st_dev_action" sequence="1"/>
+        <menuitem id="st_info_id" name="存储" parent="menu_storage" action="cinda_cmdb_st_info_action" sequence="2"/>
         <menuitem id="san_port_id" name="SAN端口" parent="menu_storage" action="cinda_cmdb_san_port_action" sequence="3"/>
         <menuitem id="st_part_id" name="存储组件" parent="menu_storage" action="cinda_cmdb_st_part_action" sequence="4"/>
         <menuitem id="menu_fc_switch" name="光纤交换机" parent="menu_storage" action="cinda_cmdb_fc_switch_action" sequence="5"/>
