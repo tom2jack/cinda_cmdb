@@ -893,16 +893,16 @@
                     <field name="wwn" string="本端口的wwn"/>
                     <field name="end_on_dev_id" string="对端设备"/>
                     <field name="end_port_id" string="对端端口"/>
-                    <field name="end_on_port" string="对端的端口号"/>
-                    <field name="end_on_wwn" string="对端口的wwn"/>
+                    <!--<field name="end_on_port" string="对端的端口号"/>-->
+                    <!--<field name="end_on_wwn" string="对端口的wwn"/>-->
                     <field name="speed" string="速率"/>
-                    <field name="protocl" string="使用协议"/>
-                    <field name="device_code" string="设备编号"/>
+                    <!--<field name="protocl" string="使用协议"/>-->
+                    <!--<field name="device_code" string="设备编号"/>-->
                     <field name="fc_card_name" string="光纤卡名"/>
                     <field name="slot" string="槽位"/>
-                    <field name="alias" string="别名"/>
-                    <field name="captain" string="说明"/>
-                    <field name="comment" string="备注"/>
+                    <!--<field name="alias" string="别名"/>-->
+                    <!--<field name="captain" string="说明"/>-->
+                    <!--<field name="comment" string="备注"/>-->
                 </tree>
             </field>
         </record>
@@ -912,18 +912,17 @@
             <field name="arch" type="xml">
                 <form>
                     <sheet>
+                        <group>
                     <group>
                         <field name="dev_id" string="设备资产"/>
                         <field name="type_id" string="设备类型"/>
                         <field name="port" string="端口号"/>
                         <field name="module" string="模块"/>
                         <field name="wwn" string="本端口的wwn"/>
-                        <field name="end_on_dev_id" string="对端设备ID"/>
-                        <field name="end_port_id" string="对端端口ID"/>
-                        <field name="end_on_port" string="对端的端口号"/>
-                        <field name="end_on_wwn" string="对端口的wwn"/>
                         <field name="speed" string="速率"/>
                         <field name="protocl" string="使用协议"/>
+                        </group>
+                        <group>
                         <field name="device_code" string="设备编号"/>
                         <field name="fc_card_name" string="光纤卡名"/>
                         <field name="slot" string="槽位"/>
@@ -931,6 +930,22 @@
                         <field name="captain" string="说明"/>
                         <field name="comment" string="备注"/>
                     </group>
+                        </group>
+                    <notebook colspan="1">
+                        <page string="对端设备">
+                            <group>
+                                <group>
+                                    <field name="end_on_dev_id" string="对端设备ID"/>
+                                    <field name="end_port_id" string="对端端口ID"/>
+                                </group>
+                                <group>
+                                    <field name="end_on_port" string="对端的端口号"/>
+                                    <field name="end_on_wwn" string="对端口的wwn"/>
+                                </group>
+                            </group>
+
+                        </page>
+                    </notebook>
                     </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
