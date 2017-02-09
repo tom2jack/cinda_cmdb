@@ -484,7 +484,7 @@
                                         <field name="mac" string="mac"/>
                                         <!--<field name="wwn" string="wwn"/>-->
                                         <field name="peer_device_id" string="对端设备"/>
-                                        <field name="peer_interface" string="对端接口"/>
+                                        <field name="peer_interface" domain="[('peer_device_id', '=', peer_device_id)]" string="对端接口"/>
                                     </tree>
                                 </field>
                             </page>
@@ -2731,6 +2731,8 @@
                     <field name="disk_num" string="硬盘数量"/>
                     <field name="single_disk_size" string="单硬盘容量"/>
                     <field name="disk_spec" string="硬盘规格"/>
+                    <field name="app_sys" string="所属系统"/>
+                    <field name="buss_ip_addr" string="业务网IP地址"/>
                     <!--<field name="four_g_hba_num" string="4G HBA卡数量"/>-->
                     <!--<field name="four_g_hba_used_num" string="4G HBA卡已用数量"/>-->
                     <!--<field name="eight_g_hba_num" string="8G HBA卡数量"/>-->
@@ -2764,9 +2766,11 @@
                             <field name="dev_name" string="设备名称"/>
                             <field name="extend_cab_num" string="扩展柜数量"/>
                             <field name="tape_station_num" string="磁带机数量"/>
+                            <field name="lpar_num" string="LPAR数量"/>
                         </group>
                         <group>
-                            <field name="lpar_num" string="LPAR数量"/>
+                            <field name="app_sys" string="所属系统"/>
+                            <field name="buss_ip_addr" string="业务网IP地址"/>
                             <field name="admin_ip" string="管理网IP"/>
                             <field name="admin_info" string="管理口信息点"/>
                             <field name="os" string="底层操作系统"/>
