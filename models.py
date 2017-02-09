@@ -235,8 +235,10 @@ class st_dev(models.Model):
     _mail_post_access = 'read'
 
     st_dev_id = fields.Char(string="存储id")
+    interface_ids = fields.One2many(related='dev_id.interface_ids', string="接口")
     dev_id = fields.Many2one("cinda_cmdb.device", string="设备资产id",
-                             domain=[('type_id.class_id', 'ilike', "磁带机"),
+                             domain=['|','|','|','|','|',
+                                     ('type_id.class_id', 'ilike', "磁带机"),
                                      ('type_id.class_id', 'ilike', "磁带库"),
                                      ('type_id.class_id', 'ilike', "磁盘阵列"),
                                      ('type_id.class_id', 'ilike', "存储扩展柜"),
@@ -806,7 +808,9 @@ class fc_switch(models.Model):
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
-    dev_id = fields.Many2one("cinda_cmdb.device", string="设备id")
+    dev_id = fields.Many2one("cinda_cmdb.device", string="设备id",
+                             domain=[('type_id.class_id', 'ilike', "光纤交换机")])
+    interface_ids = fields.One2many(related='dev_id.interface_ids', string="接口")
     valid_port_number = fields.Integer(string="有效口总数")
     four_g_module_number = fields.Integer(string="4G模块总数")
     eight_g_module_number = fields.Integer(string="8G模块总数")
@@ -823,7 +827,11 @@ class tape_station(models.Model):
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
-    dev_id = fields.Many2one("cinda_cmdb.device", string="设备id")
+    dev_id = fields.Many2one("cinda_cmdb.device", string="设备id",
+                             domain=['|',
+                                    ('type_id.class_id', 'ilike', "磁带机"),
+                                     ('type_id.class_id', 'ilike', "磁带库")])
+    interface_ids = fields.One2many(related='dev_id.interface_ids', string="接口")
     driver = fields.Char(string="驱动器")
     tape = fields.Char(string="磁带")
     cleaning_tape = fields.Char(string="清洗带")
@@ -839,7 +847,8 @@ class mini_pc(models.Model):
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
-    dev_id = fields.Many2one("cinda_cmdb.device", string="设备id")
+    dev_id = fields.Many2one("cinda_cmdb.device", string="设备id",
+                             domain=[('type_id.class_id', 'ilike', "小型计算机")])
     dev_name = fields.Char(string="设备名称")
     cpu_num = fields.Integer(string="CPU数量")
     single_cpu_num = fields.Integer(string="单CPU核数")

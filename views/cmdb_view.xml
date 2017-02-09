@@ -763,7 +763,7 @@
             <field name="arch" type="xml">
                 <tree>
                     <!--<field name="st_dev_id" string="存储ID"/>-->
-                    <field name="dev_id" string="设备资产"/>
+                    <field name="dev_id" string="设备ID"/>
                     <field name="st_type" string="存储类型"/>
                     <field name="pc_control_num" string="整机控制器数"/>
                     <field name="pc_cage_num" string="整机笼子数"/>
@@ -796,6 +796,20 @@
                                 <field name="pc_remain_size" string="整机剩余可使用容量(T)"/>
                             </group>
                         </group>
+                        <notebook colspan="1">
+                            <page string="接口">
+                                <field name="interface_ids">
+                                    <tree editable="bottom" create="true" nolabel="true">
+                                        <field name="name" string="接口号"/>
+                                        <field name="ip" string="ip"/>
+                                        <field name="mac" string="mac"/>
+                                        <!--<field name="wwn" string="wwn"/>-->
+                                        <field name="peer_device_id" string="对端设备"/>
+                                        <field name="peer_interface" domain="[('peer_device_id', '=', peer_device_id)]" string="对端接口"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
                     </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
@@ -2615,6 +2629,20 @@
                             <field name="sixteen_g_module_used_number" string="16G模块已使用的总数"/>
                         </group>
                     </group>
+                    <notebook colspan="1">
+                        <page string="接口">
+                            <field name="interface_ids">
+                                <tree editable="bottom" create="true" nolabel="true">
+                                    <field name="name" string="接口号"/>
+                                    <field name="ip" string="ip"/>
+                                    <field name="mac" string="mac"/>
+                                    <!--<field name="wwn" string="wwn"/>-->
+                                    <field name="peer_device_id" string="对端设备"/>
+                                    <field name="peer_interface" domain="[('peer_device_id', '=', peer_device_id)]" string="对端接口"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
                     </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
@@ -2683,6 +2711,20 @@
                             <field name="ha_port_number" string="HA端口数"/>
                         </group>
                     </group>
+                    <notebook colspan="1">
+                        <page string="接口">
+                            <field name="interface_ids">
+                                <tree editable="bottom" create="true" nolabel="true">
+                                    <field name="name" string="接口号"/>
+                                    <field name="ip" string="ip"/>
+                                    <field name="mac" string="mac"/>
+                                    <!--<field name="wwn" string="wwn"/>-->
+                                    <field name="peer_device_id" string="对端设备"/>
+                                    <field name="peer_interface" domain="[('peer_device_id', '=', peer_device_id)]" string="对端接口"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
                     </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
@@ -2721,7 +2763,7 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="dev_id" string="设备ID"/>
-                    <field name="dev_name" string="接口"/>
+                    <field name="dev_name" string="设备名称"/>
                     <field name="cpu_num" string="CPU数量"/>
                     <field name="single_cpu_num" string="单CPU核数"/>
                     <field name="cpu_spec" string="CPU规格"/>
