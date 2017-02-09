@@ -30,6 +30,11 @@ access_cinda_cmdb_cluster,cinda_cmdb_cluster,model_cinda_cmdb_cluster,base.group
 access_cinda_cmdb_vm,cinda_cmdb_vm,model_cinda_cmdb_vm,base.group_user,1,1,1,1
 access_cinda_cmdb_contract_purchase,cinda_cmdb_contract_purchase,model_cinda_cmdb_contract_purchase,base.group_user,1,1,1,1
 access_cinda_cmdb_parts,cinda_cmdb_parts,model_cinda_cmdb_parts,base.group_user,1,1,1,1
+access_cinda_cmdb_mini_pc,cinda_cmdb_mini_pc,model_cinda_cmdb_mini_pc,base.group_user,1,1,1,1
+access_cinda_cmdb_interface,cinda_cmdb_interface,model_cinda_cmdb_interface,base.group_user,1,1,1,1
+access_cinda_cmdb_fc_switch,cinda_cmdb_fc_switch,model_cinda_cmdb_fc_switch,base.group_user,1,1,1,1
+access_cinda_cmdb_tape_station,cinda_cmdb_tape_station,model_cinda_cmdb_tape_station,base.group_user,1,1,1,1
+access_cinda_cmdb_st_part,cinda_cmdb_st_part,model_cinda_cmdb_st_part,base.group_user,1,1,1,1
 
 access_res_groups,admin group in res_groups rw+,base.model_res_groups,base.group_cinda_cmdb_admin,1,1,1,1
 access_res_users,admin group in res_users rw+,base.model_res_users,base.group_cinda_cmdb_admin,1,1,1,1
