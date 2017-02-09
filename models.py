@@ -238,12 +238,12 @@ class st_dev(models.Model):
     interface_ids = fields.One2many(related='dev_id.interface_ids', string="接口")
     dev_id = fields.Many2one("cinda_cmdb.device", string="设备资产id",
                              domain=['|','|','|','|','|',
-                                     ('type_id.class_id', 'ilike', "磁带机"),
-                                     ('type_id.class_id', 'ilike', "磁带库"),
-                                     ('type_id.class_id', 'ilike', "磁盘阵列"),
-                                     ('type_id.class_id', 'ilike', "存储扩展柜"),
-                                     ('type_id.class_id', 'ilike', "光纤交换机"),
-                                     ('type_id.class_id', 'ilike', "光纤连接器")])
+                                     ('type_id.type_name', 'ilike', "磁带机"),
+                                     ('type_id.type_name', 'ilike', "磁带库"),
+                                     ('type_id.type_name', 'ilike', "磁盘阵列"),
+                                     ('type_id.type_name', 'ilike', "存储扩展柜"),
+                                     ('type_id.type_name', 'ilike', "光纤交换机"),
+                                     ('type_id.type_name', 'ilike', "光纤连接器")])
     st_type = fields.Integer(string="存储类型")
     pc_control_num = fields.Integer(string="整机控制器数")
     pc_cage_num = fields.Integer(string="整机笼子数")
@@ -809,7 +809,7 @@ class fc_switch(models.Model):
     _mail_post_access = 'read'
 
     dev_id = fields.Many2one("cinda_cmdb.device", string="设备id",
-                             domain=[('type_id.class_id', 'ilike', "光纤交换机")])
+                             domain=[('type_id.type_name', 'ilike', "光纤交换机")])
     interface_ids = fields.One2many(related='dev_id.interface_ids', string="接口")
     valid_port_number = fields.Integer(string="有效口总数")
     four_g_module_number = fields.Integer(string="4G模块总数")
@@ -829,8 +829,8 @@ class tape_station(models.Model):
 
     dev_id = fields.Many2one("cinda_cmdb.device", string="设备id",
                              domain=['|',
-                                    ('type_id.class_id', 'ilike', "磁带机"),
-                                     ('type_id.class_id', 'ilike', "磁带库")])
+                                    ('type_id.type_name', 'ilike', "磁带机"),
+                                     ('type_id.type_name', 'ilike', "磁带库")])
     interface_ids = fields.One2many(related='dev_id.interface_ids', string="接口")
     driver = fields.Char(string="驱动器")
     tape = fields.Char(string="磁带")
@@ -849,7 +849,7 @@ class mini_pc(models.Model):
     _mail_post_access = 'read'
 
     dev_id = fields.Many2one("cinda_cmdb.device", string="设备id",
-                             domain=[('type_id.class_id', 'ilike', "小型计算机")])
+                             domain=[('type_id.type_name', 'ilike', "小型计算机")])
     dev_name = fields.Char(string="设备名称")
     cpu_num = fields.Integer(string="CPU数量")
     single_cpu_num = fields.Integer(string="单CPU核数")
