@@ -836,7 +836,8 @@ class tape_station(models.Model):
     tape = fields.Char(string="磁带")
     cleaning_tape = fields.Char(string="清洗带")
     disk_controller = fields.Char(string="磁盘控制柜")
-    extend_cab = fields.Integer(string="扩展柜(磁盘数)")
+    extend_cab_num = fields.Integer(string="扩展柜数")
+    disk_num = fields.Integer(string="磁盘数")
     da_port_number = fields.Integer(string="DA端口数")
     ha_port_number = fields.Integer(string="HA端口数")
 

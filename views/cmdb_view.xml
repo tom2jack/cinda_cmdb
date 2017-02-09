@@ -2685,7 +2685,8 @@
                     <field name="tape" string="磁带"/>
                     <field name="cleaning_tape" string="清洗带"/>
                     <field name="disk_controller" string="磁盘控制柜"/>
-                    <field name="extend_cab" string="扩展柜(磁盘数)"/>
+                    <field name="extend_cab_num" string="扩展柜数"/>
+                    <field name="disk_num" string="磁盘数"/>
                     <field name="da_port_number" string="DA端口数"/>
                     <field name="ha_port_number" string="HA端口数"/>
                 </tree>
@@ -2703,10 +2704,11 @@
                             <field name="driver" string="驱动器"/>
                             <field name="tape" string="磁带"/>
                             <field name="cleaning_tape" string="清洗带"/>
+                            <field name="disk_controller" string="磁盘控制柜"/>
                         </group>
                         <group>
-                            <field name="disk_controller" string="磁盘控制柜"/>
-                            <field name="extend_cab" string="扩展柜(磁盘数)"/>
+                            <field name="extend_cab_num" string="扩展柜数"/>
+                            <field name="disk_num" string="磁盘数"/>
                             <field name="da_port_number" string="DA端口数"/>
                             <field name="ha_port_number" string="HA端口数"/>
                         </group>
