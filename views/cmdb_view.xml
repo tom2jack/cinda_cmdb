@@ -484,7 +484,7 @@
                                         <field name="mac" string="mac"/>
                                         <!--<field name="wwn" string="wwn"/>-->
                                         <field name="peer_device_id" string="对端设备"/>
-                                        <field name="peer_interface" domain="[('peer_device_id', '=', peer_device_id)]" string="对端接口"/>
+                                        <field name="peer_interface" domain="[('peer_device_id', '=', peer_device_id)]" string="对端接口" options='{"no_open":True, "no_create":1, "no_create_edit":1}/>
                                     </tree>
                                 </field>
                             </page>
@@ -805,7 +805,7 @@
                                         <field name="mac" string="mac"/>
                                         <!--<field name="wwn" string="wwn"/>-->
                                         <field name="peer_device_id" string="对端设备"/>
-                                        <field name="peer_interface" domain="[('peer_device_id', '=', peer_device_id)]" string="对端接口"/>
+                                        <field name="peer_interface" domain="[('peer_device_id', '=', peer_device_id)]" string="对端接口" options='{"no_open":True, "no_create":1, "no_create_edit":1}/>
                                     </tree>
                                 </field>
                             </page>
@@ -2638,7 +2638,7 @@
                                     <field name="mac" string="mac"/>
                                     <!--<field name="wwn" string="wwn"/>-->
                                     <field name="peer_device_id" string="对端设备"/>
-                                    <field name="peer_interface" domain="[('peer_device_id', '=', peer_device_id)]" string="对端接口"/>
+                                    <field name="peer_interface" domain="[('peer_device_id', '=', peer_device_id)]" string="对端接口" options='{"no_open":True, "no_create":1, "no_create_edit":1}/>
                                 </tree>
                             </field>
                         </page>
@@ -2722,7 +2722,7 @@
                                     <field name="mac" string="mac"/>
                                     <!--<field name="wwn" string="wwn"/>-->
                                     <field name="peer_device_id" string="对端设备"/>
-                                    <field name="peer_interface" domain="[('peer_device_id', '=', peer_device_id)]" string="对端接口"/>
+                                    <field name="peer_interface" domain="[('peer_device_id', '=', peer_device_id)]" string="对端接口" options='{"no_open":True, "no_create":1, "no_create_edit":1}/>
                                 </tree>
                             </field>
                         </page>
