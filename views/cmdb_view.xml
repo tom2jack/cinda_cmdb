@@ -2883,7 +2883,7 @@
                             <field name="os" string="底层操作系统"/>
                         </group>
                     </group>
-                    <notebook colspan="5">
+                    <notebook colspan="6">
                         <page string="CPU">
                             <group>
                                 <group>
@@ -2948,6 +2948,18 @@
                                 </group>
                             </group>
                         </page>
+                        <page string="接口">
+                                <field name="interface_ids">
+                                    <tree editable="bottom" create="true" nolabel="true">
+                                        <field name="name" string="接口号"/>
+                                        <field name="ip" string="ip"/>
+                                        <field name="mac" string="mac"/>
+                                        <!--<field name="wwn" string="wwn"/>-->
+                                        <field name="peer_device_id" string="对端设备"/>
+                                        <field name="peer_interface" domain="[('peer_device_id', '=', peer_device_id)]" string="对端接口" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
+                                    </tree>
+                                </field>
+                            </page>
                     </notebook>
                     </sheet>
                     <div class="oe_chatter">
