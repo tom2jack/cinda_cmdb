@@ -796,7 +796,7 @@
                                 <field name="pc_remain_size" string="整机剩余可使用容量(T)"/>
                             </group>
                         </group>
-                        <notebook colspan="1">
+                        <notebook colspan="7">
                             <page string="接口">
                                 <field name="interface_ids">
                                     <tree editable="bottom" create="true" nolabel="true">
@@ -806,6 +806,70 @@
                                         <!--<field name="wwn" string="wwn"/>-->
                                         <field name="peer_device_id" string="对端设备"/>
                                         <field name="peer_interface" domain="[('peer_device_id', '=', peer_device_id)]" string="对端接口" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="位置">
+                                <field name="st_part_ids">
+                                    <tree editable="bottom" create="true" nolabel="true">
+                                        <field name="lab_id" string="机房"/>
+                                        <field name="cab" string="机柜"/>
+                                        <field name="pos_seq" string="位置序号"/>
+                                        <field name="u_pos" string="位置U"/>
+                                        <field name="u_space" string="占位U"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="磁盘">
+                                <field name="st_part_ids_a">
+                                    <tree editable="bottom" create="true" nolabel="true">
+                                        <field name="cage_disk_num" string="笼内已装磁盘数"/>
+                                        <field name="single_disk_size" string="单个磁盘容量"/>
+                                        <field name="disk_spec" string="磁盘规格"/>
+                                        <field name="head_data_disk" string="机头数据盘"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="容量">
+                                <field name="st_part_ids_b">
+                                    <tree editable="bottom" create="true" nolabel="true">
+                                        <field name="enable_size" string="可使用容量(T)"/>
+                                        <field name="allocated_size" string="已分配容量(T)"/>
+                                        <field name="remain_enable_size" string="剩余可用容量(T)"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="网口">
+                                <field name="st_part_ids_c">
+                                    <tree editable="bottom" create="true" nolabel="true">
+                                        <field name="t_netcard_num" string="万兆网口数"/>
+                                        <field name="g_netcard_num" string="千兆网口数"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="光纤端口">
+                                <field name="st_part_ids_d">
+                                    <tree editable="bottom" create="true" nolabel="true">
+                                        <field name="four_g_fc_port" string="4g光纤端口"/>
+                                        <field name="eight_g_fc_port" string="8g光纤端口"/>
+                                        <field name="sixteen_g_fc_port" string="16g光纤端口"/>
+                                        <field name="thirty_two_g_fc_port" string="32g光纤端口"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="其他组件">
+                                <field name="st_part_ids_e">
+                                    <tree editable="bottom" create="true" nolabel="true">
+                                        <field name="name" string="存储组件名称"/>
+                                        <field name="st_id" string="存储ID"/>
+                                        <field name="st_part_type" string="存储部件类型"/>
+                                        <field name="st_part_type" string="存储组件ID"/>
+                                        <field name="sn" string="序列号"/>
+                                        <!--<field name="head_backup_disk" string="机头热备盘"/>-->
+                                        <field name="admin_ip" string="管理IP"/>
+                                        <field name="cache_config" string="缓存配置(G)"/>
+                                        <field name="NVRAM" string="NVRAM(G)"/>
+                                        <field name="memory" string="内存(G)"/>
                                     </tree>
                                 </field>
                             </page>
@@ -967,7 +1031,6 @@
                                     <field name="end_on_wwn" string="对端口的wwn"/>
                                 </group>
                             </group>
-
                         </page>
                     </notebook>
                     </sheet>

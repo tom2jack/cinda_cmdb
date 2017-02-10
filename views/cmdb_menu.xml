@@ -388,7 +388,7 @@
         <menuitem id="mini_pc" name="小型计算机" parent="menu_computer"  action="cinda_cmdb_mini_pc_action" sequence="3"/>
         <menuitem id="st_dev_id" name="存储硬件" parent="menu_computer" action="cinda_cmdb_st_dev_action" sequence="4"/>
         <menuitem id="st_info_id" name="存储" parent="menu_computer" action="cinda_cmdb_st_info_action" sequence="5"/>
-        <menuitem id="st_part_id" name="存储组件" parent="menu_computer" action="cinda_cmdb_st_part_action" sequence="8"/>
+        <!--<menuitem id="st_part_id" name="存储组件" parent="menu_computer" action="cinda_cmdb_st_part_action" sequence="8"/>-->
         <menuitem id="menu_fc_switch" name="光纤交换机" parent="menu_computer" action="cinda_cmdb_fc_switch_action" sequence="6"/>
         <menuitem id="menu_tape_station" name="磁带机磁带库" parent="menu_computer" action="cinda_cmdb_tape_station_action" sequence="7"/>
         <menuitem id="menu_network" name="网络安全设备" parent="device_menu" sequence="5"/>

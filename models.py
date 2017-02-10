@@ -101,6 +101,18 @@ class device(models.Model):
         vals['device_id'] = self.pool.get('ir.sequence').get(cr, uid, 'cinda_cmdb.device')
         return super(device, self).create(cr, uid, vals, context=context)
 
+    #修改作为外键时的显示
+    @api.multi
+    @api.depends('sn', 'host_name')
+    def name_get(self):
+        datas=[]
+        for r in self:
+            if r.host_name:
+                datas.append((r.id, (r.sn + '(' + (r.host_name) + ')')))
+            else:
+                datas.append((r.id, (r.sn)))
+        return datas
+
 
 class server(models.Model):
     _name = "cinda_cmdb.server"
@@ -236,6 +248,12 @@ class st_dev(models.Model):
 
     st_dev_id = fields.Char(string="存储id")
     interface_ids = fields.One2many(related='dev_id.interface_ids', string="接口")
+    st_part_ids = fields.One2many('cinda_cmdb.st_part', 'st_id', string="位置")
+    st_part_ids_a = fields.One2many(related='st_part_ids', string="磁盘")
+    st_part_ids_b = fields.One2many(related='st_part_ids', string="容量")
+    st_part_ids_c = fields.One2many(related='st_part_ids', string="网口")
+    st_part_ids_d = fields.One2many(related='st_part_ids', string="光纤端口")
+    st_part_ids_e = fields.One2many(related='st_part_ids', string="其他组件")
     dev_id = fields.Many2one("cinda_cmdb.device", string="设备资产id",
                              domain=['|','|','|','|','|',
                                      ('type_id.type_name', 'ilike', "磁带机"),
@@ -337,7 +355,7 @@ class cabinet(models.Model):
     _mail_post_access = 'read'
 
     cab_num = fields.Char(string="机柜号", require=True)
-    lab = fields.Many2one("cinda_cmdb.base_type", string="机房")
+    lab = fields.Many2one("cinda_cmdb.base_type", string="机房", domain=[('class_id', 'ilike', "机房")])
     pdu_num = fields.Integer(string="PDU数目")
     elec_power = fields.Integer(string="电源功率")
     ampere = fields.Integer(string="电流")
