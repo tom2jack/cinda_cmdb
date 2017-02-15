@@ -919,6 +919,7 @@ class mini_pc(models.Model):
 
     dev_id = fields.Many2one("cinda_cmdb.device", string="设备id",
                              domain=[('type_id.type_name', 'ilike', "小型计算机")])
+    sn_id = fields.Char(related="dev_id.sn", string="所属设备序列号")
     interface_ids = fields.One2many(related='dev_id.interface_ids', string="网卡接口")
     interface_ids_a = fields.One2many(related='dev_id.interface_ids', string="HBA卡接口")
     dev_name = fields.Char(string="设备名称")

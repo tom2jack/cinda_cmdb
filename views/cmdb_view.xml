@@ -2910,7 +2910,7 @@
             <field name="model">cinda_cmdb.mini_pc</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="dev_id" string="设备ID"/>
+                    <field name="sn_id" string="所属设备序列号"/>
                     <field name="dev_name" string="设备名称"/>
                     <field name="cpu_num" string="CPU数量"/>
                     <field name="single_cpu_num" string="单CPU核数"/>
@@ -2952,7 +2952,7 @@
                     <sheet>
                     <group>
                         <group>
-                            <field name="dev_id" string="设备ID"/>
+                            <field name="sn_id" string="所属设备序列号"/>
                             <field name="dev_name" string="设备名称"/>
                             <field name="extend_cab_num" string="扩展柜数量"/>
                             <field name="tape_station_num" string="磁带机数量"/>
