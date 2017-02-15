@@ -124,7 +124,8 @@ class server(models.Model):
     vm_ids = fields.One2many("cinda_cmdb.vm", "host_computer", string="虚拟机信息")
     dev_id = fields.Many2one("cinda_cmdb.device", string="设备资产id")
     sn_id = fields.Char(related="dev_id.sn", string="所属设备序列号")
-    interface_ids = fields.One2many(related='dev_id.interface_ids', string="接口")
+    interface_ids = fields.One2many(related='dev_id.interface_ids', string="网卡接口")
+    interface_ids_a = fields.One2many(related='interface_ids', string="HBA卡接口")
     # server_info_ids_a = fields.Char(related="server_info_ids", string="服务器信息合同")
     server_id = fields.Char(string="服务器id")
     app_sys = fields.Char(string="所属系统")
@@ -139,8 +140,9 @@ class server(models.Model):
     cpu_num = fields.Integer(string="CPU数量")
     single_cpu_num = fields.Integer(string="单CPU核数")
     cpu_spec = fields.Char(string="CPU规格")
-    mem_size = fields.Float(string="内存容量")
+    mem_num = fields.Integer(string="内存条数")
     single_mem_size = fields.Float(string="单条内存容量")
+    mem_size = fields.Float(string="内存总容量", compute="_mem_sum", store="True")
     mem_spec = fields.Char(string="内存规格")
     disk_size = fields.Float(string="硬盘容量(裸容量)")
     single_disk_size = fields.Float(string="单硬盘容量")
@@ -160,6 +162,18 @@ class server(models.Model):
     last_upd = fields.Datetime(default=fields.datetime.now(), require=True)
     san_wwn = fields.Char(string="san网络wwn号")
     ha_mode = fields.Char(string="主备状态")
+    four_g_hba_num = fields.Integer(string="4G HBA卡数量")
+    four_g_hba_used_num = fields.Integer(string="4G HBA卡已用数量")
+    eight_g_hba_num = fields.Integer(string="8G HBA卡数量")
+    eight_g_hba_used_num = fields.Integer(string="8G HBA卡已用数量")
+    sixteen_g_hba_num = fields.Integer(string="16G HBA卡数量")
+    sixteen_g_hba_used_num = fields.Integer(string="16G HBA卡已用数量")
+    thirty_two_g_hba_num = fields.Integer(string="32G HBA卡数量")
+    thirty_two_g_hba_used_num = fields.Integer(string="32G HBA卡已用数量")
+    g_netcard_num = fields.Integer(string="千兆网口数量")
+    g_netcard_used_num = fields.Integer(string="千兆网口已用数量")
+    t_netcard_num = fields.Integer(string="万兆网口数量")
+    t_netcard_used_num = fields.Integer(string="万兆网口已用数量")
     host_name = fields.Char(related="dev_id.host_name", string="设备命名")
     type_id = fields.Many2one(related="dev_id.type_id", string="设备类型")
     brand_id = fields.Many2one(related="dev_id.brand_id", string="品牌")
@@ -185,6 +199,15 @@ class server(models.Model):
     contract_purchase_id = fields.Many2one(related="dev_id.contract_purchase_id", string="采购合同编号")
     accept_date = fields.Char(related="dev_id.accept_date", string="初验日期")
     reject_date = fields.Char(related="dev_id.reject_date", string="过保日期")
+
+    # 计算内存总容量
+    @api.multi
+    @api.depends('mem_num', 'single_mem_size')
+    def _mem_sum(self):
+        datas=[]
+        for r in self:
+            datas.append(r.mem_num * r.single_mem_size)
+        return datas
 
 
 class net_dev(models.Model):
@@ -766,6 +789,7 @@ class interface(models.Model):
     peer_interface = fields.Many2one('cinda_cmdb.interface', string="对端接口", track_visibility='onchange')
     status = fields.Boolean(string="是否使用", compute='auto_change_peer', store=True, default=False)
     interface_rate = fields.Char(string="接口速率")
+    peer_rate = fields.Char(string="对端速率")
 
     # 实现在增加、删除对端接口时，自动关联互联设备的对端接口，但修改对端接口时不能取消关联之前的设备
     @api.one
@@ -900,6 +924,7 @@ class mini_pc(models.Model):
     dev_name = fields.Char(string="设备名称")
     cpu_num = fields.Integer(string="CPU数量")
     single_cpu_num = fields.Integer(string="单CPU核数")
+    cpu_sum = fields.Integer(string="CPU总核数", compute="_cpu_sum", store="True")
     cpu_spec = fields.Char(string="CPU规格")
     mem_num = fields.Integer(string="内存条数")
     single_mem_size = fields.Float(string="单条内存容量")
@@ -930,3 +955,15 @@ class mini_pc(models.Model):
     os = fields.Char(string="底层操作系统")
     app_sys = fields.Char(string="所属系统")
     buss_ip_addr = fields.Char(string="业务网IP地址")
+
+    #计算CPU核数量
+    @api.multi
+    @api.depends('cpu_num', 'single_cpu_num')
+    def _cpu_sum(self):
+        for r in self:
+            r.cpu_sum = r.single_cpu_num * r.cpu_num
+        return r.cpu_sum
+
+
+
+
