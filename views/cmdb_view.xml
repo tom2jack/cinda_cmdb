@@ -364,7 +364,7 @@
                 <tree>
                     <field name="admin_ip" string="管理口IP"/>
                     <field name="buss_ip_addr" string="业务网IP地址"/>
-                    <field name="dev_id" string="所属设备序列号"/>
+                    <field name="sn_id" string="所属设备序列号"/>
                     <field name="app_sys" string="所属系统"/>
                     <!-- <field name="stor_ip_addr" string="存储网IP地址"/>
                     <field name="bck_ip_addr" string="备份网IP地址"/>
@@ -419,7 +419,7 @@
                     <group>
                         <group>
                             <!--<field name="server_id" string="服务器ID"/>-->
-                            <field name="dev_id" string="所属设备序列号"/>
+                            <field name="sn_id" string="所属设备序列号"/>
                             <field name="app_sys" string="所属系统"/>
                             <field name="admin_ip" string="管理口IP"/>
                             <field name="buss_ip_addr" string="业务网IP地址"/>
@@ -438,7 +438,26 @@
                             <field name="last_upd" string="最后修改时间"/>
                             <field name="ha_mode" string="主备状态"/>
                         </group>
-                        <notebook colspan="6">
+                        <group string="服务器硬件">
+                            <field name="host_name" string="设备命名"/>
+                            <field name="type_id" string="设备类型"/>
+                            <field name="brand_id" string="品牌"/>
+                            <field name="product_name" string="产品型号"/>
+                            <field name="sn" string="序列号"/>
+                            <field name="model" string="Model"/>
+                            <field name="use_mode" string="使用状态"/>
+                            <field name="dev_start" string="设备状态"/>
+                        </group>
+                        <group string="　">
+                            <field name="asset_num_old" string="旧资产编号"/>
+                            <field name="asset_num" string="资产编号"/>
+                            <field name="purpose" string="用途"/>
+                            <field name="owner_id" string="资产所有人"/>
+                            <field name="user" string="使用人"/>
+                            <field name="admin" string="管理人"/>
+                            <field name="comment" string="备注"/>
+                        </group>
+                        <notebook colspan="8">
                             <page string="CPU">
                                 <group>
                                 <group>
@@ -514,6 +533,55 @@
                                         </tree>
                                     </field>
                             </page>
+                            <page string="位置">
+                                <group>
+                                <group>
+                                    <field name="lab_id" string="机房"/>
+                                    <field name="cab" domain="[('lab', '=', lab_id)]" string="机柜" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
+                                    <field name="pos_seq" string="位置序号"/>
+                                </group>
+                                <group>
+                                    <field name="u_pos" string="位置U"/>
+                                    <field name="u_space" string="占位U"/>
+                                    <field name="env_id" string="环境"/>
+                                </group>
+                                </group>
+                            </page>
+                            <page string="合同">
+                                <group>
+                                <group>
+                                    <field name="srve_prvd" string="服务商"/>
+                                    <field name="contract_purchase_id" string="采购合同编号"/>
+                                </group>
+                                <group>
+                                    <field name="accept_date" string="初验日期"/>
+                                    <field name="reject_date" string="过保日期"/>
+                                </group>
+                                </group>
+                            </page>
+                            <!--<page string="位置">-->
+                                <!--&lt;!&ndash;<field name="server_info_ids" string="位置">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<tree editable="bottom" create="true" nolabel="true">&ndash;&gt;-->
+                                        <!--<field name="lab_id" string="机房"/>-->
+                                        <!--<field name="cab" string="机柜"/>-->
+                                        <!--<field name="pos_seq" string="位置序号"/>-->
+                                        <!--<field name="u_pos" string="位置U"/>-->
+                                        <!--<field name="u_space" string="占位U"/>-->
+                                        <!--<field name="env_id" string="环境"/>-->
+                                        <!--&lt;!&ndash;<field name="peer_interface" domain="[('peer_device_id', '=', peer_device_id)]" string="对端接口" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</tree>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</field>&ndash;&gt;-->
+                            <!--</page>-->
+                            <!--<page string="合同">-->
+                                <!--<field name="server_info_ids_a" string="合同">-->
+                                    <!--<tree editable="bottom" create="true" nolabel="true">-->
+                                        <!--<field name="srve_prvd" string="服务商"/>-->
+                                        <!--<field name="contract_purchase_id" string="采购合同编号"/>-->
+                                        <!--<field name="accept_date" string="初验日期"/>-->
+                                        <!--<field name="reject_date" string="过保日期"/>-->
+                                    <!--</tree>-->
+                                <!--</field>-->
+                            <!--</page>-->
                         </notebook>
                     </group>
                     </sheet>
@@ -2920,7 +2988,7 @@
                                 </group>
                             </group>
                         </page>
-                        <page string="HBA卡">
+                        <page string="HBA卡信息">
                             <group>
                                 <group>
                                     <field name="four_g_hba_num" string="4G HBA卡数量"/>
@@ -2935,8 +3003,17 @@
                                     <field name="thirty_two_g_hba_used_num" string="32G HBA卡已用数量"/>
                                 </group>
                             </group>
+                            <field name="interface_ids_a" string="HBA卡接口">
+                                    <tree editable="bottom" create="true" nolabel="true">
+                                        <field name="name" string="接口号"/>
+                                        <field name="wwn" string="wwn"/>
+                                        <!--<field name="wwn" string="wwn"/>-->
+                                        <field name="peer_device_id" string="对端设备"/>
+                                        <field name="peer_interface" domain="[('peer_device_id', '=', peer_device_id)]" string="对端接口" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
+                                    </tree>
+                            </field>
                         </page>
-                        <page string="网口">
+                        <page string="网卡信息">
                             <group>
                                 <group>
                                     <field name="g_netcard_num" string="千兆网口数量"/>
@@ -2947,9 +3024,7 @@
                                     <field name="t_netcard_used_num" string="万兆网口已用数量"/>
                                 </group>
                             </group>
-                        </page>
-                        <page string="接口">
-                                <field name="interface_ids">
+                            <field name="interface_ids" string="网卡接口">
                                     <tree editable="bottom" create="true" nolabel="true">
                                         <field name="name" string="接口号"/>
                                         <field name="ip" string="ip"/>
@@ -2958,8 +3033,20 @@
                                         <field name="peer_device_id" string="对端设备"/>
                                         <field name="peer_interface" domain="[('peer_device_id', '=', peer_device_id)]" string="对端接口" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
                                     </tree>
-                                </field>
-                            </page>
+                            </field>
+                        </page>
+                        <!--<page string="接口">-->
+                                <!--<field name="interface_ids">-->
+                                    <!--<tree editable="bottom" create="true" nolabel="true">-->
+                                        <!--<field name="name" string="接口号"/>-->
+                                        <!--<field name="ip" string="ip"/>-->
+                                        <!--<field name="mac" string="mac"/>-->
+                                        <!--&lt;!&ndash;<field name="wwn" string="wwn"/>&ndash;&gt;-->
+                                        <!--<field name="peer_device_id" string="对端设备"/>-->
+                                        <!--<field name="peer_interface" domain="[('peer_device_id', '=', peer_device_id)]" string="对端接口" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>-->
+                                    <!--</tree>-->
+                                <!--</field>-->
+                            <!--</page>-->
                     </notebook>
                     </sheet>
                     <div class="oe_chatter">

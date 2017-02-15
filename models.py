@@ -84,7 +84,7 @@ class device(models.Model):
     asset_num_old = fields.Char(string="旧资产编号")
     asset_num = fields.Char(string="资产编号")
     sn = fields.Char(string="序列号")
-    server_ids = fields.One2many("cinda_cmdb.server", "dev_id", string="服务器信息")
+    server_ids = fields.Many2one("cinda_cmdb.server", string="服务器信息")
     purpose = fields.Char(string="用途")
     accept_date = fields.Char(string="初验日期")
     reject_date = fields.Char(string="过保日期")
@@ -116,14 +116,16 @@ class device(models.Model):
 
 class server(models.Model):
     _name = "cinda_cmdb.server"
-    _description = '服务器表'
+    _description = 'PC服务器表'
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
     _rec_name = "buss_ip_addr"
 
     vm_ids = fields.One2many("cinda_cmdb.vm", "host_computer", string="虚拟机信息")
     dev_id = fields.Many2one("cinda_cmdb.device", string="设备资产id")
+    sn_id = fields.Char(related="dev_id.sn", string="所属设备序列号")
     interface_ids = fields.One2many(related='dev_id.interface_ids', string="接口")
+    # server_info_ids_a = fields.Char(related="server_info_ids", string="服务器信息合同")
     server_id = fields.Char(string="服务器id")
     app_sys = fields.Char(string="所属系统")
     buss_ip_addr = fields.Char(string="业务网IP地址")
@@ -158,6 +160,31 @@ class server(models.Model):
     last_upd = fields.Datetime(default=fields.datetime.now(), require=True)
     san_wwn = fields.Char(string="san网络wwn号")
     ha_mode = fields.Char(string="主备状态")
+    host_name = fields.Char(related="dev_id.host_name", string="设备命名")
+    type_id = fields.Many2one(related="dev_id.type_id", string="设备类型")
+    brand_id = fields.Many2one(related="dev_id.brand_id", string="品牌")
+    product_name = fields.Char(related="dev_id.product_name", readonly="True",string="产品型号")
+    sn = fields.Char(related="dev_id.sn", readonly="True",string="序列号")
+    model = fields.Char(related="dev_id.model", readonly="True",string="Model")
+    use_mode = fields.Selection(related="dev_id.use_mode", string="使用状态")
+    dev_start = fields.Selection(related="dev_id.dev_start", string="设备状态")
+    asset_num_old = fields.Char(related="dev_id.asset_num_old", string="旧资产编号")
+    asset_num = fields.Char(related="dev_id.asset_num", string="资产编号")
+    purpose = fields.Char(related="dev_id.purpose", string="用途")
+    owner_id = fields.Many2one(related="dev_id.owner_id", string="资产所有人")
+    user = fields.Many2one(related="dev_id.user",  string="使用人")
+    admin = fields.Char(related="dev_id.admin", string="管理人")
+    comment = fields.Char(related="dev_id.comment", string="备注")
+    lab_id = fields.Many2one(related="dev_id.lab_id", string="机房")
+    cab = fields.Many2one(related="dev_id.cab", string="机柜")
+    pos_seq = fields.Integer(related="dev_id.pos_seq", string="位置序号")
+    u_pos = fields.Many2one(related="dev_id.u_pos", string="位置U")
+    u_space = fields.Integer(related="dev_id.u_space", string="占位U")
+    env_id = fields.Many2one(related="dev_id.env_id", string="环境")
+    srve_prvd = fields.Many2one(related="dev_id.srve_prvd", string="服务商")
+    contract_purchase_id = fields.Many2one(related="dev_id.contract_purchase_id", string="采购合同编号")
+    accept_date = fields.Char(related="dev_id.accept_date", string="初验日期")
+    reject_date = fields.Char(related="dev_id.reject_date", string="过保日期")
 
 
 class net_dev(models.Model):
@@ -868,7 +895,8 @@ class mini_pc(models.Model):
 
     dev_id = fields.Many2one("cinda_cmdb.device", string="设备id",
                              domain=[('type_id.type_name', 'ilike', "小型计算机")])
-    interface_ids = fields.One2many(related='dev_id.interface_ids', string="接口")
+    interface_ids = fields.One2many(related='dev_id.interface_ids', string="网卡接口")
+    interface_ids_a = fields.One2many(related='dev_id.interface_ids', string="HBA卡接口")
     dev_name = fields.Char(string="设备名称")
     cpu_num = fields.Integer(string="CPU数量")
     single_cpu_num = fields.Integer(string="单CPU核数")
