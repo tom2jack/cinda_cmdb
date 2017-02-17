@@ -151,14 +151,15 @@ class server(models.Model):
     os = fields.Char(string="底层操作系统")
     cpu_num = fields.Integer(string="CPU数量")
     single_cpu_num = fields.Integer(string="单CPU核数")
+    cpu_sum = fields.Integer(string="CPU总核数", compute="_cpu_sum", store="True")
     cpu_spec = fields.Char(string="CPU规格")
     mem_num = fields.Integer(string="内存条数")
     single_mem_size = fields.Float(string="单条内存容量")
-    mem_size = fields.Float(string="内存总容量", compute="_mem_sum", store="True")
+    mem_sum = fields.Float(string="内存总容量", compute="_mem_sum", store="True")
     mem_spec = fields.Char(string="内存规格")
     disk_size = fields.Float(string="硬盘容量(裸容量)")
     single_disk_size = fields.Float(string="单硬盘容量")
-    disk_total_size = fields.Float(string="硬盘总容量", compute="_disk_sum", store="True")
+    disk_sum = fields.Float(string="硬盘总容量", compute="_disk_sum", store="True")
     disk_spec = fields.Char(string="硬盘规格")
     ext_st_size = fields.Float(string="外接存储容量")
     hba_config = fields.Char(string="HBA卡配置")
@@ -218,19 +219,22 @@ class server(models.Model):
     @api.multi
     @api.depends('mem_num', 'single_mem_size')
     def _mem_sum(self):
-        datas=[]
         for r in self:
-            datas.append(r.mem_num * r.single_mem_size)
-        return datas
+            r.mem_sum = r.mem_num * r.single_mem_size
 
     # 计算硬盘总容量
     @api.multi
     @api.depends('disk_size', 'single_disk_size')
     def _disk_sum(self):
-        datas=[]
         for r in self:
-            datas.append(r.disk_size * r.single_disk_size)
-        return datas
+            r.disk_sum = r.disk_size * r.single_disk_size
+
+    #计算CPU核数量
+    @api.multi
+    @api.depends('cpu_num', 'single_cpu_num')
+    def _cpu_sum(self):
+        for r in self:
+            r.cpu_sum = r.single_cpu_num * r.cpu_num
 
 
 class net_dev(models.Model):
@@ -915,6 +919,33 @@ class fc_switch(models.Model):
     four_g_module_used_number = fields.Integer(string="4G模块已使用的总数")
     eight_g_module_used_number = fields.Integer(string="8G模块已使用的总数")
     sixteen_g_module_used_number = fields.Integer(string="16G模块已使用的总数")
+    #以下是device表中引用过来用来展示的字段
+    host_name = fields.Char(related="dev_id.host_name", string="设备命名")
+    type_id = fields.Many2one(related="dev_id.type_id", string="设备类型")
+    brand_id = fields.Many2one(related="dev_id.brand_id", string="品牌")
+    product_name = fields.Char(related="dev_id.product_name", readonly="True",string="产品型号")
+    sn = fields.Char(related="dev_id.sn", readonly="True",string="序列号")
+    model = fields.Char(related="dev_id.model", readonly="True",string="Model")
+    use_mode = fields.Selection(related="dev_id.use_mode", string="使用状态")
+    dev_start = fields.Selection(related="dev_id.dev_start", string="设备状态")
+    asset_num_old = fields.Char(related="dev_id.asset_num_old", string="旧资产编号")
+    asset_num = fields.Char(related="dev_id.asset_num", string="资产编号")
+    purpose = fields.Char(related="dev_id.purpose", string="用途")
+    owner_id = fields.Many2one(related="dev_id.owner_id", string="资产所有人")
+    user = fields.Many2one(related="dev_id.user",  string="使用人")
+    admin = fields.Char(related="dev_id.admin", string="管理人")
+    comment = fields.Char(related="dev_id.comment", string="备注")
+    lab_id = fields.Many2one(related="dev_id.lab_id", string="机房")
+    cab = fields.Many2one(related="dev_id.cab", string="机柜")
+    pos_seq = fields.Integer(related="dev_id.pos_seq", string="位置序号")
+    u_pos = fields.Many2one(related="dev_id.u_pos", string="位置U")
+    u_space = fields.Integer(related="dev_id.u_space", string="占位U")
+    env_id = fields.Many2one(related="dev_id.env_id", string="环境")
+    srve_prvd = fields.Many2one(related="dev_id.srve_prvd", string="服务商")
+    contract_purchase_id = fields.Many2one(related="dev_id.contract_purchase_id", string="采购合同编号")
+    accept_date = fields.Char(related="dev_id.accept_date", string="初验日期")
+    reject_date = fields.Char(related="dev_id.reject_date", string="过保日期")
+    last_upd = fields.Datetime(related="dev_id.last_upd", string="最后截止日期")
 
 
 class tape_station(models.Model):
@@ -956,6 +987,7 @@ class mini_pc(models.Model):
     cpu_spec = fields.Char(string="CPU规格")
     mem_num = fields.Integer(string="内存条数")
     single_mem_size = fields.Float(string="单条内存容量")
+    mem_sum = fields.Float(string="内存总容量", compute="_mem_sum", store="True")
     mem_spec = fields.Char(string="内存规格")
     disk_spec = fields.Char(string="硬盘规格1")
     disk_num = fields.Integer(string="硬盘数量1")
@@ -963,6 +995,7 @@ class mini_pc(models.Model):
     disk_spec_two = fields.Char(string="硬盘规格2")
     disk_num_two = fields.Integer(string="硬盘数量2")
     single_disk_size_two = fields.Float(string="单硬盘容量2")
+    disk_sum = fields.Float(string="硬盘总容量", compute="_disk_sum", store="True")
     four_g_hba_num = fields.Integer(string="4G HBA卡数量")
     four_g_hba_used_num = fields.Integer(string="4G HBA卡已用数量")
     eight_g_hba_num = fields.Integer(string="8G HBA卡数量")
@@ -1017,3 +1050,17 @@ class mini_pc(models.Model):
     def _cpu_sum(self):
         for r in self:
             r.cpu_sum = r.single_cpu_num * r.cpu_num
+
+    # 计算内存总容量
+    @api.multi
+    @api.depends('mem_num', 'single_mem_size')
+    def _mem_sum(self):
+        for r in self:
+            r.mem_sum = r.mem_num * r.single_mem_size
+
+    #计算硬盘总容量
+    @api.multi
+    @api.depends('disk_num', 'single_disk_size', 'disk_num_two', 'single_disk_size_two')
+    def _disk_sum(self):
+        for r in self:
+            r.disk_sum = (r.disk_num * r.single_disk_size)+(r.disk_num_two * r.single_disk_size_two)

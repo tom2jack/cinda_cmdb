@@ -440,6 +440,7 @@
                                     <field name="single_cpu_num" string="单CPU核数"/>
                                 </group>
                                 <group>
+                                    <field name="cpu_sum" string="CPU总核数"/>
                                     <field name="cpu_spec" string="CPU规格"/>
                                 </group>
                                 </group>
@@ -451,23 +452,21 @@
                                     <field name="single_mem_size" string="单条内存容量"/>
                                 </group>
                                 <group>
-                                    <field name="mem_size" string="内存总容量"/>
+                                    <field name="mem_sum" string="内存总容量"/>
                                     <field name="mem_spec" string="内存规格"/>
                                 </group>
                                 </group>
                             </page>
-                            <page string="存储">
+                            <page string="硬盘">
                                 <group>
                                 <group>
                                     <field name="disk_size" string="硬盘容量(裸容量)"/>
-                                    <field name="disk_spec" string="硬盘规格"/>
                                     <field name="single_disk_size" string="单硬盘容量"/>
-                                    <field name="disk_total_size" string="硬盘总容量"/>
+                                    <field name="disk_sum" string="硬盘总容量"/>
                                 </group>
-                                <group>
-                                    <field name="ext_st_size" string="外接存储容量"/>
-                                    <field name="hba_config" string="HBA卡配置"/>
-                                    <field name="hba_used" string="HBA卡已用情况"/>
+                                    <group>
+                                        <field name="disk_spec" string="硬盘规格"/>
+                                        <field name="ext_st_size" string="外接存储容量"/>
                                 </group>
                                 </group>
                             </page>
@@ -2725,15 +2724,24 @@
             <field name="model">cinda_cmdb.fc_switch</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="dev_id" string="设备ID"/>
+                    <field name="sn" string="所属设备序列号"/>
+                    <field name="host_name" string="设备命名"/>
+                    <field name="cab" domain="[('lab', '=', lab_id)]" string="机柜" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
+                    <field name="u_pos" string="位置U"/>
+                    <field name="model" string="Model"/>
+                    <field name="use_mode" string="使用状态"/>
+                    <field name="dev_start" string="设备状态"/>
+                    <field name="purpose" string="用途"/>
+                    <field name="lab_id" string="机房"/>
+                    <field name="asset_num_old" string="旧资产编号"/>
+                    <field name="asset_num" string="资产编号"/>
+                    <field name="owner_id" string="资产所有人"/>
+                    <field name="user" string="使用人"/>
+                    <field name="srve_prvd" string="服务商"/>
                     <field name="valid_port_number" string="有效口总数"/>
-                    <field name="four_g_module_number" string="4G模块总数"/>
-                    <field name="eight_g_module_number" string="8G模块总数"/>
-                    <field name="sixteen_g_module_number" string="16G模块总数"/>
                     <field name="used_port_number" string="已使用口数"/>
-                    <field name="four_g_module_used_number" string="4G模块已使用的总数"/>
-                    <field name="eight_g_module_used_number" string="8G模块已使用的总数"/>
-                    <field name="sixteen_g_module_used_number" string="16G模块已使用的总数"/>
+                    <field name="accept_date" string="初验日期"/>
+                    <field name="reject_date" string="过保日期"/>
                 </tree>
             </field>
         </record>
@@ -2745,20 +2753,29 @@
                     <sheet>
                     <group>
                         <group>
-                            <field name="dev_id" string="设备ID"/>
-                            <field name="valid_port_number" string="有效口总数"/>
-                            <field name="four_g_module_number" string="4G模块总数"/>
-                            <field name="eight_g_module_number" string="8G模块总数"/>
-                            <field name="sixteen_g_module_number" string="16G模块总数"/>
-                        </group>
-                        <group>
-                            <field name="used_port_number" string="已使用口数"/>
-                            <field name="four_g_module_used_number" string="4G模块已使用的总数"/>
-                            <field name="eight_g_module_used_number" string="8G模块已使用的总数"/>
-                            <field name="sixteen_g_module_used_number" string="16G模块已使用的总数"/>
-                        </group>
+                                <field name="sn" string="序列号"/>
+                                <field name="host_name" string="设备命名"/>
+                                <field name="type_id" string="设备类型"/>
+                                <field name="brand_id" string="品牌"/>
+                                <field name="product_name" string="产品型号"/>
+                                <field name="model" string="Model"/>
+                                <field name="use_mode" string="使用状态"/>
+                                <field name="dev_start" string="设备状态"/>
+                                <field name="valid_port_number" string="有效口总数"/>
+                                <field name="used_port_number" string="已使用口数"/>
+                            </group>
+                            <group>
+                                <field name="asset_num_old" string="旧资产编号"/>
+                                <field name="asset_num" string="资产编号"/>
+                                <field name="purpose" string="用途"/>
+                                <field name="owner_id" string="资产所有人"/>
+                                <field name="user" string="使用人"/>
+                                <field name="admin" string="管理人"/>
+                                <field name="comment" string="备注"/>
+                                <field name="last_upd" string="最后修改时间"/>
+                            </group>
                     </group>
-                    <notebook colspan="1">
+                    <notebook colspan="5">
                         <page string="光口">
                             <field name="interface_ids">
                                 <tree editable="bottom" create="true" nolabel="true">
@@ -2787,6 +2804,46 @@
                                 </tree>
                             </field>
                         </page>
+                        <page string="模块信息">
+                            <group>
+                                <group>
+                                <field name="four_g_module_number" string="4G模块总数"/>
+                                <field name="eight_g_module_number" string="8G模块总数"/>
+                                <field name="sixteen_g_module_number" string="16G模块总数"/>
+                            </group>
+                            <group>
+                                <field name="four_g_module_used_number" string="4G模块已使用的总数"/>
+                                <field name="eight_g_module_used_number" string="8G模块已使用的总数"/>
+                                <field name="sixteen_g_module_used_number" string="16G模块已使用的总数"/>
+                            </group>
+                            </group>
+                        </page>
+                        <page string="位置">
+                                <group>
+                                <group>
+                                    <field name="lab_id" string="机房"/>
+                                    <field name="cab" domain="[('lab', '=', lab_id)]" string="机柜" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
+                                    <field name="pos_seq" string="位置序号"/>
+                                </group>
+                                <group>
+                                    <field name="u_pos" string="位置U"/>
+                                    <field name="u_space" string="占位U"/>
+                                    <field name="env_id" string="环境"/>
+                                </group>
+                                </group>
+                            </page>
+                            <page string="合同">
+                                <group>
+                                <group>
+                                    <field name="srve_prvd" string="服务商"/>
+                                    <field name="contract_purchase_id" string="采购合同编号"/>
+                                </group>
+                                <group>
+                                    <field name="accept_date" string="初验日期"/>
+                                    <field name="reject_date" string="过保日期"/>
+                                </group>
+                                </group>
+                            </page>
                     </notebook>
                     </sheet>
                     <div class="oe_chatter">
@@ -2912,8 +2969,8 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="sn_id" string="所属设备序列号"/>
-                    <field name="dev_name" string="设备命名"/>
                     <field name="buss_ip_addr" string="业务网IP地址"/>
+                    <field name="host_name" string="设备命名"/>
                     <field name="cab" domain="[('lab', '=', lab_id)]" string="机柜" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
                     <field name="u_pos" string="位置U"/>
                     <field name="model" string="Model"/>
@@ -2986,6 +3043,7 @@
                                     <field name="single_mem_size" string="单条内存容量"/>
                                 </group>
                                 <group>
+                                    <field name="mem_sum" string="内存总容量"/>
                                     <field name="mem_spec" string="内存规格"/>
                                 </group>
                             </group>
@@ -2996,6 +3054,7 @@
                                     <field name="disk_spec" string="硬盘规格1"/>
                                     <field name="disk_num" string="硬盘数量1"/>
                                     <field name="single_disk_size" string="单硬盘容量1"/>
+                                    <field name="disk_sum" string="硬盘总容量"/>
                                 </group>
                                 <group>
                                     <field name="disk_spec_two" string="硬盘规格2"/>
