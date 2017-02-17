@@ -905,7 +905,8 @@ class fc_switch(models.Model):
 
     dev_id = fields.Many2one("cinda_cmdb.device", string="设备id",
                              domain=[('type_id.type_name', 'ilike', "光纤交换机")])
-    interface_ids = fields.One2many(related='dev_id.interface_ids', string="接口")
+    interface_ids = fields.One2many(related='dev_id.interface_ids', string="光口")
+    interface_ids_a = fields.One2many(related='interface_ids', string="电口")
     valid_port_number = fields.Integer(string="有效口总数")
     four_g_module_number = fields.Integer(string="4G模块总数")
     eight_g_module_number = fields.Integer(string="8G模块总数")

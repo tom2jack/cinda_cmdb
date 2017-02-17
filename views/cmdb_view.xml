@@ -2759,7 +2759,7 @@
                         </group>
                     </group>
                     <notebook colspan="1">
-                        <page string="接口">
+                        <page string="光口">
                             <field name="interface_ids">
                                 <tree editable="bottom" create="true" nolabel="true">
                                     <field name="name" string="接口号"/>
@@ -2770,6 +2770,20 @@
                                     <field name="peer_wwn" string="对端wwn"/>
                                     <field name="peer_rate" string="对端速率"/>
                                     <field name="purpose" string="用途"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="电口">
+                            <field name="interface_ids_a">
+                                <tree editable="bottom" create="true" nolabel="true">
+                                    <field name="name" string="接口号"/>
+                                        <field name="ip" string="ip"/>
+                                        <field name="mac" string="mac"/>
+                                        <field name="interface_rate" string="接口速率"/>
+                                        <field name="peer_device_id" string="对端设备"/>
+                                        <field name="peer_interface" domain="[('peer_device_id', '=', peer_device_id)]" string="对端接口" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
+                                        <field name="peer_rate" string="对端速率"/>
+                                        <field name="purpose" string="用途"/>
                                 </tree>
                             </field>
                         </page>
