@@ -50,7 +50,7 @@
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
         </record>
-
+        
         <record id="cinda_cmdb_server_device_action" model="ir.actions.act_window" >
             <field name="name">服务器硬件</field>
             <field name="res_model">cinda_cmdb.device</field>

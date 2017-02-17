@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 from openerp import fields
 from openerp import models,api,exceptions
 
@@ -84,7 +84,6 @@ class device(models.Model):
     asset_num_old = fields.Char(string="旧资产编号")
     asset_num = fields.Char(string="资产编号")
     sn = fields.Char(string="序列号")
-    server_ids = fields.Many2one("cinda_cmdb.server", string="服务器信息")
     purpose = fields.Char(string="用途")
     accept_date = fields.Char(string="初验日期")
     reject_date = fields.Char(string="过保日期")
@@ -96,6 +95,13 @@ class device(models.Model):
     last_upd = fields.Datetime(default=fields.datetime.now(), require=True, string="最后截止日期")
     contract_purchase_id = fields.Many2one("cinda_cmdb.contract_purchase", string="采购合同编号")
     interface_ids = fields.One2many('cinda_cmdb.interface', 'device_id', string="接口")
+    #以下是server表中引用过来的字段
+    server_ids = fields.One2many('cinda_cmdb.server','dev_id', string="服务器信息1")
+    server_ids_a = fields.Many2one('cinda_cmdb.server', string="服务器信息2", compute='_get_record_id', store=True)
+    app_sys = fields.Char(related="server_ids_a.app_sys", string="所属系统")
+    os = fields.Char(related="server_ids_a.os", string="底层操作系统")
+    # last_upd_a = fields.Datetime(related="server_ids_a.last_upd_a", require=True, string="最后截止日期")
+
 
     def create(self, cr, uid, vals, context=None):
         vals['device_id'] = self.pool.get('ir.sequence').get(cr, uid, 'cinda_cmdb.device')
@@ -113,6 +119,12 @@ class device(models.Model):
                 datas.append((r.id, (r.sn)))
         return datas
 
+    # 将sever表里的字段引用到device表里面。。。(将)
+    @api.one
+    @api.depends('server_ids')
+    def _get_record_id(self):
+        for r in self:
+            r.server_ids_a = r.server_ids
 
 class server(models.Model):
     _name = "cinda_cmdb.server"
@@ -174,6 +186,7 @@ class server(models.Model):
     g_netcard_used_num = fields.Integer(string="千兆网口已用数量")
     t_netcard_num = fields.Integer(string="万兆网口数量")
     t_netcard_used_num = fields.Integer(string="万兆网口已用数量")
+    #以下是device表中引用过来用来展示的字段
     host_name = fields.Char(related="dev_id.host_name", string="设备命名")
     type_id = fields.Many2one(related="dev_id.type_id", string="设备类型")
     brand_id = fields.Many2one(related="dev_id.brand_id", string="品牌")
@@ -351,7 +364,7 @@ class san_port(models.Model):
     port = fields.Char(string="端口号")
     module = fields.Char(string="模块")
     # port = fields.Char(string="本端端口号")
-    wwn = fields.Char(string="本端口的WWN")
+    wwn = fields.Char(string="本端WWN")
     end_on_dev_id = fields.Integer(string="对端设备id")
     end_port_id = fields.Integer(string="对端端口ID")
     end_on_port = fields.Char(string="对端的端口号")
@@ -364,7 +377,7 @@ class san_port(models.Model):
     alias = fields.Char(string="别名")
     captain = fields.Char(string="说明")
     comment = fields.Char(string="备注")
-    last_upd = fields.Datetime(default=fields.datetime.now(), require=True)
+    last_upd = fields.Datetime(default=fields.datetime.now(), require=True, string='最后截止日期')
 
 
 class ip_port(models.Model):
@@ -783,13 +796,16 @@ class interface(models.Model):
         string="类型",)
     mac = fields.Char(string="MAC地址")
     ip = fields.Char(string="IP地址")
-    wwn = fields.Char(string="wwn")
+    local_wwn = fields.Char(string="本端wwn")
+    peer_wwn = fields.Char(string="对端WWN")
     device_id = fields.Many2one('cinda_cmdb.device', string="所在设备")
     peer_device_id = fields.Many2one('cinda_cmdb.device', string="对端设备")
     peer_interface = fields.Many2one('cinda_cmdb.interface', string="对端接口", track_visibility='onchange')
     status = fields.Boolean(string="是否使用", compute='auto_change_peer', store=True, default=False)
-    interface_rate = fields.Char(string="接口速率")
+    interface_rate = fields.Char(string="本端接口速率")
     peer_rate = fields.Char(string="对端速率")
+    purpose = fields.Char(string="用途")
+
 
     # 实现在增加、删除对端接口时，自动关联互联设备的对端接口，但修改对端接口时不能取消关联之前的设备
     @api.one
@@ -956,6 +972,32 @@ class mini_pc(models.Model):
     os = fields.Char(string="底层操作系统")
     app_sys = fields.Char(string="所属系统")
     buss_ip_addr = fields.Char(string="业务网IP地址")
+    # #以下是device表中引用过来用来展示的字段
+    # host_name = fields.Char(related="dev_id.host_name", string="设备命名")
+    # type_id = fields.Many2one(related="dev_id.type_id", string="设备类型")
+    # brand_id = fields.Many2one(related="dev_id.brand_id", string="品牌")
+    # product_name = fields.Char(related="dev_id.product_name", readonly="True",string="产品型号")
+    # sn = fields.Char(related="dev_id.sn", readonly="True",string="序列号")
+    # model = fields.Char(related="dev_id.model", readonly="True",string="Model")
+    # use_mode = fields.Selection(related="dev_id.use_mode", string="使用状态")
+    # dev_start = fields.Selection(related="dev_id.dev_start", string="设备状态")
+    # asset_num_old = fields.Char(related="dev_id.asset_num_old", string="旧资产编号")
+    # asset_num = fields.Char(related="dev_id.asset_num", string="资产编号")
+    # purpose = fields.Char(related="dev_id.purpose", string="用途")
+    # owner_id = fields.Many2one(related="dev_id.owner_id", string="资产所有人")
+    # user = fields.Many2one(related="dev_id.user",  string="使用人")
+    # admin = fields.Char(related="dev_id.admin", string="管理人")
+    # comment = fields.Char(related="dev_id.comment", string="备注")
+    # lab_id = fields.Many2one(related="dev_id.lab_id", string="机房")
+    # cab = fields.Many2one(related="dev_id.cab", string="机柜")
+    # pos_seq = fields.Integer(related="dev_id.pos_seq", string="位置序号")
+    # u_pos = fields.Many2one(related="dev_id.u_pos", string="位置U")
+    # u_space = fields.Integer(related="dev_id.u_space", string="占位U")
+    # env_id = fields.Many2one(related="dev_id.env_id", string="环境")
+    # srve_prvd = fields.Many2one(related="dev_id.srve_prvd", string="服务商")
+    # contract_purchase_id = fields.Many2one(related="dev_id.contract_purchase_id", string="采购合同编号")
+    # accept_date = fields.Char(related="dev_id.accept_date", string="初验日期")
+    # reject_date = fields.Char(related="dev_id.reject_date", string="过保日期")
 
     #计算CPU核数量
     @api.multi
@@ -963,8 +1005,3 @@ class mini_pc(models.Model):
     def _cpu_sum(self):
         for r in self:
             r.cpu_sum = r.single_cpu_num * r.cpu_num
-        return r.cpu_sum
-
-
-
-

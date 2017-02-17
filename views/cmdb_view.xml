@@ -298,7 +298,9 @@
                             <field name="user" string="使用人"/>
                             <field name="admin" string="管理人"/>
                             <field name="comment" string="备注"/>
-                            <!--<field name="last_upd" string="最后修改时间"/>-->
+                            <!--<field name="os" string="底层操作系统"/>-->
+                            <!--<field name="app_sys" string="所属系统"/>-->
+                            <!--<field name="last_upd_a" string="最后修改时间"/>-->
                         </group>
                         <notebook colspan="3">
                             <page string="位置">
@@ -401,38 +403,29 @@
                     <sheet>
                     <group>
                         <group>
-                            <!--<field name="server_id" string="服务器ID"/>-->
-                            <field name="sn_id" string="所属设备序列号"/>
-                            <field name="app_sys" string="所属系统"/>
-                            <field name="san_wwn" string="san网络wwn号"/>
-                            <field name="os" string="底层操作系统"/>
-                            <field name="exten_mod" string="扩展模块"/>
-                        </group>
-                        <group>
-                            <field name="vir_mark" string="虚拟化标志"/>
-                            <field name="comment1" string="备注1"/>
-                            <field name="comment2" string="备注2"/>
-                            <field name="last_upd" string="最后修改时间"/>
-                            <field name="ha_mode" string="主备状态"/>
-                        </group>
-                        <group string="服务器硬件">
+                            <field name="sn" string="序列号"/>
                             <field name="host_name" string="设备命名"/>
                             <field name="type_id" string="设备类型"/>
                             <field name="brand_id" string="品牌"/>
                             <field name="product_name" string="产品型号"/>
-                            <!--<field name="sn" string="序列号"/>-->
                             <field name="model" string="Model"/>
                             <field name="use_mode" string="使用状态"/>
-                        </group>
-                        <group string="　">
                             <field name="dev_start" string="设备状态"/>
+                            <field name="exten_mod" string="扩展模块"/>
+                            <field name="ha_mode" string="主备状态"/>
+                            <field name="comment" string="备注"/>
+                        </group>
+                        <group>
                             <field name="asset_num_old" string="旧资产编号"/>
                             <field name="asset_num" string="资产编号"/>
+                            <field name="os" string="底层操作系统"/>
+                            <field name="app_sys" string="所属系统"/>
+                            <field name="vir_mark" string="虚拟化标志"/>
                             <field name="purpose" string="用途"/>
                             <field name="owner_id" string="资产所有人"/>
                             <field name="user" string="使用人"/>
                             <field name="admin" string="管理人"/>
-                            <field name="comment" string="备注"/>
+                            <field name="last_upd" string="最后修改时间"/>
                         </group>
                         <notebook colspan="10">
                             <page string="CPU">
@@ -490,12 +483,13 @@
                             <field name="interface_ids_a" string="HBA卡接口">
                                     <tree editable="bottom" create="true" nolabel="true">
                                         <field name="name" string="接口号"/>
-                                        <field name="wwn" string="wwn"/>
-                                        <field name="interface_rate" string="接口速率"/>
-                                        <field name="peer_rate" string="对端速率"/>
-                                        <!--<field name="wwn" string="wwn"/>-->
+                                        <field name="local_wwn" string="本端wwn"/>
+                                        <field name="interface_rate" string="本端接口速率"/>
                                         <field name="peer_device_id" string="对端设备"/>
                                         <field name="peer_interface" domain="[('peer_device_id', '=', peer_device_id)]" string="对端接口" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
+                                        <field name="peer_wwn" string="对端wwn"/>
+                                        <field name="peer_rate" string="对端速率"/>
+                                        <field name="purpose" string="用途"/>
                                     </tree>
                             </field>
                         </page>
@@ -516,47 +510,34 @@
                                         <field name="ip" string="ip"/>
                                         <field name="mac" string="mac"/>
                                         <field name="interface_rate" string="接口速率"/>
-                                        <field name="peer_rate" string="对端速率"/>
-                                        <!--<field name="wwn" string="wwn"/>-->
                                         <field name="peer_device_id" string="对端设备"/>
                                         <field name="peer_interface" domain="[('peer_device_id', '=', peer_device_id)]" string="对端接口" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
+                                        <field name="peer_rate" string="对端速率"/>
+                                        <field name="purpose" string="用途"/>
                                     </tree>
                             </field>
                         </page>
-                            <page string="接口统计">
-                                <group>
-                                <group>
-                                    <field name="g_netcard_config" string="千兆网卡配置"/>
-                                    <field name="g_netcard_used" string="千兆网卡已用情况"/>
-                                    <field name="t_netcard_config" string="万兆网卡配置"/>
-                                </group>
-                                <group>
-                                    <field name="t_netcard_used" string="万兆网卡已用情况"/>
-                                    <field name="netcard_band" string="网卡绑定"/>
-                                </group>
-                                </group>
-                            </page>
-                            <page string="虚拟机信息">
-                                    <field name="vm_ids" string="虚拟机信息">
-                                        <tree editable="bottom" create="true" nolabel="true">
-                                            <field name="name" string="名称"/>
-                                            <field name="cpu" string="CPU"/>
-                                            <field name="memory_size" string="内存(M)"/>
-                                            <field name="reserve_space" string="硬盘(G)"/>
-                                            <field name="used_space" string="已用空间(G)"/>
-                                            <field name="cluster" string="集群"/>
-                                            <field name="vm_run_state" string="运行状态"/>
-                                        </tree>
-                                    </field>
-                            </page>
+                            <!--<page string="虚拟机信息">-->
+                                <!--<field name="vm_ids" string="虚拟机信息">-->
+                                        <!--<tree editable="bottom" create="true" nolabel="true">-->
+                                            <!--<field name="name" string="名称"/>-->
+                                            <!--<field name="cpu" string="CPU"/>-->
+                                            <!--<field name="memory_size" string="内存(M)"/>-->
+                                            <!--<field name="reserve_space" string="硬盘(G)"/>-->
+                                            <!--<field name="used_space" string="已用空间(G)"/>-->
+                                            <!--<field name="cluster" string="集群"/>-->
+                                            <!--<field name="vm_run_state" string="运行状态"/>-->
+                                        <!--</tree>-->
+                                    <!--</field>-->
+                            <!--</page>-->
                             <page string="位置">
                                 <group>
-                                <group>
+                                    <group>
                                     <field name="lab_id" string="机房"/>
                                     <field name="cab" domain="[('lab', '=', lab_id)]" string="机柜" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
                                     <field name="pos_seq" string="位置序号"/>
                                 </group>
-                                <group>
+                                    <group>
                                     <field name="u_pos" string="位置U"/>
                                     <field name="u_space" string="占位U"/>
                                     <field name="env_id" string="环境"/>
@@ -565,30 +546,30 @@
                             </page>
                             <page string="合同">
                                 <group>
-                                <group>
+                                    <group>
                                     <field name="srve_prvd" string="服务商"/>
                                     <field name="contract_purchase_id" string="采购合同编号"/>
                                 </group>
-                                <group>
+                                    <group>
                                     <field name="accept_date" string="初验日期"/>
                                     <field name="reject_date" string="过保日期"/>
                                 </group>
                                 </group>
                             </page>
-                            <page string="IP信息">
-                                <group>
-                                <group>
-                                    <field name="admin_ip" string="管理口IP"/>
-                                    <field name="buss_ip_addr" string="业务网IP地址"/>
-                                    <field name="stor_ip_addr" string="存储网IP地址"/>
-                                </group>
-                                <group>
-                                    <field name="bck_ip_addr" string="备份网IP地址"/>
-                                    <field name="mng_ip_addr" string="管理网IP地址"/>
-                                    <field name="admin_info" string="管理口信息点"/>
-                                </group>
-                                </group>
-                            </page>
+                            <!--<page string="IP信息">-->
+                                <!--<group>-->
+                                    <!--<group>-->
+                                    <!--<field name="admin_ip" string="管理口IP"/>-->
+                                    <!--<field name="buss_ip_addr" string="业务网IP地址"/>-->
+                                    <!--<field name="stor_ip_addr" string="存储网IP地址"/>-->
+                                <!--</group>-->
+                                    <!--<group>-->
+                                    <!--<field name="bck_ip_addr" string="备份网IP地址"/>-->
+                                    <!--<field name="mng_ip_addr" string="管理网IP地址"/>-->
+                                    <!--<field name="admin_info" string="管理口信息点"/>-->
+                                <!--</group>-->
+                                <!--</group>-->
+                            <!--</page>-->
                         </notebook>
                     </group>
                     </sheet>
@@ -710,11 +691,11 @@
                                             <field name="name" string="接口号"/>
                                             <field name="ip" string="ip"/>
                                             <field name="mac" string="mac"/>
-                                            <!--<field name="wwn" string="wwn"/>-->
                                             <field name="interface_rate" string="接口速率"/>
-                                            <field name="peer_rate" string="对端速率"/>
                                             <field name="peer_device_id" string="对端设备"/>
-                                            <field name="peer_interface" string="对端接口"/>
+                                            <field name="peer_interface" domain="[('peer_device_id', '=', peer_device_id)]" string="对端接口" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
+                                            <field name="peer_rate" string="对端速率"/>
+                                            <field name="purpose" string="用途"/>
                                         </tree>
                                 </field>
                             </page>
@@ -880,11 +861,11 @@
                                         <field name="name" string="接口号"/>
                                         <field name="ip" string="ip"/>
                                         <field name="mac" string="mac"/>
-                                        <!--<field name="wwn" string="wwn"/>-->
                                         <field name="interface_rate" string="接口速率"/>
-                                        <field name="peer_rate" string="对端速率"/>
                                         <field name="peer_device_id" string="对端设备"/>
                                         <field name="peer_interface" domain="[('peer_device_id', '=', peer_device_id)]" string="对端接口" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
+                                        <field name="peer_rate" string="对端速率"/>
+                                        <field name="purpose" string="用途"/>
                                     </tree>
                                 </field>
                             </page>
@@ -1060,8 +1041,6 @@
                     <field name="wwn" string="本端口的wwn"/>
                     <field name="end_on_dev_id" string="对端设备"/>
                     <field name="end_port_id" string="对端端口"/>
-                    <!--<field name="end_on_port" string="对端的端口号"/>-->
-                    <!--<field name="end_on_wwn" string="对端口的wwn"/>-->
                     <field name="speed" string="速率"/>
                     <!--<field name="protocl" string="使用协议"/>-->
                     <!--<field name="device_code" string="设备编号"/>-->
@@ -2518,11 +2497,12 @@
                     <field name="type" string="类型"/>
                     <field name="mac" string="MAC地址"/>
                     <field name="ip" string="IP地址"/>
-                    <field name="wwn" string="WWN"/>
+                    <field name="local_wwn" string="本端WWN"/>
                     <field name="device_id" string="所在设备"/>
                     <field name="peer_device_id" string="对端设备"/>
                     <field name="peer_interface" string="对端接口"/>
                     <field name="interface_rate" string="接口速率"/>
+                    <field name="purpose" string="用途"/>
                 </tree>
             </field>
         </record>
@@ -2542,9 +2522,10 @@
                         </group>
                         <group>
                             <field name="ip" string="IP地址"/>
-                            <field name="wwn" string="WWN"/>
+                            <field name="local_wwn" string="本端WWN"/>
                             <field name="peer_device_id" string="对端设备" />
                             <field name="peer_interface" string="对端接口" domain="[('device_id', '=', peer_device_id)]" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
+                            <field name="purpose" string="用途"/>
                         </group>
                     </group>
                     </sheet>
@@ -2563,7 +2544,7 @@
                     <field name="name" string="接口号"/>
                     <field name="ip" string="IP地址"/>
                     <field name="mac" string="MAC地址"/>
-                    <field name="wwn" string="WWN"/>
+                    <field name="local_wwn" string="本端wwn"/>
                     <group expand="0" string="分组">
                         <filter name="type" string="类型" context="{'group_by':'type'}"/>
                         <filter name="device_id" string="本端设备" context="{'group_by':'device_id'}"/>
@@ -2776,13 +2757,13 @@
                             <field name="interface_ids">
                                 <tree editable="bottom" create="true" nolabel="true">
                                     <field name="name" string="接口号"/>
-                                    <field name="ip" string="ip"/>
-                                    <field name="mac" string="mac"/>
-                                    <!--<field name="wwn" string="wwn"/>-->
-                                    <field name="interface_rate" string="接口速率"/>
-                                    <field name="peer_rate" string="对端速率"/>
+                                    <field name="local_wwn" string="本端wwn"/>
+                                    <field name="interface_rate" string="本端接口速率"/>
                                     <field name="peer_device_id" string="对端设备"/>
                                     <field name="peer_interface" domain="[('peer_device_id', '=', peer_device_id)]" string="对端接口" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
+                                    <field name="peer_wwn" string="对端wwn"/>
+                                    <field name="peer_rate" string="对端速率"/>
+                                    <field name="purpose" string="用途"/>
                                 </tree>
                             </field>
                         </page>
@@ -2864,11 +2845,11 @@
                                     <field name="name" string="接口号"/>
                                     <field name="ip" string="ip"/>
                                     <field name="mac" string="mac"/>
-                                    <!--<field name="wwn" string="wwn"/>-->
-                                    <field name="interface_rate" string="接口速率"/>
-                                    <field name="peer_rate" string="对端速率"/>
+                                    <field name="interface_rate" string="本端接口速率"/>
                                     <field name="peer_device_id" string="对端设备"/>
                                     <field name="peer_interface" domain="[('peer_device_id', '=', peer_device_id)]" string="对端接口" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
+                                    <field name="peer_rate" string="对端速率"/>
+                                    <field name="purpose" string="用途"/>
                                 </tree>
                             </field>
                         </page>
@@ -2950,7 +2931,7 @@
             <field name="arch" type="xml">
                 <form>
                     <sheet>
-                    <group>
+                        <group>
                         <group>
                             <field name="sn_id" string="所属设备序列号"/>
                             <field name="dev_name" string="设备名称"/>
@@ -2965,7 +2946,7 @@
                             <field name="admin_info" string="管理口信息点"/>
                             <field name="os" string="底层操作系统"/>
                         </group>
-                    </group>
+                        </group>
                     <notebook colspan="6">
                         <page string="CPU">
                             <group>
@@ -3022,10 +3003,13 @@
                             <field name="interface_ids_a" string="HBA卡接口">
                                     <tree editable="bottom" create="true" nolabel="true">
                                         <field name="name" string="接口号"/>
-                                        <field name="wwn" string="wwn"/>
-                                        <!--<field name="wwn" string="wwn"/>-->
+                                        <field name="local_wwn" string="本端wwn"/>
+                                        <field name="interface_rate" string="本端接口速率"/>
                                         <field name="peer_device_id" string="对端设备"/>
                                         <field name="peer_interface" domain="[('peer_device_id', '=', peer_device_id)]" string="对端接口" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
+                                        <field name="peer_wwn" string="对端wwn"/>
+                                        <field name="peer_rate" string="对端速率"/>
+                                        <field name="purpose" string="用途"/>
                                     </tree>
                             </field>
                         </page>
@@ -3045,25 +3029,39 @@
                                         <field name="name" string="接口号"/>
                                         <field name="ip" string="ip"/>
                                         <field name="mac" string="mac"/>
-                                        <!--<field name="wwn" string="wwn"/>-->
                                         <field name="interface_rate" string="接口速率"/>
-                                        <field name="peer_rate" string="对端速率"/>
                                         <field name="peer_device_id" string="对端设备"/>
                                         <field name="peer_interface" domain="[('peer_device_id', '=', peer_device_id)]" string="对端接口" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
+                                        <field name="peer_rate" string="对端速率"/>
+                                        <field name="purpose" string="用途"/>
                                     </tree>
                             </field>
                         </page>
-                        <!--<page string="接口">-->
-                                <!--<field name="interface_ids">-->
-                                    <!--<tree editable="bottom" create="true" nolabel="true">-->
-                                        <!--<field name="name" string="接口号"/>-->
-                                        <!--<field name="ip" string="ip"/>-->
-                                        <!--<field name="mac" string="mac"/>-->
-                                        <!--&lt;!&ndash;<field name="wwn" string="wwn"/>&ndash;&gt;-->
-                                        <!--<field name="peer_device_id" string="对端设备"/>-->
-                                        <!--<field name="peer_interface" domain="[('peer_device_id', '=', peer_device_id)]" string="对端接口" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>-->
-                                    <!--</tree>-->
-                                <!--</field>-->
+                        <!--<page string="位置">-->
+                                <!--<group>-->
+                                    <!--<group>-->
+                                    <!--<field name="lab_id" string="机房"/>-->
+                                    <!--<field name="cab" domain="[('lab', '=', lab_id)]" string="机柜" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>-->
+                                    <!--<field name="pos_seq" string="位置序号"/>-->
+                                <!--</group>-->
+                                    <!--<group>-->
+                                    <!--<field name="u_pos" string="位置U"/>-->
+                                    <!--<field name="u_space" string="占位U"/>-->
+                                    <!--<field name="env_id" string="环境"/>-->
+                                <!--</group>-->
+                                <!--</group>-->
+                            <!--</page>-->
+                            <!--<page string="合同">-->
+                                <!--<group>-->
+                                    <!--<group>-->
+                                    <!--<field name="srve_prvd" string="服务商"/>-->
+                                    <!--<field name="contract_purchase_id" string="采购合同编号"/>-->
+                                <!--</group>-->
+                                    <!--<group>-->
+                                    <!--<field name="accept_date" string="初验日期"/>-->
+                                    <!--<field name="reject_date" string="过保日期"/>-->
+                                <!--</group>-->
+                                <!--</group>-->
                             <!--</page>-->
                     </notebook>
                     </sheet>
