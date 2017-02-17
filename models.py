@@ -96,10 +96,10 @@ class device(models.Model):
     contract_purchase_id = fields.Many2one("cinda_cmdb.contract_purchase", string="采购合同编号")
     interface_ids = fields.One2many('cinda_cmdb.interface', 'device_id', string="接口")
     #以下是server表中引用过来的字段
-    server_ids = fields.One2many('cinda_cmdb.server','dev_id', string="服务器信息1")
-    server_ids_a = fields.Many2one('cinda_cmdb.server', string="服务器信息2", compute='_get_record_id', store=True)
-    app_sys = fields.Char(related="server_ids_a.app_sys", string="所属系统")
-    os = fields.Char(related="server_ids_a.os", string="底层操作系统")
+    # server_ids = fields.One2many('cinda_cmdb.server','dev_id', string="服务器信息1")
+    # server_ids_a = fields.Many2one('cinda_cmdb.server', string="服务器信息2", compute='_get_record_id', store=True)
+    # app_sys = fields.Char(related="server_ids_a.app_sys", string="所属系统")
+    # os = fields.Char(related="server_ids_a.os", string="底层操作系统")
     # last_upd_a = fields.Datetime(related="server_ids_a.last_upd_a", require=True, string="最后截止日期")
 
 
@@ -120,11 +120,11 @@ class device(models.Model):
         return datas
 
     # 将sever表里的字段引用到device表里面。。。(将)
-    @api.one
-    @api.depends('server_ids')
-    def _get_record_id(self):
-        for r in self:
-            r.server_ids_a = r.server_ids
+    # @api.one
+    # @api.depends('server_ids')
+    # def _get_record_id(self):
+    #     for r in self:
+    #         r.server_ids_a = r.server_ids
 
 class server(models.Model):
     _name = "cinda_cmdb.server"
@@ -158,6 +158,7 @@ class server(models.Model):
     mem_spec = fields.Char(string="内存规格")
     disk_size = fields.Float(string="硬盘容量(裸容量)")
     single_disk_size = fields.Float(string="单硬盘容量")
+    disk_total_size = fields.Float(string="硬盘总容量", compute="_disk_sum", store="True")
     disk_spec = fields.Char(string="硬盘规格")
     ext_st_size = fields.Float(string="外接存储容量")
     hba_config = fields.Char(string="HBA卡配置")
@@ -220,6 +221,15 @@ class server(models.Model):
         datas=[]
         for r in self:
             datas.append(r.mem_num * r.single_mem_size)
+        return datas
+
+    # 计算硬盘总容量
+    @api.multi
+    @api.depends('disk_size', 'single_disk_size')
+    def _disk_sum(self):
+        datas=[]
+        for r in self:
+            datas.append(r.disk_size * r.single_disk_size)
         return datas
 
 
@@ -972,32 +982,33 @@ class mini_pc(models.Model):
     os = fields.Char(string="底层操作系统")
     app_sys = fields.Char(string="所属系统")
     buss_ip_addr = fields.Char(string="业务网IP地址")
-    # #以下是device表中引用过来用来展示的字段
-    # host_name = fields.Char(related="dev_id.host_name", string="设备命名")
-    # type_id = fields.Many2one(related="dev_id.type_id", string="设备类型")
-    # brand_id = fields.Many2one(related="dev_id.brand_id", string="品牌")
-    # product_name = fields.Char(related="dev_id.product_name", readonly="True",string="产品型号")
-    # sn = fields.Char(related="dev_id.sn", readonly="True",string="序列号")
-    # model = fields.Char(related="dev_id.model", readonly="True",string="Model")
-    # use_mode = fields.Selection(related="dev_id.use_mode", string="使用状态")
-    # dev_start = fields.Selection(related="dev_id.dev_start", string="设备状态")
-    # asset_num_old = fields.Char(related="dev_id.asset_num_old", string="旧资产编号")
-    # asset_num = fields.Char(related="dev_id.asset_num", string="资产编号")
-    # purpose = fields.Char(related="dev_id.purpose", string="用途")
-    # owner_id = fields.Many2one(related="dev_id.owner_id", string="资产所有人")
-    # user = fields.Many2one(related="dev_id.user",  string="使用人")
-    # admin = fields.Char(related="dev_id.admin", string="管理人")
-    # comment = fields.Char(related="dev_id.comment", string="备注")
-    # lab_id = fields.Many2one(related="dev_id.lab_id", string="机房")
-    # cab = fields.Many2one(related="dev_id.cab", string="机柜")
-    # pos_seq = fields.Integer(related="dev_id.pos_seq", string="位置序号")
-    # u_pos = fields.Many2one(related="dev_id.u_pos", string="位置U")
-    # u_space = fields.Integer(related="dev_id.u_space", string="占位U")
-    # env_id = fields.Many2one(related="dev_id.env_id", string="环境")
-    # srve_prvd = fields.Many2one(related="dev_id.srve_prvd", string="服务商")
-    # contract_purchase_id = fields.Many2one(related="dev_id.contract_purchase_id", string="采购合同编号")
-    # accept_date = fields.Char(related="dev_id.accept_date", string="初验日期")
-    # reject_date = fields.Char(related="dev_id.reject_date", string="过保日期")
+    #以下是device表中引用过来用来展示的字段
+    host_name = fields.Char(related="dev_id.host_name", string="设备命名")
+    type_id = fields.Many2one(related="dev_id.type_id", string="设备类型")
+    brand_id = fields.Many2one(related="dev_id.brand_id", string="品牌")
+    product_name = fields.Char(related="dev_id.product_name", readonly="True",string="产品型号")
+    sn = fields.Char(related="dev_id.sn", readonly="True",string="序列号")
+    model = fields.Char(related="dev_id.model", readonly="True",string="Model")
+    use_mode = fields.Selection(related="dev_id.use_mode", string="使用状态")
+    dev_start = fields.Selection(related="dev_id.dev_start", string="设备状态")
+    asset_num_old = fields.Char(related="dev_id.asset_num_old", string="旧资产编号")
+    asset_num = fields.Char(related="dev_id.asset_num", string="资产编号")
+    purpose = fields.Char(related="dev_id.purpose", string="用途")
+    owner_id = fields.Many2one(related="dev_id.owner_id", string="资产所有人")
+    user = fields.Many2one(related="dev_id.user",  string="使用人")
+    admin = fields.Char(related="dev_id.admin", string="管理人")
+    comment = fields.Char(related="dev_id.comment", string="备注")
+    lab_id = fields.Many2one(related="dev_id.lab_id", string="机房")
+    cab = fields.Many2one(related="dev_id.cab", string="机柜")
+    pos_seq = fields.Integer(related="dev_id.pos_seq", string="位置序号")
+    u_pos = fields.Many2one(related="dev_id.u_pos", string="位置U")
+    u_space = fields.Integer(related="dev_id.u_space", string="占位U")
+    env_id = fields.Many2one(related="dev_id.env_id", string="环境")
+    srve_prvd = fields.Many2one(related="dev_id.srve_prvd", string="服务商")
+    contract_purchase_id = fields.Many2one(related="dev_id.contract_purchase_id", string="采购合同编号")
+    accept_date = fields.Char(related="dev_id.accept_date", string="初验日期")
+    reject_date = fields.Char(related="dev_id.reject_date", string="过保日期")
+    last_upd = fields.Datetime(related="dev_id.last_upd", string="最后截止日期")
 
     #计算CPU核数量
     @api.multi

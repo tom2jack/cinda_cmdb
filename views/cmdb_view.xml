@@ -373,11 +373,16 @@
                     <field name="use_mode" string="使用状态"/>
                     <field name="dev_start" string="设备状态"/>
                     <field name="app_sys" string="所属系统"/>
+                    <field name="purpose" string="用途"/>
                     <field name="lab_id" string="机房"/>
                     <field name="os" string="底层操作系统"/>
-                    <field name="purpose" string="用途"/>
+                    <field name="asset_num_old" string="旧资产编号"/>
+                    <field name="asset_num" string="资产编号"/>
                     <field name="owner_id" string="资产所有人"/>
                     <field name="user" string="使用人"/>
+                    <field name="srve_prvd" string="服务商"/>
+                    <field name="accept_date" string="初验日期"/>
+                    <field name="reject_date" string="过保日期"/>
                 </tree>
             </field>
         </record>
@@ -420,8 +425,8 @@
                             <field name="asset_num" string="资产编号"/>
                             <field name="os" string="底层操作系统"/>
                             <field name="app_sys" string="所属系统"/>
-                            <field name="vir_mark" string="虚拟化标志"/>
                             <field name="purpose" string="用途"/>
+                            <field name="vir_mark" string="虚拟化标志"/>
                             <field name="owner_id" string="资产所有人"/>
                             <field name="user" string="使用人"/>
                             <field name="admin" string="管理人"/>
@@ -457,6 +462,7 @@
                                     <field name="disk_size" string="硬盘容量(裸容量)"/>
                                     <field name="disk_spec" string="硬盘规格"/>
                                     <field name="single_disk_size" string="单硬盘容量"/>
+                                    <field name="disk_total_size" string="硬盘总容量"/>
                                 </group>
                                 <group>
                                     <field name="ext_st_size" string="外接存储容量"/>
@@ -2892,36 +2898,24 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="sn_id" string="所属设备序列号"/>
-                    <field name="dev_name" string="设备名称"/>
-                    <field name="cpu_num" string="CPU数量"/>
-                    <field name="single_cpu_num" string="单CPU核数"/>
-                    <field name="cpu_spec" string="CPU规格"/>
-                    <field name="mem_num" string="内存条数"/>
-                    <field name="single_mem_size" string="单条内存容量"/>
-                    <field name="mem_spec" string="内存规格"/>
-                    <field name="disk_num" string="硬盘数量"/>
-                    <field name="single_disk_size" string="单硬盘容量"/>
-                    <field name="disk_spec" string="硬盘规格"/>
-                    <field name="app_sys" string="所属系统"/>
+                    <field name="dev_name" string="设备命名"/>
                     <field name="buss_ip_addr" string="业务网IP地址"/>
-                    <!--<field name="four_g_hba_num" string="4G HBA卡数量"/>-->
-                    <!--<field name="four_g_hba_used_num" string="4G HBA卡已用数量"/>-->
-                    <!--<field name="eight_g_hba_num" string="8G HBA卡数量"/>-->
-                    <!--<field name="eight_g_hba_used_num" string="8G HBA卡已用数量"/>-->
-                    <!--<field name="sixteen_g_hba_num" string="16G HBA卡数量"/>-->
-                    <!--<field name="sixteen_g_hba_used_num" string="16G HBA卡已用数量"/>-->
-                    <!--<field name="thirty_two_g_hba_num" string="32G HBA卡数量"/>-->
-                    <!--<field name="thirty_two_g_hba_used_num" string="32G HBA卡已用数量"/>-->
-                    <!--<field name="g_netcard_num" string="千兆网口数量"/>-->
-                    <!--<field name="g_netcard_used_num" string="千兆网口已用数量"/>-->
-                    <!--<field name="t_netcard_num" string="万兆网口数量"/>-->
-                    <!--<field name="t_netcard_used_num" string="万兆网口已用数量"/>-->
-                    <!--<field name="extend_cab_num" string="扩展柜数量"/>-->
-                    <!--<field name="tape_station_num" string="磁带机数量"/>-->
-                    <!--<field name="lpar_num" string="LPAR数量"/>-->
-                    <!--<field name="admin_ip" string="管理网IP"/>-->
-                    <!--<field name="admin_info" string="管理口信息点"/>-->
+                    <field name="cab" domain="[('lab', '=', lab_id)]" string="机柜" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
+                    <field name="u_pos" string="位置U"/>
+                    <field name="model" string="Model"/>
+                    <field name="use_mode" string="使用状态"/>
+                    <field name="dev_start" string="设备状态"/>
+                    <field name="app_sys" string="所属系统"/>
+                    <field name="purpose" string="用途"/>
+                    <field name="lab_id" string="机房"/>
                     <field name="os" string="底层操作系统"/>
+                    <field name="asset_num_old" string="旧资产编号"/>
+                    <field name="asset_num" string="资产编号"/>
+                    <field name="owner_id" string="资产所有人"/>
+                    <field name="user" string="使用人"/>
+                    <field name="srve_prvd" string="服务商"/>
+                    <field name="accept_date" string="初验日期"/>
+                    <field name="reject_date" string="过保日期"/>
                 </tree>
             </field>
         </record>
@@ -2932,22 +2926,33 @@
                 <form>
                     <sheet>
                         <group>
-                        <group>
-                            <field name="sn_id" string="所属设备序列号"/>
-                            <field name="dev_name" string="设备名称"/>
-                            <field name="extend_cab_num" string="扩展柜数量"/>
-                            <field name="tape_station_num" string="磁带机数量"/>
-                            <field name="lpar_num" string="LPAR数量"/>
+                            <group>
+                                <field name="sn" string="序列号"/>
+                                <field name="host_name" string="设备命名"/>
+                                <field name="type_id" string="设备类型"/>
+                                <field name="brand_id" string="品牌"/>
+                                <field name="product_name" string="产品型号"/>
+                                <field name="model" string="Model"/>
+                                <field name="use_mode" string="使用状态"/>
+                                <field name="dev_start" string="设备状态"/>
+                                <field name="extend_cab_num" string="扩展柜数量"/>
+                                <field name="tape_station_num" string="磁带机数量"/>
+                                <field name="lpar_num" string="LPAR数量"/>
+                            </group>
+                            <group>
+                                <field name="asset_num_old" string="旧资产编号"/>
+                                <field name="asset_num" string="资产编号"/>
+                                <field name="os" string="底层操作系统"/>
+                                <field name="app_sys" string="所属系统"/>
+                                <field name="purpose" string="用途"/>
+                                <field name="owner_id" string="资产所有人"/>
+                                <field name="user" string="使用人"/>
+                                <field name="admin" string="管理人"/>
+                                <field name="comment" string="备注"/>
+                                <field name="last_upd" string="最后修改时间"/>
+                            </group>
                         </group>
-                        <group>
-                            <field name="app_sys" string="所属系统"/>
-                            <field name="buss_ip_addr" string="业务网IP地址"/>
-                            <field name="admin_ip" string="管理网IP"/>
-                            <field name="admin_info" string="管理口信息点"/>
-                            <field name="os" string="底层操作系统"/>
-                        </group>
-                        </group>
-                    <notebook colspan="6">
+                    <notebook colspan="7">
                         <page string="CPU">
                             <group>
                                 <group>
@@ -3037,32 +3042,32 @@
                                     </tree>
                             </field>
                         </page>
-                        <!--<page string="位置">-->
-                                <!--<group>-->
-                                    <!--<group>-->
-                                    <!--<field name="lab_id" string="机房"/>-->
-                                    <!--<field name="cab" domain="[('lab', '=', lab_id)]" string="机柜" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>-->
-                                    <!--<field name="pos_seq" string="位置序号"/>-->
-                                <!--</group>-->
-                                    <!--<group>-->
-                                    <!--<field name="u_pos" string="位置U"/>-->
-                                    <!--<field name="u_space" string="占位U"/>-->
-                                    <!--<field name="env_id" string="环境"/>-->
-                                <!--</group>-->
-                                <!--</group>-->
-                            <!--</page>-->
-                            <!--<page string="合同">-->
-                                <!--<group>-->
-                                    <!--<group>-->
-                                    <!--<field name="srve_prvd" string="服务商"/>-->
-                                    <!--<field name="contract_purchase_id" string="采购合同编号"/>-->
-                                <!--</group>-->
-                                    <!--<group>-->
-                                    <!--<field name="accept_date" string="初验日期"/>-->
-                                    <!--<field name="reject_date" string="过保日期"/>-->
-                                <!--</group>-->
-                                <!--</group>-->
-                            <!--</page>-->
+                        <page string="位置">
+                                <group>
+                                <group>
+                                    <field name="lab_id" string="机房"/>
+                                    <field name="cab" domain="[('lab', '=', lab_id)]" string="机柜" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
+                                    <field name="pos_seq" string="位置序号"/>
+                                </group>
+                                <group>
+                                    <field name="u_pos" string="位置U"/>
+                                    <field name="u_space" string="占位U"/>
+                                    <field name="env_id" string="环境"/>
+                                </group>
+                                </group>
+                            </page>
+                            <page string="合同">
+                                <group>
+                                <group>
+                                    <field name="srve_prvd" string="服务商"/>
+                                    <field name="contract_purchase_id" string="采购合同编号"/>
+                                </group>
+                                <group>
+                                    <field name="accept_date" string="初验日期"/>
+                                    <field name="reject_date" string="过保日期"/>
+                                </group>
+                                </group>
+                            </page>
                     </notebook>
                     </sheet>
                     <div class="oe_chatter">
