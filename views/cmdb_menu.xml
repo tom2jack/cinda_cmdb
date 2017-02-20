@@ -344,7 +344,6 @@
             <field name="name">光纤交换机表</field>
             <field name="res_model">cinda_cmdb.fc_switch</field>
             <field name="view_type">form</field>
-            <field name="domain">[('dev_id.type_id','=',"光纤交换机")]</field>
             <field name="view_mode">tree,form,graph</field>
         </record>
 
@@ -352,7 +351,6 @@
             <field name="name">磁带机磁带库表</field>
             <field name="res_model">cinda_cmdb.tape_station</field>
             <field name="view_type">form</field>
-            <field name="domain">['|',('dev_id.type_id','=',"磁带机"),('dev_id.type_id','=',"磁带库")]</field>
             <field name="view_mode">tree,form,graph</field>
         </record>
 
@@ -386,7 +384,7 @@
         <!--<menuitem id="device_id" name="服务器设备" parent="menu_computer" action="cinda_cmdb_server_device_action" sequence="1"/>-->
         <menuitem id="server_id" name="PC服务器" parent="menu_computer"  action="cinda_cmdb_server_action" sequence="2"/>
         <menuitem id="mini_pc" name="小型计算机" parent="menu_computer"  action="cinda_cmdb_mini_pc_action" sequence="3"/>
-        <menuitem id="st_dev_id" name="存储硬件" parent="menu_computer" action="cinda_cmdb_st_dev_action" sequence="4"/>
+        <!--<menuitem id="st_dev_id" name="存储硬件" parent="menu_computer" action="cinda_cmdb_st_dev_action" sequence="4"/>-->
         <menuitem id="st_info_id" name="存储" parent="menu_computer" action="cinda_cmdb_st_info_action" sequence="5"/>
         <!--<menuitem id="st_part_id" name="存储组件" parent="menu_computer" action="cinda_cmdb_st_part_action" sequence="8"/>-->
         <menuitem id="menu_fc_switch" name="光纤交换机" parent="menu_computer" action="cinda_cmdb_fc_switch_action" sequence="6"/>
