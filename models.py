@@ -134,7 +134,8 @@ class server(models.Model):
     _rec_name = "buss_ip_addr"
 
     vm_ids = fields.One2many("cinda_cmdb.vm", "host_computer", string="虚拟机信息")
-    dev_id = fields.Many2one("cinda_cmdb.device", string="设备资产id")
+    dev_id = fields.Many2one("cinda_cmdb.device", string="设备资产id",
+                             domain=[('type_id.type_name', 'ilike', "小型计算机")])
     sn_id = fields.Char(related="dev_id.sn", string="所属设备序列号")
     interface_ids = fields.One2many(related='dev_id.interface_ids', string="网卡接口")
     interface_ids_a = fields.One2many(related='interface_ids', string="HBA卡接口")

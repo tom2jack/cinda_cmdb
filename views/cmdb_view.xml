@@ -405,7 +405,8 @@
                     <sheet>
                     <group>
                         <group>
-                            <field name="sn" string="序列号"/>
+                            <!--<field name="sn" string="序列号"/>-->
+                            <field name="dev_id" string="关联的设备(序列号+设备命名)" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
                             <field name="host_name" string="设备命名"/>
                             <field name="type_id" string="设备类型"/>
                             <field name="brand_id" string="品牌"/>
@@ -839,7 +840,7 @@
                     <sheet>
                         <group>
                             <group>
-                                <field name="sn" string="序列号"/>
+                                <field name="dev_id" string="关联的设备(序列号+设备命名)" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
                                 <field name="host_name" string="设备命名"/>
                                 <field name="type_id" string="设备类型"/>
                                 <field name="brand_id" string="品牌"/>
@@ -2784,7 +2785,7 @@
                     <sheet>
                     <group>
                         <group>
-                                <field name="sn" string="序列号"/>
+                                <field name="dev_id" string="关联的设备(序列号+设备命名)" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
                                 <field name="host_name" string="设备命名"/>
                                 <field name="type_id" string="设备类型"/>
                                 <field name="brand_id" string="品牌"/>
@@ -2944,7 +2945,7 @@
                     <sheet>
                     <group>
                         <group>
-                            <field name="sn" string="序列号"/>
+                            <field name="dev_id" string="关联的设备(序列号+设备命名)" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
                             <field name="host_name" string="设备命名"/>
                             <field name="type_id" string="设备类型"/>
                             <field name="brand_id" string="品牌"/>
@@ -3055,7 +3056,7 @@
                     <sheet>
                         <group>
                             <group>
-                                <field name="sn" string="序列号"/>
+                                <field name="dev_id" string="关联的设备(序列号+设备命名)" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
                                 <field name="host_name" string="设备命名"/>
                                 <field name="type_id" string="设备类型"/>
                                 <field name="brand_id" string="品牌"/>
