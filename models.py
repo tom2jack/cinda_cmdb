@@ -138,7 +138,7 @@ class server(models.Model):
                              domain=[('type_id.type_name', 'ilike', "小型计算机")])
     sn_id = fields.Char(related="dev_id.sn", string="所属设备序列号")
     interface_ids = fields.One2many(related='dev_id.interface_ids', string="网卡接口")
-    interface_ids_a = fields.One2many(related='interface_ids', string="HBA卡接口")
+    interface_ids_a = fields.One2many(related='interface_ids', string="HBA卡接口", domain=[('type', 'ilike', 'HBA')])
     # server_info_ids_a = fields.Char(related="server_info_ids", string="服务器信息合同")
     server_id = fields.Char(string="服务器id")
     app_sys = fields.Char(string="所属系统")
@@ -844,7 +844,7 @@ class interface(models.Model):
     status = fields.Boolean(string="是否使用", compute='auto_change_peer', store=True, default=False)
     interface_rate = fields.Char(string="本端接口速率")
     peer_rate = fields.Char(string="对端速率")
-    purpose = fields.Char(string="用途")
+    purpose = fields.Many2one("cinda_cmdb.base_type", string='用途', domain=[('class_id', 'ilike', "用途")])
 
 
     # 实现在增加、删除对端接口时，自动关联互联设备的对端接口，但修改对端接口时不能取消关联之前的设备

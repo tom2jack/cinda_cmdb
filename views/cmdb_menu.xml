@@ -133,6 +133,10 @@
             <field name="name">存储表</field>
             <field name="res_model">cinda_cmdb.st_dev</field>
             <field name="view_type">form</field>
+            <field name="domain">['|',('type_id.type_name','=',"存储"),'|','|','|','|','|',('type_id.type_name','=',"磁带库"),
+                ('type_id.type_name','=',"光纤交换机"),('type_id.type_name','=',"磁盘阵列"),
+                ('type_id.type_name','=',"磁带机"),('type_id.type_name','=',"存储扩展柜"),
+                ('type_id.type_name','=',"光纤连接器"),]</field>
             <field name="view_mode">tree,form,graph</field>
         </record>
 

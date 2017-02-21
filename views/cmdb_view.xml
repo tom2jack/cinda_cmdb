@@ -485,7 +485,7 @@
                             </group>
                             <field name="interface_ids_a" string="HBA卡接口">
                                     <tree editable="bottom" create="true" nolabel="true">
-                                        <field name="name" string="接口号" domain="[('type', '=', 'HBA')]" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
+                                        <field name="name" string="接口号" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
                                         <!--<field name="type" string="类型" />-->
                                         <field name="local_wwn" string="本端wwn"/>
                                         <field name="interface_rate" string="本端接口速率"/>
@@ -512,7 +512,7 @@
                                     <tree editable="bottom" create="true" nolabel="true">
                                         <field name="name" string="接口号" domain="[('type', 'in', ['以太网电口'，'以太网光口'])]" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
                                         <!--<field name="type" string="类型"/>-->
-                                        <field name="ip" string="ip"/>
+                                        <field name="ip" string="ip" domain="[('purpose.type_name', '=', purpose)]"/>
                                         <field name="mac" string="mac"/>
                                         <field name="interface_rate" string="接口速率"/>
                                         <field name="peer_device_id" string="对端设备"/>
