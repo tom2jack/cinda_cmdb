@@ -485,8 +485,8 @@
                             </group>
                             <field name="interface_ids_a" string="HBA卡接口">
                                     <tree editable="bottom" create="true" nolabel="true">
-                                        <field name="name" string="接口号" />
-                                        <field name="type" string="类型" domain="[('type', '=', 'HBA')]" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
+                                        <field name="name" string="接口号" domain="[('type', '=', 'HBA')]" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
+                                        <!--<field name="type" string="类型" />-->
                                         <field name="local_wwn" string="本端wwn"/>
                                         <field name="interface_rate" string="本端接口速率"/>
                                         <field name="peer_device_id" string="对端设备"/>
@@ -511,7 +511,7 @@
                             <field name="interface_ids" string="网卡接口">
                                     <tree editable="bottom" create="true" nolabel="true">
                                         <field name="name" string="接口号" domain="[('type', 'in', ['以太网电口'，'以太网光口'])]" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
-                                        <field name="type" string="类型"/>
+                                        <!--<field name="type" string="类型"/>-->
                                         <field name="ip" string="ip"/>
                                         <field name="mac" string="mac"/>
                                         <field name="interface_rate" string="接口速率"/>
@@ -862,112 +862,71 @@
                         </group>
                         </group>
                         <notebook colspan="8">
-                            <page string="接口">
-                                <field name="interface_ids">
-                                    <tree editable="bottom" create="true" nolabel="true">
-                                        <field name="name" string="接口号"/>
-                                        <field name="ip" string="ip"/>
-                                        <field name="mac" string="mac"/>
-                                        <field name="interface_rate" string="接口速率"/>
-                                        <field name="peer_device_id" string="对端设备"/>
-                                        <field name="peer_interface" domain="[('device_id', '=', peer_device_id)]" string="对端接口" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
-                                        <field name="peer_rate" string="对端速率"/>
-                                        <field name="purpose" string="用途"/>
-                                    </tree>
-                                </field>
-                            </page>
-                            <page string="组件位置">
+                            <page string="控制器">
                                 <field name="st_part_ids">
                                     <tree editable="bottom" create="true" nolabel="true">
-                                        <field name="lab_id" string="机房"/>
-                                        <field name="cab" string="机柜"/>
-                                        <field name="pos_seq" string="位置序号"/>
-                                        <field name="u_pos" string="位置U"/>
-                                        <field name="u_space" string="占位U"/>
+                                        <field name="name" string="名称"/>
+                                        <field name="sn" string="序列号"/>
+                                        <field name="head_data_disk" string="机头数据盘"/>
+                                        <field name="head_backup_disk" string="机头热备盘"/>
+                                        <field name="cache_config" string="缓存配置(G)"/>
+                                        <field name="nvram" string="VRAM(G)"/>
+                                        <field name="memory" string="内存(G)"/>
                                     </tree>
                                 </field>
                             </page>
-                            <page string="组件磁盘">
+                            <page string="机笼">
                                 <field name="st_part_ids_a">
                                     <tree editable="bottom" create="true" nolabel="true">
+                                        <field name="name" string="名称"/>
+                                        <field name="sn" string="序列号"/>
                                         <field name="cage_disk_num" string="笼内已装磁盘数"/>
                                         <field name="single_disk_size" string="单个磁盘容量"/>
                                         <field name="disk_spec" string="磁盘规格"/>
-                                        <field name="head_data_disk" string="机头数据盘"/>
-                                    </tree>
-                                </field>
-                            </page>
-                            <page string="组件容量">
-                                <field name="st_part_ids_b">
-                                    <tree editable="bottom" create="true" nolabel="true">
                                         <field name="enable_size" string="可使用容量(T)"/>
                                         <field name="allocated_size" string="已分配容量(T)"/>
                                         <field name="remain_enable_size" string="剩余可用容量(T)"/>
                                     </tree>
                                 </field>
                             </page>
-                            <page string="组件网口">
-                                <field name="st_part_ids_c">
-                                    <tree editable="bottom" create="true" nolabel="true">
-                                        <field name="t_netcard_num" string="万兆网口数"/>
-                                        <field name="g_netcard_num" string="千兆网口数"/>
-                                    </tree>
-                                </field>
-                            </page>
-                            <page string="组件光纤端口">
-                                <field name="st_part_ids_d">
-                                    <tree editable="bottom" create="true" nolabel="true">
-                                        <field name="four_g_fc_port" string="4g光纤端口"/>
-                                        <field name="eight_g_fc_port" string="8g光纤端口"/>
-                                        <field name="sixteen_g_fc_port" string="16g光纤端口"/>
-                                        <field name="thirty_two_g_fc_port" string="32g光纤端口"/>
-                                    </tree>
-                                </field>
-                            </page>
-                            <page string="其他组件">
-                                <field name="st_part_ids_e">
-                                    <tree editable="bottom" create="true" nolabel="true">
-                                        <field name="name" string="存储组件名称"/>
-                                        <field name="st_id" string="存储ID"/>
-                                        <field name="st_part_type" string="存储部件类型"/>
-                                        <field name="st_part_type" string="存储组件ID"/>
-                                        <field name="sn" string="序列号"/>
-                                        <!--<field name="head_backup_disk" string="机头热备盘"/>-->
-                                        <field name="admin_ip" string="管理IP"/>
-                                        <field name="cache_config" string="缓存配置(G)"/>
-                                        <field name="NVRAM" string="NVRAM(G)"/>
-                                        <field name="memory" string="内存(G)"/>
-                                    </tree>
-                                </field>
-                            </page>
-                            <page string="整机信息">
-                                <group>
-                                    <group>
-                                        <field name="pc_control_num" string="整机控制器数"/>
-                                        <field name="pc_cage_num" string="整机笼子数"/>
-                                        <field name="each_cage_disk_num" string="每个笼子可容纳磁盘数"/>
-                                        <field name="pc_all_size" string="整机裸容量(T)"/>
-                                    </group>
-                                    <group>
-                                        <field name="pc_enable_size" string="整机总可使用容量(T)"/>
-                                        <field name="pc_used_size" string="整机已经分配容量(T)"/>
-                                        <field name="pc_remain_size" string="整机剩余可使用容量(T)"/>
-                                    </group>
-                                </group>
-                            </page>
-                            <page string="位置">
-                            <group>
-                                <group>
-                                <field name="lab_id" string="机房"/>
-                                <field name="cab" domain="[('lab', '=', lab_id)]" string="机柜" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
-                                <field name="pos_seq" string="位置序号"/>
-                            </group>
-                                <group>
-                                <field name="u_pos" string="位置U"/>
-                                <field name="u_space" string="占位U"/>
-                                <field name="env_id" string="环境"/>
-                            </group>
-                            </group>
+                            <page string="光口">
+                            <field name="interface_ids">
+                                <tree editable="bottom" create="true" nolabel="true">
+                                    <field name="name" string="接口号" domain="[('type', '=', 'HBA')]" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
+                                    <!--<field name="type" string="类型"/>-->
+                                    <field name="interface_rate" string="本端接口速率"/>
+                                    <field name="peer_device_id" string="对端设备"/>
+                                    <field name="peer_interface" domain="[('device_id', '=', peer_device_id)]" string="对端接口" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
+                                    <field name="peer_wwn" string="对端wwn"/>
+                                    <field name="peer_rate" string="对端速率"/>
+                                    <field name="purpose" string="用途"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="电口">
+                            <field name="interface_ids_a">
+                                <tree editable="bottom" create="true" nolabel="true">
+                                    <field name="name" string="接口号" domain="[('type', '=', '以太网电口')]" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
+                                    <!--<field name="type" string="类型"/>-->
+                                        <field name="ip" string="ip"/>
+                                        <field name="mac" string="mac"/>
+                                        <field name="peer_device_id" string="对端设备"/>
+                                        <field name="peer_interface" domain="[('device_id', '=', peer_device_id)]" string="对端接口" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="位置">
+                            <field name="st_part_ids_b">
+                                <tree editable="bottom" create="true" nolabel="true">
+                                    <field name="name" string="存储组件名称"/>
+                                    <field name="sn" string="序列号"/>
+                                    <field name="lab_id" string="机房"/>
+                                    <field name="cab" string="机柜"/>
+                                    <field name="pos_seq" string="位置序号"/>
+                                    <field name="u_pos" string="位置U"/>
+                                    <field name="u_space" string="占位U"/>
+                                </tree>
+                            </field>
                         </page>
                         <page string="合同">
                             <group>
@@ -2631,7 +2590,6 @@
                     <!--<field name="sixteen_g_fc_port" string="16g光纤端口"/>-->
                     <!--<field name="thirty_two_g_fc_port" string="32g光纤端口"/>-->
                     <!--<field name="cache_config" string="缓存配置(G)"/>-->
-                    <!--<field name="NVRAM" string="NVRAM(G)"/>-->
                     <!--<field name="memory" string="内存(G)"/>-->
                 </tree>
             </field>
@@ -2654,7 +2612,7 @@
                             <group>
                                 <field name="admin_ip" string="管理IP"/>
                                 <field name="cache_config" string="缓存配置(G)"/>
-                                <field name="NVRAM" string="NVRAM(G)"/>
+                                <field name="nvram" string="NVRAM(G)"/>
                                 <field name="memory" string="内存(G)"/>
                             </group>
                         </group>
@@ -2812,7 +2770,7 @@
                             <field name="interface_ids">
                                 <tree editable="bottom" create="true" nolabel="true">
                                     <field name="name" string="接口号" domain="[('type', '=', 'HBA')]" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
-                                    <field name="type" string="类型"/>
+                                    <!--<field name="type" string="类型"/>-->
                                     <field name="interface_rate" string="本端接口速率"/>
                                     <field name="peer_device_id" string="对端设备"/>
                                     <field name="peer_interface" domain="[('device_id', '=', peer_device_id)]" string="对端接口" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
@@ -2826,7 +2784,7 @@
                             <field name="interface_ids_a">
                                 <tree editable="bottom" create="true" nolabel="true">
                                     <field name="name" string="接口号" domain="[('type', '=', '以太网电口')]" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
-                                    <field name="type" string="类型"/>
+                                    <!--<field name="type" string="类型"/>-->
                                         <field name="ip" string="ip"/>
                                         <field name="mac" string="mac"/>
                                         <field name="peer_device_id" string="对端设备"/>
@@ -3138,8 +3096,8 @@
                             </group>
                             <field name="interface_ids_a" string="HBA卡接口">
                                     <tree editable="bottom" create="true" nolabel="true">
-                                        <field name="name" string="接口号" />
-                                        <field name="type" string="类型" domain="[('type', 'like', 'HBA')]" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
+                                        <field name="name" string="接口号" domain="[('type', 'like', 'HBA')]" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
+                                        <!--<field name="type" string="类型" />-->
                                         <field name="local_wwn" string="本端wwn"/>
                                         <field name="interface_rate" string="本端接口速率"/>
                                         <field name="peer_device_id" string="对端设备"/>
@@ -3163,11 +3121,11 @@
                             </group>
                             <field name="interface_ids" string="网卡接口">
                                     <tree editable="bottom" create="true" nolabel="true">
-                                        <field name="name" string="接口号" domain="[('type', 'in', ['以太网电口'，'以太网光口'])]" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
-                                        <field name="type" string="类型"/>
-                                        <field name="ip" string="ip"/>
+                                        <field name="name" string="接口号" domain="['|', ('type', '=', '以太网电口'),('type', '=', '以太网电口')]" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
+                                        <!--<field name="type" string="类型" domain="[('type', 'in', ['以太网电口'，'以太网光口'])]" />-->
+                                        <field name="ip" string="ip" />
                                         <field name="mac" string="mac"/>
-                                        <field name="interface_rate" string="接口速率"/>
+                                        <field name="interface_rate" string="接口速率" />
                                         <field name="peer_device_id" string="对端设备"/>
                                         <field name="peer_interface" domain="[('device_id', '=', peer_device_id)]" string="对端接口" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
                                         <field name="peer_rate" string="对端速率"/>

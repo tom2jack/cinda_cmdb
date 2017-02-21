@@ -329,9 +329,8 @@ class st_dev(models.Model):
     st_part_ids = fields.One2many('cinda_cmdb.st_part', 'st_id', string="组件位置")
     st_part_ids_a = fields.One2many(related='st_part_ids', string="组件磁盘")
     st_part_ids_b = fields.One2many(related='st_part_ids', string="组件容量")
-    st_part_ids_c = fields.One2many(related='st_part_ids', string="组件网口")
-    st_part_ids_d = fields.One2many(related='st_part_ids', string="组件光纤端口")
-    st_part_ids_e = fields.One2many(related='st_part_ids', string="其他组件")
+    interface_ids = fields.One2many(related='dev_id.interface_ids', string="光口")
+    interface_ids_a = fields.One2many(related='interface_ids', string="电口")
     dev_id = fields.Many2one("cinda_cmdb.device", string="设备资产id",
                              domain=['|','|','|','|','|',
                                      ('type_id.type_name', 'ilike', "磁带机"),
@@ -924,7 +923,7 @@ class st_part(models.Model):
     sixteen_g_fc_port = fields.Char(string="16g光纤端口")
     thirty_two_g_fc_port = fields.Char(string="32g光纤端口")
     cache_config = fields.Float(string="缓存配置(G)")
-    NVRAM = fields.Float(string="NVRAM(G)")
+    nvram = fields.Float(string="NVRAM(G)")
     memory = fields.Float(string="内存(G)")
 
 
