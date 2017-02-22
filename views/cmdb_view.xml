@@ -823,7 +823,7 @@
                     <field name="lab_id" string="机房"/>
                     <field name="asset_num_old" string="旧资产编号"/>
                     <field name="asset_num" string="资产编号"/>
-                    <field name="st_type" string="存储类型"/>
+                    <field name="type" string="存储类型"/>
                     <field name="owner_id" string="资产所有人"/>
                     <field name="user" string="使用人"/>
                     <field name="srve_prvd" string="服务商"/>
@@ -848,16 +848,21 @@
                                 <field name="model" string="Model"/>
                                 <field name="use_mode" string="使用状态"/>
                                 <field name="dev_start" string="设备状态"/>
+                                <field name="pc_control_num" string="整机控制器数"/>
+                                <field name="pc_cage_num" string="整机笼子数"/>
+                                <field name="pc_all_size" string="整机裸容量(T)"/>
                             </group>
                             <group>
                                 <field name="asset_num_old" string="旧资产编号"/>
                                 <field name="asset_num" string="资产编号"/>
                                 <field name="purpose" string="用途"/>
-                                <field name="st_type" string="存储类型"/>
+                                <field name="type" string="存储类型"/>
                                 <field name="owner_id" string="资产所有人"/>
                                 <field name="user" string="使用人"/>
                                 <field name="admin" string="管理人"/>
                                 <field name="comment" string="备注"/>
+                                <field name="pc_enable_size" string="整机可使用容量(T)"/>
+                                <field name="pc_used_size" string="整机已分配容量(T)"/>
                                 <!--<field name="last_upd_a" string="最后修改时间"/>-->
                         </group>
                         </group>

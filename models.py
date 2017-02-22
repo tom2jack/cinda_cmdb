@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from openerp import fields
-from openerp import models,api,exceptions
+from openerp import models,api
 
 
 class base_class(models.Model):
@@ -102,10 +102,23 @@ class device(models.Model):
     # os = fields.Char(related="server_ids_a.os", string="底层操作系统")
     # last_upd_a = fields.Datetime(related="server_ids_a.last_upd_a", require=True, string="最后截止日期")
 
-
+    # 在device表中新建一条数据，然后根据设备类型，在相对应的表里面创建一条数据，并且将刚才数据的id赋给
     def create(self, cr, uid, vals, context=None):
         vals['device_id'] = self.pool.get('ir.sequence').get(cr, uid, 'cinda_cmdb.device')
-        return super(device, self).create(cr, uid, vals, context=context)
+        id = super(device, self).create(cr, uid, vals, context=context)
+        if self.browse(cr, uid, id, context=context)[0].type_id:
+            record = self.browse(cr, uid, id, context=context)[0].type_id.type_name
+            if record == "小型计算机":
+                self.pool.get('cinda_cmdb.mini_pc').create(cr, uid, {'dev_id':id}, context=context)
+            elif record in ["存储", "光纤交换机",  "磁盘阵列",  "存储扩展柜", "光纤连接器"]:
+                self.pool.get('cinda_cmdb.st_dev').create(cr, uid, {'dev_id':id}, context=context)
+            elif record == "PC服务器":
+                self.pool.get('cinda_cmdb.server').create(cr, uid, {'dev_id':id}, context=context)
+            elif record == "光纤交换机":
+                self.pool.get('cinda_cmdb.fc_switch').create(cr, uid, {'dev_id':id}, context=context)
+            elif record in ["磁带机", "磁带库"]:
+                self.pool.get('cinda_cmdb.tape_station').create(cr, uid, {'dev_id':id}, context=context)
+        return id
 
     #修改作为外键时的显示
     @api.multi
@@ -134,8 +147,7 @@ class server(models.Model):
     _rec_name = "buss_ip_addr"
 
     vm_ids = fields.One2many("cinda_cmdb.vm", "host_computer", string="虚拟机信息")
-    dev_id = fields.Many2one("cinda_cmdb.device", string="设备资产id",
-                             domain=[('type_id.type_name', 'ilike', "小型计算机")])
+    dev_id = fields.Many2one("cinda_cmdb.device", string="设备资产id", domain=[('type_id.type_name', 'ilike', "小型计算机")])
     sn_id = fields.Char(related="dev_id.sn", string="所属设备序列号")
     interface_ids = fields.One2many(related='dev_id.interface_ids', string="网卡接口")
     interface_ids_a = fields.One2many(related='interface_ids', string="HBA卡接口", domain=[('type', 'ilike', 'HBA')])
@@ -191,7 +203,7 @@ class server(models.Model):
     t_netcard_used_num = fields.Integer(string="万兆网口已用数量")
     #以下是device表中引用过来用来展示的字段
     host_name = fields.Char(related="dev_id.host_name", string="设备命名")
-    type_id = fields.Many2one(related="dev_id.type_id", string="设备类型")
+    type_id = fields.Many2one(related="dev_id.type_id", string="设备类型", domain=[('type_name', 'ilike', "PC服务器")], store="Ture")
     brand_id = fields.Many2one(related="dev_id.brand_id", string="品牌")
     product_name = fields.Char(related="dev_id.product_name", string="产品型号")
     sn = fields.Char(related="dev_id.sn", string="序列号")
@@ -339,7 +351,7 @@ class st_dev(models.Model):
                                      ('type_id.type_name', 'ilike', "存储扩展柜"),
                                      ('type_id.type_name', 'ilike', "光纤交换机"),
                                      ('type_id.type_name', 'ilike', "光纤连接器")])
-    st_type = fields.Integer(string="存储类型")
+    type = fields.Many2one("cinda_cmdb.base_type", string="存储类型", domain=[('class_id.class_name', 'ilike', '存储类型')])
     pc_control_num = fields.Integer(string="整机控制器数")
     pc_cage_num = fields.Integer(string="整机笼子数")
     each_cage_disk_num = fields.Integer(string="每个笼子可容纳磁盘数")
@@ -347,9 +359,16 @@ class st_dev(models.Model):
     pc_enable_size = fields.Float(string="整机总可使用容量(T)")
     pc_used_size = fields.Float(string="整机已经分配容量(T)")
     pc_remain_size = fields.Float(string="整机剩余可使用容量(T)")
+    # type_id_a = fields.Many2one("cinda_cmdb.base_type", domain=[('class_id', 'ilike', "设备类型")])
     #以下是device表中引用过来用来展示的字段
     host_name = fields.Char(related="dev_id.host_name", string="设备命名")
-    type_id = fields.Many2one(related="dev_id.type_id", string="设备类型")
+    type_id = fields.Many2one(related="dev_id.type_id", string="设备类型", domain=['|','|','|','|','|',
+                                     ('type_id.type_name', 'ilike', "磁带机"),
+                                     ('type_id.type_name', 'ilike', "磁带库"),
+                                     ('type_id.type_name', 'ilike', "磁盘阵列"),
+                                     ('type_id.type_name', 'ilike', "存储扩展柜"),
+                                     ('type_id.type_name', 'ilike', "光纤交换机"),
+                                     ('type_id.type_name', 'ilike', "光纤连接器")], store="Ture")
     brand_id = fields.Many2one(related="dev_id.brand_id", string="品牌")
     product_name = fields.Char(related="dev_id.product_name", string="产品型号")
     sn = fields.Char(related="dev_id.sn", string="序列号")
