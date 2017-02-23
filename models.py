@@ -110,11 +110,11 @@ class device(models.Model):
             record = self.browse(cr, uid, id, context=context)[0].type_id.type_name
             if record == "小型计算机":
                 self.pool.get('cinda_cmdb.mini_pc').create(cr, uid, {'dev_id':id}, context=context)
-            elif record in ["存储", "光纤交换机",  "磁盘阵列",  "存储扩展柜", "光纤连接器"]:
+            elif record in ["存储",   "磁盘阵列",  "存储扩展柜"]:
                 self.pool.get('cinda_cmdb.st_dev').create(cr, uid, {'dev_id':id}, context=context)
             elif record == "PC服务器":
                 self.pool.get('cinda_cmdb.server').create(cr, uid, {'dev_id':id}, context=context)
-            elif record == "光纤交换机":
+            elif record in ["光纤交换机", "光纤连接器"]:
                 self.pool.get('cinda_cmdb.fc_switch').create(cr, uid, {'dev_id':id}, context=context)
             elif record in ["磁带机", "磁带库"]:
                 self.pool.get('cinda_cmdb.tape_station').create(cr, uid, {'dev_id':id}, context=context)
@@ -149,8 +149,8 @@ class server(models.Model):
     vm_ids = fields.One2many("cinda_cmdb.vm", "host_computer", string="虚拟机信息")
     dev_id = fields.Many2one("cinda_cmdb.device", string="设备资产id", domain=[('type_id.type_name', 'ilike', "小型计算机")])
     sn_id = fields.Char(related="dev_id.sn", string="所属设备序列号")
-    interface_ids = fields.One2many(related='dev_id.interface_ids', string="网卡接口")
-    interface_ids_a = fields.One2many(related='interface_ids', string="HBA卡接口", domain=[('type', 'ilike', 'HBA')])
+    interface_ids_a = fields.One2many('cinda_cmdb.interface', 'server_id', string="HBA卡接口", domain=[('type', '=', "hba")])
+    interface_ids_b = fields.One2many('cinda_cmdb.interface', 'server_id', string="网卡接口",  domain=[('type', 'in', ['ethernet_electricity', 'ethernet_fiber'])])
     # server_info_ids_a = fields.Char(related="server_info_ids", string="服务器信息合同")
     server_id = fields.Char(string="服务器id")
     app_sys = fields.Char(string="所属系统")
@@ -338,19 +338,18 @@ class st_dev(models.Model):
 
     st_dev_id = fields.Char(string="存储id")
     interface_ids = fields.One2many(related='dev_id.interface_ids', string="接口")
-    st_part_ids = fields.One2many('cinda_cmdb.st_part', 'st_id', string="组件位置")
+    st_part_ids = fields.One2many('cinda_cmdb.st_part', 'st_id', string="存储组件")
     st_part_ids_a = fields.One2many(related='st_part_ids', string="组件磁盘")
     st_part_ids_b = fields.One2many(related='st_part_ids', string="组件容量")
-    interface_ids = fields.One2many(related='dev_id.interface_ids', string="光口")
-    interface_ids_a = fields.One2many(related='interface_ids', string="电口")
-    dev_id = fields.Many2one("cinda_cmdb.device", string="设备资产id",
-                             domain=['|','|','|','|','|',
-                                     ('type_id.type_name', 'ilike', "磁带机"),
-                                     ('type_id.type_name', 'ilike', "磁带库"),
-                                     ('type_id.type_name', 'ilike', "磁盘阵列"),
-                                     ('type_id.type_name', 'ilike', "存储扩展柜"),
-                                     ('type_id.type_name', 'ilike', "光纤交换机"),
-                                     ('type_id.type_name', 'ilike', "光纤连接器")])
+    interface_ids = fields.One2many('cinda_cmdb.interface', 'st_dev_id', string="光口", domain=[('type', 'in', ["ethernet_fiber", "hba"])])
+    interface_ids_a = fields.One2many('cinda_cmdb.interface', 'st_dev_id', string="电口", domain=[('type', '=', "ethernet_electricity")])
+    dev_id = fields.Many2one("cinda_cmdb.device", string="设备资产id")
+                             # domain=['|','|','|','|','|',
+                             #         ('type_id.type_name', 'ilike', "磁带机"),
+                             #         ('type_id.type_name', 'ilike', "磁带库"),
+                             #         ('type_id.type_name', 'ilike', "磁盘阵列"),
+                             #         ('type_id.type_name', 'ilike', "存储扩展柜"),
+                             #         ('type_id.type_name', 'ilike', "光纤连接器")])
     type = fields.Many2one("cinda_cmdb.base_type", string="存储类型", domain=[('class_id.class_name', 'ilike', '存储类型')])
     pc_control_num = fields.Integer(string="整机控制器数")
     pc_cage_num = fields.Integer(string="整机笼子数")
@@ -359,6 +358,7 @@ class st_dev(models.Model):
     pc_enable_size = fields.Float(string="整机总可使用容量(T)")
     pc_used_size = fields.Float(string="整机已经分配容量(T)")
     pc_remain_size = fields.Float(string="整机剩余可使用容量(T)")
+    ip = fields.Char(string="IP")
     # type_id_a = fields.Many2one("cinda_cmdb.base_type", domain=[('class_id', 'ilike', "设备类型")])
     #以下是device表中引用过来用来展示的字段
     host_name = fields.Char(related="dev_id.host_name", string="设备命名")
@@ -852,12 +852,17 @@ class interface(models.Model):
             ('hba', "HBA"),
             ('virtual', "虚拟接口"),
         ],
-        string="类型",)
+        string="类型")
     mac = fields.Char(string="MAC地址")
     ip = fields.Char(string="IP地址")
     local_wwn = fields.Char(string="本端wwn")
     peer_wwn = fields.Char(string="对端WWN")
     device_id = fields.Many2one('cinda_cmdb.device', string="所在设备")
+    server_id = fields.Many2one('cinda_cmdb.server')
+    mini_pc_id = fields.Many2one('cinda_cmdb.mini_pc')
+    st_dev_id = fields.Many2one('cinda_cmdb.st_dev')
+    fc_switch_id = fields.Many2one('cinda_cmdb.fc_switch')
+    tape_station_id = fields.Many2one('cinda_cmdb.tape_station')
     peer_device_id = fields.Many2one('cinda_cmdb.device', string="对端设备")
     peer_interface = fields.Many2one('cinda_cmdb.interface', string="对端接口", track_visibility='onchange')
     status = fields.Boolean(string="是否使用", compute='auto_change_peer', store=True, default=False)
@@ -909,6 +914,43 @@ class interface(models.Model):
 
         # self.env.invalidate_all()
 
+    # 在接口表里面添加接口信息时，相应的在对应的表里面的一对多接口表的tree视图里面也显示接口信息；反之亦然，在二级表里面添加接口信息时，也要在interface表里面添加信息。
+    def create(self, cr, uid, vals, context=None):
+        id = super(interface, self).create(cr, uid, vals, context=context)
+        record = self.browse(cr, uid, id, context=context)[0]
+        if record.device_id:
+            record_name = record.device_id.type_id.type_name
+            if record_name == "PC服务器":
+                pool_server = self.pool.get("cinda_cmdb.server")
+                record_servers = pool_server.search(cr, uid, [('dev_id', '=', record.device_id.id)], offset=0)
+                record.server_id = record_servers[0]
+            elif record_name == "小型计算机":
+                pool_mini_pc = self.pool.get("cinda_cmdb.mini_pc")
+                record.mini_pc_id = pool_mini_pc.search(cr, uid, [('dev_id', '=', record.device_id.id)], offset=0)[0]
+            elif record_name in ["存储",  "磁盘阵列",  "存储扩展柜"]:
+                pool_st_dev = self.pool.get("cinda_cmdb.st_dev")
+                record.st_dev_id = pool_st_dev.search(cr, uid, [('dev_id', '=', record.device_id.id)], offset=0)[0]
+            elif record_name in ["光纤交换机", "光纤连接器"]:
+                pool_fc_switch = self.pool.get("cinda_cmdb.fc_switch")
+                record.fc_switch_id = pool_fc_switch.search(cr, uid, [('dev_id', '=', record.device_id.id)], offset=0)[0]
+            elif record_name in ["磁带机", "磁带库"]:
+                pool_tape_station = self.pool.get("cinda_cmdb.tape_station")
+                record.tape_station_id = pool_tape_station.search(cr, uid, [('dev_id', '=', record.device_id.id)], offset=0)[0]
+        else:
+            if record.server_id:
+                record.device_id = self.pool.get("cinda_cmdb.server").search(cr, uid, [('dev_id', '=', record.server_id.id)], offset=0)[0]
+            elif record.mini_pc_id:
+                record.device_id = self.pool.get("cinda_cmdb.mini_pc").search(cr, uid, [('dev_id', '=', record.mini_pc_id.id)], offset=0)[0]
+            elif record.st_dev_id:
+                record.device_id = self.pool.get("cinda_cmdb.st_dev").search(cr, uid, [('dev_id', '=', record.st_dev_id.id)], offset=0)[0]
+            elif record.fc_switch_id:
+                record.device_id = self.pool.get("cinda_cmdb.fc_switch").search(cr, uid, [('dev_id', '=', record.fc_switch_id.id)], offset=0)[0]
+            elif record.tape_station:
+                record.device_id = self.pool.get("cinda_cmdb.tape_station").search(cr, uid, [('dev_id', '=', record.tape_station_id.id)], offset=0)[0]
+        return id
+
+
+
 
 class st_part(models.Model):
     _name = "cinda_cmdb.st_part"
@@ -918,7 +960,11 @@ class st_part(models.Model):
 
     name = fields.Char(string="存储组件名称")
     st_id = fields.Many2one("cinda_cmdb.st_dev", string="存储ID")
-    st_part_type = fields.Char(string="存储部件类型")
+    type = fields.Selection([
+        ("control", "控制器"),
+        ("cage", "机笼")
+    ],
+            string="类型")
     st_part_id = fields.Integer(string="存储组件ID")
     lab_id = fields.Many2one("cinda_cmdb.base_type", string='机房', domain=[('class_id', 'ilike', "机房")])
     cab = fields.Many2one("cinda_cmdb.cabinet", string="机柜")
@@ -954,8 +1000,8 @@ class fc_switch(models.Model):
 
     dev_id = fields.Many2one("cinda_cmdb.device", string="设备id",
                              domain=[('type_id.type_name', 'ilike', "光纤交换机")])
-    interface_ids = fields.One2many(related='dev_id.interface_ids', string="光口")
-    interface_ids_a = fields.One2many(related='interface_ids', string="电口")
+    interface_ids = fields.One2many('cinda_cmdb.interface', 'fc_switch_id', string="光口", domain=[('type', 'in', ["ethernet_fiber", "hba"])])
+    interface_ids_a = fields.One2many('cinda_cmdb.interface', 'fc_switch_id', string="电口", domain=[('type', '=', "ethernet_electricity")])
     valid_port_number = fields.Integer(string="有效口总数")
     four_g_module_number = fields.Integer(string="4G模块总数")
     eight_g_module_number = fields.Integer(string="8G模块总数")
@@ -964,6 +1010,7 @@ class fc_switch(models.Model):
     four_g_module_used_number = fields.Integer(string="4G模块已使用的总数")
     eight_g_module_used_number = fields.Integer(string="8G模块已使用的总数")
     sixteen_g_module_used_number = fields.Integer(string="16G模块已使用的总数")
+    ip = fields.Char(string="IP")
     #以下是device表中引用过来用来展示的字段
     host_name = fields.Char(related="dev_id.host_name", string="设备命名")
     type_id = fields.Many2one(related="dev_id.type_id", string="设备类型")
@@ -1003,9 +1050,10 @@ class tape_station(models.Model):
                              domain=['|',
                                     ('type_id.type_name', 'ilike', "磁带机"),
                                      ('type_id.type_name', 'ilike', "磁带库")])
-    interface_ids = fields.One2many(related='dev_id.interface_ids', string="接口")
+    interface_ids = fields.One2many("cinda_cmdb.interface", "tape_station_id",  string="接口", domain=[('type', 'in', ["ethernet_fiber", "hba", "ethernet_fiber"])])
     driver = fields.Char(string="驱动器")
     tape = fields.Char(string="磁带")
+    ip = fields.Char(string="IP")
     cleaning_tape = fields.Char(string="清洗带")
     disk_controller = fields.Char(string="磁盘控制柜")
     extend_cab_num = fields.Integer(string="扩展柜数")
@@ -1049,8 +1097,8 @@ class mini_pc(models.Model):
     dev_id = fields.Many2one("cinda_cmdb.device", string="设备id",
                              domain=[('type_id.type_name', 'ilike', "小型计算机")])
     sn_id = fields.Char(related="dev_id.sn", string="所属设备序列号")
-    interface_ids = fields.One2many(related='dev_id.interface_ids', string="网卡接口")
-    interface_ids_a = fields.One2many(related='dev_id.interface_ids', string="HBA卡接口")
+    interface_ids_a = fields.One2many('cinda_cmdb.interface', 'mini_pc_id', string="HBA卡接口", domain=[('type', '=', "hba")])
+    interface_ids = fields.One2many('cinda_cmdb.interface', 'mini_pc_id', string="网卡接口",  domain=[('type', 'in', ['ethernet_electricity', 'ethernet_fiber'])])
     dev_name = fields.Char(string="设备名称")
     cpu_num = fields.Integer(string="CPU数量")
     single_cpu_num = fields.Integer(string="单CPU核数")
