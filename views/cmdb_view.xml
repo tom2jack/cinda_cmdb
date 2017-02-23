@@ -895,9 +895,10 @@
                                 </field>
                             </page>
                             <page string="光口">
-                            <field name="interface_ids">
-                                <tree editable="bottom" create="true" nolabel="true">
-                                    <field name="name" string="接口号" domain="[('type', '=', 'HBA')]" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
+                                <field name="interface_ids">
+                                    <tree editable="bottom" create="true" nolabel="true">
+                                        <field name="name" string="名称"/>
+                                        <field name="name" string="接口号" domain="[('type', '=', 'HBA')]" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
                                     <!--<field name="type" string="类型"/>-->
                                     <field name="interface_rate" string="本端接口速率"/>
                                     <field name="peer_device_id" string="对端设备"/>
