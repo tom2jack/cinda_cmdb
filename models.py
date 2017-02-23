@@ -92,7 +92,7 @@ class device(models.Model):
     srve_prvd = fields.Many2one("cinda_cmdb.vendor_list", string="服务商")
     admin = fields.Many2one("cinda_cmdb.member_list", string="管理人")
     comment = fields.Char(string="备注")
-    last_upd = fields.Datetime(default=fields.datetime.now(), require=True, string="最后截止日期")
+    last_upd = fields.Datetime(default=fields.datetime.now(), require=True, string="最后修改日期")
     contract_purchase_id = fields.Many2one("cinda_cmdb.contract_purchase", string="采购合同编号")
     interface_ids = fields.One2many('cinda_cmdb.interface', 'device_id', string="接口")
     #以下是server表中引用过来的字段
@@ -102,7 +102,7 @@ class device(models.Model):
     # os = fields.Char(related="server_ids_a.os", string="底层操作系统")
     # last_upd_a = fields.Datetime(related="server_ids_a.last_upd_a", require=True, string="最后截止日期")
 
-    # 在device表中新建一条数据，然后根据设备类型，在相对应的表里面创建一条数据，并且将刚才数据的id赋给
+    # 在device表中新建一条数据，然后根据设备类型，在相对应的表里面创建一条数据，并且将刚才数据的id赋给新数据的dev_id
     def create(self, cr, uid, vals, context=None):
         vals['device_id'] = self.pool.get('ir.sequence').get(cr, uid, 'cinda_cmdb.device')
         id = super(device, self).create(cr, uid, vals, context=context)

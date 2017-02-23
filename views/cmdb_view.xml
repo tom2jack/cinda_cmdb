@@ -297,9 +297,9 @@
                             <field name="user" string="使用人"/>
                             <field name="admin" string="管理人"/>
                             <field name="comment" string="备注"/>
-                            <!--<field name="last_upd_a" string="最后修改时间"/>-->
+                            <field name="last_upd" string="最后修改时间"/>
                         </group>
-                        <notebook colspan="3">
+                        <notebook colspan="2">
                             <page string="位置">
                                 <group>
                                 <group>
