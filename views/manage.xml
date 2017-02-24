@@ -281,7 +281,7 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">res.groups</field>
             <field name="view_type">form</field>
-            <field name="form_view_id" ref="view_groups_form"/>
+            <field name="view_id" ref="view_groups_form"/>
             <field name="domain">[('category_id.name','=','cinda_cmdb')]</field>
             <field name="help">创建第一个组</field>
         </record>

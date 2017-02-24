@@ -875,49 +875,52 @@ class interface(models.Model):
     @api.one
     @api.depends('peer_interface','status')
     def auto_change_peer(self):
-        value_peer_interface = 'null'
-        value_status = False
-        if type(self.id) == int:
-            if self.peer_interface.id:
-                if not self.status:
-                    value_peer_device_id = self.device_id.id
-                    value_peer_interface = self.id
-                    value_status = True
-                    value_target = self.peer_interface.id
-                    col = 'id'
-                    self.status = True
-                else:
-                    value_peer_device_id = self.device_id.id
-                    value_target = self.id
-                    col = 'peer_interface'
-                    self.status = False
-                    sql = '''UPDATE cinda_cmdb_interface
-                          SET peer_device_id = %s, peer_interface = %s , status = %s
-                          WHERE %s = %s''' % \
-                          (value_peer_device_id, value_peer_interface, value_status, col, value_target)
-                    self.env.cr.execute(sql)
-            else:
-                value_peer_device_id = self.device_id.id
-                value_target = self.id
-                col = 'peer_interface'
-                self.status = False
-            sql = '''UPDATE cinda_cmdb_interface
-                              SET peer_device_id = %s, peer_interface = %s , status = %s
-                              WHERE %s = %s''' % \
-                  (value_peer_device_id, value_peer_interface, value_status, col, value_target)
-            self.env.cr.execute(sql)
-            # self.invalidate_cache(self.env.cr, self.env.uid)
-        else:
-            pass
-            # if not self.peer_interface:
-            #     self.status = False
+        pass
+        # value_peer_interface = 'null'
+        # value_status = False
+        # if type(self.id) == int:
+        #     if self.peer_interface.id:
+        #         if not self.status:
+        #             value_peer_device_id = self.device_id.id
+        #             value_peer_interface = self.id
+        #             value_status = True
+        #             value_target = self.peer_interface.id
+        #             col = 'id'
+        #             self.status = True
+        #         else:
+        #             value_peer_device_id = self.device_id.id
+        #             value_target = self.id
+        #             col = 'peer_interface'
+        #             self.status = False
+        #             sql = '''UPDATE cinda_cmdb_interface
+        #                   SET peer_device_id = %s, peer_interface = %s , status = %s
+        #                   WHERE %s = %s''' % \
+        #                   (value_peer_device_id, value_peer_interface, value_status, col, value_target)
+        #             self.env.cr.execute(sql)
+        #     else:
+        #         value_peer_device_id = self.device_id.id
+        #         value_target = self.id
+        #         col = 'peer_interface'
+        #         self.status = False
+        #     sql = '''UPDATE cinda_cmdb_interface
+        #                       SET peer_device_id = %s, peer_interface = %s , status = %s
+        #                       WHERE %s = %s''' % \
+        #           (value_peer_device_id, value_peer_interface, value_status, col, value_target)
+        #     self.env.cr.execute(sql)
+        #     # self.invalidate_cache(self.env.cr, self.env.uid)
+        # else:
+        #     pass
+        #     # if not self.peer_interface:
+        #     #     self.status = False
 
         # self.env.invalidate_all()
 
     # 在接口表里面添加接口信息时，相应的在对应的表里面的一对多接口表的tree视图里面也显示接口信息；反之亦然，在二级表里面添加接口信息时，也要在interface表里面添加信息。
     def create(self, cr, uid, vals, context=None):
         id = super(interface, self).create(cr, uid, vals, context=context)
+        print '99999999999999999999', id,vals
         record = self.browse(cr, uid, id, context=context)[0]
+        print record
         if record.device_id:
             record_name = record.device_id.type_id.type_name
             if record_name == "PC服务器":
@@ -938,15 +941,16 @@ class interface(models.Model):
                 record.tape_station_id = pool_tape_station.search(cr, uid, [('dev_id', '=', record.device_id.id)], offset=0)[0]
         else:
             if record.server_id:
-                record.device_id = self.pool.get("cinda_cmdb.server").search(cr, uid, [('dev_id', '=', record.server_id.id)], offset=0)[0]
+                record.device_id = self.pool.get("cinda_cmdb.server").browse(cr, uid, record.server_id.id).dev_id.id
             elif record.mini_pc_id:
-                record.device_id = self.pool.get("cinda_cmdb.mini_pc").search(cr, uid, [('dev_id', '=', record.mini_pc_id.id)], offset=0)[0]
+                record_mini_pc = self.pool.get("cinda_cmdb.mini_pc").browse(cr, uid, record.mini_pc_id.id)
+                record.device_id = record_mini_pc.dev_id.id
             elif record.st_dev_id:
-                record.device_id = self.pool.get("cinda_cmdb.st_dev").search(cr, uid, [('dev_id', '=', record.st_dev_id.id)], offset=0)[0]
+                record.device_id = self.pool.get("cinda_cmdb.st_dev").browse(cr, uid, record.st_dev_id.id).dev_id.id
             elif record.fc_switch_id:
-                record.device_id = self.pool.get("cinda_cmdb.fc_switch").search(cr, uid, [('dev_id', '=', record.fc_switch_id.id)], offset=0)[0]
-            elif record.tape_station:
-                record.device_id = self.pool.get("cinda_cmdb.tape_station").search(cr, uid, [('dev_id', '=', record.tape_station_id.id)], offset=0)[0]
+                record.device_id = self.pool.get("cinda_cmdb.fc_switch").browse(cr, uid, record.fc_switch_id.id).dev_id.id
+            elif record.tape_station_id:
+                record.device_id = self.pool.get("cinda_cmdb.tape_station").browse(cr, uid, record.tape_station_id.id).dev_id
         return id
 
 
