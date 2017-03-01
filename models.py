@@ -645,7 +645,7 @@ class vlan(models.Model):
     vlan_id = fields.Char(string="VLAN号")
     vlan_name = fields.Char(string="VLAN名称")
     vlan_segment = fields.Char(string="VLAN网段")
-    comment = fields.Char(string="备注")
+    comment = fields.Char(string="备注") 
 
 
 class fw_policy1(models.Model):
@@ -917,6 +917,7 @@ class interface(models.Model):
     # 在接口表里面添加接口信息时，相应的在对应的表里面的一对多接口表的tree视图里面也显示接口信息；反之亦然，在二级表里面添加接口信息时，也要在interface表里面添加信息。
     def create(self, cr, uid, vals, context=None):
         id = super(interface, self).create(cr, uid, vals, context=context)
+        print '********************', vals
         record = self.browse(cr, uid, id, context=context)[0]
         if record.device_id:
             record_name = record.device_id.type_id.type_name
@@ -940,6 +941,7 @@ class interface(models.Model):
             if record.server_id:
                 record.device_id = self.pool.get("cinda_cmdb.server").browse(cr, uid, record.server_id.id).dev_id.id
             elif record.mini_pc_id:
+                print '&&&&&&&&&&&&&&&&&&&', record, record.mini_pc_id, record.mini_pc_id.id
                 record_mini_pc = self.pool.get("cinda_cmdb.mini_pc").browse(cr, uid, record.mini_pc_id.id)
                 record.device_id = record_mini_pc.dev_id.id
             elif record.st_dev_id:
