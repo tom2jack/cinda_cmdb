@@ -869,7 +869,21 @@ class interface(models.Model):
     interface_rate = fields.Char(string="本端接口速率")
     peer_rate = fields.Char(string="对端速率")
     purpose = fields.Many2one("cinda_cmdb.base_type", string='用途', domain=[('class_id', 'ilike', "用途")])
+    peer_interface_temp = fields.Char(string='对端端口')
+    interface_temp = fields.Char(string='计算对端接口',compute='auto_compute_peer_interface')
 
+    # 解决导入时接口名不唯一
+    @api.one
+    @api.depends('peer_interface_temp','peer_device_id')
+    def auto_compute_peer_interface(self):
+        peer_interface = self.env['cinda_cmdb.interface'].search([('name','=',self.peer_interface_temp),('device_id','=',self.id)],limit=1)
+        value_target = self.id
+        col = 'peer_interface'
+        sql = '''UPDATE cinda_cmdb_interface
+                          SET peer_interface = %s ,
+                          WHERE %s = %s''' % \
+              (peer_interface, col, value_target)
+        self.env.cr.execute(sql)
 
     # 实现在增加、删除对端接口时，自动关联互联设备的对端接口，但修改对端接口时不能取消关联之前的设备
     @api.one
