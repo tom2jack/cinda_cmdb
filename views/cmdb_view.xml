@@ -2503,9 +2503,10 @@
                     <field name="type" string="类型"/>
                     <field name="mac" string="MAC地址"/>
                     <field name="ip" string="IP地址"/>
-                    <field name="local_wwn" string="本端WWN"/>
                     <field name="device_id" string="所在设备"/>
+                    <field name="local_wwn" string="本端WWN"/>
                     <field name="peer_device_id" string="对端设备"/>
+                    <field name="peer_wwn" string="对端WWN"/>
                     <field name="peer_interface" string="对端接口"/>
                     <field name="interface_rate" string="接口速率"/>
                     <field name="purpose" string="用途"/>
@@ -2524,12 +2525,13 @@
                             <field name="type" string="类型"/>
                             <field name="mac" string="MAC地址"/>
                             <field name="device_id" string="所在设备"/>
+                            <field name="local_wwn" string="本端WWN"/>
                             <field name="interface_rate" string="接口速率"/>
                         </group>
                         <group>
                             <field name="ip" string="IP地址"/>
-                            <field name="local_wwn" string="本端WWN"/>
                             <field name="peer_device_id" string="对端设备" />
+                            <field name="peer_wwn" string="对端WWN"/>
                             <field name="peer_interface" string="对端接口" domain="[('device_id', '=', peer_device_id)]" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
                             <field name="purpose" string="用途"/>
                         </group>
