@@ -864,30 +864,28 @@ class interface(models.Model):
     fc_switch_id = fields.Many2one('cinda_cmdb.fc_switch')
     tape_station_id = fields.Many2one('cinda_cmdb.tape_station')
     peer_device_id = fields.Many2one('cinda_cmdb.device', string="对端设备")
-    peer_interface = fields.Many2one('cinda_cmdb.interface', string="对端接口", track_visibility='onchange')
+    peer_interface = fields.Many2one('cinda_cmdb.interface', string="对端接口(导入时勿选)", track_visibility='onchange')
     status = fields.Boolean(string="是否使用", compute='auto_change_peer', store=True, default=False)
     interface_rate = fields.Char(string="本端接口速率")
     peer_rate = fields.Char(string="对端速率")
     purpose = fields.Many2one("cinda_cmdb.base_type", string='用途', domain=[('class_id', 'ilike', "用途")])
-    peer_interface_temp = fields.Char(string='对端端口')
-    interface_temp = fields.Char(string='计算对端接口',compute='auto_compute_peer_interface',store=True )
+    peer_interface_temp = fields.Char(string='对端接口')
+    interface_temp = fields.Char(string='计算对端接口(导入时勿选)',compute='auto_compute_peer_interface',store=True )
 
     # 解决导入时接口名不唯一
     @api.one
     @api.depends('peer_interface_temp','peer_device_id')
     def auto_compute_peer_interface(self):
         self.interface_temp=self.peer_interface_temp
-        print self.peer_interface_temp
         peer_interface = self.env['cinda_cmdb.interface'].search([('name','=',self.peer_interface_temp),('device_id','=',self.peer_device_id.id)],limit=1)
         value_target = self.id
         col = 'id'
-        print peer_interface
         if peer_interface:
             sql = '''UPDATE cinda_cmdb_interface
                           SET peer_interface = %s
                           WHERE %s = %s''' % \
                 (peer_interface.id, col, value_target)
-        self.env.cr.execute(sql)
+            self.env.cr.execute(sql)
 
     # 实现在增加、删除对端接口时，自动关联互联设备的对端接口，但修改对端接口时不能取消关联之前的设备
     @api.one
