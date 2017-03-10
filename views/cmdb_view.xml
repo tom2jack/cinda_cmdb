@@ -317,14 +317,23 @@
                             <page string="合同">
                                 <group>
                                 <group>
-                                    <field name="srve_prvd" string="服务商"/>
-                                    <field name="contract_purchase_id" string="采购合同编号"/>
-                                </group>
-                                <group>
+                                    <!--<field name="srve_prvd" string="服务商"/>-->
                                     <field name="accept_date" string="初验日期"/>
+                                    <!--<field name="contract_purchase_id" string="采购合同编号"/>-->
+                                </group>
+                                    <group>
                                     <field name="reject_date" string="过保日期"/>
                                 </group>
                                 </group>
+                                <field name="contract_id" string="合同信息">
+                                    <tree editable="bottom" create="true" nolabel="true">
+                                        <field name="name" string="名称"/>
+                                        <field name="number" string="合同编号"/>
+                                        <field name="vendor" string="服务商"/>
+                                        <field name="accept_date" string="初验日期"/>
+                                        <field name="reject_date" string="过保日期"/>
+                                    </tree>
+                            </field>
                             </page>
                             <!--<page string="服务器信息">-->
                                 <!--<group>-->
@@ -538,14 +547,23 @@
                         <page string="合同">
                             <group>
                                 <group>
-                                <field name="srve_prvd" string="服务商"/>
-                                <field name="contract_purchase_id" string="采购合同编号"/>
-                            </group>
+                                <!--<field name="srve_prvd" string="服务商"/>-->
+                                <!--<field name="contract_purchase_id" string="采购合同编号"/>-->
+                                    <field name="accept_date" string="初验日期"/>
+                                </group>
                                 <group>
-                                <field name="accept_date" string="初验日期"/>
                                 <field name="reject_date" string="过保日期"/>
                             </group>
                             </group>
+                            <field name="contract_ids" string="合同信息">
+                                    <tree editable="bottom" create="true" nolabel="true">
+                                        <field name="name" string="名称"/>
+                                        <field name="number" string="合同编号"/>
+                                        <field name="vendor" string="服务商"/>
+                                        <field name="accept_date" string="初验日期"/>
+                                        <field name="reject_date" string="过保日期"/>
+                                    </tree>
+                            </field>
                         </page>
                         <!--<page string="IP信息">-->
                             <!--<group>-->
@@ -939,17 +957,26 @@
                             </field>
                         </page>
                         <page string="合同">
-                            <group>
                                 <group>
-                                <field name="srve_prvd" string="服务商"/>
-                                <field name="contract_purchase_id" string="采购合同编号"/>
-                            </group>
                                 <group>
-                                <field name="accept_date" string="初验日期"/>
-                                <field name="reject_date" string="过保日期"/>
-                            </group>
-                            </group>
-                        </page>
+                                    <!--<field name="srve_prvd" string="服务商"/>-->
+                                    <field name="accept_date" string="初验日期"/>
+                                    <!--<field name="contract_purchase_id" string="采购合同编号"/>-->
+                                </group>
+                                    <group>
+                                    <field name="reject_date" string="过保日期"/>
+                                </group>
+                                </group>
+                                <field name="contract_ids" string="合同信息">
+                                    <tree editable="bottom" create="true" nolabel="true">
+                                        <field name="name" string="名称"/>
+                                        <field name="number" string="合同编号"/>
+                                        <field name="vendor" string="服务商"/>
+                                        <field name="accept_date" string="初验日期"/>
+                                        <field name="reject_date" string="过保日期"/>
+                                    </tree>
+                                </field>
+                            </page>
                         </notebook>
                     </sheet>
                     <div class="oe_chatter">
@@ -2034,7 +2061,7 @@
             </field>
         </record>
 
-        <!-- vm相关视图 -->
+        <!-- vm虚拟机表相关视图 -->
         <record model="ir.ui.view" id="vm_tree_view">
             <field name="name">vm.tree</field>
             <field name="model">cinda_cmdb.vm</field>
@@ -2042,12 +2069,12 @@
                 <tree>
                     <field name="sequence" string="序号"/>
                     <field name="name" string="名称"/>
-                    <field name="vm_num" string="虚拟数量(台)"/>
+                    <!--<field name="vm_num" string="虚拟数量(台)"/>-->
                     <!--<field name="state" string="状况"/>-->
                     <field name="reserve_space" string="置备的空间(GB)"/>
                     <field name="used_space" string="已用空间(GB)"/>
-                    <field name="host_computer" string="主机"/>
-                    <field name="cluster" string="集群"/>
+                    <field name="host_computer_id" string="主机"/>
+                    <field name="cluster_id" string="集群"/>
                     <field name="client_operate_sys" string="客户机操作系统"/>
                     <field name="memory_size" string="内存大小(MB)"/>
                     <field name="cpu" string="CPU"/>
@@ -2055,7 +2082,7 @@
                     <field name="vm_run_state" string="Vmware Tools 运行状况"/>
                     <field name="comment" string="备注"/>
                     <!--<field name="sys_module" string="系统模块名称"/>-->
-                    <!--<field name="app_user" string="应用联系人"/>-->
+                    <!--<field name="app_user_id" string="应用联系人"/>-->
                     <!--<field name="deliver_date" string="交付日期"/>-->
                     <!--<field name="back_date" string="计划归还日期"/>-->
                     <!--<field name="business_type" string="业务类型"/>-->
@@ -2070,8 +2097,8 @@
                     <field name="name" string="名称"/>
                     <field name="vm_ip" string="虚拟机IP"/>
                     <group expand="0" string="分组">
-                        <filter string="集群" name="cluster" context="{'group_by':'cluster'}"/>
-                        <filter string="主机" name="host_computer" context="{'group_by':'host_computer'}"/>
+                        <filter string="集群" name="cluster_id" context="{'group_by':'cluster_id'}"/>
+                        <filter string="主机" name="host_computer_id" context="{'group_by':'host_computer_id'}"/>
                     </group>
                 </search>
             </field>
@@ -2088,8 +2115,8 @@
                         <field name="name" string="名称"/>
                         <field name="vm_num" string="虚拟数量(台)"/>
                         <field name="state" string="状况"/>
-                        <field name="host_computer" string="主机"/>
-                        <field name="cluster" string="集群"/>
+                        <field name="host_computer_id" string="主机"/>
+                        <field name="cluster_id" string="集群"/>
                         <field name="client_operate_sys" string="客户机操作系统"/>
                         <field name="cpu" string="CPU"/>
                     </group>
@@ -2098,7 +2125,7 @@
                         <field name="vm_run_state" string="Vmware Tools 运行状况"/>
                         <field name="comment" string="备注"/>
                         <field name="sys_module" string="系统模块名称"/>
-                        <field name="app_user" string="应用联系人"/>
+                        <field name="app_user_id" string="应用联系人"/>
                         <field name="deliver_date" string="交付日期"/>
                         <field name="back_date" string="计划归还日期"/>
                         <field name="business_type" string="业务类型"/>
@@ -2292,7 +2319,7 @@
             </field>
         </record>
 
-        <!-- 集群相关视图 -->
+        <!-- 集群表相关视图 -->
         <record model="ir.ui.view" id="cluster_tree_view">
             <field name="name">cluster.tree</field>
             <field name="model">cinda_cmdb.cluster</field>
@@ -2312,11 +2339,47 @@
                 <form>
                     <sheet>
                     <group>
+                    <group>
                     <field name="environment" string="环境"/>
                     <field name="name" string="集群"/>
+                    </group>
+                    <group>
                     <field name="vm_num" string="虚机数量"/>
                     <field name="action_vm_num" string="活动虚机数量"/>
                     </group>
+                    </group>
+                    <notebook colspan="2">
+                        <page string="宿主机">
+                            <field name="server_id">
+                                <tree editable="bottom" create="true" nolabel="true">
+                                    <field name="host_name" string="设备命名"/>
+                                    <field name="type_id" string="设备类型"/>
+                                    <field name="brand_id" string="品牌"/>
+                                    <field name="product_name" string="产品命名"/>
+                                    <field name="model" string="Model"/>
+                                    <field name="asset_num" string="资产编号"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="虚拟机">
+                            <field name="vm_id">
+                                <tree editable="bottom" create="true" nolabel="true">
+                                    <field name="name" string="名称"/>
+                                    <field name="host_computer_id" string="主机"/>
+                                    <field name="app_user_id" string="应用联系人"/>
+                                    <field name="vm_num" string="虚机数量(台)"/>
+                                    <field name="reserve_space" string="备至的空间"/>
+                                    <field name="used_space" string="已用空间"/>
+                                    <field name="client_operate_sys" string="客户机操作系统"/>
+                                    <field name="memory_size" string="内存大小(MB)"/>
+                                    <field name="cpu" string="CPU"/>
+                                    <field name="vm_ip" string="虚拟IP地址"/>
+                                    <!--<field name="vm_run_state" string="Vmware Tools 运行状况"/>-->
+                                    <!--<field name="sys_module" string="系统模块名称"/>-->
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
                     </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
@@ -2353,7 +2416,7 @@
             <field name="model">cinda_cmdb.contract_purchase</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="name" string="名称"/>
+                    <field name="name" string="设备编号"/>
                     <field name="number" string="合同编号"/>
                     <field name="vendor" string="服务商"/>
                     <field name="accept_date" string="初验日期"/>
@@ -2368,7 +2431,7 @@
                 <form>
                     <sheet>
                     <group>
-                        <field name="name" string="名称"/>
+                        <field name="name" string="设备编号"/>
                         <field name="number" string="合同编号"/>
                         <field name="vendor" string="服务商"/>
                         <field name="accept_date" string="初验日期"/>
@@ -2836,14 +2899,23 @@
                             <page string="合同">
                                 <group>
                                 <group>
-                                    <field name="srve_prvd" string="服务商"/>
-                                    <field name="contract_purchase_id" string="采购合同编号"/>
-                                </group>
-                                <group>
+                                    <!--<field name="srve_prvd" string="服务商"/>-->
                                     <field name="accept_date" string="初验日期"/>
+                                    <!--<field name="contract_purchase_id" string="采购合同编号"/>-->
+                                </group>
+                                    <group>
                                     <field name="reject_date" string="过保日期"/>
                                 </group>
                                 </group>
+                                <field name="contract_ids" string="合同信息">
+                                    <tree editable="bottom" create="true" nolabel="true">
+                                        <field name="name" string="名称"/>
+                                        <field name="number" string="合同编号"/>
+                                        <field name="vendor" string="服务商"/>
+                                        <field name="accept_date" string="初验日期"/>
+                                        <field name="reject_date" string="过保日期"/>
+                                    </tree>
+                            </field>
                             </page>
                     </notebook>
                     </sheet>
@@ -3165,14 +3237,23 @@
                             <page string="合同">
                                 <group>
                                 <group>
-                                    <field name="srve_prvd" string="服务商"/>
-                                    <field name="contract_purchase_id" string="采购合同编号"/>
-                                </group>
-                                <group>
+                                    <!--<field name="srve_prvd" string="服务商"/>-->
                                     <field name="accept_date" string="初验日期"/>
+                                    <!--<field name="contract_purchase_id" string="采购合同编号"/>-->
+                                </group>
+                                    <group>
                                     <field name="reject_date" string="过保日期"/>
                                 </group>
                                 </group>
+                                <field name="contract_ids" string="合同信息">
+                                    <tree editable="bottom" create="true" nolabel="true">
+                                        <field name="name" string="名称"/>
+                                        <field name="number" string="合同编号"/>
+                                        <field name="vendor" string="服务商"/>
+                                        <field name="accept_date" string="初验日期"/>
+                                        <field name="reject_date" string="过保日期"/>
+                                    </tree>
+                            </field>
                             </page>
                     </notebook>
                     </sheet>
