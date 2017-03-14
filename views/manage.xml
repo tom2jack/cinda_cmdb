@@ -281,11 +281,22 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">res.groups</field>
             <field name="view_type">form</field>
-            <field name="view_id" ref="view_groups_form"/>
+            <!--<field name="view_id" ref="view_groups_form"/>-->
             <field name="domain">[('category_id.name','=','cinda_cmdb')]</field>
             <field name="help">创建第一个组</field>
         </record>
-        <menuitem id="menu_admin_group" name="组管理" parent="manage_menu" action="menu_admin_groups_action" groups=""/>
+        <record id="menu_admin_groups_tree_action" model="ir.actions.act_window.view">
+            <field name="view_mode">tree</field>
+             <field name="sequence" eval="1"/>
+            <field name="act_window_id" ref="menu_admin_groups_action" />
+        </record>
+        <record id="menu_admin_groups_form_action" model="ir.actions.act_window.view">
+            <field name="view_mode">form</field>
+            <field name="sequence" eval="2"/>
+            <field name="view_id" ref="view_groups_form"/>
+            <field name="act_window_id" ref="menu_admin_groups_action" />
+        </record>
+        <menuitem id="menu_admin_group" name="组管理" parent="manage_menu" action="menu_admin_groups_action" groups="base.group_erp_manager,base.group_cinda_cmdb_admin"/>
 
 
         <!-- 视图动作 -->
@@ -308,8 +319,8 @@
         </record>
 
         <!-- 菜单 -->
-        <menuitem id="menu_admin_database" name="表管理" parent="manage_menu" sequence="13" action="menu_admin_database_action" />
-        <menuitem id="menu_admin_user" name="用户管理" parent="manage_menu" sequence="11" action="menu_admin_users_action" />
+        <menuitem id="menu_admin_database" name="表管理" parent="manage_menu" sequence="13" action="menu_admin_database_action" groups="base.group_erp_manager,base.group_cinda_cmdb_admin"/>
+        <menuitem id="menu_admin_user" name="用户管理" parent="manage_menu" sequence="11" action="menu_admin_users_action" groups="base.group_erp_manager,base.group_cinda_cmdb_admin"/>
 
     </data>
 </openerp>
