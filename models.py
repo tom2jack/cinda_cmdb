@@ -786,6 +786,7 @@ class vm(models.Model):
     _description = '虚拟机信息表'
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
+    _rec_name = "cluster_id"
 
     host_computer_id = fields.Many2one("cinda_cmdb.server", string="主机")
     cluster_id = fields.Many2one("cinda_cmdb.cluster", string="集群")

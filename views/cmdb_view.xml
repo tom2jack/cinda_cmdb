@@ -2369,8 +2369,8 @@
                         <page string="虚拟机">
                             <field name="vm_id">
                                 <tree editable="bottom" create="true" nolabel="true">
-                                    <field name="name" string="名称"/>
-                                    <field name="host_computer_id" string="主机"/>
+                                    <field name="cluster_id" string="集群"/>
+                                    <!--<field name="host_computer_id" string="主机"/>-->
                                     <field name="app_user_id" string="应用联系人"/>
                                     <field name="vm_num" string="虚机数量(台)"/>
                                     <field name="reserve_space" string="备至的空间"/>
