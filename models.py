@@ -96,7 +96,7 @@ class device(models.Model):
     contract_purchase_id = fields.Many2many("cinda_cmdb.contract_purchase", string="采购合同编号")
     interface_ids = fields.One2many('cinda_cmdb.interface', 'device_id', string="接口")
     #contract_id是用来在PC服务器表的合同page页里面以tree视图的形式来展示合同的信息
-    contract_id = fields.One2many('cinda_cmdb.contract_purchase', "name", string="合同信息" )
+    contract_id = fields.One2many('cinda_cmdb.contract_purchase', "device_id", string="合同信息" )
     #以下是server表中引用过来的字段
     # server_ids = fields.One2many('cinda_cmdb.server','dev_id', string="服务器信息1")
     # server_ids_a = fields.Many2one('cinda_cmdb.server', string="服务器信息2", compute='_get_record_id', store=True)
@@ -146,7 +146,7 @@ class server(models.Model):
     _description = 'PC服务器表'
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
-    _rec_name = "buss_ip_addr"
+    _rec_name = "sn_id"
 
     vm_ids = fields.One2many("cinda_cmdb.vm", "host_computer_id", string="虚拟机信息")
     dev_id = fields.Many2one("cinda_cmdb.device", string="设备资产id", domain=[('type_id.type_name', 'ilike', "小型计算机")])
@@ -208,7 +208,7 @@ class server(models.Model):
     type_id = fields.Many2one(related="dev_id.type_id", string="设备类型", domain=[('type_name', 'ilike', "PC服务器")], store="Ture")
     brand_id = fields.Many2one(related="dev_id.brand_id", string="品牌")
     product_name = fields.Char(related="dev_id.product_name", string="产品型号")
-    sn = fields.Char(related="dev_id.sn", string="序列号")
+    # sn = fields.Char(related="dev_id.sn", string="序列号")
     model = fields.Char(related="dev_id.model", string="Model")
     use_mode = fields.Selection(related="dev_id.use_mode", string="使用状态")
     dev_start = fields.Selection(related="dev_id.dev_start", string="设备状态")
@@ -757,8 +757,8 @@ class auth_log(models.Model):
 # u位表
 class position_u(models.Model):
     _name = "cinda_cmdb.position_u"
-    _description = 'U位表'
     _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _description = 'U位表'
     _mail_post_access = 'read'
 
     name = fields.Char(string="名称")
@@ -815,7 +815,8 @@ class contract_purchase(models.Model):
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
-    name = fields.Many2one("cinda_cmdb.device", string="设备编号")
+    device_id = fields.Many2one("cinda_cmdb.device")
+    name = fields.Char(string="合同名称")
     number = fields.Char(string="合同编号")
     vendor = fields.Many2one("cinda_cmdb.member_list", stirng="服务商")
     accept_date = fields.Date(string="初验日期")
@@ -1167,7 +1168,7 @@ class mini_pc(models.Model):
     type_id = fields.Many2one(related="dev_id.type_id", string="设备类型")
     brand_id = fields.Many2one(related="dev_id.brand_id", string="品牌")
     product_name = fields.Char(related="dev_id.product_name", string="产品型号")
-    sn = fields.Char(related="dev_id.sn", string="序列号")
+    # sn = fields.Char(related="dev_id.sn", string="序列号")
     model = fields.Char(related="dev_id.model", string="Model")
     use_mode = fields.Selection(related="dev_id.use_mode", string="使用状态")
     dev_start = fields.Selection(related="dev_id.dev_start", string="设备状态")

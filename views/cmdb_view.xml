@@ -327,7 +327,7 @@
                                 </group>
                                 <field name="contract_id" string="合同信息">
                                     <tree editable="bottom" create="true" nolabel="true">
-                                        <field name="name" string="名称"/>
+                                        <field name="name" string="合同名称"/>
                                         <field name="number" string="合同编号"/>
                                         <field name="vendor" string="服务商"/>
                                         <field name="accept_date" string="初验日期"/>
@@ -416,6 +416,7 @@
                             <!--<field name="sn" string="序列号"/>-->
                             <field name="dev_id" string="关联的设备(序列号+设备命名)" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
                             <field name="host_name" string="设备命名"/>
+                            <field name="buss_ip_addr" string="IP地址"/>
                             <field name="type_id" string="设备类型"/>
                             <field name="brand_id" string="品牌"/>
                             <field name="product_name" string="产品型号"/>
@@ -424,7 +425,6 @@
                             <field name="dev_start" string="设备状态"/>
                             <field name="exten_mod" string="扩展模块"/>
                             <field name="ha_mode" string="主备状态"/>
-                            <field name="comment" string="备注"/>
                         </group>
                         <group>
                             <field name="asset_num_old" string="旧资产编号"/>
@@ -436,6 +436,7 @@
                             <field name="owner_id" string="资产所有人"/>
                             <field name="user" string="使用人"/>
                             <field name="admin" string="管理人"/>
+                            <field name="comment" string="备注"/>
                             <field name="last_upd" string="最后修改时间"/>
                         </group>
                         <notebook colspan="10">
@@ -557,7 +558,7 @@
                             </group>
                             <field name="contract_ids" string="合同信息">
                                     <tree editable="bottom" create="true" nolabel="true">
-                                        <field name="name" string="名称"/>
+                                        <field name="name" string="合同名称"/>
                                         <field name="number" string="合同编号"/>
                                         <field name="vendor" string="服务商"/>
                                         <field name="accept_date" string="初验日期"/>
@@ -969,7 +970,7 @@
                                 </group>
                                 <field name="contract_ids" string="合同信息">
                                     <tree editable="bottom" create="true" nolabel="true">
-                                        <field name="name" string="名称"/>
+                                        <field name="name" string="合同名称"/>
                                         <field name="number" string="合同编号"/>
                                         <field name="vendor" string="服务商"/>
                                         <field name="accept_date" string="初验日期"/>
@@ -2130,16 +2131,20 @@
                         <field name="back_date" string="计划归还日期"/>
                         <field name="business_type" string="业务类型"/>
                     </group>
+                    </group>
                         <notebook colspan="1">
                             <page string="存储">
                                 <group>
-                                    <field name="reserve_space" string="置备的空间(GB)"/>
-                                    <field name="used_space" string="已用空间(GB)"/>
-                                    <field name="memory_size" string="内存大小(MB)"/>
+                                    <group>
+                                        <field name="reserve_space" string="置备的空间(GB)"/>
+                                        <field name="used_space" string="已用空间(GB)"/>
+                                    </group>
+                                    <group>
+                                        <field name="memory_size" string="内存大小(MB)"/>
+                                    </group>
                                 </group>
                             </page>
                         </notebook>
-                    </group>
                     </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
@@ -2352,7 +2357,7 @@
                         <page string="宿主机">
                             <field name="server_id">
                                 <tree editable="bottom" create="true" nolabel="true">
-                                    <field name="host_name" string="设备命名"/>
+                                    <field name="dev_id" string="序列号"/>
                                     <field name="type_id" string="设备类型"/>
                                     <field name="brand_id" string="品牌"/>
                                     <field name="product_name" string="产品命名"/>
@@ -2416,7 +2421,7 @@
             <field name="model">cinda_cmdb.contract_purchase</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="name" string="设备编号"/>
+                    <field name="name" string="合同名称"/>
                     <field name="number" string="合同编号"/>
                     <field name="vendor" string="服务商"/>
                     <field name="accept_date" string="初验日期"/>
@@ -2431,7 +2436,7 @@
                 <form>
                     <sheet>
                     <group>
-                        <field name="name" string="设备编号"/>
+                        <field name="name" string="合同名称"/>
                         <field name="number" string="合同编号"/>
                         <field name="vendor" string="服务商"/>
                         <field name="accept_date" string="初验日期"/>
@@ -2909,7 +2914,7 @@
                                 </group>
                                 <field name="contract_ids" string="合同信息">
                                     <tree editable="bottom" create="true" nolabel="true">
-                                        <field name="name" string="名称"/>
+                                        <field name="name" string="合同名称"/>
                                         <field name="number" string="合同编号"/>
                                         <field name="vendor" string="服务商"/>
                                         <field name="accept_date" string="初验日期"/>
@@ -3247,7 +3252,7 @@
                                 </group>
                                 <field name="contract_ids" string="合同信息">
                                     <tree editable="bottom" create="true" nolabel="true">
-                                        <field name="name" string="名称"/>
+                                        <field name="name" string="合同名称"/>
                                         <field name="number" string="合同编号"/>
                                         <field name="vendor" string="服务商"/>
                                         <field name="accept_date" string="初验日期"/>
