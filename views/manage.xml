@@ -285,7 +285,7 @@
             <field name="domain">[('category_id.name','=','cinda_cmdb')]</field>
             <field name="help">创建第一个组</field>
         </record>
-        <menuitem id="menu_admin_group" name="组管理" parent="manage_menu" action="menu_admin_groups_action" groups=""/>
+        <menuitem id="menu_admin_group" name="组管理" parent="manage_menu" action="menu_admin_groups_action" />
 
 
         <!-- 视图动作 -->
