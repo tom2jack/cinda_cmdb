@@ -416,6 +416,7 @@
                             <!--<field name="sn" string="序列号"/>-->
                             <field name="dev_id" string="关联的设备(序列号+设备命名)" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
                             <field name="host_name" string="设备命名"/>
+                            <field name="buss_ip_addr" string="IP地址"/>
                             <field name="type_id" string="设备类型"/>
                             <field name="brand_id" string="品牌"/>
                             <field name="product_name" string="产品型号"/>
@@ -424,7 +425,6 @@
                             <field name="dev_start" string="设备状态"/>
                             <field name="exten_mod" string="扩展模块"/>
                             <field name="ha_mode" string="主备状态"/>
-                            <field name="comment" string="备注"/>
                         </group>
                         <group>
                             <field name="asset_num_old" string="旧资产编号"/>
@@ -436,6 +436,7 @@
                             <field name="owner_id" string="资产所有人"/>
                             <field name="user" string="使用人"/>
                             <field name="admin" string="管理人"/>
+                            <field name="comment" string="备注"/>
                             <field name="last_upd" string="最后修改时间"/>
                         </group>
                         <notebook colspan="10">
