@@ -93,10 +93,8 @@ class device(models.Model):
     admin = fields.Many2one("cinda_cmdb.member_list", string="管理人")
     comment = fields.Char(string="备注")
     last_upd = fields.Datetime(default=fields.datetime.now(), require=True, string="最后修改日期")
-    contract_purchase_id = fields.Many2many("cinda_cmdb.contract_purchase", string="采购合同编号")
+    contract_ids = fields.Many2many("cinda_cmdb.contract_purchase","device_contract_ref", "device_id", "contract_id", string="采购合同编号")
     interface_ids = fields.One2many('cinda_cmdb.interface', 'device_id', string="接口")
-    #contract_id是用来在PC服务器表的合同page页里面以tree视图的形式来展示合同的信息
-    contract_id = fields.One2many('cinda_cmdb.contract_purchase', "device_id", string="合同信息" )
     #以下是server表中引用过来的字段
     # server_ids = fields.One2many('cinda_cmdb.server','dev_id', string="服务器信息1")
     # server_ids_a = fields.Many2one('cinda_cmdb.server', string="服务器信息2", compute='_get_record_id', store=True)
@@ -226,10 +224,10 @@ class server(models.Model):
     u_space = fields.Integer(related="dev_id.u_space", string="占位U")
     env_id = fields.Many2one(related="dev_id.env_id", string="环境")
     srve_prvd = fields.Many2one(related="dev_id.srve_prvd", string="服务商")
-    contract_purchase_id = fields.Many2many(related="dev_id.contract_purchase_id", string="采购合同编号")
+    contract_ids = fields.Many2many(related="dev_id.contract_ids", string="采购合同编号")
     accept_date = fields.Char(related="dev_id.accept_date", string="初验日期")
     reject_date = fields.Char(related="dev_id.reject_date", string="过保日期")
-    contract_ids = fields.One2many(related="dev_id.contract_id", string="合同信息")
+
 
 
     # 计算内存总容量
@@ -393,10 +391,10 @@ class st_dev(models.Model):
     u_space = fields.Integer(related="dev_id.u_space", string="占位U")
     env_id = fields.Many2one(related="dev_id.env_id", string="环境")
     srve_prvd = fields.Many2one(related="dev_id.srve_prvd", string="服务商")
-    contract_purchase_id = fields.Many2many(related="dev_id.contract_purchase_id", string="采购合同编号")
+    contract_ids = fields.Many2many(related="dev_id.contract_ids", string="采购合同编号")
     accept_date = fields.Char(related="dev_id.accept_date", string="初验日期")
     reject_date = fields.Char(related="dev_id.reject_date", string="过保日期")
-    contract_ids = fields.One2many(related="dev_id.contract_id", string="合同信息")
+
 
 
 class srv_room_dev(models.Model):
@@ -816,7 +814,9 @@ class contract_purchase(models.Model):
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
-    device_id = fields.Many2one("cinda_cmdb.device")
+
+    device_ids = fields.Many2many("cinda_cmdb.device","device_contract_ref", "contract_id","device_id", string="序列号")
+    # device_id = fields.Char(string="序列号")
     name = fields.Char(string="合同名称")
     number = fields.Char(string="合同编号")
     vendor = fields.Many2one("cinda_cmdb.member_list", stirng="服务商")
@@ -1061,11 +1061,11 @@ class fc_switch(models.Model):
     u_space = fields.Integer(related="dev_id.u_space", string="占位U")
     env_id = fields.Many2one(related="dev_id.env_id", string="环境")
     srve_prvd = fields.Many2one(related="dev_id.srve_prvd", string="服务商")
-    contract_purchase_id = fields.Many2many(related="dev_id.contract_purchase_id", string="采购合同编号")
+    contract_ids = fields.Many2many(related="dev_id.contract_ids", string="采购合同编号")
     accept_date = fields.Char(related="dev_id.accept_date", string="初验日期")
     reject_date = fields.Char(related="dev_id.reject_date", string="过保日期")
     last_upd = fields.Datetime(related="dev_id.last_upd", string="最后截止日期")
-    contract_ids = fields.One2many(related="dev_id.contract_id", string="合同信息")
+
 
 
 class tape_station(models.Model):
@@ -1111,10 +1111,10 @@ class tape_station(models.Model):
     u_space = fields.Integer(related="dev_id.u_space", string="占位U")
     env_id = fields.Many2one(related="dev_id.env_id", string="环境")
     srve_prvd = fields.Many2one(related="dev_id.srve_prvd", string="服务商")
-    contract_purchase_id = fields.Many2many(related="dev_id.contract_purchase_id", string="采购合同编号")
+    contract_ids = fields.Many2many(related="dev_id.contract_ids", string="采购合同编号")
     accept_date = fields.Char(related="dev_id.accept_date", string="初验日期")
     reject_date = fields.Char(related="dev_id.reject_date", string="过保日期")
-    contract_ids = fields.One2many(related="dev_id.contract_id", string="合同信息")
+
 
 
 class mini_pc(models.Model):
@@ -1187,11 +1187,11 @@ class mini_pc(models.Model):
     u_space = fields.Integer(related="dev_id.u_space", string="占位U")
     env_id = fields.Many2one(related="dev_id.env_id", string="环境")
     srve_prvd = fields.Many2one(related="dev_id.srve_prvd", string="服务商")
-    contract_purchase_id = fields.Many2many(related="dev_id.contract_purchase_id", string="采购合同编号")
+    contract_ids = fields.Many2many(related="dev_id.contract_ids", string="采购合同编号")
     accept_date = fields.Char(related="dev_id.accept_date", string="初验日期")
     reject_date = fields.Char(related="dev_id.reject_date", string="过保日期")
     last_upd = fields.Datetime(related="dev_id.last_upd", string="最后截止日期")
-    contract_ids = fields.One2many(related="dev_id.contract_id", string="合同信息")
+
 
     #计算CPU核数量
     @api.multi

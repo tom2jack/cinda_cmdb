@@ -325,7 +325,7 @@
                                     <field name="reject_date" string="过保日期"/>
                                 </group>
                                 </group>
-                                <field name="contract_id" string="合同信息">
+                                <field name="contract_ids" string="合同信息">
                                     <tree editable="bottom" create="true" nolabel="true">
                                         <field name="name" string="合同名称"/>
                                         <field name="number" string="合同编号"/>
@@ -2367,9 +2367,9 @@
                             </field>
                         </page>
                         <page string="虚拟机">
-                            <field name="vm_id">
+                            <field name="vm_id" widget="many2many">
                                 <tree editable="bottom" create="true" nolabel="true">
-                                    <field name="cluster_id" string="集群"/>
+                                    <!--<field name="cluster_id" string="集群"/>-->
                                     <!--<field name="host_computer_id" string="主机"/>-->
                                     <field name="app_user_id" string="应用联系人"/>
                                     <field name="vm_num" string="虚机数量(台)"/>
@@ -2436,12 +2436,23 @@
                 <form>
                     <sheet>
                     <group>
-                        <field name="name" string="合同名称"/>
-                        <field name="number" string="合同编号"/>
-                        <field name="vendor" string="服务商"/>
-                        <field name="accept_date" string="初验日期"/>
-                        <field name="reject_date" string="过保日期"/>
+                        <group>
+                            <field name="name" string="合同名称"/>
+                            <field name="number" string="合同编号"/>
+                            <field name="vendor" string="服务商"/>
+                        </group>
+                        <group>
+                            <field name="accept_date" string="初验日期"/>
+                            <field name="reject_date" string="过保日期"/>
+                        </group>
                     </group>
+                    <notebook colspan="1">
+                            <page string="设备">
+                                <field name="device_ids" string="合同信息">
+
+                            </field>
+                            </page>
+                    </notebook>
                     </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
