@@ -146,7 +146,7 @@ class server(models.Model):
     _mail_post_access = 'read'
     _rec_name = "sn_id"
 
-    vm_ids = fields.One2many("cinda_cmdb.vm", "host_computer_id", string="虚拟机信息")
+    vm_ids = fields.One2many("cinda_cmdb.vm", "server_ids", string="虚拟机信息")
     dev_id = fields.Many2one("cinda_cmdb.device", string="设备资产id", domain=[('type_id.type_name', 'ilike', "PC服务器")])
     sn_id = fields.Char(related="dev_id.sn", string="所属设备序列号")
     interface_ids_a = fields.One2many('cinda_cmdb.interface', 'server_id', string="HBA卡接口", domain=[('type', '=', "hba")])
@@ -786,11 +786,12 @@ class vm(models.Model):
     _mail_post_access = 'read'
     _rec_name = "cluster_id"
 
-    host_computer_id = fields.Many2one("cinda_cmdb.server", string="主机")
+    server_ids = fields.Many2one("cinda_cmdb.server", string="主机")
+    host_computer = fields.Char( string="主机")
     cluster_id = fields.Many2one("cinda_cmdb.cluster", string="集群")
     app_user_id = fields.Many2one("cinda_cmdb.member_list", string="应用联系人")
     sequence = fields.Integer(string='序号')
-    name = fields.Char(string='名称')
+    name = fields.Char(string='虚拟机名称')
     vm_num = fields.Integer(string='虚机数量（台）')
     state = fields.Boolean(string='状况')
     reserve_space = fields.Float(string="备至的空间")
