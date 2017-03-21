@@ -2069,21 +2069,21 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="sequence" string="序号"/>
-                    <field name="name" string="名称"/>
+                    <field name="host_computer_id" string="主机名"/>
+                    <field name="vm_ip" string="虚拟机IP地址"/>
+                    <!--<field name="name" string="名称"/>-->
                     <!--<field name="vm_num" string="虚拟数量(台)"/>-->
                     <!--<field name="state" string="状况"/>-->
+                    <field name="client_operate_sys" string="客户机操作系统"/>
+                    <field name="sys_module" string="系统模块名称"/>
+                    <field name="app_user_id" string="应用联系人"/>
                     <field name="reserve_space" string="置备的空间(GB)"/>
                     <field name="used_space" string="已用空间(GB)"/>
-                    <field name="host_computer_id" string="主机"/>
                     <field name="cluster_id" string="集群"/>
-                    <field name="client_operate_sys" string="客户机操作系统"/>
                     <field name="memory_size" string="内存大小(MB)"/>
                     <field name="cpu" string="CPU"/>
-                    <!--<field name="vm_ip" string="虚拟机IP地址"/>-->
                     <field name="vm_run_state" string="Vmware Tools 运行状况"/>
                     <field name="comment" string="备注"/>
-                    <!--<field name="sys_module" string="系统模块名称"/>-->
-                    <!--<field name="app_user_id" string="应用联系人"/>-->
                     <!--<field name="deliver_date" string="交付日期"/>-->
                     <!--<field name="back_date" string="计划归还日期"/>-->
                     <!--<field name="business_type" string="业务类型"/>-->
@@ -2116,7 +2116,7 @@
                         <field name="name" string="名称"/>
                         <field name="vm_num" string="虚拟数量(台)"/>
                         <field name="state" string="状况"/>
-                        <field name="host_computer_id" string="主机"/>
+                        <!--<field name="host_computer_id" string="主机名"/>-->
                         <field name="cluster_id" string="集群"/>
                         <field name="client_operate_sys" string="客户机操作系统"/>
                         <field name="cpu" string="CPU"/>
@@ -2355,32 +2355,32 @@
                     </group>
                     <notebook colspan="2">
                         <page string="宿主机">
-                            <field name="server_id">
+                            <field name="server_id" widget="many2many">
                                 <tree editable="bottom" create="true" nolabel="true">
+                                    <field name="host_name" string="主机名"/>
                                     <field name="dev_id" string="序列号"/>
                                     <field name="type_id" string="设备类型"/>
+                                    <field name="buss_ip_addr" string="IP地址"/>
+                                    <field name="product_name" string="型号"/>
                                     <field name="brand_id" string="品牌"/>
-                                    <field name="product_name" string="产品命名"/>
-                                    <field name="model" string="Model"/>
-                                    <field name="asset_num" string="资产编号"/>
+                                    <field name="os" string="操作系统"/>
                                 </tree>
                             </field>
                         </page>
                         <page string="虚拟机">
                             <field name="vm_id" widget="many2many">
                                 <tree editable="bottom" create="true" nolabel="true">
-                                    <!--<field name="cluster_id" string="集群"/>-->
-                                    <!--<field name="host_computer_id" string="主机"/>-->
+                                    <field name="host_computer_id" string="主机名"/>
+                                    <field name="vm_ip" string="IP地址"/>
+                                    <field name="client_operate_sys" string="操作系统"/>
+                                    <field name="sys_module" string="所属系统"/>
                                     <field name="app_user_id" string="应用联系人"/>
-                                    <field name="vm_num" string="虚机数量(台)"/>
-                                    <field name="reserve_space" string="备至的空间"/>
-                                    <field name="used_space" string="已用空间"/>
-                                    <field name="client_operate_sys" string="客户机操作系统"/>
-                                    <field name="memory_size" string="内存大小(MB)"/>
-                                    <field name="cpu" string="CPU"/>
-                                    <field name="vm_ip" string="虚拟IP地址"/>
+                                    <!--<field name="vm_num" string="虚机数量(台)"/>-->
+                                    <!--<field name="reserve_space" string="备至的空间"/>-->
+                                    <!--<field name="used_space" string="已用空间"/>-->
+                                    <!--<field name="memory_size" string="内存大小(MB)"/>-->
+                                    <!--<field name="cpu" string="CPU"/>-->
                                     <!--<field name="vm_run_state" string="Vmware Tools 运行状况"/>-->
-                                    <!--<field name="sys_module" string="系统模块名称"/>-->
                                 </tree>
                             </field>
                         </page>
