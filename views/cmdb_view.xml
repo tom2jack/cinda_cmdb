@@ -325,8 +325,8 @@
                                     <field name="reject_date" string="过保日期"/>
                                 </group>
                                 </group>
-                                <field name="contract_ids" string="合同信息">
-                                    <tree editable="bottom" create="true" nolabel="true">
+                                <field name="contract_ids" string="合同信息"  colors="red:reject_date,&lt;=,((context_today()-relativedelta(months=3)).strftime('%%Y/%%m/%%d'));">
+                                    <tree editable="bottom" create="true" nolabel="true" colors="red:reject_date,&lt;=,((context_today()-relativedelta(months=3)).strftime('%%Y/%%m/%%d'));">
                                         <field name="name" string="合同名称"/>
                                         <field name="number" string="合同编号"/>
                                         <field name="vendor" string="服务商"/>
@@ -556,7 +556,7 @@
                                 <field name="reject_date" string="过保日期"/>
                             </group>
                             </group>
-                            <field name="contract_ids" string="合同信息">
+                            <field name="contract_ids" string="合同信息"  colors="red:reject_date,&lt;=,((context_today()-relativedelta(months=3)).strftime('%%Y/%%m/%%d'));">
                                     <tree editable="bottom" create="true" nolabel="true">
                                         <field name="name" string="合同名称"/>
                                         <field name="number" string="合同编号"/>
@@ -968,7 +968,7 @@
                                     <field name="reject_date" string="过保日期"/>
                                 </group>
                                 </group>
-                                <field name="contract_ids" string="合同信息">
+                                <field name="contract_ids" string="合同信息"  colors="red:reject_date,&lt;=,((context_today()-relativedelta(months=3)).strftime('%%Y/%%m/%%d'));">
                                     <tree editable="bottom" create="true" nolabel="true">
                                         <field name="name" string="合同名称"/>
                                         <field name="number" string="合同编号"/>
@@ -2419,7 +2419,7 @@
             <field name="name">contract_purchase.tree</field>
             <field name="model">cinda_cmdb.contract_purchase</field>
             <field name="arch" type="xml">
-                <tree>
+                <tree string="cinda_cmdb_contract_user_tree" colors="red:reject_date,&lt;=,((context_today()-relativedelta(months=3)).strftime('%%Y/%%m/%%d'));">
                     <field name="name" string="合同名称"/>
                     <field name="number" string="合同编号"/>
                     <field name="vendor" string="服务商"/>
@@ -2922,7 +2922,7 @@
                                     <field name="reject_date" string="过保日期"/>
                                 </group>
                                 </group>
-                                <field name="contract_ids" string="合同信息">
+                                <field name="contract_ids" string="合同信息"  colors="red:reject_date,&lt;=,((context_today()-relativedelta(months=3)).strftime('%%Y/%%m/%%d'));">
                                     <tree editable="bottom" create="true" nolabel="true">
                                         <field name="name" string="合同名称"/>
                                         <field name="number" string="合同编号"/>
@@ -3260,7 +3260,7 @@
                                     <field name="reject_date" string="过保日期"/>
                                 </group>
                                 </group>
-                                <field name="contract_ids" string="合同信息">
+                                <field name="contract_ids" string="合同信息"  colors="red:reject_date,&lt;=,((context_today()-relativedelta(months=3)).strftime('%%Y/%%m/%%d'));">
                                     <tree editable="bottom" create="true" nolabel="true">
                                         <field name="name" string="合同名称"/>
                                         <field name="number" string="合同编号"/>
