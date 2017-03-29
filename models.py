@@ -85,8 +85,8 @@ class device(models.Model):
     asset_num = fields.Char(string="资产编号")
     sn = fields.Char(string="序列号")
     purpose = fields.Char(string="用途")
-    accept_date = fields.Char(string="初验日期")
-    reject_date = fields.Char(string="过保日期")
+    accept_date = fields.Char(string="初验日期", compute='min_contract_date', store=True)
+    reject_date = fields.Char(string="过保日期", compute='max_contract_date', store=True)
     owner_id = fields.Many2one("cinda_cmdb.base_type", string="资产所有人", domain=[('class_id', 'ilike', "资产所有者")])
     user = fields.Many2one("cinda_cmdb.member_list", string="使用人")
     srve_prvd = fields.Many2one("cinda_cmdb.vendor_list", string="服务商")
@@ -101,6 +101,32 @@ class device(models.Model):
     # app_sys = fields.Char(related="server_ids_a.app_sys", string="所属系统")
     # os = fields.Char(related="server_ids_a.os", string="底层操作系统")
     # last_upd_a = fields.Datetime(related="server_ids_a.last_upd_a", require=True, string="最后截止日期")
+
+    # 将设备所对应的多个合同的初验日期的最早那天选出来
+    @api.multi
+    @api.depends('contract_ids.accept_date')
+    def min_contract_date(self):
+        # print '#'*80
+        datas=[]
+        for r in self:
+            for contract in r.contract_ids:
+                if contract.accept_date:
+                    datas.append(contract.accept_date)
+            if datas:
+                r.accept_date=min(datas)
+
+    # 将设备所对应的多个合同的初验日期的最晚那天选出来
+    @api.multi
+    @api.depends('contract_ids.reject_date')
+    def max_contract_date(self):
+        # print '#'*80
+        datas=[]
+        for r in self:
+            for contract in r.contract_ids:
+                if contract.reject_date:
+                    datas.append(contract.reject_date)
+            if datas:
+                r.reject_date=max(datas)
 
     # 在device表中新建一条数据，然后根据设备类型，在相对应的表里面创建一条数据，并且将刚才数据的id赋给新数据的dev_id
     def create(self, cr, uid, vals, context=None):
@@ -138,6 +164,9 @@ class device(models.Model):
     # def _get_record_id(self):
     #     for r in self:
     #         r.server_ids_a = r.server_ids
+
+
+
 
 class server(models.Model):
     _name = "cinda_cmdb.server"
@@ -820,7 +849,7 @@ class contract_purchase(models.Model):
     # device_id = fields.Char(string="序列号")
     name = fields.Char(string="合同名称")
     number = fields.Char(string="合同编号")
-    vendor = fields.Many2one("cinda_cmdb.member_list", stirng="服务商")
+    vendor = fields.Many2one("cinda_cmdb.vendor_list", stirng="服务商")
     accept_date = fields.Date(string="初验日期")
     reject_date = fields.Date(string="过保日期")
 
