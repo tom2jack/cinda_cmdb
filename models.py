@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 from openerp import fields
 from openerp import models,api
+import datetime
+from email.utils import formataddr
+from email.header import Header
 
 
 class base_class(models.Model):
@@ -199,11 +202,11 @@ class server(models.Model):
     single_mem_size = fields.Float(string="单条内存容量")
     mem_sum = fields.Float(string="内存总容量", compute="_mem_sum", store="True")
     mem_spec = fields.Char(string="内存规格")
-    disk_size = fields.Float(string="硬盘容量(裸容量)")
+    disk_size = fields.Integer(string="硬盘数量")
     single_disk_size = fields.Float(string="单硬盘容量")
     disk_sum = fields.Float(string="硬盘总容量", compute="_disk_sum", store="True")
     disk_spec = fields.Char(string="硬盘规格")
-    ext_st_size = fields.Float(string="外接存储容量")
+    ext_st_size = fields.Float(string="外接存储容量(TB)")
     hba_config = fields.Char(string="HBA卡配置")
     hba_used = fields.Char(string="HBA卡已用情况")
     g_netcard_config = fields.Char(string="千兆网卡配置")
@@ -390,6 +393,7 @@ class st_dev(models.Model):
     pc_used_size = fields.Float(string="整机已经分配容量(T)")
     pc_remain_size = fields.Float(string="整机剩余可使用容量(T)")
     ip = fields.Char(string="IP")
+    app_sys = fields.Char(string="所属系统")
     # type_id_a = fields.Many2one("cinda_cmdb.base_type", domain=[('class_id', 'ilike', "设备类型")])
     #以下是device表中引用过来用来展示的字段
     host_name = fields.Char(related="dev_id.host_name", string="设备命名")
@@ -583,8 +587,8 @@ class vendor_list(models.Model):
     vendor = fields.Char(string="名称", require=True)
     attr = fields.Char(string="性质")
     address = fields.Char(string="地址")
-    contact = fields.Char(string="联系人")
-    position = fields.Char(string="职位")
+    contact = fields.One2many("cinda_cmdb.member_list", "address", string="联系人")
+    # position = fields.Char(string="职位")
     fixed_phone = fields.Char(string="电话")
     mobile_phone = fields.Char(string="手机")
     mail = fields.Char(string="邮件")
@@ -602,7 +606,7 @@ class member_list(models.Model):
     member_list_id = fields.Char(string="人员表ID")
     name = fields.Char(string="名称", require=True)
     attr = fields.Char(string="性质")
-    address = fields.Char(string="地址")
+    address = fields.Many2one("cinda_cmdb.vendor_list", string="公司")
     position = fields.Char(string="职位")
     fixed_phone = fields.Char(string="电话")
     mobile_phone = fields.Char(string="手机")
@@ -822,14 +826,14 @@ class vm(models.Model):
     sequence = fields.Integer(string='序号')
     name = fields.Char(string='虚拟机名称')
     vm_num = fields.Integer(string='虚机数量（台）')
-    state = fields.Boolean(string='状况')
+    state = fields.Selection([('start', '开机'), ('shutdown', '关机'),], default="", Require="False", string="状况")
     reserve_space = fields.Float(string="备至的空间")
     used_space = fields.Float(string="已用空间")
     client_operate_sys = fields.Char(string="客户机操作系统")
     memory_size = fields.Integer(string="内存大小(MB)", track_visibility='onchange')
-    cpu = fields.Integer(string="CPU")
+    cpu = fields.Integer(string="CPU数量")
     vm_ip = fields.Char(string="虚机IP地址")
-    vm_run_state = fields.Char(string="Vmware Tools 运行状况")
+    vm_run_state = fields.Selection([('running', '正在运行'), ('shutdown', '未运行'),], default="", Require="False", string="Vmware Tools 运行状况")
     comment = fields.Char(string="备注")
     sys_module = fields.Char(string="系统模块名称")
     deliver_date = fields.Date(string="交付日期")
@@ -853,6 +857,37 @@ class contract_purchase(models.Model):
     accept_date = fields.Date(string="初验日期")
     reject_date = fields.Date(string="过保日期")
 
+    # 自动根据合同结束时间提醒邮件--距离合同结束一个月内 频率--每周
+    @api.multi
+    def email_contract_reject_date(self):
+        subject = '您有合同即将过期，请及时处理！'
+        date = fields.Date.to_string(fields.date.today()+datetime.timedelta(days=30))
+        user_ids=[]
+        for contracts in self.env['cinda_cmdb.contract_purchase'].search([('reject_date','<=',date),]):
+            if contracts.header_id not in user_ids:
+                user_ids.append(contracts.header_id)
+        for user_id in user_ids:
+            datas=''
+            user_contracts = self.env['cinda_cmdb.contract_purchase'].search([('date_end', '<=', date),('header_id','=',user_id.id)])
+            for user_contract in user_contracts:
+                text=u'合同名:'+user_contract.name+u'-----过期时间 '+user_contract.reject_date
+                datas+=u'<p>'+text+u'</p>'
+            body= u'<div>'+u'<p>您好:</p>'+u'<p>&nbsp;&nbsp;&nbsp;&nbsp;以下合同即将过期或已经过期，请您及时续签或关闭,您可登录：<a href="http://123.56.147.94:8000">http://123.56.147.94:8000</a>查看详细信息</p>' + datas + u'</div>'
+            self.send_email(user_id,body,subject)
+    #邮件发送函数
+    def send_email(self, cr, uid, users, body='',subject='',context=None):
+        to_list = []
+        for user in users:
+            to_list.append(formataddr((Header(user.name, 'utf-8').encode(), user.email)))
+        mail_mail = self.pool.get('mail.mail')
+        mail_id = mail_mail.create(cr, uid, {
+            'body_html': body,
+            'subject': subject,
+            'email_to': to_list,
+            'auto_delete': True,
+        }, context=context)
+        mail_mail.browse(cr,uid,[mail_id],context=context).email_from = '<nantian_erp@nantian>'
+        mail_mail.send(cr, uid, [mail_id], context=context)
 
 class parts(models.Model):
     _name = "cinda_cmdb.parts"

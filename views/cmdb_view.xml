@@ -468,29 +468,29 @@
                             <page string="硬盘">
                                 <group>
                                 <group>
-                                    <field name="disk_size" string="硬盘容量(裸容量)"/>
+                                    <field name="disk_size" string="硬盘数量"/>
                                     <field name="single_disk_size" string="单硬盘容量"/>
                                     <field name="disk_sum" string="硬盘总容量"/>
                                 </group>
                                     <group>
                                         <field name="disk_spec" string="硬盘规格"/>
-                                        <field name="ext_st_size" string="外接存储容量"/>
+                                        <field name="ext_st_size" string="外接存储容量(TB)"/>
                                 </group>
                                 </group>
                             </page>
-                            <page string="HBA卡信息">
+                            <page string="HBA口信息">
                             <group>
                                 <group>
-                                    <field name="four_g_hba_num" string="4G HBA卡数量"/>
-                                    <field name="four_g_hba_used_num" string="4G HBA卡已用数量"/>
-                                    <field name="eight_g_hba_num" string="8G HBA卡数量"/>
-                                    <field name="eight_g_hba_used_num" string="8G HBA卡已用数量"/>
+                                    <field name="four_g_hba_num" string="4G HBA口数量"/>
+                                    <field name="four_g_hba_used_num" string="4G HBA口已用数量"/>
+                                    <field name="eight_g_hba_num" string="8G HBA口数量"/>
+                                    <field name="eight_g_hba_used_num" string="8G HBA口已用数量"/>
                                 </group>
                                 <group>
-                                    <field name="sixteen_g_hba_num" string="16G HBA卡数量"/>
-                                    <field name="sixteen_g_hba_used_num" string="16G HBA卡已用数量"/>
-                                    <field name="thirty_two_g_hba_num" string="32G HBA卡数量"/>
-                                    <field name="thirty_two_g_hba_used_num" string="32G HBA卡已用数量"/>
+                                    <field name="sixteen_g_hba_num" string="16G HBA口数量"/>
+                                    <field name="sixteen_g_hba_used_num" string="16G HBA口已用数量"/>
+                                    <field name="thirty_two_g_hba_num" string="32G HBA口数量"/>
+                                    <field name="thirty_two_g_hba_used_num" string="32G HBA口已用数量"/>
                                 </group>
                             </group>
                             <field name="interface_ids_a" string="HBA卡接口" >
@@ -839,6 +839,7 @@
                     <field name="model" string="Model"/>
                     <field name="use_mode" string="使用状态"/>
                     <field name="dev_start" string="设备状态"/>
+                    <field name="app_sys" string="所属系统"/>
                     <field name="purpose" string="用途"/>
                     <field name="lab_id" string="机房"/>
                     <field name="asset_num_old" string="旧资产编号"/>
@@ -877,6 +878,7 @@
                                 <field name="asset_num" string="资产编号"/>
                                 <field name="purpose" string="用途"/>
                                 <field name="type" string="存储类型"/>
+                                <field name="app_sys" string="所属系统"/>
                                 <field name="owner_id" string="资产所有人"/>
                                 <field name="user" string="使用人"/>
                                 <field name="admin" string="管理人"/>
@@ -1491,7 +1493,7 @@
                     <field name="attr" string="性质"/>
                     <field name="address" string="地址"/>
                     <field name="contact" string="联系人"/>
-                    <field name="position" string="职位"/>
+                    <!--<field name="position" string="职位"/>-->
                     <field name="fixed_phone" string="电话"/>
                     <field name="mobile_phone" string="手机"/>
                     <field name="mail" string="邮件"/>
@@ -1506,17 +1508,35 @@
                 <form>
                     <sheet>
                     <group>
+                    <group>
                         <!--<field name="vendor_list_id" string="服务商ID"/>-->
                         <field name="vendor" string="名称"/>
                         <field name="attr" string="性质"/>
                         <field name="address" string="地址"/>
-                        <field name="contact" string="联系人"/>
-                        <field name="position" string="职位"/>
                         <field name="fixed_phone" string="电话"/>
-                        <field name="mobile_phone" string="手机"/>
-                        <field name="mail" string="邮件"/>
-                        <field name="comment" string="备注"/>
                     </group>
+                        <group>
+                            <!--<field name="position" string="职位"/>-->
+                            <field name="mobile_phone" string="手机"/>
+                            <field name="mail" string="邮件"/>
+                            <field name="comment" string="备注"/>
+                        </group>
+                    </group>
+                        <notebook colspan="1">
+                            <page string="联系人">
+                                    <field name="contact" >
+                                        <tree editable="bottom" create="true" nolabel="true">
+                                            <field name="name" string="名称"/>
+                                            <field name="attr" string="性质"/>
+                                            <field name="address" string="公司"/>
+                                            <field name="position" string="职位"/>
+                                            <field name="fixed_phone" string="电话"/>
+                                            <field name="mobile_phone" string="手机"/>
+                                            <field name="mail" string="邮件"/>
+                                        </tree>
+                                    </field>
+                            </page>
+                        </notebook>
                     </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
@@ -1532,6 +1552,9 @@
                 <search  string="Search_base_type">
                     <field name="vendor" string="名称"/>
                     <group expand="0" string="分组">
+                        <filter string="名称" name="vendor" context="{'group_by':'vendor'}"/>
+                        <filter string="名称" name="name" context="{'group_by':'name'}"/>
+                        <filter string="名称" name="name" context="{'group_by':'name'}"/>
                     </group>
                 </search>
             </field>
@@ -1555,7 +1578,7 @@
                 <tree>
                     <field name="name" string="名称"/>
                     <field name="attr" string="性质"/>
-                    <field name="address" string="地址"/>
+                    <field name="address" string="公司"/>
                     <field name="position" string="职位"/>
                     <field name="fixed_phone" string="电话"/>
                     <field name="mobile_phone" string="手机"/>
@@ -1571,15 +1594,19 @@
                 <form>
                     <sheet>
                     <group>
-                        <!--<field name="member_list_id" string="人员表ID"/>-->
-                        <field name="name" string="名称"/>
-                        <field name="attr" string="性质"/>
-                        <field name="address" string="地址"/>
-                        <field name="position" string="职位"/>
-                        <field name="fixed_phone" string="电话"/>
-                        <field name="mobile_phone" string="手机"/>
-                        <field name="mail" string="邮件"/>
-                        <field name="comment" string="备注"/>
+                        <group>
+                            <!--<field name="member_list_id" string="人员表ID"/>-->
+                            <field name="name" string="名称"/>
+                            <field name="attr" string="性质"/>
+                            <field name="address" string="公司"/>
+                            <field name="position" string="职位"/>
+                        </group>
+                        <group>
+                            <field name="fixed_phone" string="电话"/>
+                            <field name="mobile_phone" string="手机"/>
+                            <field name="mail" string="邮件"/>
+                            <field name="comment" string="备注"/>
+                        </group>
                     </group>
                     </sheet>
                     <div class="oe_chatter">
@@ -1596,6 +1623,9 @@
                 <search  string="Search_base_type">
                     <field name="name" string="名称"/>
                     <group expand="0" string="分组">
+                        <filter string="名称" name="name" context="{'group_by':'name'}"/>
+                        <filter string="地址" name="address" context="{'group_by':'address'}"/>
+                        <filter string="职位" name="position" context="{'group_by':'position'}"/>
                     </group>
                 </search>
             </field>
@@ -2069,7 +2099,7 @@
             <field name="model">cinda_cmdb.vm</field>
             <field name="arch" type="xml">
                 <tree>
-                    <field name="sequence" string="序号"/>
+                    <!--<field name="sequence" string="序号"/>-->
                     <field name="name" string="主机名"/>
                     <field name="vm_ip" string="虚拟机IP地址"/>
                     <!--<field name="name" string="名称"/>-->
@@ -2082,7 +2112,7 @@
                     <field name="used_space" string="已用空间(GB)"/>
                     <field name="cluster_id" string="集群"/>
                     <field name="memory_size" string="内存大小(MB)"/>
-                    <field name="cpu" string="CPU"/>
+                    <field name="cpu" string="CPU数量"/>
                     <field name="vm_run_state" string="Vmware Tools 运行状况"/>
                     <field name="comment" string="备注"/>
                     <!--<field name="deliver_date" string="交付日期"/>-->
@@ -2113,17 +2143,17 @@
                     <sheet>
                     <group>
                     <group>
-                        <field name="sequence" string="序号"/>
+                        <!--<field name="sequence" string="序号"/>-->
                         <field name="name" string="主机名"/>
-                        <field name="vm_num" string="虚拟数量(台)"/>
+                        <!--<field name="vm_num" string="虚拟数量(台)"/>-->
                         <field name="state" string="状况"/>
                         <field name="cluster_id" string="集群"/>
                         <field name="client_operate_sys" string="客户机操作系统"/>
-                        <field name="cpu" string="CPU"/>
-                    </group>
-                        <group>
+                        <field name="cpu" string="CPU数量"/>
                         <field name="vm_ip" string="虚拟机IP地址"/>
                         <field name="vm_run_state" string="Vmware Tools 运行状况"/>
+                    </group>
+                        <group>
                         <field name="comment" string="备注"/>
                         <field name="sys_module" string="系统模块名称"/>
                         <field name="app_user_id" string="应用联系人"/>
@@ -2133,7 +2163,7 @@
                     </group>
                     </group>
                         <notebook colspan="1">
-                            <page string="存储">
+                            <page string="磁盘">
                                 <group>
                                     <group>
                                         <field name="reserve_space" string="置备的空间(GB)"/>
@@ -2420,7 +2450,7 @@
             <field name="name">contract_purchase.tree</field>
             <field name="model">cinda_cmdb.contract_purchase</field>
             <field name="arch" type="xml">
-                <tree string="cinda_cmdb_contract_user_tree" colors="red:reject_date&lt;date_after3M" >
+                <tree string="cinda_cmdb_contract_user_tree" colors="red:(reject_date&gt;=current_date) and (reject_date&lt;=date_after3M)" >
                     <field name="name" string="合同名称"/>
                     <field name="number" string="合同编号"/>
                     <field name="vendor" string="服务商"/>
@@ -2469,6 +2499,9 @@
                     <field name="name" string="名称"/>
                     <field name="number" string="合同编号"/>
                     <group expand="0" string="分组">
+                        <filter string="服务商" name="vendor" context="{'group_by':'vendor'}"/>
+                        <filter string="初验日期" name="accept_date" context="{'group_by':'accept_date'}"/>
+                        <filter string="过保日期" name="reject_date" context="{'group_by':'reject_date'}"/>
                     </group>
                 </search>
             </field>
