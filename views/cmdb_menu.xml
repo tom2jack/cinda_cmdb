@@ -82,7 +82,7 @@
 
         <record id="cinda_cmdb_net_dev_action" model="ir.actions.act_window" >
             <field name="name">网络设备表</field>
-            <field name="res_model">cinda_cmdb.device</field>
+            <field name="res_model">cinda_cmdb.net_dev</field>
             <field name="view_type">form</field>
             <field name="domain">['|','|','|','|','|','|','|','|','|','|',
                 ('type_id','=',"网络设备"),
@@ -100,26 +100,26 @@
             </field>
             <field name="view_mode">tree,form,graph</field>
         </record>
-        <record id="cinda_cmdb_net_dev_action_tree" model="ir.actions.act_window.view" >
-            <field name="view_mode">tree</field>
-            <field name="sequence" eval="1" />
-            <field name="view_id" ref="device_tree_view" />
-            <field name="act_window_id" ref="cinda_cmdb_net_dev_action" />
-        </record>
-        <record id="cinda_cmdb_net_dev_action_form" model="ir.actions.act_window.view">
-            <field name="view_mode">form</field>
-            <field name="sequence" eval="5" />
-            <field name="view_id" ref="device_form_view" />
-            <field name="act_window_id" ref="cinda_cmdb_net_dev_action" />
-        </record>
+        <!--<record id="cinda_cmdb_net_dev_action_tree" model="ir.actions.act_window.view" >-->
+            <!--<field name="view_mode">tree</field>-->
+            <!--<field name="sequence" eval="1" />-->
+            <!--<field name="view_id" ref="device_tree_view" />-->
+            <!--<field name="act_window_id" ref="cinda_cmdb_net_dev_action" />-->
+        <!--</record>-->
+        <!--<record id="cinda_cmdb_net_dev_action_form" model="ir.actions.act_window.view">-->
+            <!--<field name="view_mode">form</field>-->
+            <!--<field name="sequence" eval="5" />-->
+            <!--<field name="view_id" ref="device_form_view" />-->
+            <!--<field name="act_window_id" ref="cinda_cmdb_net_dev_action" />-->
+        <!--</record>-->
 
 
-        <record id="cinda_cmdb_net_dev_information" model="ir.actions.act_window">
-            <field name="name">网络信息表</field>
-            <field name="res_model">cinda_cmdb.net_dev</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">tree,form,graph</field>
-        </record>
+        <!--<record id="cinda_cmdb_net_dev_information" model="ir.actions.act_window">-->
+            <!--<field name="name">网络信息表</field>-->
+            <!--<field name="res_model">cinda_cmdb.net_dev</field>-->
+            <!--<field name="view_type">form</field>-->
+            <!--<field name="view_mode">tree,form,graph</field>-->
+        <!--</record>-->
 
 
         <record id="cinda_cmdb_board_action" model="ir.actions.act_window" >
@@ -391,7 +391,7 @@
         <menuitem id="menu_tape_station" name="磁带机磁带库" parent="menu_computer" action="cinda_cmdb_tape_station_action" sequence="7"/>
         <menuitem id="menu_network" name="网络安全设备" parent="device_menu" sequence="5"/>
         <menuitem id="net_dev_id" name="网络设备" parent="menu_network" action="cinda_cmdb_net_dev_action" sequence="1"/>
-        <menuitem id="net_dev_information" name="网络信息" parent="menu_network" action="cinda_cmdb_net_dev_information" sequence="2"/>
+        <!--<menuitem id="net_dev_information" name="网络信息" parent="menu_network" action="cinda_cmdb_net_dev_information" sequence="2"/>-->
         <menuitem id="board_id" name="板卡" parent="menu_network" action="cinda_cmdb_board_action" sequence="3"/>
         <menuitem id="cinda_cmdb_parts_id" name="配件" parent="menu_network" action="cinda_cmdb_parts_action" sequence="4"/>
         <menuitem id="ip_port_id" name="IP端口" parent="menu_network" action="cinda_cmdb_ip_port_action" sequence="5"/>
