@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from openerp import fields
 from openerp import models,api
-import datetime
+import datetime, psycopg2
 from email.utils import formataddr
 from email.header import Header
 
@@ -472,14 +472,14 @@ class san_port(models.Model):
     port = fields.Char(string="端口号")
     module = fields.Char(string="模块")
     # port = fields.Char(string="本端端口号")
-    wwn = fields.Char(string="本端WWN")
-    end_on_dev_id = fields.Integer(string="对端设备id")
     end_port_id = fields.Integer(string="对端端口ID")
     end_on_port = fields.Char(string="对端的端口号")
     end_on_wwn = fields.Char(string="对端的WWN")
-    speed = fields.Char(string="速率")
     protocl = fields.Char(string="使用协议")
     device_code = fields.Char(string="设备编号")
+    end_on_dev_id = fields.Integer(string="对端设备id")
+    wwn = fields.Char(string="本端WWN")
+    speed = fields.Char(string="速率")
     fc_card_name = fields.Char(string="光纤卡名")
     slot = fields.Char(string="槽位")
     alias = fields.Char(string="别名")
@@ -952,7 +952,9 @@ class interface(models.Model):
     tape_station_id = fields.Many2one('cinda_cmdb.tape_station')
     peer_device_id = fields.Many2one('cinda_cmdb.device', string="对端设备")
     peer_interface = fields.Many2one('cinda_cmdb.interface', string="对端接口(导入时勿选)", track_visibility='onchange')
+    # 问： 字段中的 track_visibility='onchange' 有什么用   答： 当文档变动的时候，通知关注者。
     status = fields.Boolean(string="是否使用", compute='auto_change_peer', store=True, default=False)
+    statuss = fields.Boolean(string="是否使用", store=True, default=False)
     interface_rate = fields.Char(string="本端接口速率")
     peer_rate = fields.Char(string="对端速率")
     purpose = fields.Many2one("cinda_cmdb.base_type", string='用途', domain=[('class_id', 'ilike', "用途")])
@@ -976,46 +978,96 @@ class interface(models.Model):
 
     # 实现在增加、删除对端接口时，自动关联互联设备的对端接口，但修改对端接口时不能取消关联之前的设备
     @api.one
-    @api.depends('peer_interface','status')
+    @api.depends('peer_interface')
     def auto_change_peer(self):
         value_peer_interface = 'null'
-        value_status = False
         if type(self.id) == int:
             if self.peer_interface.id:
-                if not self.status:
+                # 增加
+                if not self.statuss:
+                    # 修改本条数据的statuss的状态为True
+                    col_a = "id"
+                    value_target_a = self.id
+                    value_status_a = "True"
+                    sql_a = '''UPDATE cinda_cmdb_interface
+                                      SET statuss = %s
+                                      WHERE %s = %s''' % \
+                          (value_status_a, col_a, value_target_a)
+                    self.env.cr.execute(sql_a)
+                    # 然后增加相关联设备的对端接口的信息
                     value_peer_device_id = self.device_id.id
                     value_peer_interface = self.id
-                    value_status = True
+                    value_status = "True"
                     value_target = self.peer_interface.id
                     col = 'id'
-                    self.status = True
+                    self.statuss = "True"
+                    sql = '''UPDATE cinda_cmdb_interface
+                                  SET peer_device_id = %s, peer_interface = %s , status = %s
+                                  WHERE %s = %s''' % \
+                      (value_peer_device_id, value_peer_interface, value_status, col, value_target)
+                    self.env.cr.execute(sql)
+                # 修改
                 else:
+                    # 第一步先删除相关联设备的对端接口的值
+                    # 修改后，之前关联的设备的对端设备字段peer_device_id是不是也应该改为null???
                     value_peer_device_id = self.device_id.id
                     value_target = self.id
+                    value_status = "False"
+                    # print "*** 先删除 ***" * 50
                     col = 'peer_interface'
-                    self.status = False
+                    self.statuss = "False"
                     sql = '''UPDATE cinda_cmdb_interface
                           SET peer_device_id = %s, peer_interface = %s , status = %s
                           WHERE %s = %s''' % \
                           (value_peer_device_id, value_peer_interface, value_status, col, value_target)
                     self.env.cr.execute(sql)
+                    # 第二步 保证本条数据的statuss仍然为True
+                    col_a = "id"
+                    value_target_a = self.id
+                    value_status_a = "True"
+                    sql_a = '''UPDATE cinda_cmdb_interface
+                                      SET statuss = %s
+                                      WHERE %s = %s''' % \
+                          (value_status_a, col_a, value_target_a)
+                    self.env.cr.execute(sql_a)
+                    # 第三步 更新对应的相关联设备的对端接口的数据
+                    value_peer_device_id = self.device_id.id
+                    value_target = self.peer_interface.id
+                    value_status = "False"
+                    value_peer_interface = self.id
+                    # print "*** 后增加 ***" * 50
+                    col = 'id'
+                    self.statuss = "True"
+                    sql_c = '''UPDATE cinda_cmdb_interface
+                          SET peer_device_id = %s, peer_interface = %s , statuss = %s
+                          WHERE %s = %s''' % \
+                          (value_peer_device_id, value_peer_interface, value_status, col, value_target)
+                    self.env.cr.execute(sql_c)
+            #删除
             else:
+                # 第一步 先删除之前相关联的设备的对端接口数据
                 value_peer_device_id = self.device_id.id
                 value_target = self.id
+                value_status = "False"
                 col = 'peer_interface'
-                self.status = False
-            sql = '''UPDATE cinda_cmdb_interface
-                              SET peer_device_id = %s, peer_interface = %s , status = %s
-                              WHERE %s = %s''' % \
-                  (value_peer_device_id, value_peer_interface, value_status, col, value_target)
-            self.env.cr.execute(sql)
-            # self.invalidate_cache(self.env.cr, self.env.uid)
-        else:
-            pass
-            # if not self.peer_interface:
-            #     self.status = False
+                # self.statuss = "False"
+                # print '### 删除 ###'* 10
+                sql = '''UPDATE cinda_cmdb_interface
+                                  SET peer_device_id = %s, peer_interface = %s , status = %s, statuss = %s
+                                  WHERE %s = %s''' % \
+                      (value_peer_device_id, value_peer_interface, value_status, value_status, col, value_target)
+                print sql
+                self.env.cr.execute(sql)
+                # 第二步 要修改本条数据的statuss为False
+                col_a = "id"
+                value_target_a = self.id
+                value_status_a = "False"
+                sql_a = '''UPDATE cinda_cmdb_interface
+                                  SET statuss = %s
+                                  WHERE %s = %s''' % \
+                      (value_status_a, col_a, value_target_a)
+                self.env.cr.execute(sql_a)
 
-        # self.env.invalidate_all()
 
     # 在接口表里面添加接口信息时，相应的在对应的表里面的一对多接口表的tree视图里面也显示接口信息；反之亦然，在二级表里面添加接口信息时，也要在interface表里面添加信息。
     def create(self, cr, uid, vals, context=None):
@@ -1053,6 +1105,9 @@ class interface(models.Model):
             elif record.tape_station_id:
                 record.device_id = self.pool.get("cinda_cmdb.tape_station").browse(cr, uid, record.tape_station_id.id).dev_id
         return id
+
+        # conn = psycopg2.connect(database="rain298",user="root", password="root",host="127.0.0.1",port="5432")
+        # cur = conn.cursor()
 
 
 
@@ -1192,7 +1247,6 @@ class tape_station(models.Model):
     reject_date = fields.Char(related="dev_id.reject_date", string="过保日期")
 
 
-
 class mini_pc(models.Model):
     _name = "cinda_cmdb.mini_pc"
     _description = '小型计算机'
@@ -1289,3 +1343,34 @@ class mini_pc(models.Model):
     def _disk_sum(self):
         for r in self:
             r.disk_sum = (r.disk_num * r.single_disk_size)+(r.disk_num_two * r.single_disk_size_two)
+
+
+class fc_interface(models.Model):
+    dev_id = fields.Many2one("cinda_cmdb.device", string="设备id",
+                             domain=[('type_id.type_name', 'ilike', "PC服务器"),
+                                     ('type_id.type_name', 'ilike', "小型计算机"),
+                                     ('type_id.type_name', 'ilike', "存储组件"),
+                                     ('type_id.type_name', 'ilike', "光纤交换机"),
+                                     ('type_id.type_name', 'ilike', "磁带机磁带库")])
+    host_sort = fields.Char(string="主机分类")
+    host_id = fields.Char(string="主机ID")
+    wwn = fields.Char(string="WWN地址")
+    type_id = fields.Integer(string="设备类型")
+    speed = fields.Char(string="速率")
+    fc_card_name = fields.Char(string="光纤卡名")
+    slot = fields.Char(string="槽位")
+    alias = fields.Char(string="别名")
+
+
+class sys_relation(models.Model):
+    a_config_sort = fields.Char(string="A配置分类")
+    a_config_id = fields.Char(string="A配置项ID")
+    b_config_sort = fields.Char(sting="B配置分类")
+    b_config_id = fields.Char(string="B配置项ID")
+    relation_type = fields.Selection([("1", "连接"),
+                                      ("2", "依赖于"),
+                                      ("3", "运行于"),
+                                      ("4", "安装于"),
+                                      ("5", "组成"),
+                                      ("6", "备份")], string="关系类型")
+    relation_state = fields.Char(string="关系说明")

@@ -2644,6 +2644,8 @@
                             <field name="peer_wwn" string="对端WWN"/>
                             <field name="peer_interface" string="对端接口" domain="[('device_id', '=', peer_device_id)]" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
                             <field name="purpose" string="用途"/>
+                            <!--<field name="status" string="状态"/>-->
+                            <!--<field name="statuss" string="状态s"/>-->
                         </group>
                     </group>
                     </sheet>
