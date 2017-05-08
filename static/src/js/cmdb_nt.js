@@ -11,15 +11,15 @@ openerp.cinda_cmdb=function(instance){
         init:function(){
             //暂时不需要
         },
-        start:function(o){
-            var displayName=o.client.action_manager.inner_action.display_name;
-            switch(displayName){
-                case "机房":this.addJumpEvent("deviceRoom");break;
-                case "机柜表":this.addJumpEvent("cabinet");break;
+        start:function(model){
+            switch(model){
+                case "cinda_cmdb.base_type":this.addJumpEvent("deviceRoom");break;
+                case "cinda_cmdb.cabinet":this.addJumpEvent("cabinet");break;
             }
         },
         addJumpEvent:function(title){
             var me=this;
+            //由于form的展示界面禁用了单击事件，此处采用鼠标抬起事件代替
             $("div.oe_view_manager_view_form").on("mouseup","a.self_add_link",function(){
                 var id=$(this).find("span.oe_form_char_content").html()-0;
                 if(title=="deviceRoom"){
@@ -54,6 +54,12 @@ openerp.cinda_cmdb=function(instance){
         }
     });
 
-    //当视图加载时调用自己指定代码
-    instance.web.actionList.push(new instance.cinda_cmdb.Widget());
+    instance.web.FormView.include({
+        load_form:function(data){
+            var self = this;
+            var cinda_cmdb = new instance.cinda_cmdb.Widget(self);
+            cinda_cmdb.start(data.model);
+            return this._super.apply(this, arguments);
+        }
+    });
 }
