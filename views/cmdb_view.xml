@@ -609,22 +609,24 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="sn_id" string="序列号"/>
-                    <field name="admin_ip" string="管理IP"/>
                     <field name="host_name" string="设备命名"/>
-                    <field name="u_pos" string="位置U"/>
-                    <field name="use_mode" string="使用状态"/>
-                    <field name="dev_start" string="设备状态"/>
-                    <field name="purpose" string="用途"/>
-                    <field name="type_id" string="设备类型"/>
+                    <field name="admin_ip" string="管理IP"/>
+                    <!--<field name="use_mode" string="使用状态"/>-->
+                    <!--<field name="dev_start" string="设备状态"/>-->
                     <field name="lab_id" string="机房"/>
-                    <field name="cab" string="机柜"/>
-                    <field name="env_id" string="环境"/>
+                    <field name="cab" domain="[('lab', '=', lab_id)]" string="机柜" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
+                    <field name="u_pos" string="位置U"/>
                     <field name="product_name" string="产品型号"/>
-                    <field name="name" string="设备命名"/>
+                    <field name="type_id" string="设备类型"/>
+                    <field name="brand_id" string="品牌"/>
+                    <!--<field name="env_id" string="环境"/>-->
+                    <!--<field name="name" string="设备命名"/>-->
                     <field name="version" string="软件版本"/>
-                    <field name="dev_id" string="设备资产"/>
+                    <!--<field name="dev_id" string="设备资产"/>-->
                     <field name="area" string="物理位置"/>
-                    <field name="fixed_assets_project" string="固定资产项目名称"/>
+                    <field name="region" string="所属区域"/>
+                    <field name="purpose" string="用途"/>
+                    <!--<field name="fixed_assets_project" string="固定资产项目名称"/>-->
                     <field name="owner_id" string="资产所有人"/>
                     <field name="srve_prvd" string="服务商"/>
                     <field name="online_time" string="上线日期"/>
@@ -637,7 +639,7 @@
             <field name="model">cinda_cmdb.net_dev</field>
             <field name="arch" type="xml">
                 <search  string="Search_net_dev">
-                    <field name="name" string="设备命名"/>
+                    <field name="host_name" string="设备命名"/>
                     <field name="admin_ip" string="管理IP"/>
                     <group expand="0" string="分组">
                         <filter string="区域" name="area" context="{'group_by':'area'}"/>
@@ -654,25 +656,28 @@
                     <group>
                         <group>
                             <field name="dev_id" string="关联的设备(序列号+设备命名)" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
-                            <field name="name" string="设备命名"/>
-                            <field name="use_mode" string="使用状态"/>
-                            <field name="dev_start" string="设备状态"/>
+                            <field name="host_name" string="设备命名"/>
+                            <field name="admin_ip" string="管理IP"/>
+                            <!--<field name="use_mode" string="使用状态"/>-->
+                            <!--<field name="dev_start" string="设备状态"/>-->
+                            <field name="product_name" string="产品型号"/>
                             <field name="type_id" string="设备类型"/>
                             <field name="brand_id" string="品牌"/>
                             <!--<field name="model" string="Model"/>-->
                             <field name="version" string="软件版本"/>
-                            <field name="admin_ip" string="管理IP"/>
                             <field name="asset_num_old" string="旧资产编号"/>
                             <field name="asset_num" string="资产编号"/>
-                            <field name="purpose" string="用途"/>
                         </group>
                         <group>
                             <!--<field name="account" string="账号"/>-->
+                            <field name="area" string="物理位置"/>
+                            <field name="region" string="所属区域"/>
+                            <field name="purpose" string="用途"/>
                             <field name="owner_id" string="资产所有人"/>
-                            <field name="user" string="使用人"/>
-                            <field name="srve_prvd" string="服务商"/>
-                            <field name="admin" string="管理人"/>
-                            <field name="fixed_assets_project" string="固定资产项目名称"/>
+                            <!--<field name="user" string="使用人"/>-->
+                            <!--<field name="srve_prvd" string="服务商"/>-->
+                            <!--<field name="admin" string="管理人"/>-->
+                            <!--<field name="fixed_assets_project" string="固定资产项目名称"/>-->
                             <field name="config_backup_method" string="配置备份方式"/>
                             <field name="config_backup_frequency" string="配置备份频率"/>
                             <field name="comment" string="备注"/>
@@ -698,7 +703,6 @@
                             <page string="位置">
                                 <group>
                                 <group>
-                                    <field name="area" string="物理位置"/>
                                     <field name="lab_id" string="机房"/>
                                     <field name="cab" domain="[('lab', '=', lab_id)]" string="机柜" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
                                     <field name="u_pos" string="位置U"/>
@@ -706,7 +710,6 @@
                                 <group>
                                     <field name="u_space" string="占位U"/>
                                     <field name="env_id" string="环境"/>
-                                    <field name="area" string="区域"/>
                                 </group>
                                 </group>
                             </page>

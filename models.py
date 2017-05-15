@@ -287,14 +287,16 @@ class server(models.Model):
 class net_dev(models.Model):
     _name = "cinda_cmdb.net_dev"
     _description = '网络信息表'
-    _rec_name = "name"
+    _rec_name = "host_name"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
-    name = fields.Char(string="设备命名")
-    area = fields.Selection([('east_ring', '东环'), ('yi_zh', '亦庄'), ('busy_kou', '闹市口'), ('fen_firm', '分公司'), ('son_firm', '分公司')], default="", Require="False", string="物理位置")
+    # name = fields.Char(string="设备命名")
+    # area = fields.Selection([('east_ring', '东环'), ('yi_zh', '亦庄'), ('money_center', '金融中心'), ('fen_firm', '分公司'), ('son_firm', '子公司')], default="", Require="False", string="物理位置")
+    area = fields.Char( string="物理位置")
+    region = fields.Char( string="所属区域")
     version = fields.Char(string="软件版本")
-    admin_ip = fields.Char(string="管理IP")
+    admin_ip = fields.Char(string="管理口IP")
     account = fields.Char(string="账号")
     comment = fields.Char(string="备注")
     online_time = fields.Date(string="上线日期")
@@ -308,20 +310,44 @@ class net_dev(models.Model):
          ('per_month', '每月'),
          ('per_year', '每年')]
     )
-    dev_id = fields.Many2one("cinda_cmdb.device", string="设备资产")
     interface_ids = fields.One2many(related='dev_id.interface_ids', string="接口")
     last_upd = fields.Datetime(default=fields.datetime.now(), require=True, string="最后修改日期")
-    dev_id = fields.Many2one("cinda_cmdb.device", string="设备资产id", domain=['|','|',('type_id.type_name', 'ilike', "交换机"),('type_id.type_name', 'ilike', "路由器"),('type_id.type_name', 'ilike', "网络设备")])
+    dev_id = fields.Many2one("cinda_cmdb.device", string="设备资产id", domain=['|','|','|','|','|','|','|','|','|','|','|','|','|',
+                                                                                    ('type_id.type_name','ilike',"网络设备"),
+                                                                                    ('type_id.type_name','ilike',"交换机"),
+                                                                                    ('type_id.type_name','ilike',"路由器"),
+                                                                                    ('type_id.type_name','ilike',"安全设备"),
+                                                                                    ('type_id.type_name','ilike',"防火墙"),
+                                                                                    ('type_id.type_name','ilike',"负载均衡"),
+                                                                                    ('type_id.type_name','ilike',"邮件网关"),
+                                                                                    ('type_id.type_name','ilike',"PIX"),
+                                                                                    ('type_id.type_name','ilike',"IDS探针"),
+                                                                                    ('type_id.type_name','ilike',"SG"),
+                                                                                    ('type_id.type_name','ilike',"SSL_VPN"),
+                                                                                    ('type_id.type_name','ilike',"IPSEC_VPN"),
+                                                                                    ('type_id.type_name','ilike',"CITRIX"),
+                                                                                    ('type_id.type_name','ilike',"备邮数据中心"),
+                                                                                    ])
     sn_id = fields.Char(related="dev_id.sn", string="所属设备序列号")
     #以下是device表中引用过来用来展示的字段
     host_name = fields.Char(related="dev_id.host_name", string="设备命名")
-    type_id = fields.Many2one(related="dev_id.type_id", string="设备类型", domain=['|','|','|','|',
-                                                                               ('type_name', '=', "交换机"),
-                                                                               ('type_name', '=', "路由器"),
-                                                                               ('type_name', '=', "防火墙"),
-                                                                               ('type_name', '=', "负载均衡"),
-                                                                               ('type_name', '=', "其它")], store="Ture")
     brand_id = fields.Many2one(related="dev_id.brand_id", string="品牌")
+    type_id = fields.Many2one(related="dev_id.type_id", string="设备类型", domain=['|','|','|','|','|','|','|','|','|','|','|','|','|',
+                                                                                        ('type_name','ilike',"网络设备"),
+                                                                                        ('type_name','ilike',"交换机"),
+                                                                                        ('type_name','ilike',"路由器"),
+                                                                                        ('type_name','ilike',"安全设备"),
+                                                                                        ('type_name','ilike',"防火墙"),
+                                                                                        ('type_name','ilike',"负载均衡"),
+                                                                                        ('type_name','ilike',"邮件网关"),
+                                                                                        ('type_name','ilike',"PIX"),
+                                                                                        ('type_name','ilike',"IDS探针"),
+                                                                                        ('type_name','ilike',"SG"),
+                                                                                        ('type_name','ilike',"SSL_VPN"),
+                                                                                        ('type_name','ilike',"IPSEC_VPN"),
+                                                                                        ('type_name','ilike',"CITRIX"),
+                                                                                        ('type_name','ilike',"备邮数据中心"),
+                                                                                        ], store="Ture")
     product_name = fields.Char(related="dev_id.product_name", string="产品型号")
     # sn = fields.Char(related="dev_id.sn", string="序列号")
     model = fields.Char(related="dev_id.model", string="Model")
@@ -344,9 +370,6 @@ class net_dev(models.Model):
     contract_ids = fields.Many2many(related="dev_id.contract_ids", string="采购合同编号")
     accept_date = fields.Char(related="dev_id.accept_date", string="初验日期")
     reject_date = fields.Char(related="dev_id.reject_date", string="过保日期")
-
-
-
     # net_dev_id = fields.Char(string="网络设备id")
     # area_id = fields.Integer(string="区域id")
     # root_acc = fields.Char(string="根用户")
@@ -957,7 +980,7 @@ class interface(models.Model):
     statuss = fields.Boolean(string="是否使用", store=True, default=False)
     interface_rate = fields.Char(string="本端接口速率")
     peer_rate = fields.Char(string="对端速率")
-    purpose = fields.Many2one("cinda_cmdb.base_type", string='用途', domain=[('class_id', 'ilike', "用途")])
+    purpose = fields.Char(string='用途', domain=[('class_id', 'ilike', "用途")])
     peer_interface_temp = fields.Char(string='对端接口')
     interface_temp = fields.Char(string='计算对端接口(导入时勿选)',compute='auto_compute_peer_interface',store=True )
 

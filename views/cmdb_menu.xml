@@ -84,42 +84,38 @@
             <field name="name">网络设备表</field>
             <field name="res_model">cinda_cmdb.net_dev</field>
             <field name="view_type">form</field>
-            <field name="domain">['|','|','|','|','|','|','|','|','|','|',
-                ('type_id','=',"网络设备"),
-                ('type_id','=',"交换机"),
-                ('type_id','=',"路由器"),
-                ('type_id','=',"网络设备"),
-                ('type_id','=',"视频控制"),
-                ('type_id','=',"邮件网关"),
-                ('type_id','=',"PIX"),
-                ('type_id','=',"IDS探针"),
-                ('type_id','=',"SG"),
-                ('type_id','=',"SSL_VPN"),
-                ('type_id','=',"备邮数据中心"),
-                ]
-            </field>
+            <!--<field name="domain">['|','|','|','|','|','|','|','|','|','|','|','|','|',-->
+                <!--('type_id.type_name','=',"网络设备"),-->
+                <!--('type_id.type_name','=',"交换机"),-->
+                <!--('type_id.type_name','=',"路由器"),-->
+                <!--('type_id.type_name','=',"安全设备"),-->
+                <!--('type_id.type_name','=',"防火墙"),-->
+                <!--('type_id.type_name','=',"负载均衡"),-->
+                <!--('type_id.type_name','=',"邮件网关"),-->
+                <!--('type_id.type_name','=',"PIX"),-->
+                <!--('type_id.type_name','=',"IDS探针"),-->
+                <!--('type_id.type_name','=',"SG"),-->
+                <!--('type_id.type_name','=',"SSL_VPN"),-->
+                <!--('type_id.type_name','=',"IPSEC_VPN"),-->
+                <!--('type_id.type_name','=',"CITRIX"),-->
+                <!--('type_id.type_name','=',"备邮数据中心"),-->
+                <!--]-->
+            <!--</field>-->
             <field name="view_mode">tree,form,graph</field>
+            <field name="view_id" ref="net_dev_form_view" />
         </record>
-        <!--<record id="cinda_cmdb_net_dev_action_tree" model="ir.actions.act_window.view" >-->
-            <!--<field name="view_mode">tree</field>-->
-            <!--<field name="sequence" eval="1" />-->
-            <!--<field name="view_id" ref="device_tree_view" />-->
-            <!--<field name="act_window_id" ref="cinda_cmdb_net_dev_action" />-->
-        <!--</record>-->
-        <!--<record id="cinda_cmdb_net_dev_action_form" model="ir.actions.act_window.view">-->
-            <!--<field name="view_mode">form</field>-->
-            <!--<field name="sequence" eval="5" />-->
-            <!--<field name="view_id" ref="device_form_view" />-->
-            <!--<field name="act_window_id" ref="cinda_cmdb_net_dev_action" />-->
-        <!--</record>-->
-
-
-        <!--<record id="cinda_cmdb_net_dev_information" model="ir.actions.act_window">-->
-            <!--<field name="name">网络信息表</field>-->
-            <!--<field name="res_model">cinda_cmdb.net_dev</field>-->
-            <!--<field name="view_type">form</field>-->
-            <!--<field name="view_mode">tree,form,graph</field>-->
-        <!--</record>-->
+        <record id="cinda_cmdb_net_dev_device_action_tree" model="ir.actions.act_window.view" >
+            <field name="view_mode">tree</field>
+            <field name="sequence" eval="1" />
+            <field name="view_id" ref="net_dev_tree_view" />
+            <field name="act_window_id" ref="cinda_cmdb_net_dev_action" />
+        </record>
+        <record id="cinda_cmdb_net_dev_device_action_form" model="ir.actions.act_window.view">
+            <field name="view_mode">form</field>
+            <field name="sequence" eval="2" />
+            <field name="view_id" ref="net_dev_form_view" />
+            <field name="act_window_id" ref="cinda_cmdb_net_dev_action" />
+        </record>
 
 
         <record id="cinda_cmdb_board_action" model="ir.actions.act_window" >
