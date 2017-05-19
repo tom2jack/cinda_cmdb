@@ -312,7 +312,7 @@ class net_dev(models.Model):
     )
     interface_ids = fields.One2many(related='dev_id.interface_ids', string="接口")
     last_upd = fields.Datetime(default=fields.datetime.now(), require=True, string="最后修改日期")
-    dev_id = fields.Many2one("cinda_cmdb.device", string="设备资产id", domain=['|','|','|','|','|','|','|','|','|','|','|','|','|',
+    dev_id = fields.Many2one("cinda_cmdb.device", string="序列号", domain=['|','|','|','|','|','|','|','|','|','|','|','|','|',
                                                                                     ('type_id.type_name','ilike',"网络设备"),
                                                                                     ('type_id.type_name','ilike',"交换机"),
                                                                                     ('type_id.type_name','ilike',"路由器"),
@@ -858,18 +858,19 @@ class vm(models.Model):
     server_ids = fields.Many2one("cinda_cmdb.server", string="主机")
     host_computer = fields.Char( string="主机")
     cluster_id = fields.Many2one("cinda_cmdb.cluster", string="集群")
-    app_user_id = fields.Many2one("cinda_cmdb.member_list", string="应用联系人")
+    app_user_id = fields.Char(string="应用联系人")
     sequence = fields.Integer(string='序号')
     name = fields.Char(string='虚拟机名称')
-    vm_num = fields.Integer(string='虚机数量（台）')
-    state = fields.Selection([('start', '开机'), ('shutdown', '关机'),], default="", Require="False", string="状况")
-    reserve_space = fields.Float(string="备至的空间")
+    vm_num = fields.Integer(string='虚机数量(台)')
+    state = fields.Selection([('start', '开机'),
+                              ('shutdown', '关机'),], default="", Require="False", string="状况")
+    reserve_space = fields.Float(string="置备空间")
     used_space = fields.Float(string="已用空间")
     client_operate_sys = fields.Char(string="客户机操作系统")
     memory_size = fields.Integer(string="内存大小(MB)", track_visibility='onchange')
     cpu = fields.Integer(string="CPU数量")
     vm_ip = fields.Char(string="虚机IP地址")
-    vm_run_state = fields.Selection([('running', '正在运行'), ('shutdown', '未运行'),], default="", Require="False", string="Vmware Tools 运行状况")
+    vm_run_state = fields.Selection([('running', '正在运行'), ('shutdown', '未运行'),], default="", Require="False", string="VMware Tools 运行状况")
     comment = fields.Char(string="备注")
     sys_module = fields.Char(string="系统模块名称")
     deliver_date = fields.Date(string="交付日期")
