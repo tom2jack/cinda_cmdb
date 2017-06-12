@@ -2455,7 +2455,7 @@
             <field name="name">contract_purchase.tree</field>
             <field name="model">cinda_cmdb.contract_purchase</field>
             <field name="arch" type="xml">
-                <tree string="cinda_cmdb_contract_user_tree" colors="red:(reject_date&gt;=current_date) and (reject_date&lt;=date_after3M)" >
+                <tree string="cinda_cmdb_contract_user_tree" colors="orange:(reject_date&gt;=current_date) and (reject_date&lt;=date_after3M);red:(reject_date&lt;=current_date)" >
                     <field name="name" string="合同名称"/>
                     <field name="number" string="合同编号"/>
                     <field name="vendor" string="服务商"/>
