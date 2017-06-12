@@ -62,4 +62,27 @@ openerp.cinda_cmdb=function(instance){
             return this._super.apply(this, arguments);
         }
     });
+
+    //统计合同
+    instance.cinda_cmdb.Contract = instance.web.Widget.extend({
+        template:"cmdb.contract",
+        init:function(){
+
+        },
+        start:function(){
+            console.log(this.rpc);
+        }
+    });
+
+    instance.web.ViewManagerAction.include({
+        set_title:function(title){
+            if(this.dataset && this.active_view =="list" && this.dataset.model == "cinda_cmdb.contract_purchase"){
+                if(this.$el.find('.contract_total').length == 0){
+                    var contract = new instance.cinda_cmdb.Contract(this);
+                    contract.insertAfter(this.$el.find('.oe_breadcrumb_title:first'));
+                }
+            }
+            return this._super.apply(this, arguments);
+        }
+    });
 }

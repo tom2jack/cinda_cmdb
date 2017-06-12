@@ -31,3 +31,15 @@ body .openerp a.self_add_link:hover:before {
 div.cmdb_nt #myCanvas {
   background-color: #e8e8e8;
 }
+span.contract_total {
+  display: inline-block;
+  margin-left: 18px;
+}
+span.contract_total b {
+  color: #666;
+  font-size: 14px;
+}
+span.contract_total span {
+  color: #666;
+  font-size: 14px;
+}

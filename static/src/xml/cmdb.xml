@@ -7,4 +7,10 @@
             </canvas>
         </div>
     </t>
+    <t t-name="cmdb.contract">
+        <span class="contract_total">
+            <b>( 在保合同数量：</b><span class="new_num">0</span>
+            <b>过保合同数量：</b><span class="old_num">0</span><b>)</b>
+        </span>
+    </t>
 </templates>
