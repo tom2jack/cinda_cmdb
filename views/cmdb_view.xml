@@ -518,6 +518,10 @@
                                     <field name="t_netcard_used_num" string="万兆网口已用数量"/>
                                 </group>
                             </group>
+                            <header>
+                            <button name="action_to_confirm" type="object"  string="执行"  class="oe_highlight" />
+                            <!--<field name="state" widget="statusbar"/>-->
+                            </header>
                             <field name="interface_ids_b" string="网卡接口">
                                     <tree editable="bottom" create="true" nolabel="true">
                                         <field name="name" string="接口号" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>
@@ -2101,7 +2105,7 @@
             <field name="arch" type="xml">
                 <tree>
                     <!--<field name="sequence" string="序号"/>-->
-                    <field name="name" string="主机名"/>
+                    <field name="name" string="虚拟机名称"/>
                     <field name="vm_ip" string="虚拟机IP地址"/>
                     <!--<field name="name" string="名称"/>-->
                     <!--<field name="vm_num" string="虚拟数量(台)"/>-->
@@ -2114,7 +2118,7 @@
                     <field name="cluster_id" string="集群"/>
                     <field name="memory_size" string="内存大小(MB)"/>
                     <field name="cpu" string="CPU数量"/>
-                    <field name="vm_run_state" string="Vmware Tools 运行状况"/>
+                    <field name="vm_run_state" string="VMware Tools 运行状况"/>
                     <field name="comment" string="备注"/>
                     <!--<field name="deliver_date" string="交付日期"/>-->
                     <!--<field name="back_date" string="计划归还日期"/>-->
@@ -2127,7 +2131,7 @@
             <field name="model">cinda_cmdb.vm</field>
             <field name="arch" type="xml">
                 <search  string="Search_base_data">
-                    <field name="name" string="名称"/>
+                    <field name="name" string="虚拟机名称"/>
                     <field name="vm_ip" string="虚拟机IP"/>
                     <group expand="0" string="分组">
                         <filter string="集群" name="cluster_id" context="{'group_by':'cluster_id'}"/>
@@ -2145,14 +2149,14 @@
                     <group>
                     <group>
                         <!--<field name="sequence" string="序号"/>-->
-                        <field name="name" string="主机名"/>
+                        <field name="name" string="虚拟机名称"/>
                         <!--<field name="vm_num" string="虚拟数量(台)"/>-->
                         <field name="state" string="状况"/>
                         <field name="cluster_id" string="集群"/>
                         <field name="client_operate_sys" string="客户机操作系统"/>
                         <field name="cpu" string="CPU数量"/>
                         <field name="vm_ip" string="虚拟机IP地址"/>
-                        <field name="vm_run_state" string="Vmware Tools 运行状况"/>
+                        <field name="vm_run_state" string="VM网络设备ware Tools 运行状况"/>
                     </group>
                         <group>
                         <field name="comment" string="备注"/>

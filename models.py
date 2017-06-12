@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 from openerp import fields
-from openerp import models,api
-import datetime, psycopg2
+from openerp import models, api
+import datetime, time
 from email.utils import formataddr
 from email.header import Header
+
 
 
 class base_class(models.Model):
@@ -283,6 +284,12 @@ class server(models.Model):
         for r in self:
             r.cpu_sum = r.single_cpu_num * r.cpu_num
 
+    #
+    @api.multi
+    def action_to_confirm(self):
+        import patter
+        patter.patter()
+
 
 class net_dev(models.Model):
     _name = "cinda_cmdb.net_dev"
@@ -303,16 +310,17 @@ class net_dev(models.Model):
     offline_time = fields.Date(string="下线日期")
     scrap_time = fields.Date(string="报废日期")
     fixed_assets_project = fields.Char(string="固定资产项目名称")
-    config_backup_method = fields.Selection([('auto', '自动备份'), ('manual', '手动')], default='manual')
+    config_backup_method = fields.Selection([('auto', '自动备份'), ('manual', '手动')], default='manual', string="配置备份方式")
     config_backup_frequency = fields.Selection(
         [('per_day', '每天'),
          ('per_week', '每周'),
          ('per_month', '每月'),
-         ('per_year', '每年')]
+         ('per_year', '每年')],
+        string="配置备份频率"
     )
     interface_ids = fields.One2many(related='dev_id.interface_ids', string="接口")
     last_upd = fields.Datetime(default=fields.datetime.now(), require=True, string="最后修改日期")
-    dev_id = fields.Many2one("cinda_cmdb.device", string="设备资产id", domain=['|','|','|','|','|','|','|','|','|','|','|','|','|',
+    dev_id = fields.Many2one("cinda_cmdb.device", string="序列号", domain=['|','|','|','|','|','|','|','|','|','|','|','|','|',
                                                                                     ('type_id.type_name','ilike',"网络设备"),
                                                                                     ('type_id.type_name','ilike',"交换机"),
                                                                                     ('type_id.type_name','ilike',"路由器"),
@@ -858,18 +866,18 @@ class vm(models.Model):
     server_ids = fields.Many2one("cinda_cmdb.server", string="主机")
     host_computer = fields.Char( string="主机")
     cluster_id = fields.Many2one("cinda_cmdb.cluster", string="集群")
-    app_user_id = fields.Many2one("cinda_cmdb.member_list", string="应用联系人")
+    app_user_id = fields.Char(string="应用联系人")
     sequence = fields.Integer(string='序号')
     name = fields.Char(string='虚拟机名称')
-    vm_num = fields.Integer(string='虚机数量（台）')
-    state = fields.Selection([('start', '开机'), ('shutdown', '关机'),], default="", Require="False", string="状况")
-    reserve_space = fields.Float(string="备至的空间")
+    vm_num = fields.Integer(string='虚机数量(台)')
+    state = fields.Selection([('start', '开机'),('shutdown', '关机'),], default="", Require="False", string="状况")
+    reserve_space = fields.Float(string="置备空间")
     used_space = fields.Float(string="已用空间")
     client_operate_sys = fields.Char(string="客户机操作系统")
     memory_size = fields.Integer(string="内存大小(MB)", track_visibility='onchange')
     cpu = fields.Integer(string="CPU数量")
     vm_ip = fields.Char(string="虚机IP地址")
-    vm_run_state = fields.Selection([('running', '正在运行'), ('shutdown', '未运行'),], default="", Require="False", string="Vmware Tools 运行状况")
+    vm_run_state = fields.Selection([('running', '正在运行'), ('shutdown', '未运行'),], default="", Require="False", string="VMware Tools 运行状况")
     comment = fields.Char(string="备注")
     sys_module = fields.Char(string="系统模块名称")
     deliver_date = fields.Date(string="交付日期")
@@ -892,6 +900,7 @@ class contract_purchase(models.Model):
     vendor = fields.Many2one("cinda_cmdb.vendor_list", stirng="服务商")
     accept_date = fields.Date(string="初验日期")
     reject_date = fields.Date(string="过保日期")
+    # reject_device = fields.Char(string="过保设备", compute="reject", store=True)
 
     # 自动根据合同结束时间提醒邮件--距离合同结束一个月内 频率--每周
     @api.multi
@@ -924,6 +933,29 @@ class contract_purchase(models.Model):
         }, context=context)
         mail_mail.browse(cr,uid,[mail_id],context=context).email_from = '<nantian_erp@nantian>'
         mail_mail.send(cr, uid, [mail_id], context=context)
+
+
+    # @api.one
+    # @api.depends('reject_date')
+    # def reject(self):
+    #     print self
+    #     now = int(time.time())
+    #     timeArray = time.strptime(self.reject_date, "%Y-%m-%d")
+    #     old = int(time.mktime(timeArray))
+    #     print self.device_ids.device_id, self.id, type(self.id)
+    #     print self.name, type(now), type(old)
+    #     print now, old
+    #     print now < old
+    #     if now < old:
+    #         # now.append(self.name)
+    #         print "*" * 20
+
+        # print now
+            # pool_contract = self.env["cinda_cmdb.contract_purchase"]
+            # print self.env.cr
+            # now_1 = pool_contract.search(['id', '=', self.id])
+            # print now_1
+            # record_servers = pool_contract.search(cr, uid, [('dev_id', '=', record.device_id.id)], offset=0)
 
 class parts(models.Model):
     _name = "cinda_cmdb.parts"
