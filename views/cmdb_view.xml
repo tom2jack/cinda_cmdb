@@ -2156,7 +2156,7 @@
                         <field name="client_operate_sys" string="客户机操作系统"/>
                         <field name="cpu" string="CPU数量"/>
                         <field name="vm_ip" string="虚拟机IP地址"/>
-                        <field name="vm_run_state" string="VM网络设备ware Tools 运行状况"/>
+                        <field name="vm_run_state" string="VMware Tools 运行状况"/>
                     </group>
                         <group>
                         <field name="comment" string="备注"/>
