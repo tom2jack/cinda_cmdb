@@ -518,6 +518,10 @@
                                     <field name="t_netcard_used_num" string="万兆网口已用数量"/>
                                 </group>
                             </group>
+                            <header>
+                            <button name="action_to_confirm" type="object"  string="执行"  class="oe_highlight" />
+                            <!--<field name="state" widget="statusbar"/>-->
+                            </header>
                             <field name="interface_ids_b" string="网卡接口">
                                     <tree editable="bottom" create="true" nolabel="true">
                                         <field name="name" string="接口号" options='{"no_open":True, "no_create":1, "no_create_edit":1}'/>

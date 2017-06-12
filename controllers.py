@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from models import models
 from openerp import http
+from openerp import fields
 import json
 
 
@@ -33,6 +34,17 @@ class IntefaceData(http.Controller):
                 if devices:
                     for device in devices:
                         datas['device'].append({'u_pos': device.u_pos.type_name, 'u_space': device.u_space, 'host_name': device.host_name})
+        return json.dumps(datas)
+
+
+class ContractNum(http.Controller):
+    @http.route('/connum/', type='http', auth='public', methods=['GET'])
+    def connum(self, **post):
+        datas = {}
+        old_num = len(http.request.env['cinda_cmdb.contract_purchase'].sudo().search([('reject_date', '<=', fields.Date.to_string(fields.date.today()))]))
+        new_num = len(http.request.env['cinda_cmdb.contract_purchase'].sudo().search([('reject_date', '>',  fields.Date.to_string(fields.date.today()))]))
+        datas["old_num"] = old_num
+        datas["new_num"] = new_num
         return json.dumps(datas)
 
 
