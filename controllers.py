@@ -38,7 +38,7 @@ class IntefaceData(http.Controller):
 
 
 class ContractNum(http.Controller):
-    @http.route('/connum/', type='http', auth='public', methods=['GET'])
+    @http.route('/connum/', type='http', auth='public', methods=['POST','GET'])
     def connum(self, **post):
         datas = {}
         old_num = len(http.request.env['cinda_cmdb.contract_purchase'].sudo().search([('reject_date', '<=', fields.Date.to_string(fields.date.today()))]))

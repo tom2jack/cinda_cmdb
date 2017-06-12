@@ -63,14 +63,27 @@ openerp.cinda_cmdb=function(instance){
         }
     });
 
-    //统计合同
+    //合同统计
     instance.cinda_cmdb.Contract = instance.web.Widget.extend({
         template:"cmdb.contract",
         init:function(){
-
+            this.data = null;
         },
         start:function(){
-            console.log(this.rpc);
+            /*this.rpc("/connum/").then(function(data){
+                console.log(data);
+            },function(err){
+                console.log(err);
+            });*/
+            var me = this;
+            $.get("/connum/",function(data){
+                me.data = data;
+                me.setData()
+            },"json")
+        },
+        setData:function(){
+            this.$el.find('.new_num').html(this.data["new_num"]);
+            this.$el.find('.old_num').html(this.data["old_num"]);
         }
     });
 
@@ -81,6 +94,8 @@ openerp.cinda_cmdb=function(instance){
                     var contract = new instance.cinda_cmdb.Contract(this);
                     contract.insertAfter(this.$el.find('.oe_breadcrumb_title:first'));
                 }
+            }else{
+                this.$el.find('.contract_total').remove();
             }
             return this._super.apply(this, arguments);
         }
