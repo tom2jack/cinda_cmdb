@@ -665,13 +665,63 @@ class chg_log(models.Model):
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
 
-    chg_log_id = fields.Char(string="变更记录id")
     exe_date = fields.Date(string="日期")
     executor = fields.Many2one("cinda_cmdb.member_list", string="实施人", require=True)
     chg_dev_id = fields.Many2one('cinda_cmdb.device', string="设备")
     chg_type = fields.Char(string="类型")
     action = fields.Char(string="动作", require=True)
 
+
+class device_chg_log(models.Model):
+    _name = "cinda_cmdb.device_chg_log"
+    _description = '硬件变更记录表'
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _mail_post_access = 'read'
+
+    exe_date = fields.Date(string="日期")
+    executor = fields.Many2one("cinda_cmdb.member_list", string="实施人", require=True)
+    chg_dev_id = fields.Many2one('cinda_cmdb.device', string="设备")
+    chg_type = fields.Char(string="类型")
+    action = fields.Char(string="动作", require=True)
+
+
+class soft_chg_log(models.Model):
+    _name = "cinda_cmdb.soft_chg_log"
+    _description = '软件变更记录表'
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _mail_post_access = 'read'
+
+    exe_date = fields.Date(string="日期")
+    executor = fields.Many2one("cinda_cmdb.member_list", string="实施人", require=True)
+    chg_dev_id = fields.Many2one('cinda_cmdb.device', string="设备")
+    chg_type = fields.Char(string="类型")
+    action = fields.Char(string="动作", require=True)
+
+
+class vm_chg_log(models.Model):
+    _name = "cinda_cmdb.vm_chg_log"
+    _description = '虚拟资源变更记录表'
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _mail_post_access = 'read'
+
+    exe_date = fields.Date(string="日期")
+    executor = fields.Many2one("cinda_cmdb.member_list", string="实施人", require=True)
+    chg_dev_id = fields.Many2one('cinda_cmdb.device', string="设备")
+    chg_type = fields.Char(string="类型")
+    action = fields.Char(string="动作", require=True)
+
+
+class auth_chg_log(models.Model):
+    _name = "cinda_cmdb.auth_chg_log"
+    _description = '授权变更记录表'
+    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _mail_post_access = 'read'
+
+    exe_date = fields.Date(string="日期")
+    executor = fields.Many2one("cinda_cmdb.member_list", string="实施人", require=True)
+    chg_dev_id = fields.Many2one('cinda_cmdb.device', string="设备")
+    chg_type = fields.Char(string="类型")
+    action = fields.Char(string="动作", require=True)
 
 class net_config(models.Model):
     _name = "cinda_cmdb.net_config"
