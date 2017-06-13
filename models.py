@@ -898,6 +898,7 @@ class contract_purchase(models.Model):
     name = fields.Char(string="合同名称")
     number = fields.Char(string="合同编号")
     vendor = fields.Many2one("cinda_cmdb.vendor_list", stirng="服务商")
+    vendor_a = fields.Many2one("cinda_cmdb.vendor_list", stirng="供应商")
     accept_date = fields.Date(string="初验日期")
     reject_date = fields.Date(string="过保日期")
     # reject_device = fields.Char(string="过保设备", compute="reject", store=True)

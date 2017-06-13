@@ -2459,6 +2459,7 @@
                     <field name="name" string="合同名称"/>
                     <field name="number" string="合同编号"/>
                     <field name="vendor" string="服务商"/>
+                    <field name="vendor_a" string="供应商"/>
                     <field name="accept_date" string="初验日期"/>
                     <field name="reject_date" string="过保日期"/>
                 </tree>
@@ -2475,6 +2476,7 @@
                             <field name="name" string="合同名称"/>
                             <field name="number" string="合同编号"/>
                             <field name="vendor" string="服务商"/>
+                            <field name="vendor_a" string="供应商"/>
                         </group>
                         <group>
                             <field name="accept_date" string="初验日期"/>
@@ -2507,7 +2509,11 @@
                         <filter string="服务商" name="vendor" context="{'group_by':'vendor'}"/>
                         <filter string="初验日期" name="accept_date" context="{'group_by':'accept_date'}"/>
                         <filter string="过保日期" name="reject_date" context="{'group_by':'reject_date'}"/>
+                        <filter string="已过保" domain="[('reject_date','&gt;=',((context_today().strftime('%%Y/%%m/%%d')))]" context="{'group_by':'reject_date'}"/>
                     </group>
+                    <!--<group expand="0" string="分组">-->
+                        <!--<filter string="已过保" domain="[('reject_date','&gt;=',((context_today().strftime('%%Y/%%m/%%d')))]" context="{'group_by':'reject_date'}"/>-->
+                    <!--</group>-->
                 </search>
             </field>
         </record>
